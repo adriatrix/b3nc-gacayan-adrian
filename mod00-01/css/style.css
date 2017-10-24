@@ -1,0 +1,59 @@
+
+h1 {
+
+	font-size: 50px;
+	margin-bottom: -15px;
+	letter-spacing: 5px;
+}
+
+h2 {
+
+	text-transform: lowercase;
+	letter-spacing: 5px; /* spacing */
+}
+
+body {
+
+	background-color: darksalmon;
+	background: url("../img/coding.jpg") no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+
+
+
+
+
+	color: white;
+	text-shadow: 1px 1px 1px red;  /* border - shadow */
+
+		
+	font-family: 'Anton', sans-serif; 
+
+}
+
+p {
+	font-family: 'Jura', sans-serif;
+	font-size: 20px;
+}
+
+
+#notme {
+	height: 150px;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 2px;
+	border-color: white;
+	margin-top: 45px;
+}
+
+
+.aboutme {
+	width: 100%;
+}
+
+
+.container {
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
