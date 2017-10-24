@@ -4,12 +4,14 @@ h1 {
 	font-size: 50px;
 	margin-bottom: -15px;
 	letter-spacing: 5px;
+	text-transform: uppercase;
 }
 
 h2 {
 
 	text-transform: lowercase;
 	letter-spacing: 5px; /* spacing */
+	color: turquoise;
 }
 
 body {
@@ -19,14 +21,9 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 
-
-
-
-
 	color: white;
-	text-shadow: 1px 1px 1px red;  /* border - shadow */
+	text-shadow: 1px 1px 1px blue;  /* border - shadow */
 
-		
 	font-family: 'Anton', sans-serif; 
 
 }
@@ -42,13 +39,15 @@ p {
 	border-radius: 50%;
 	border-style: solid;
 	border-width: 2px;
-	border-color: white;
+	border-color: turquoise;
 	margin-top: 45px;
 }
 
 
 .aboutme {
 	width: 100%;
+	font-size: 18px;
+	line-height: 1.3;
 }
 
 
