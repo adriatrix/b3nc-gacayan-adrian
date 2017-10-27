@@ -7,10 +7,10 @@
 
 	<style type="text/css">
 
-		table, tr, th, td {
+	/*	table, tr, th, td {
 			border-collapse: collapse;
 			border: 1px solid black;
-		}
+		}*/
 
 		.red {
 			color: red;
@@ -366,7 +366,7 @@
 	<form action="" method="">
 		<select name="brand">
 			<option value="uniqlo">Uniqlo</option>
-			<option value="bench">Bench</opvalue id="" value="" tion>
+			<option value="bench" selected="">Bench</option>
 			<option value="penshoppe" selected="">Penshoppe</option>
 		</select>
 	</form>
@@ -394,7 +394,7 @@
 
 	<hr>
 
-	<!-- using label to be user-friendly -->
+	<!-- using label to be user-friendly // use the for attribute to indicate which form control it is a label for -->
 
 	<form action="" method="">
 		<label for="username">Username</label>
@@ -406,6 +406,89 @@
 		<input type="submit" name="SignIn" value="Sign In"></input>
 		<input type="submit" name="SignUp" value="Sign Up"></input>
 	</form>
+
+	<hr>
+
+	<!-- fieldset - groups input fields (UI friendly)-->
+
+	<fieldset>
+		<legend>Contact Details</legend>
+		<label for="email">Email</label>
+		<input type="email" name="email"></input>
+
+		<label for="mobile">Mobile</label>
+		<input type="number" name="mobile"></input>
+	</fieldset>
+
+	<hr>
+
+	<fieldset style="width:350px">
+		<legend>Your Details:</legend>
+		<table>
+			<tr>
+				<td><label for="name">Name:</label></td>
+				<td><input type="text" name="name"></input></td>
+			</tr>
+			<tr>
+				<td><label for="email">Email:</label></td>
+				<td><input type="email" name="email"></input></td>
+			</tr>
+		</table>
+	</fieldset>	
+
+	<fieldset style="width:350px">
+		<legend>Your Review:</legend>
+
+		<br>
+
+		<form action="" method="">
+		<label for="refer">How did you hear about us?</label>
+			<select name="refer">
+				<option value="google" selected="">Google</option>
+				<option value="facebook">Facebook</option>
+				<option value="instagram" >Instagram</option>
+				<option value="blog" >Blog</option>
+				<option value="website" >Website</option>
+				<option value="referral" >Referral</option>
+			</select
+		</form>
+
+		<br>
+		<br>
+
+
+		<label for="visit">Would you visit again?</label>
+		<br>
+		<input type="radio" name="visit" value="yes">Yes</input>	
+		<input type="radio" name="visit" value="no">No</input>
+		<input type="radio" name="visit" value="maybe">Maybe</input>
+
+		<br>
+		<br>
+
+		<table>
+			<tr>
+				<td><label for="comment">Comments</label></td>
+			</tr>
+			<tr>
+				<td><form action="" method="">
+					<textarea cols="40" rows="4"></textarea>
+					</form>
+				</td>
+			</tr>
+		</table>
+
+		<table>
+			<tr>
+				<td><input type="checkbox" name="updates" value="updates" checked="">Sign me up for email updates</input></td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="submit" value="Submit Review" ></input></td>
+			</tr>
+		</table>
+
+	</fieldset>
+
 
 </body>
 </html>

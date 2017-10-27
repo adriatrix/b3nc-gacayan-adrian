@@ -8,3 +8,7 @@
 ### Getting started with Gitlab
 This is my first feedback
 
+# Feedback
+##  2017-10-26
+### HTML
+Finished first half of the HTML Formatting activities
