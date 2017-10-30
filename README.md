@@ -12,3 +12,15 @@ This is my first feedback
 ##  2017-10-26
 ### HTML
 Finished first half of the HTML Formatting activities
+
+
+# Feedback
+##  2017-10-27
+### HTML
+Finished HTML lecture and tuitt evaluation week 1
+
+
+# Feedback
+##  2017-10-30
+### HTML
+Finished first half of the HTML Formatting activities
