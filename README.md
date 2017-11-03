@@ -23,4 +23,14 @@ Finished HTML lecture and tuitt evaluation week 1
 # Feedback
 ##  2017-10-30
 ### HTML
-Finished first half of the HTML Formatting activities
+Tuitt HTML Quiz 1
+
+# Feedback
+##  2017-11-2
+### DOM
+Completed DOM lecture. 3 tuitt activities
+
+# Feedback
+##  2017-11-2
+### CSS
+CSS lecture

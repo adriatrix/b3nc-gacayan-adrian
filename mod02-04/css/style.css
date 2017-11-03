@@ -1,0 +1,139 @@
+#postCircle{
+	background-color: black;
+	margin-left: 15px;
+}
+
+#imageCircle{
+	background-color: crimson;
+	margin-left: 15px;
+}
+
+#postTitle{
+	width: 100%;
+	padding: 10px;
+	border-radius: 3px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+}
+
+#postContent{
+	width: 100%;
+	height: 100px;
+	padding: 10px;
+	border-radius: 3px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+}
+
+
+.btn{
+	border: none;
+	padding: 15px 30px;
+	border-radius: 5px;
+	color: #fff;
+
+
+}
+
+.btn-blue{
+	background-color: crimson;
+}
+
+.btn-green{
+	background-color: black;
+}
+
+#btnBrowse{
+	margin-right: 5px;
+
+}
+
+#btnPublish,
+#btnUpload,
+#btnBrowse{
+	float: right;
+}
+
+.hide-overflow{
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.dashboard-thumbnail{
+	display: inline-block;
+	width: 30%;
+	height: 50px;
+}
+
+.dashboard-circles{
+	height: 70px;
+	width: 70px;
+	background-color: red;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 70px;
+	color: #fff;
+	float: left;
+	margin-right: 10px;
+	font-size: 25px;
+}
+
+main{
+	padding: 20px;
+	font-size: 16px;
+}
+
+.img-set{
+	height: 70px;
+	width: 100px;
+	background-color: white;
+	padding: 5px;
+	border-radius: 3px;
+	margin: 0 5px;
+}
+
+.inline-blocked{
+	display: inline-block;
+}
+
+
+.dashboard-text{
+	margin: 0;
+	width: 100%;
+	text-align: center;
+}
+
+body{
+	padding: 0;
+	margin: 0;
+	font-family: "Rubik Mono One", sans-serif;
+}
+
+.wrapper{
+	width: 700px;
+	margin: 0 auto;
+	background-color: linen;
+	color: #404040;
+}
+
+
+header{
+	background-color: crimson;
+	height: 70px;
+	color: white;
+	text-align: center;
+	line-height: 70px;
+	font-size: 17px;
+
+	text-transform: uppercase;
+}
+
+footer{
+	background-color: #a6a6a6;
+	height: 70px;
+	color: #ffffff;
+	line-height: 70px;
+	text-align: center;	
+	font-size: 10px;
+}
+
