@@ -1,0 +1,79 @@
+* {
+  font-size: 24px;
+}
+
+.wrapper {
+  width: 80%;  /*this will be needed for below margin to work*/
+  margin: 0 auto;  /*will center the element*/
+  border: 2px solid black;
+
+  padding: 20px;
+  /*font-size: 50px;*/
+}
+
+/* :link (unvisited link) */
+a:link {
+  color: #008000; /* from blue to green */
+}
+
+/* :visited (visited link) */
+a:visited {
+  color: #006666; /*from violet to light blue */
+}
+
+/* :visited (tab hover selection of link) */
+a:focus {
+  color: #992600; /*from green to maroon */
+}
+
+/* :visited (mouse hover selection of link) */
+a:hover {
+  background-color: grey;
+  color: #992600; /*from green to maroon */
+}
+
+/* :visited (mouse down selection of link) */
+a:active {
+  color: #004d99;
+}
+
+main.wrapper:hover {
+  background-color: lightblue;
+}
+
+p,
+#test,
+.spans,
+.box p{
+  color: #99004d;
+}
+
+/* attribute selector */
+a[target="_blank"] {
+  background-color: yellow;
+}
+
+p span#dark_bg {
+  color: white;
+  background-color: black;
+}
+
+/* adjacent sibling combinator */
+div + p {
+  background-color: lightgreen;
+}
+
+/* general sibling combinator */
+div ~ p {
+  background-color: red;
+}
+
+/* child selector */
+div > p {
+  background-color: blue;
+}
+
+/* descendant selector combinator */
+div div p {
+  background-color: orange;
+}
