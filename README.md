@@ -31,6 +31,16 @@ Tuitt HTML Quiz 1
 Completed DOM lecture. 3 tuitt activities
 
 # Feedback
-##  2017-11-2
+##  2017-11-3
 ### CSS
 CSS lecture
+
+# Feedback
+##  2017-11-6
+### CSS
+CSS lecture and activity
+
+# Feedback
+##  2017-11-7
+### CSS
+CSS quiz
