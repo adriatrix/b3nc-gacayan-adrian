@@ -33,8 +33,8 @@ echo ('Hello World!');
 
 ## Emoji
 
-  :monkey:
-  :star2:
-  :speech_balloon:
-  :zap:
-  :v:
+:monkey:
+:star2:
+:speech_balloon:
+:zap:
+:v:
