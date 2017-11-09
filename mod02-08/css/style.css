@@ -1,0 +1,44 @@
+/*css reset*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.grandparent {
+  background-color: skyblue;
+}
+
+
+.parent {
+  background-color: pink;
+}
+
+div {
+  padding: 20px;
+}
+
+p {
+  position: static;
+  /*margin-left: 50px;*/
+  /*margin-top: -20px;*/
+}
+
+/*attribute selector*/
+input[name="firstname"] {
+  margin-right: 20px;
+
+  /*off-canvas - positioning elements not visible to the UI*/
+  /*viewport - space that is visible to the UI*/
+}
+
+strong {
+  position: relative;
+  /*left: 50px;*/
+  top: 100px;
+  left: 100px;
+  background-color: yellow;
+
+}
