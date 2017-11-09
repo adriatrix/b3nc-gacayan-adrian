@@ -1,4 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  border: 1px solid red;
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+div.wrapper > div,
+div.wrapper > div > div {
+  border: 2px solid #5d6063;
+  background-color: skyblue;
+  padding: 20px;
+  text-align: center;
+  /*to remove edges */
+  border-radius: 5px;
+  margin-top: 25px;
+}
+
+h1,
+p {
+  background-color: #dde0e3;
+}
+
+
+/* from inline type to block type elements */
+
+em,
+strong {
+  background-color: #b2d6ff;
+  display: inline;
+}
+
+h1 {
+  /*
+  * applying to specific sides of box model *
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+  */
+  /*
+  * same effect as above but using only one line *
+  padding: 10px 20px 30px 40px;
+  */
+  padding: 50px;
+
+  /*
+  * applying to specific sides of box model
+  border-top: 1px solid #5d6063;
+  border-right: 1px solid #5d6063;
+  border-bottom: 1px solid #5d6063;
+  border-left: 1px solid #5d6063;
+  */
+  border: 1px solid #5d6063;
+
+  /*margin: 10px;*/
+}
 
 strong {
-  border-color: red;
+  /*padding: 50px;*/
+  margin: 50px;
+}
+
+p {
+  padding: 20px 0 20px 10px;
+  /*no top and bottom margin at the same time*/
+  /*margin-bottom: 50px;*/
+  margin-top: 25px;
 }
