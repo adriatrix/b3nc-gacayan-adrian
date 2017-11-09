@@ -33,6 +33,7 @@ echo ('Hello World!');
 
 ## Emoji
 
+<<<<<<< HEAD
   :monkey:
 
   :star2:
@@ -49,3 +50,10 @@ echo ('Hello World!');
   |---------|--------|
   |adrian|gacayan|
   |andrea|gacayan|
+=======
+:monkey:
+:star2:
+:speech_balloon:
+:zap:
+:v:
+>>>>>>> ab14b82d5e144926f4d6aaa7740680a175afae75
