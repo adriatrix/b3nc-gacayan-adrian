@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  background-color: #eaedf0;
+}
+
+.page {
+  width: 950px;
+  margin: 0 auto;
+  /*border: 1px solid red;*/
+}
+
+.menu {
+  height: 100px;
+  background-color: #b2d6ff;
+}
+
+.sidebar {
+  height: 300px;
+  width: 300px;
+  background-color: #f09a9d;
+  /*float: none; default value of float*/
+  float: left;
+  opacity: 0.5;
+}
+
+.content {
+  /*height: 500px;*/
+  background-color: #f5cf8e;
+  width: 650px;
+  float: left;
+  opacity: 0.5;
+  padding: 10px;
+}
+
+.article-image {
+  width: 300px;
+  height: 300px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  /*height: 200px;*/
+  background-color: #26e9fe;
+  clear: both; /*will remove floating side-effects */
+
+  border: 1px solid red;
+}
+
+.column {
+  height: 160px;
+  width: 31%;
+  background-color: #b2d6ff;
+  float: left;
+  margin: 20px 1.16%;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background-color: #d6e9fe;
+  border-radius: 50%;
+  margin: 25px;
+  float: left;
+}
+
+.username {
+  margin-top: 30px;
+}
+
+.comment {
+  margin: 10px;
+  overflow: hidden;
+}
+
+/* BEST PRACTICE to clear floats */
+
+.clear:after {
+  content: ""; /* empty string or invisible element */
+  clear: both;
+  display: block;
+}

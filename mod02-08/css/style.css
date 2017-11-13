@@ -9,11 +9,16 @@
 
 .grandparent {
   background-color: skyblue;
+  position: fixed;
+  /*bottom: 0;
+  left: 0;*/
+  width: 50%;
 }
 
-
+/*RELATIVE*/
 .parent {
   background-color: pink;
+  position: relative;
 }
 
 div {
@@ -34,11 +39,12 @@ input[name="firstname"] {
   /*viewport - space that is visible to the UI*/
 }
 
+/*ABSOLUTE*/
 strong {
-  position: relative;
+  /*position: absolute;*/
   /*left: 50px;*/
-  top: 100px;
-  left: 100px;
+  /*top: 10px;*/
+  /*left: 10px;*/
   background-color: yellow;
 
 }
