@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-one {
+  background-color: black;
+  width: 700px;
+  padding: 10px;
+  clear: both;
+}
+
+.box-one {
+  background-color: grey;
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  float: left;
+  position: relative;
+}
+
+.container-two {
+  background-color: black;
+  width: 700px;
+  padding: 10px;
+  clear: both;
+}
+
+.box-two {
+  background-color: black;
+  border: 1px solid white;
+  padding: 10px 10px 50px 10px;
+  float: left;
+  position: relative;
+  margin: 10px;
+}
+
+.inbox-two {
+  background-color: grey;
+  height: 150px;
+  width: 150px;
+}
+
+.text-two {
+  color: white;
+  text-align: center;
+}
+
+.container-three {
+  background-color: black;
+  width: 700px;
+  padding: 10px;
+  clear: both;
+}
+
+.inbox-three {
+  width: 150px;
+  height: 150px;
+  background-color: grey;
+  float: left;
+  margin-right: 10px;
+}
+
+.container-four {
+  background-color: black;
+  width: 700px;
+  padding: 10px;
+  clear: both;
+}
+
+.inbox-four {
+  width: 150px;
+  height: 150px;
+  background-color: grey;
+  float: left;
+  margin-right: 10px;
+  padding: 0;
+}
+
+.textbox-four {
+  float: left;
+  width: 76%;
+}
+
+.container-five {
+  background-color: black;
+  width: 700px;
+  padding: 10px;
+  clear: both;
+}
+
+.inbox-five {
+  width: 50px;
+  height: 50px;
+  background-color: grey;
+  float: left;
+  margin-right: 5px;
+  padding: 0;
+}
+
+.textbox-five {
+  float: left;
+  width: 91%;
+}
+
+.buttons-five {
+  display: inline;
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  padding-left: 5px;
+}
+
+.buttons-five > input {
+  width: 30px;
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+div > h2 {
+  color: white;
+  padding: 20px;
+}
+
+p {
+  color: white;
+}
+
+p + p {
+  margin-top: 10px;
+}
+
+.clear:after {
+  content: "";
+  clear: both;
+  display: block;
+}
