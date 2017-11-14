@@ -50,7 +50,7 @@
   background-color: #26e9fe;
   clear: both; /*will remove floating side-effects */
 
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 .column {
@@ -59,14 +59,15 @@
   background-color: #b2d6ff;
   float: left;
   margin: 20px 1.16%;
+  position: relative;
 }
 
-.avatar {
-  width: 60px;
-  height: 60px;
+.avatar > img {
+  width: 70px;
+  height: 70px;
   background-color: #d6e9fe;
-  border-radius: 50%;
-  margin: 25px;
+  border-radius: 10%;
+  margin: 20px;
   float: left;
 }
 
@@ -85,4 +86,45 @@
   content: ""; /* empty string or invisible element */
   clear: both;
   display: block;
+}
+
+/*
+ * CSS workaround for multiline ellipsis
+ *
+ */
+
+ .block-with-text {
+   overflow: hidden;
+   position: relative;
+   /* font-size = 16px; 16px + 8px = 24px */
+   line-height: 1.2em; /* em = default font-size */
+   max-height: 3.6em;
+   text-align: justify;
+   margin-right: -1em;
+   padding-right: 30px;
+ }
+
+/* for comments longer than alloted height */
+ .block-with-text:before {
+   content: "...";
+   position: absolute;
+   right: 17px;
+   bottom: 0;
+ }
+
+/* for comments shorter than alloted height */
+.block-with-text:after {
+  content: "";
+  position: absolute;
+  right: 17px;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: #b2d6ff;
+}
+
+.read-more {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
 }
