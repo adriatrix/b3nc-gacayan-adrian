@@ -1,18 +1,19 @@
 * {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
 }
 
+
 .container-one {
-  background-color: black;
+  background-color: #2d3956;
   width: 700px;
   padding: 10px;
   clear: both;
 }
 
 .box-one {
-  background-color: grey;
+  background-color: #616a7f;
   width: 150px;
   height: 150px;
   margin: 10px;
@@ -21,14 +22,14 @@
 }
 
 .container-two {
-  background-color: black;
+  background-color: #2d3956;
   width: 700px;
   padding: 10px;
   clear: both;
 }
 
 .box-two {
-  background-color: black;
+  background-color: #2d3956;
   border: 1px solid white;
   padding: 10px 10px 50px 10px;
   float: left;
@@ -37,18 +38,18 @@
 }
 
 .inbox-two {
-  background-color: grey;
+  background-color: #616a7f;
   height: 150px;
   width: 150px;
 }
 
 .text-two {
-  color: white;
+  color: #e0e9e9;
   text-align: center;
 }
 
 .container-three {
-  background-color: black;
+  background-color: #2d3956;
   width: 700px;
   padding: 10px;
   clear: both;
@@ -57,13 +58,13 @@
 .inbox-three {
   width: 150px;
   height: 150px;
-  background-color: grey;
+  background-color: #616a7f;
   float: left;
   margin-right: 10px;
 }
 
 .container-four {
-  background-color: black;
+  background-color: #2d3956;
   width: 700px;
   padding: 10px;
   clear: both;
@@ -72,19 +73,23 @@
 .inbox-four {
   width: 150px;
   height: 150px;
-  background-color: grey;
-  float: left;
+  background-color: #616a7f;
   margin-right: 10px;
   padding: 0;
 }
 
+.picbox-four {
+  float:left;
+  width: 20%;
+}
+
 .textbox-four {
-  float: left;
-  width: 76%;
+  float: right;
+  width: 77%;
 }
 
 .container-five {
-  background-color: black;
+  background-color: #2d3956;
   width: 700px;
   padding: 10px;
   clear: both;
@@ -93,15 +98,25 @@
 .inbox-five {
   width: 50px;
   height: 50px;
-  background-color: grey;
+  background-color: #616a7f;
   float: left;
   margin-right: 5px;
   padding: 0;
 }
 
+.picbox-five {
+  float:left;
+  width: 7%;
+}
+
 .textbox-five {
-  float: left;
-  width: 91%;
+  float: right;
+  width: 92%;
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .buttons-five {
@@ -113,25 +128,243 @@
 }
 
 .buttons-five > input {
-  width: 30px;
+  padding: 0 10px 0 10px;
 }
 
-textarea {
-  box-sizing: border-box;
+.container-six {
+  background-color: #2d3956;
+  width: 700px;
+  padding: 10px;
+  clear: both;
+}
+
+.inbox-six {
+  width: 50px;
+  height: 50px;
+  background-color: #616a7f;
+  margin-right: 5px;
+  padding: 0;
+  float: left;
+}
+
+
+
+.picbox-six {
+  float:left;
+  width: 7%;
+}
+
+.textbox-six {
+  float: right;
+  width: 91%;
+}
+
+.commentbox {
+  float: left;
   width: 100%;
 }
 
+.txtbox-six {
+  float: right;
+  width: 91%;
+}
+
+.pcbox-six {
+  float: left;
+}
+
+
+.replybox-six {
+  margin-top: 20px;
+  border-left: : 5px solid white;
+  clear: both;
+  float: left;
+  width: 100%
+}
+
+.likereply {
+  margin-top: 15px;
+}
+
+.container-seven {
+  background-color: #2d3956;
+  width: 500px;
+  padding: 10px;
+  clear: both;
+}
+
+.inbox-seven {
+  height: 100px;
+  background-color: #616a7f;
+  padding: 0;
+}
+
+.picbox-seven {
+  float:left;
+  width: 40%;
+}
+
+.textbox-seven {
+  float: right;
+  width: 59%;
+}
+
+.text-seven {
+  font-size: .6em;
+  color: grey;
+  margin: 0;
+}
+
+.container-eight {
+  background-color: #2d3956;
+  width: 500px;
+  padding: 10px;
+  clear: both;
+}
+
+.inbox-eight {
+  height: 100px;
+  background-color: #616a7f;
+  padding: 0;
+}
+
+.picbox-eight {
+  float:right;
+  width: 40%;
+}
+
+.textbox-eight {
+  float: left;
+  width: 59%;
+}
+
+.text-eight {
+  font-size: .6em;
+  color: grey;
+  margin: 0;
+}
+
+.container-nine {
+  background-color: #2d3956;
+  width: 700px;
+  padding: 10px;
+  clear: both;
+}
+
+.textcontainer-nine {
+  float: left;
+  width: 30%;
+}
+
+.boxcontainer-nine {
+  float: right;
+  width: 69%;
+}
+
+.box-nine {
+  background-color: #616a7f;
+  width: 150px;
+  height: 150px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  float: left;
+}
+
+#headingtext {
+  color: #e0e9e9;
+  padding: 0;
+}
+
+.container-ten {
+  background-color: #2d3956;
+  width: 1000px;
+  padding: 10px;
+  clear: both;
+}
+
+.left-side-ten {
+  width: 60%;
+  float: left;
+}
+
+.right-side-ten {
+  width: 40%;
+  float: left;
+}
+
+.white-box-ten {
+  background-color: #2d3956;
+  border: 1px solid white;
+  padding: 5px;
+  float: left;
+  margin: 10px;
+}
+
+.inbox-ten {
+  background-color: #616a7f;
+  height: 100px;
+  width: 150px;
+  margin: 5px;
+}
+
+.text-ten {
+  color: #e0e9e9;
+  text-align: center;
+  padding: 10px;
+}
+
+.large-inbox-ten {
+  background-color: #616a7f;
+  height: 200px;
+}
+
+.beautiful-box-ten {
+  background-color: #616a7f;
+  height: 100px;
+  width: 150px;
+  margin-right: 5px;
+  float: left;
+}
+
+.menus {
+  margin-top: 10px;
+}
+
+.txt-ten {
+  font-size: .8em;
+}
+
+#menustyle {
+  background-color: #616a7f;
+  color: #e0e9e9;
+  margin-left: 5px;
+}
+
 div > h2 {
-  color: white;
+  color: #e0e9e9;
   padding: 20px;
 }
 
 p {
-  color: white;
+  color: #e0e9e9;
+}
+
+h4, h3 {
+  color: #e0e9e9;
+  padding: 0;
 }
 
 p + p {
   margin-top: 10px;
+}
+
+#paraspace {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+a + p {
+  display: inline;
 }
 
 .clear:after {
