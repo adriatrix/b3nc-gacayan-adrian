@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  font-family: 'Courier', monospace;
 }
 
 .nav,
@@ -155,6 +156,7 @@ div.box p {
 .footer {
   background-color: white;
   min-height: 70px;
+  font-family: 'Impact', monospace;
 }
 
 
@@ -167,6 +169,11 @@ img[alt*="Social"] {
   height: 50px;
   border: 1px solid black;
   border-radius: 50%;
+  box-shadow: 10px 10px 5px #888;
+}
+
+h2 {
+  font-family: 'Oswald', sans-serif;
 }
 
 .clear:after {
