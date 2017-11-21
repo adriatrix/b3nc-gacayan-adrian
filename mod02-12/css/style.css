@@ -9,7 +9,7 @@ body {
 .nav,
 .banner,
 .about,
-.services,
+.albums,
 .projects,
 .gallery,
 .footer {
@@ -20,7 +20,7 @@ body {
   width: 140px;
   height: 140px;
   background-color: darkgrey;
-
+  border-radius: 50%
 }
 
 /*
@@ -28,7 +28,7 @@ body {
  */
 
 .nav {
-  background-color: yellow;
+  background-color: black;
   height: 100%;
   width: 200px;
   position: fixed;
@@ -40,15 +40,22 @@ ul {
 
 ul > li {
   list-style: none;
-  background-color: lightblue;
+  background-color: dimgrey;
   margin-bottom: 2px;
   text-align: center;
   line-height: 48px;
   /*padding: 20px;*/
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  letter-spacing: .1em;
 }
 
 ul > li > a {
   text-decoration: none;
+}
+
+ul > li > a:link {
+  color: #350605;
 }
 
 .main {
@@ -62,20 +69,30 @@ ul > li > a {
 
 .banner {
   background-color: skyblue;
+  background-image: url("../img/background.jpg");
   position: relative;
   min-height: 700px;
 }
 
 .box {
+  background-color: black;
+  color: white;
   border: 5px solid white;
   text-align: center;
-  width: 40%;
-  padding: 40px;
+  width: 80%;
+  padding: 10px;
+  font-family: 'Yellowtail', cursive;
+  font-size: 3.5em;
 
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+div.box p {
+  font-family: 'Oswald', sans-serif;
+  font-size: .5em;
 }
 
 .about {
@@ -84,16 +101,16 @@ ul > li > a {
   min-height: 300px;
 }
 
-.services {
-  background-color: midnightblue;
+.albums {
+  background-color: dimgrey;
   min-height: 300px;
 }
 
-.services h3 {
+.albums h3 {
   margin-left: 5%;
 }
 
-.services p {
+.albums p {
   margin: auto 5% 5%;
 }
 
@@ -105,18 +122,18 @@ ul > li > a {
   float: left;
 }
 
-.services img,
+.albums img,
 .gallery img {
   width: 100%;
 }
 
 .projects {
-  background-color: crimson;
+  background-color: indianred;
   min-height: 300px;
 }
 
 .gallery {
-  background-color: orange;
+  background-color: dimgrey;
   /*height: 400px;*/
   min-height: 400px;
 }
@@ -136,7 +153,7 @@ ul > li > a {
 }
 
 .footer {
-  background-color: green;
+  background-color: white;
   min-height: 70px;
 }
 
