@@ -1,0 +1,356 @@
+.colorfg {
+<<<<<<< HEAD
+  color: white;
+}
+
+.colorbg {
+  background-color: black;
+}
+
+.name {
+  color: aqua;
+}
+
+.rgb {
+  /*red green blue, 0 to 255 */
+  background-color: rgb(102, 205, 170);
+}
+
+.rgba {
+  /*rgba = red, green, blue, alpha*/
+  /*alpha = 0.0 to 1.0 aka opacity*/
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+.hex {
+  /*hexadecimal, 0-9 and a-f*/
+  background-color: #abc;
+}
+
+.hsl {
+  /*hue, saturation, lightness*/
+  /*hue, 0-360 degrees*/
+  /*saturation, 0%-100%*/
+  /*lightness, 0% black, 50% normal, 100% white*/
+  color: (0, 0%, 2%);
+}
+
+.hsla {
+  /*hsl with alpha*/
+  background-color: hsla(30, 50%, 0%, 0.5);
+}
+
+.opacity {
+  background-color: red;
+  /*0.0-1.0*/
+  opacity: 0.5;
+}
+
+/* TEXT */
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: oblique;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px; /* for readability */
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+
+  text-transform: capitalize;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.linethrough {
+  text-decoration: line-through;
+}
+
+.none {
+  /*commonly-used to modify anchor tags*/
+  text-decoration: none;
+}
+
+.lineheight {
+  line-height: 2; /*for readability*/
+}
+
+.letterspacing {
+  letter-spacing: 2px;
+}
+
+.wordspacing {
+  word-spacing: 16px;
+}
+
+.alignleft {
+  text-align: left;
+}
+
+.alignright {
+  text-align: right;
+}
+
+.aligncenter {
+  text-align: center;
+}
+
+.alignjustify {
+  text-align: justify;
+}
+
+.indent {
+    text-indent: 20px;
+}
+
+.textshadow {
+  text-shadow: 10px 10px 20px red;
+}
+
+
+/*FONT*/
+
+@font-face {
+  font-family: "Unique";
+  src: url('../fonts/Unique.ttf');
+}
+
+.localfont {
+  /* machine-dependent fonts */
+  /* windows, linux, macosx */
+  font-family: Helvetica;
+}
+
+.downloadedfont {
+  font-family: "Unique";
+}
+
+.serif {
+  /*Georgia*/
+  font-family: 'Georgia', serif;
+}
+
+.sansserif {
+  /*Arial*/
+  font-family: 'Arial', sans-serif;
+}
+
+.monospace {
+    font-family: 'Courier', monospace;
+}
+
+.cursive {
+  font-family: 'Comic Sans MS', cursive;
+}
+
+.fantasy {
+  font-family: 'Impact', fantasy;
+}
+
+.pixels {
+  font-size: 16px;
+}
+
+.percent {
+  font-size: 200%;
+}
+
+.ems {
+  /*deoendent to default font size*/
+  font-size: 3em;
+}
+
+.boxshadow {
+  box-shadow: 10px 10px 5px #888;
+}
+=======
+	color: white; /* or any other color */
+}
+
+.colorbg {
+	background-color: black;
+}
+
+.name {
+	background-color: mediumaquamarine;
+}
+
+.rgb {
+	/* rgb() -> built-in function */
+	/* 0 - 255 */
+	background-color: rgb(0, 0, 255); /* rgb = red, green, blue */
+}
+
+.rgba {
+	/* rgba = red, green, blue, alpha */
+	/* alpha = 0.0 = 1.0 */
+	/* opacity */
+	background-color: rgba(255, 255, 255, 0.5);
+	color: black;
+}
+
+.hex {
+	/* hexadecimal, 0-9, A-F */
+	background-color: #012;
+}
+
+/* hue, saturation, lightness */
+.hsl {
+	/* hue, 0-360 degrees */
+	/* saturation, 0% - 100% */
+	/* lightness, 0% black, 50% normal, 100% white */
+	color: hsl(0, 0%, 100%);
+}
+
+/* hue, saturation, lightness, alpha (opecity or transparency) */
+.hsla {
+	background-color: hsla(30, 50%, 78%, 0.5);
+}
+
+.opacity {
+	background-color: red;
+	opacity: 0.5; /* 0.0 - 1.0 */
+}
+
+/* text */
+
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.uppercase {
+	text-transform: uppercase;
+	letter-spacing: 1px; /* for readability */
+}
+
+.lowercase {
+	text-transform: lowercase;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.linethrough {
+	text-decoration: line-through;
+}
+
+.none {
+	/* commonly-used to modify anchor tags */
+	text-decoration: none;
+}
+
+.lineheight {
+	line-height: 3; /* for readability */
+}
+
+.letterspacing {
+	letter-spacing: 3px; /* for readability */
+}
+
+.wordspacing {
+	word-spacing: 1em;
+}
+
+.alignleft {
+	text-align: left;
+}
+
+.alignright {
+	text-align: right;
+}
+
+.aligncenter {
+	text-align: center;
+}
+
+.alignjustify {
+	text-align: justify;
+}
+
+.indent {
+	text-indent: 20px;
+}
+
+.textshadow {
+	text-shadow: 10px 10px 20px #000;
+}
+
+/* font */
+
+.localfont {
+	/* machine-dependent fonts */
+	/* windows, linux, macosx */
+	/* fallback fonts */
+	font-family: 'Times New Roman', 'Helvetica', 'Comic Sans', 'Arial', sans-serif;
+}
+
+/* import truetype font */
+@font-face {
+	font-family: 'AlexBrush';
+	src: url('../fonts/alex-brush/alexbrush-regular-otf.otf');
+}
+
+/* using the truetype font */
+.downloadedfont {
+	font-family: 'AlexBrush';
+	font-size: 2em;
+}
+
+.serif {
+	font-family: 'Georgia', serif;
+}
+
+.sansserif {
+	font-family: 'Arial', sans-serif;
+}
+
+.monosspace {
+	font-family: 'Courier', monospace;
+}
+
+.cursive {
+	font-family: 'Comic Sans MS', cursive;
+}
+
+.fantasy {
+	font-family: 'Impact', fantasy;
+}
+
+.pixels {
+	font-size: 16px;
+}
+
+.percent {
+	font-size: 200%; /* responsive web design */
+}
+
+.ems {
+	/* depended to default font size */
+	font-size: 3em; /* 1em = 16px */
+}
+
+.boxshadow {
+	box-shadow: 10px 10px 5px #888;
+}
+>>>>>>> ee572d333bd773a97ec650a257f8cd31892daa58
