@@ -1,0 +1,218 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightgrey;
+  background-image: url(../img/bg.png);
+  font-family: 'Arial', serif;
+}
+
+.menu > a {
+  font-size: 0.8em;
+}
+
+.wrapper {
+  background-color: #fff;
+  width: 940px;
+  margin: 20px auto;
+}
+
+.header {
+  background-color: green;
+  background-image: url(../img/header.png);
+  height: 290px;
+
+  font-size: 1.6em;
+}
+
+.small-imagepost {
+  width: 80px;
+  height: 80px;
+  border: 5px solid lightgrey;
+  float: left;
+  margin-right: 10px;
+}
+
+
+.headertitle > h2 {
+  font-size: 2.1em;
+}
+
+.headertitle > p {
+  font-size: 0.6em;
+}
+
+.content  {
+  min-height: 1500px;
+}
+
+.mainbox {
+  background-color: white;
+  width: 560px;
+  float: left;
+  height: 1500px;
+  margin: 20px;
+  display: block;
+  box-sizing: content-box;
+}
+
+.imagebox > img {
+  width: 560px;
+  height: 280px;
+}
+
+.imagelinks,
+.sociallinks {
+  text-align: center;
+}
+
+.imagepost {
+  width: 150px;
+  height: 150px;
+  border: 5px solid lightgrey;
+  float: left;
+  margin-right: 10px;
+}
+
+.blogcontent {
+  /*float: right;*/
+  width: 400;
+  position: relative;
+  height: 150px;
+}
+
+.sociallinks {
+  display: inline-block;
+  float: left;
+}
+
+.commentnumber {
+  float: right;
+  display: inline-block;
+}
+
+.blog1,
+.blog2,
+.blog3,
+.blog4 {
+  /*position: relative;*/
+  margin-top: 30px;
+  display: inline-block;
+}
+
+.blogtitle {
+  margin-bottom: 10px;
+  font-size: 1.6em;
+  line-height: 0.8em;
+}
+
+.labeltags {
+  background-color: #59b4cb;
+  font-size: 11px;
+}
+
+.postedby {
+  color: #085366;
+  background: #e0ebee;
+  font-size: 11px;
+}
+
+.comment {
+  margin: 10px;
+  overflow: hidden;
+}
+
+.block-with-text {
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em; /* em = default font-size */
+  max-height: 7.2em;
+  text-align: justify;
+
+  margin-right: -1em;
+  padding-right: 15px;
+}
+
+/* for comments longer than alloted height */
+.block-with-text:before {
+  content: "...";
+  position: absolute;
+  right: 7px;
+  bottom: 0;
+}
+
+/* for comments shorter than alloted height */
+.block-with-text:after {
+ content: "";
+ position: absolute;
+ right: 7px;
+ width: 1em;
+ height: 1em;
+ margin-top: 0.2em;
+ background: white;
+}
+
+.read-more {
+ /*position: absolute;*/
+ display: inline-block;
+ bottom: 0;
+}
+
+.sidebar {
+  /*background-color: crimson;*/
+
+  width: 300px;
+  float: right;
+  height: 1500px;
+  margin: 20px;
+  text-align: center;
+  font-family: 'Helvitica', sans-serif;
+}
+
+.sidebar p {
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+  color: royalblue;
+}
+
+.labels > a {
+  text-align: left;
+}
+
+.sidebar-title > h3 {
+  background-color: orange;
+  border-radius: 5px;
+  margin: 25px 0 25px 0;
+}
+
+.about {
+  /*height: 200px;*/
+  background-color: #adc21f;
+  padding: 20px;
+}
+
+.footer {
+  height: 30px;
+  background-color: #7e920f;
+  text-align: center;
+  padding: 5px;
+  /*line-height: 28px;*/
+}
+
+hr {
+  border: 1px solid transparent;
+  height: 0;
+}
+
+
+.clear:after {
+  content: "";
+  clear: both;
+  display: block;
+}
