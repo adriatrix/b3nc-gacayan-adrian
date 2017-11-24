@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* NOTE: general rules */
+
+.page {
+  width: 100%;
+}
+
+.section {
+  width: 100%;
+  height: 300px;
+  /*border: 1px solid red; */
+}
+
+/* NOTE: menu */
+
+.menu {
+  background-color: #5995da;
+  height: 80px;
+}
+
+/* NOTE: header */
+
+.header {
+  background-color: #b2d6ff;
+}
+
+/* NOTE: content */
+
+.content {
+  background-color: #eaedf0;
+}
+
+/* NOTE: sign-up */
+
+.sign-up {
+  background-color: #d6e9fe;
+}
+
+/* NOTE: feature 1 */
+
+.feature-1 {
+  background-color: #f5cf8e;
+}
+
+/* NOTE: feature 2 */
+
+.feature-2 {
+  background-color: #f09a9d;
+}
+
+/* NOTE: feature 3 */
+
+.feature-3 {
+  background-color: #c8c6fa;
+}
+
+/* NOTE: mobile devices */
+@media only screen and (max-width: 400px) {
+
+    body {
+      /*background-color: red;*/
+    }
+}
+
+/* NOTE: tablet devices */
+
+@media only screen and (min-width: 401px) and (max-width: 960px){
+  body {
+    /*background-color: yellow;*/
+  }
+
+  .sign-up,
+  .feature-1,
+  .feature-2,
+  .feature-3 {
+    width: 50%;
+    float: left;
+  }
+}
+
+/* NOTE: desktop devices */
+
+@media only screen and (min-width: 961px) {
+  body {
+    /*background-color: blue;*/
+  }
+
+/* NOTE: page wrapper */
+
+  .page {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .feature-1,
+  .feature-2,
+  .feature-3 {
+    width: 33.33%;
+    float: left;
+  }
+
+  .header {
+    height: 400px;
+  }
+
+  .sign-up {
+    height: 100px;
+  }
+}
