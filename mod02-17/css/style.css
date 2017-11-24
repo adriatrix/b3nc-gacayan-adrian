@@ -1,0 +1,285 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Courier', monospace;
+}
+
+.nav,
+.banner,
+.about,
+.albums,
+.projects,
+.gallery,
+.footer {
+  padding: 30px;
+}
+
+.logo {
+  width: 140px;
+  height: 140px;
+  background-color: darkgrey;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+/*
+ * stick sidebar
+ */
+
+.nav {
+  background-color: black;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+}
+
+ul {
+  padding-left: 0;
+}
+
+ul > li {
+  list-style: none;
+  background-color: dimgrey;
+  margin-bottom: 2px;
+  text-align: center;
+  line-height: 48px;
+  /*padding: 20px;*/
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  letter-spacing: .1em;
+}
+
+ul > li > a {
+  text-decoration: none;
+}
+
+ul > li > a:link {
+  color: #350605;
+}
+
+.main {
+  background-color: grey;
+  margin-left: 200px;
+}
+
+/*
+ * Banner
+ */
+
+.banner {
+  background-color: skyblue;
+  background-image: url("../img/background.jpg");
+  position: relative;
+  min-height: 700px;
+}
+
+.box {
+  background-color: black;
+  color: white;
+  border: 5px solid white;
+  text-align: center;
+  width: 80%;
+  padding: 10px;
+  font-family: 'Yellowtail', cursive;
+  font-size: 3.5em;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.box p {
+  font-family: 'Oswald', sans-serif;
+  font-size: .5em;
+}
+
+.about {
+  background-color: indianred;
+  /*height: 700px;*/
+  min-height: 300px;
+}
+
+  .paraspace {
+  margin-bottom: 15px;
+}
+
+.albums {
+  background-color: dimgrey;
+  min-height: 300px;
+}
+
+.albums h3 {
+  margin-left: 5%;
+}
+
+/*.albums p {
+  margin: auto 5% 5%;
+}*/
+
+.column {
+  /*border: 1px solid black;*/
+  width: 31%;
+  margin-left: 1.16%;
+  margin-right: 1.16%;
+  float: left;
+}
+
+.albums img,
+.gallery img {
+  width: 100%;
+}
+
+.projects {
+  background-color: indianred;
+  min-height: 300px;
+}
+
+.gallery {
+  background-color: dimgrey;
+  /*height: 400px;*/
+  min-height: 400px;
+}
+
+.gallery > .column {
+  width: 23%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.gallery h3 {
+  margin-left: 5%;
+}
+
+/*.gallery p {
+  margin: auto 5% 5%;
+}*/
+
+.footer {
+  background-color: white;
+  min-height: 70px;
+  font-family: 'Impact', monospace;
+}
+
+
+.contact {
+  float: right;
+}
+
+img[alt*="Social"] {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  box-shadow: 10px 10px 5px #888;
+}
+
+h2 {
+  font-family: 'Oswald', sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* NOTE: mobile devices */
+@media only screen and (max-width: 400px) {
+
+
+  .nav {
+    position: static;
+    width: 100%;
+  }
+
+  .logo {
+    /*position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  .box > h1 {
+    font-size: 1.5em;
+  }
+
+  .main {
+    margin: 0;
+  }
+
+  .column {
+    float: none;
+    width: 100%;
+  }
+
+  .gallery > .column {
+    width: 100%;
+  }
+
+}
+
+/* NOTE: tablet devices */
+
+@media only screen and (min-width: 401px) and (max-width: 650px){
+
+  .box > h1 {
+    font-size: 48px;
+  }
+
+  .column {
+    float: none;
+    width: 100%;
+  }
+
+  .gallery > .column {
+    width: 100%;
+  }
+
+
+}
+
+@media only screen and (min-width: 651px) and (max-width: 960px){
+
+  .column {
+    float: none;
+    width: 100%;
+  }
+
+  .gallery > .column {
+    width: 100%;
+  }
+
+  .albums img {
+    width: 23%;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+  }
+
+  .albums h3 {
+    width: 72%;
+    float: right;
+    /*display: inline-block;*/
+    margin-left: 0;
+  }
+
+  .albums p {
+    width: 72%;
+    float: right;
+    display: inline-block;
+  }
+
+
+
+}
+
+.clear:after {
+  content: "";
+  clear: both;
+  display: block;
+}
