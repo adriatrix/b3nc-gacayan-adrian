@@ -9,18 +9,39 @@
   background-color: lightgreen;
 }
 
-.navbar-inverse {
-  border-color:red:
+
+.container {
+  background: #ddd;
+  padding: 2rem 0;
+  width: 100%;
 }
 
-/*.jumbotron {
-  width: 80%;
-  opacity: .5;
-}*/
+.title {
+  background-image: url('../img/swars-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  border-top: 20px solid crimson;
+  border-bottom: 20px solid crimson;
+  width: 100%;
+  height: 100vh;
+  padding: 2rem 0;
+}
 
+h1 {
+  /*font-family: 'Bangers', cursive;*/
+  font-size: 5rem;
+  color: #fff;
+  text-shadow: 2px 2px 2px #333;
+}
+
+small {
+  color: crimson;
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
 
 @media (min-width: 768px) {
-  .navbar {
-    border-radius: 4px;
-  }
 }
