@@ -1,0 +1,26 @@
+.well,
+.btn,
+.panel,
+.navbar {
+  border-radius: 0;
+}
+
+.well {
+  background-color: lightgreen;
+}
+
+.navbar-inverse {
+  border-color:red:
+}
+
+/*.jumbotron {
+  width: 80%;
+  opacity: .5;
+}*/
+
+
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 4px;
+  }
+}
