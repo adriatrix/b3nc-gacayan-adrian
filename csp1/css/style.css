@@ -4,26 +4,130 @@
   box-sizing: border-box;
 }
 
-.navbar,
-.navbar-brand {
-  font-size: 24px;
+
+body {
+  background: url('../img/bg-yellow.jpg');
 }
 
-.navbar-inverse {
-  border-bottom: 10px solid crimson;
+/* NOTE: navbar navigation */
+.navbar-default {
+  background-color: #1b1b1b;
+  border-color: #ffaa00;
+  border-bottom: 10px solid #ffaa00;
 }
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #1b1b1b;
+}
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #1b1b1b;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #1b1b1b;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #1b1b1b;
+  background-color: #ffaa00;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li.divider {
+  background-color: #ffaa00;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #1b1b1b;
+  background-color: #ffaa00;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #1b1b1b;
+  background-color: #ffaa00;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #1b1b1b;
+  background-color: #ffaa00;
+}
+.navbar-default .navbar-toggle {
+  border-color: #ffaa00;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #ffaa00;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ffffff;
+}
+.navbar-default .navbar-link {
+  color: #ffffff;
+}
+.navbar-default .navbar-link:hover {
+  color: #1b1b1b;
+}
+
+
 
 .btn,
-.well {
+.well,
+.form-control {
   border-radius: 0;
+  color: black;
+}
+
+.well {
+  background: url(../img/bg-yellow.jpg) center top repeat-y #1B1B1B;
+  background-size: auto auto;
+}
+
+.text-white {
+  color: white;
+}
+
+.has-feedback {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* change focus glow */
+
+.form-control:focus {
+  border-color: #ffaa00;
+  /*box-shadow: inset 0 px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);*/
+  background-color: #ffe5b1;
+}
+
+
+#home {
+  color: #ffffff;
 }
 
 #about {
   background-color: #1b1b1b;
+  color: #ffffff;
 }
 
 .intro {
-  background-image: url('../img/swars-background.jpg');
+  background-image: url('../img/phone-1.jpg');
   background-size: cover;
   background-attachment: fixed;
   padding: 150px 0;
@@ -33,5 +137,59 @@
   background-color: dimgrey;
 }
 
-/*@media (min-width: 768px) {
-}*/
+
+
+.comingsoon {
+  background-image: url('../img/image-8.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 150px 0;
+}
+
+
+
+/* NOTE: for extra small-sized devices */
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #1b1b1b;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #1b1b1b;
+    background-color: #ffaa00;
+  }
+}
+
+/* NOTE: for small-sized devices */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+  #contact {
+    width: 750px;
+    margin: auto;
+  }
+
+}
+
+/* NOTE: for medium-sized devices */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+
+  #contact {
+    width: 750px;
+    margin: auto;
+  }
+}
+
+
+/* NOTE: for large-sized devices */
+@media only screen and (min-width: 1201px) {
+
+  #contact {
+    width: 750px;
+    margin: auto;
+  }
+}
