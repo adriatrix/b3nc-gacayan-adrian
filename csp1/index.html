@@ -23,7 +23,7 @@
     <!-- import custom css -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-  <body>
+  <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
     <!--the navbar-->
 
@@ -70,8 +70,64 @@
           <div class="col-md-12">
             <h2 class="text-center item-header text-bitmap text-orange">About</h2>
             <h5 class="text-center text-bitmap">[ what is AoV? ]</h5>
-            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <!-- <div class="container"> -->
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                  <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+
+                  <div class="item active">
+                    <img src="./img/aov.jpg" alt="Chania" width="460" height="345">
+                    <div class="carousel-caption">
+                      <h3>Arena of Valor</h3>
+                      <p>Arena of Valor or AoV is an epic new multiplayer online battle arena (MOBA) game, originally designed and licensed by Tencent Games! </p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img src="./img/aov.jpg" alt="Chania" width="460" height="345">
+                    <div class="carousel-caption">
+                      <h3>Chania</h3>
+                      <p>Master unique and powerful heroes with ease and build your own hero pool to create the most lethal league the eSports world has ever seen!</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img src="./img/aov-1.jpg" alt="Flower" width="460" height="345">
+                    <div class="carousel-caption">
+                      <h3>Flowers</h3>
+                      <p>Call on your friends to join you in the jungle and enjoy classic 5v5 combat in real time!</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img src="./img/aov-2.jpg" alt="Flower" width="460" height="345">
+                    <div class="carousel-caption">
+                      <h3>Flowers</h3>
+                      <p>Draw first blood, carry your team to the finish line and become a legendary MVP on the arena!</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            <!-- </div> -->
           </div><!--/.col-md-12 -->
         </div><!--/.row -->
       </div><!--/.container -->
@@ -210,21 +266,6 @@
     </div><!--/.roster -->
 
 
-    <div id="faq">
-      <div class="container">
-        <div class="row text-center text-white">
-          <div class="col-md-12">
-            <h2 class="text-bitmap text-orange item-header">FAQ</h2>
-            <h5 class="text-bitmap">[ frequently asked questions ]</h5>
-            <p>If you have any questions about the team, you can probably find an answer in this section. We will try to update the section frequently.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div><!--/.col-md-12 -->
-        </div><!--/.row -->
-      </div><!--/.container -->
-    </div> <!--/#faq-->
-
-
     <div id="blog">
       <div class="container">
         <div class="comingsoon">
@@ -242,6 +283,51 @@
         </div>  <!--/.comingsoon-->
       </div><!--/.container -->
     </div> <!--/#blog-->
+
+
+    <div id="faq">
+      <div class="container">
+        <div class="row text-center text-white">
+          <div class="col-md-12">
+            <h2 class="text-bitmap text-orange item-header">FAQ</h2>
+            <h5 class="text-bitmap">[ frequently asked questions ]</h5>
+            <p>If you have any questions about the team, you can probably find an answer in this section. We will try to update this section frequently.</p>
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title text-left text">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="glyphicon glyphicon-plus"></i>How do I apply to join OverBreak?<i class="glyphicon glyphicon-question-sign pull-right"></i></a>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title text-left">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><i class="glyphicon glyphicon-plus"></i>Requirements to join OverBreak.<i class="glyphicon glyphicon-info-sign pull-right"></i></a>
+                  </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title text-left">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><i class="glyphicon glyphicon-plus"></i>What is the meaning of life?<i class="glyphicon glyphicon-question-sign pull-right"></i></a>
+                  </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                  <div class="panel-body">The meaning of life is to give life meaning. You just have to find in yourself to find it for yourself.</div>
+                </div>
+              </div>
+            </div>
+          </div><!--/.col-md-12 -->
+        </div><!--/.row -->
+      </div><!--/.container -->
+    </div> <!--/#faq-->
 
 
     <div id="contact">
@@ -293,7 +379,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script>
-    // to change active class in navbar and uncollapse navbar toggle when clicke
+    // to change thy active class in navbar and uncollapse thy navbar toggle when clicked
     $(".nav li").on("click", function() {
       $(".nav li").removeClass("active");
       $(this).addClass("active");
@@ -302,7 +388,7 @@
       }
     });
 
-    // if thy user scrolls down 20px from the top, thus it will show thy button
+    // if thy user scrolls down 20px from the top, thus it will show thy top button
     window.onscroll = function() {scrollFunction()};
 
     function scrollFunction() {
