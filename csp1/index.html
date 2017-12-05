@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-
     <title>OverBreak Guild - a Capstone Project 1 for tuitt batch 3 night class</title>
 
     <!--Link local favicon ico image-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/emblem-1.png" type="image/png">
 
     <!--Import google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Press+Start+2P" rel="stylesheet">
@@ -24,6 +22,7 @@
     <!--Import custom css -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
+
   <body data-spy="scroll" data-target=".navbar">
 
     <!-- NOTE: thy navbar -->
@@ -46,7 +45,7 @@
             <li class="active"><a href="#home">Home <span class="sr-only">(current)</span></a></li>
             <li><a href="#about">About </a></li>
             <li><a href="#roster">Roster</a></li>
-            <li><a href="#blog">Blog</a></li>
+            <li><a href="#events">Events</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -61,10 +60,47 @@
         <img src="./img/emblem-1.png" alt="guild emblem">
         <h1 class="text-bitmap"><span class="text-orange">O</span>ver<span class="text-orange">B</span>reak</h1>
         <h5 class="text-bitmap">[ a petmalu AoV guild ]</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <button id="singlebutton" name="singlebutton" class="btn btn-warning center-block">Apply Here!</button>
+        <p>We are a group of like-minded, non-professional AoV <span class="text-highlight">gamers</span> based in the <span class="text-highlight">Philippines</span>. We built this team on the foundation of <strong>friendship</strong>, <strong>hard work</strong>, and <strong>dedication</strong> to have <span class="text-highlight">fun</span> and be the very <span class="text-highlight">best</span> we can be.</p>
+        <button id="singlebutton" name="singlebutton" class="btn btn-warning center-block" data-toggle="modal" data-target="#myModal">Apply Here!</button>
       </div>  <!--/.intro-->
     </div> <!--/#home-->
+
+<!-- NOTE: APPLICATION MODAL -->
+
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- NOTE: thy modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span></button>
+            <h2 class="text-bitmap text-orange item-header">Application Form</h2>
+            <p class="text-white">Don't hesitate to <span class="text-highlight">contact</span> us if you have questions. <span class="text-orange">O</span>ver<span class="text-orange">B</span>reak thanks you for your interest to apply. We will be in touch for the <span class="text-highlight">results</span> of your application.</p>
+          </div>
+          <div class="modal-body">
+            <form class="" action="index.html" method="post">
+              <div class="form-group has-feedback">
+                <label class="sr-only" for="contactName">Name</label>
+                <input type="text" class="form-control" name="contactName" id="contactName" placeholder="Enter name">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              </div>
+
+              <div class="form-group has-feedback">
+                <label class="sr-only" for="contactEmail">Email</label>
+                <input type="email" class="form-control" name="contactEmail" id="contactEmail" placeholder="Enter email">
+                <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+              </div>
+
+              <div class="form-group has-feedback">
+                <label class="sr-only" for="contactComment">Comment</label>
+                <textarea class="form-control "id="contactComment" name="contactComment" rows="4" cols="40" placeholder="Why join OverBreak?"></textarea>
+              </div>
+
+              <button class="btn btn-warning" type="submit" name="Submit">Submit</button>
+            </form>
+          </div> <!--/.modal-body-->
+        </div> <!--/.modal-content-->
+      </div> <!--/.modal-dialog-->
+    </div> <!--/#myModal-->
 
 <!-- NOTE: ABOUT SECTION -->
 
@@ -87,48 +123,46 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-
                   <div class="item active">
                     <img src="./img/aov.jpg" alt="MOBA" width="460" height="345">
                     <div class="carousel-caption">
                       <h3 class="text-orange">Arena of Valor</h3>
-                      <p>Arena of Valor or AoV is an epic new multiplayer online battle arena (MOBA) game by Garena</p>
-                    </div>
-                  </div>
+                      <p><span class="text-highlight">Arena of Valor</span> or <span class="text-highlight">AoV</span> is an epic new multiplayer online battle arena (MOBA) game by <span class="text-highlight">Garena</span>.</p>
+                    </div> <!--/.carousel-caption-->
+                  </div> <!--/.item-->
 
                   <div class="item">
                     <img src="./img/aov-1.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
                       <h3 class="text-orange">Classic 5v5 MOBA, Perfected for Mobile</h3>
-                      <p>Battle in a familiar three-lane map filled with brushes, nooks and crannies that allow you to pull off amazing jukes.</p>
-                    </div>
-                  </div>
+                      <p><span class="text-highlight">Battle</span> in a familiar three-lane map filled with <strong>brushes</strong>, <strong>nooks</strong> and <strong>crannies</strong> that allow you to pull off petmalu <span class="text-highlight">kills</span>.</p>
+                    </div> <!--/.carousel-caption-->
+                  </div> <!--/.item-->
 
                   <div class="item">
                     <img src="./img/aov-2.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
                       <h3 class="text-orange">Fast Matchmaking & 15-Minute Matches</h3>
-                      <p>Enjoy fast matchmaking with players around the world and become a legend!</p>
-                    </div>
-                  </div>
+                      <p>Enjoy <span class="text-highlight">fast matchmaking</span> with players around the world and become a <span class="text-highlight">legend</span>!</p>
+                    </div> <!--/.carousel-caption-->
+                  </div> <!--/.item-->
 
                   <div class="item">
                     <img src="./img/aov-3.jpg" alt="Flower" width="460" height="345">
                     <div class="carousel-caption">
                       <h3 class="text-orange">The Ultimate MOBA Experience</h3>
-                      <p>With intuitive controls tailored for mobile, you will dominate the battlefield in no time!</p>
-                    </div>
-                  </div>
+                      <p>With <span class="text-highlight">intuitive</span> controls tailored for mobile, you will <span class="text-highlight">dominate</span> the battlefield in no time!</p>
+                    </div> <!--/.carousel-caption-->
+                  </div> <!--/.item-->
 
                   <div class="item">
                     <img src="./img/aov-4.jpg" alt="Flower" width="460" height="345">
                     <div class="carousel-caption">
                       <h3 class="text-orange">Play as any hero or legend</h3>
-                      <p>Explore and command a roster of over 30 heroes and counting.</p>
-                    </div>
-                  </div>
-
-                </div>
+                      <p>Explore and command a roster of over <span class="text-highlight">30 heroes</span> and counting.</p>
+                    </div> <!--/.carousel-caption-->
+                  </div> <!--/.item-->
+                </div> <!--/.carousel-inner-->
 
                 <!-- Left and right controls -->
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -154,7 +188,7 @@
           <div class="col-md-12">
             <h2 class="text-center text-bitmap text-orange item-header">Roster</h2>
             <h5 class="text-center text-bitmap">[ the team ]</h5>
-            <p class="text-center">OverBreak unites many talented gamers from different domains. Our team is a group of experts who have decades of experience in all gaming branches. This knowledge is shared with everyone at the guild. We love to play awesome plays, mga lodi ng AoV!</p>
+            <p class="text-center"><span class="text-orange">O</span>ver<span class="text-orange">B</span>reak unites many <span class="text-highlight">talented</span> gamers from different domains. Our team is a group of <span class="text-highlight">experts</span> who have decades of experience in all gaming branches. This <span class="text-highlight">knowledge</span> is shared with everyone at the guild. We love to play awesome plays, mga <span class="text-highlight">lodi</span> ng AoV!</p>
           </div><!--/.col-md-12 -->
 
           <div class="container">
@@ -274,54 +308,54 @@
       </div><!--/.container -->
     </div><!--/.roster -->
 
-<!-- NOTE: BLOG SECTION -->
+<!-- NOTE: EVENTS SECTION -->
 
-    <div id="blog">
+    <div id="events">
       <div class="container">
         <div class="comingsoon">
           <div class="row text-center text-white">
             <div class="col-md-12">
-              <h2 class="text-center text-bitmap text-orange item-header">Blog</h1>
-              <h5 class="text-center text-bitmap">[ recent posts ]</h5>
-              <p class="text-center">Here we publish articles and posts about anything AoV. You can follow this section to be always informed about new heroes and gameplays. In this section we will also place information about our new build and arcana guides.</p>
+              <h2 class="text-center text-bitmap text-orange item-header">Events</h1>
+              <h5 class="text-center text-bitmap">[ news and calendar ]</h5>
+              <p class="text-center">Here we will publish <strong>live feeds</strong> and monthly <strong>activities</strong> of the guild. You can <span class="text-highlight">follow</span> this section to always be <span class="text-highlight">informed</span> about <strong>articles</strong> and <strong>news</strong> related to the guild and AoV. </p>
 
-              <p class="text-center">We are currently working on this new project. Stay tuned for more information. Send me a message to subscribe to our newsletter if you want me to updated on our progress.</p>
+              <p class="text-center">We are currently working on this new <span class="text-highlight">project</span>. Stay tuned for more information. <span class="text-highlight">Click</span> the button below to <strong>subscribe</strong> to our newsletter for updates and more.</p>
 
               <button id="singlebutton" name="singlebutton" class="btn btn-warning center-block">Notify Me!</button>
             </div><!--/.col-md-12 -->
           </div><!--/.row -->
         </div>  <!--/.comingsoon-->
       </div><!--/.container -->
-    </div> <!--/#blog-->
+    </div> <!--/#events-->
 
 
     <div id="faq">
       <div class="container">
-        <div class="row text-center text-white">
-          <div class="col-md-12">
+        <div class="row text-center text-white" >
+          <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
             <h2 class="text-bitmap text-orange item-header">FAQ</h2>
             <h5 class="text-bitmap">[ frequently asked questions ]</h5>
-            <p>If you have any questions about the team, you can probably find an answer in this section. We will try to update this section frequently.</p>
+            <p>If you have any <span class="text-highlight">questions</span> about the team, you can <strong>probably</strong> find an answer in this section. We will try to <span class="text-highlight">update</span> this section frequently.</p>
             <div class="panel-group" id="accordion">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title text-left text">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="glyphicon glyphicon-plus"></i>How do I apply to join OverBreak?<i class="glyphicon glyphicon-question-sign pull-right"></i></a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="glyphicon glyphicon-plus"></i>How to join OverBreak?<i class="glyphicon glyphicon-question-sign pull-right"></i></a>
                   </h4>
-                </div>
+                </div> <!--/.panel-heading-->
                 <div id="collapse1" class="panel-collapse collapse">
                   <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </div>
+                </div> <!--/.collapse1-->
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title text-left">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><i class="glyphicon glyphicon-plus"></i>Requirements to join OverBreak.<i class="glyphicon glyphicon-info-sign pull-right"></i></a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><i class="glyphicon glyphicon-plus"></i>OverBreak code of conduct.<i class="glyphicon glyphicon-info-sign pull-right"></i></a>
                   </h4>
-                </div>
+                </div> <!--/.panel-heading-->
                 <div id="collapse2" class="panel-collapse collapse">
                   <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </div>
+                </div> <!--/.collapse2-->
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -332,6 +366,16 @@
                 <div id="collapse3" class="panel-collapse collapse">
                   <div class="panel-body">The meaning of life is to give life meaning. You just have to find in yourself to find it for yourself.</div>
                 </div> <!--/.collapse3-->
+              </div> <!--/.panel panel-default-->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title text-left">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><i class="glyphicon glyphicon-plus"></i>The history of Overbreak.<i class="glyphicon glyphicon-info-sign pull-right"></i></a>
+                  </h4>
+                </div> <!--/.panel-heading-->
+                <div id="collapse4" class="panel-collapse collapse">
+                  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                </div> <!--/.collapse4-->
               </div> <!--/.panel panel-default-->
             </div> <!--/.panel-group /#accordion-->
           </div><!--/.col-md-12 -->
@@ -345,7 +389,7 @@
         <h5 class="text-center text-bitmap text-white">[ keep in touch ]</h5>
 
         <h2 class="text-bitmap text-orange item-header">Send us a message</h2>
-        <p class="text-white">Don't hesitate to contact us. If you have any questions about OverBreak or the team, you can use the form below. We will get back to you as soon as possible!</p>
+        <p class="text-white">Don't hesitate to <span class="text-highlight">contact</span> us. If you have any questions about <span class="text-orange">O</span>ver<span class="text-orange">B</span>reak or the team, you can use the <span class="text-highlight">form</span> below. We will get back to you as soon as possible!</p>
 
         <form class="" action="index.html" method="post">
           <div class="form-group has-feedback">
@@ -371,14 +415,45 @@
       </div> <!--/.well-->
     </div> <!--/#contact-->
 
-    <footer class="row">
-      <div class="container-fluid">
-        <div class="col">
-          <p class="text-center text-white">Copyright &copy; 2017 by <span class="text-orange">Adrian</span> <span class="text-highlight text-white">adriatrix</span> <span class="text-orange">Gacayan</span></p>
-          <h6 class="text-center text-white">Disclaimer: We are NOT affiliated with this game, this is a fan site/guild site dedicated to the game.</h6>
-        </div> <!--/.col-->
-      </div> <!--.,container-fluid-->
-    </footer> <!--/.footer-->
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <ul class="list-inline text-center">
+            <li>
+              <a href="#" title="facebook">
+                <i class="fa fa-facebook text-orange"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="twitter">
+                <i class="fa fa-twitter  text-orange"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="dribble">
+                <i class="fa fa-dribbble  text-orange"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="youtube">
+                <i class="fa fa-youtube  text-orange"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="twitch">
+                <i class="fa fa-twitch  text-orange"></i>
+              </a>
+            </li>
+          </ul>
+        </div> <!--/.row-->
+        <div class="row">
+          <div class="col">
+            <p class="text-center text-white">Copyright &copy; 2017 by <span class="text-orange">Adrian</span> <span class="text-highlight text-white">adriatrix</span> <span class="text-orange">Gacayan</span></p>
+            <h6 class="text-center text-white"><span class="text-orange">Disclaimer:</span> We are NOT affiliated with this game, this is a fan site/guild site dedicated to the game.</h6>
+          </div> <!--/.col-->
+        </div> <!--/.row-->
+      </div> <!--./container-->
+    </footer> <!--#.footer-->
 
     <button onclick="topFunction()" id="topbtn" title="Go to top"><span class="glyphicon glyphicon-chevron-up"></span></button>
 
@@ -387,9 +462,6 @@
 
     <!-- import bootstrap js -->
     <script src="js/bootstrap.min.js"></script>
-
-    <!-- import skrollr js -->
-    <script src="js/skrollr.min.js"></script>
 
     <script>
     // to change thy active class in navbar and uncollapse thy navbar toggle when clicked
@@ -400,9 +472,6 @@
         $(".navbar-toggle").trigger( "click" );
       }
     });
-
-    // initialize thy skrollr
-    var s = skrollr.init();
     </script>
 
   </body>

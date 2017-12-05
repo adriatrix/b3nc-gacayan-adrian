@@ -8,7 +8,8 @@ body {
   background: url('../img/bg-yellow.jpg');
   padding-top: 70px;
   font-family: 'Open Sans', sans-serif;
-  /*font-size: 2em;*/
+  letter-spacing: 1.5px;
+  line-height: 1.6;
   padding: .15em .3em;
   position: relative;
 }
@@ -28,7 +29,7 @@ body {
 .text-highlight {
     display: inline;
     border-bottom: 2px dashed #ff851b;
-    padding: .15em .3em;
+    padding: .025em .3em;
     font-weight: 600;
 }
 
@@ -38,11 +39,15 @@ body {
     background: url(../img/border-light.png) bottom center repeat-x;
 }
 
-.btn,
 .well,
 .form-control {
   border-radius: 0;
   color: black;
+}
+
+.btn {
+  border: 3px solid #1b1b1b;
+  border-radius: 0;
 }
 
 .text-2x {
@@ -61,16 +66,28 @@ body {
     right: auto;
 }
 
-/* NOTE: customize thy navbar and accordion panel */
+/* NOTE: customize thy navbar, panel, and modal */
 .panel-group .panel,
-.panel-heading {
+.panel-heading,
+.modal-content {
   border-radius: 0;
 }
 
-.panel-default .panel-heading {
+.panel-heading {
+  padding-left: 10px;
+}
+
+.panel-default .panel-heading,
+.modal-content {
   background-color: #1b1b1b;
   border: 1px solid #ffffff;
   color: #ffffff;
+}
+
+.close {
+  color: white;
+  /*background-color: orange;*/
+  /*border: 1px solid orange;*/
 }
 
 .navbar-default,
@@ -307,7 +324,11 @@ body {
   padding: 70px 0;
 }
 
-#blog {
+.glyphicon-plus {
+  padding-right: 5px;
+}
+
+#events {
   background-image: url('../img/skud-bg-2.jpg');
   background-size: cover;
   background-position: center;
@@ -330,6 +351,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+
+#footer {
+  border-top: 10px solid #ff851b;
+  padding-top: 50px;
 }
 
 
@@ -365,7 +392,7 @@ body {
   }
 
   h5 {
-    font-size: .5em;
+    font-size: .6em;
   }
 
   h2 {
@@ -379,6 +406,15 @@ body {
   .team-member > h4,
   .team-member > p {
     font-size: 0.9em;
+  }
+
+  .panel-title {
+    font-size: 0.7em;
+  }
+
+  .navbar-brand {
+    font-size: 1.1em;
+    line-height: 2;
   }
 
 }
@@ -396,12 +432,18 @@ body {
   .team-member figcaption {
     padding: 10px;
   }
+
+  .panel-title {
+    font-size: 0.9em;
+  }
 }
 
 /* NOTE: for medium-sized devices */
 @media only screen and (min-width: 993px) and (max-width: 1200px) {
 
-  #contact {
+  #contact,
+  .intro,
+  .comingsoon {
     width: 750px;
     margin: 20px auto;
   }
@@ -410,7 +452,9 @@ body {
 /* NOTE: for large-sized devices */
 @media only screen and (min-width: 1201px) {
 
-  #contact {
+  #contact,
+  .intro,
+  .comingsoon {
     width: 750px;
     margin: 20px auto;
   }
