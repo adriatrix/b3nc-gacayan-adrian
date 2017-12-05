@@ -8,7 +8,7 @@ body {
   background: url('../img/bg-yellow.jpg');
   padding-top: 70px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 2em;
+  /*font-size: 2em;*/
   padding: .15em .3em;
   position: relative;
 }
@@ -170,6 +170,10 @@ body {
   transform: translate(-50%, -50%);
 }
 
+#singlebutton {
+  margin-top: 20px;
+}
+
 #about {
   background-color: #1b1b1b;
   color: #ffffff;
@@ -187,7 +191,7 @@ body {
 }
 
 
-/* NOTE:  */
+/* NOTE: credit goes out to Mauritius D'Silva @mauritiusdsilva for this .team-member pen with some tweaking of my own. */
 .team-member {
   margin: 15px 0;
   padding: 0;
@@ -296,6 +300,8 @@ body {
   transition: all 0.4s ease-in-out;
 }
 
+
+
 #faq {
   border-bottom: 10px solid #ff851b;
   padding: 70px 0;
@@ -333,25 +339,6 @@ body {
   background-color: #ffe5b1;
 }
 
-/* NOTE: go back to top button */
-#topbtn {
-    display: none; /* hide thy button by default */
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 199;
-    border: 2px solid white;
-    outline: none;
-    background-color: #ff851b;
-    color: black;
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 15px 20px;
-}
-
-#topbtn:hover {
-    color: #ff851b;
-    background-color: black;
-}
 
 /* NOTE: for extra small-sized devices */
 @media (max-width: 767px) {
@@ -377,13 +364,23 @@ body {
     font-size: 1.5em;
   }
 
-  .intro > h5 {
+  h5 {
     font-size: .5em;
   }
 
-  .well > h2 {
+  h2 {
     font-size: 1.3em;
   }
+
+  .intro > img {
+    height: 200px;
+  }
+
+  .team-member > h4,
+  .team-member > p {
+    font-size: 0.9em;
+  }
+
 }
 
 

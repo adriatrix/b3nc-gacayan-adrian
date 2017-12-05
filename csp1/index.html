@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
 
-    <title>Capstone Project 1</title>
+    <title>OverBreak Guild - a Capstone Project 1 for tuitt batch 3 night class</title>
 
-    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <!--Link local favicon ico image-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!--Import google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Press+Start+2P" rel="stylesheet">
@@ -20,12 +21,12 @@
     <!--Import bootstrap.css-->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- import custom css -->
+    <!--Import custom css -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-  <body data-spy="scroll" data-target=".navbar" data-offset="50">
+  <body data-spy="scroll" data-target=".navbar">
 
-    <!--the navbar-->
+    <!-- NOTE: thy navbar -->
 
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
@@ -53,16 +54,19 @@
       </div><!--/.container-fluid-->
     </nav> <!--/.navbar-->
 
+<!-- NOTE: HOME SECTION -->
 
     <div id="home">
-      <div class="intro">
-        <h1 class="text-center text-bitmap"><span class="text-orange">O</span>ver<span class="text-orange">B</span>reak</h1>
-        <h5 class="text-center text-bitmap">[ a petmalu AoV guild ]</h5>
-        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="intro text-center">
+        <img src="./img/emblem-1.png" alt="guild emblem">
+        <h1 class="text-bitmap"><span class="text-orange">O</span>ver<span class="text-orange">B</span>reak</h1>
+        <h5 class="text-bitmap">[ a petmalu AoV guild ]</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         <button id="singlebutton" name="singlebutton" class="btn btn-warning center-block">Apply Here!</button>
       </div>  <!--/.intro-->
     </div> <!--/#home-->
 
+<!-- NOTE: ABOUT SECTION -->
 
     <div id="about">
       <div class="container">
@@ -78,40 +82,49 @@
                   <li data-target="#myCarousel" data-slide-to="1"></li>
                   <li data-target="#myCarousel" data-slide-to="2"></li>
                   <li data-target="#myCarousel" data-slide-to="3"></li>
+                  <li data-target="#myCarousel" data-slide-to="4"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
 
                   <div class="item active">
-                    <img src="./img/aov.jpg" alt="Chania" width="460" height="345">
+                    <img src="./img/aov.jpg" alt="MOBA" width="460" height="345">
                     <div class="carousel-caption">
-                      <h3>Arena of Valor</h3>
-                      <p>Arena of Valor or AoV is an epic new multiplayer online battle arena (MOBA) game, originally designed and licensed by Tencent Games! </p>
+                      <h3 class="text-orange">Arena of Valor</h3>
+                      <p>Arena of Valor or AoV is an epic new multiplayer online battle arena (MOBA) game by Garena</p>
                     </div>
                   </div>
 
                   <div class="item">
-                    <img src="./img/aov.jpg" alt="Chania" width="460" height="345">
+                    <img src="./img/aov-1.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
-                      <h3>Chania</h3>
-                      <p>Master unique and powerful heroes with ease and build your own hero pool to create the most lethal league the eSports world has ever seen!</p>
+                      <h3 class="text-orange">Classic 5v5 MOBA, Perfected for Mobile</h3>
+                      <p>Battle in a familiar three-lane map filled with brushes, nooks and crannies that allow you to pull off amazing jukes.</p>
                     </div>
                   </div>
 
                   <div class="item">
-                    <img src="./img/aov-1.jpg" alt="Flower" width="460" height="345">
+                    <img src="./img/aov-2.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
-                      <h3>Flowers</h3>
-                      <p>Call on your friends to join you in the jungle and enjoy classic 5v5 combat in real time!</p>
+                      <h3 class="text-orange">Fast Matchmaking & 15-Minute Matches</h3>
+                      <p>Enjoy fast matchmaking with players around the world and become a legend!</p>
                     </div>
                   </div>
 
                   <div class="item">
-                    <img src="./img/aov-2.jpg" alt="Flower" width="460" height="345">
+                    <img src="./img/aov-3.jpg" alt="Flower" width="460" height="345">
                     <div class="carousel-caption">
-                      <h3>Flowers</h3>
-                      <p>Draw first blood, carry your team to the finish line and become a legendary MVP on the arena!</p>
+                      <h3 class="text-orange">The Ultimate MOBA Experience</h3>
+                      <p>With intuitive controls tailored for mobile, you will dominate the battlefield in no time!</p>
+                    </div>
+                  </div>
+
+                  <div class="item">
+                    <img src="./img/aov-4.jpg" alt="Flower" width="460" height="345">
+                    <div class="carousel-caption">
+                      <h3 class="text-orange">Play as any hero or legend</h3>
+                      <p>Explore and command a roster of over 30 heroes and counting.</p>
                     </div>
                   </div>
 
@@ -133,6 +146,8 @@
       </div><!--/.container -->
     </div> <!--/#about-->
 
+<!-- NOTE: ROSTER SECTION -->
+
     <div id="roster" class="text-white">
       <div class="container">
         <div class="row text-center">
@@ -144,7 +159,6 @@
 
           <div class="container">
             <div class="row">
-
               <div class="col-sm-4 col-md-4">
                 <div class="team-member">
                   <figure>
@@ -194,15 +208,13 @@
                       </ul>
                     </figcaption>
                   </figure>
-                  <h4 class="text-orange"><span class="hidden-xs hidden-sm">Jeremiah</span> <span class="text-highlight text-white">xBatang.Mulat</span> Arellano</h4>
+                  <h4 class="text-orange">Jeremiah<span class="text-highlight text-white">xBatang.Mulat</span> Arellano</h4>
                   <p>Guild Officer</p>
                 </div><!--/.team-member-->
               </div><!--/.col-md-4 -->
-
-
             </div><!--/.row -->
-            <div class="row">
 
+            <div class="row">
               <div class="col-sm-4 col-md-4">
                 <div class="team-member">
                   <figure>
@@ -256,22 +268,20 @@
                   <p>Guild Member</p>
                 </div><!--/.team-member-->
               </div><!--/.col-md-4 -->
-
-
             </div><!--/.row -->
           </div><!--/.container -->
-
         </div><!--/.row -->
       </div><!--/.container -->
     </div><!--/.roster -->
 
+<!-- NOTE: BLOG SECTION -->
 
     <div id="blog">
       <div class="container">
         <div class="comingsoon">
           <div class="row text-center text-white">
             <div class="col-md-12">
-              <h1 class="text-center text-bitmap text-orange item-header">Blog</h1>
+              <h2 class="text-center text-bitmap text-orange item-header">Blog</h1>
               <h5 class="text-center text-bitmap">[ recent posts ]</h5>
               <p class="text-center">Here we publish articles and posts about anything AoV. You can follow this section to be always informed about new heroes and gameplays. In this section we will also place information about our new build and arcana guides.</p>
 
@@ -318,12 +328,12 @@
                   <h4 class="panel-title text-left">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><i class="glyphicon glyphicon-plus"></i>What is the meaning of life?<i class="glyphicon glyphicon-question-sign pull-right"></i></a>
                   </h4>
-                </div>
+                </div> <!--/.panel-heading-->
                 <div id="collapse3" class="panel-collapse collapse">
                   <div class="panel-body">The meaning of life is to give life meaning. You just have to find in yourself to find it for yourself.</div>
-                </div>
-              </div>
-            </div>
+                </div> <!--/.collapse3-->
+              </div> <!--/.panel panel-default-->
+            </div> <!--/.panel-group /#accordion-->
           </div><!--/.col-md-12 -->
         </div><!--/.row -->
       </div><!--/.container -->
@@ -356,8 +366,8 @@
           </div>
 
           <button class="btn btn-warning" type="submit" name="Submit">Submit</button>
-
         </form>
+
       </div> <!--/.well-->
     </div> <!--/#contact-->
 
@@ -366,8 +376,8 @@
         <div class="col">
           <p class="text-center text-white">Copyright &copy; 2017 by <span class="text-orange">Adrian</span> <span class="text-highlight text-white">adriatrix</span> <span class="text-orange">Gacayan</span></p>
           <h6 class="text-center text-white">Disclaimer: We are NOT affiliated with this game, this is a fan site/guild site dedicated to the game.</h6>
-        </div>
-      </div>
+        </div> <!--/.col-->
+      </div> <!--.,container-fluid-->
     </footer> <!--/.footer-->
 
     <button onclick="topFunction()" id="topbtn" title="Go to top"><span class="glyphicon glyphicon-chevron-up"></span></button>
@@ -377,6 +387,9 @@
 
     <!-- import bootstrap js -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- import skrollr js -->
+    <script src="js/skrollr.min.js"></script>
 
     <script>
     // to change thy active class in navbar and uncollapse thy navbar toggle when clicked
@@ -388,22 +401,8 @@
       }
     });
 
-    // if thy user scrolls down 20px from the top, thus it will show thy top button
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("topbtn").style.display = "block";
-      } else {
-        document.getElementById("topbtn").style.display = "none";
-      }
-    }
-
-    // if thy user clicks on thy button, thou art scroll to the top
-    function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    }
+    // initialize thy skrollr
+    var s = skrollr.init();
     </script>
 
   </body>
