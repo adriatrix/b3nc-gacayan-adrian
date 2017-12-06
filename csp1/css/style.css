@@ -54,25 +54,15 @@ body {
 }
 
 .btn {
-  border: 3px solid #1b1b1b;
+  border: 1px solid orange;
   border-radius: 0;
+  /*color: black;*/
 }
 
 .text-2x {
   font-size: 1.2em;
 }
 
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-  width: 70%;
-  margin: auto;
-}
-
-.carousel-caption {
-    position: relative;
-    left: auto;
-    right: auto;
-}
 
 /* NOTE: customize thy navbar, panel, and modal */
 .panel-group .panel,
@@ -95,7 +85,7 @@ body {
 .close {
   color: white;
   /*background-color: orange;*/
-  /*border: 1px solid orange;*/
+  border: 1px solid white;
 }
 
 .navbar-default,
@@ -178,7 +168,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 1000px;
+  height: 600px;
   position: relative;
 }
 
@@ -199,6 +189,10 @@ body {
   margin-top: 20px;
 }
 
+a:link, a:visited {
+    text-decoration: none;
+}
+
 #about {
   background-color: #1b1b1b;
   color: #ffffff;
@@ -208,11 +202,42 @@ body {
   padding: 70px 0;
 }
 
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 90%;
+  margin: auto;
+  /*height: 100%;*/
+}
+
+.carousel-caption {
+  position: relative;
+  left: auto;
+  right: auto;
+  height: 120px;
+}
+
+.carousel-inner {
+  margin-top: 50px;
+  border: 1px dashed orange;
+}
+
+.carousel-indicators {
+  bottom: 0;
+  top: -25px;
+}
+
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-next,
+.carousel-control .icon-prev {
+  top: -15px;
+}
+
 #roster {
   background: url(../img/bg-yellow.jpg) center top repeat-y #1b1b1b;
   background-size: auto auto;
   border-bottom: 10px solid #ff851b;
-  padding: 100px 0;
+  padding: 70px 0;
 }
 
 
@@ -342,7 +367,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 1000px;
+  height: 700px;
   position: relative;
   border-bottom: 10px solid #ff851b;
 }
@@ -359,6 +384,15 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#countdownto {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+.space-above {
+  margin-top: 30px;
 }
 
 
@@ -400,7 +434,7 @@ body {
   }
 
   h5 {
-    font-size: .6em;
+    font-size: 0.55em;
   }
 
   h2 {
@@ -408,7 +442,7 @@ body {
   }
 
   .intro > img {
-    height: 200px;
+    height: 150px;
   }
 
   .team-member > h4,
@@ -425,6 +459,14 @@ body {
     line-height: 2;
   }
 
+  .team-member figcaption {
+    padding: 20px;
+  }
+
+  .carousel-caption h3,
+  .carousel-caption p {
+    font-size: 0.8em;
+  }
 }
 
 
@@ -444,6 +486,14 @@ body {
   .panel-title {
     font-size: 0.9em;
   }
+
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-next,
+  .carousel-control .icon-prev {
+    top: -25px;
+  }
+
 }
 
 /* NOTE: for medium-sized devices */
@@ -454,6 +504,22 @@ body {
   .comingsoon {
     width: 750px;
     margin: 20px auto;
+  }
+
+  #home {
+    height: 650px;
+  }
+
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-next,
+  .carousel-control .icon-prev {
+    top: -25px;
+  }
+
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    width: 80%;
   }
 }
 
@@ -469,5 +535,21 @@ body {
 
   .team-member figcaption {
     padding: 70px;
+  }
+
+  #home {
+    height: 750px;
+  }
+
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-next,
+  .carousel-control .icon-prev {
+    top: -25px;
+  }
+
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    width: 70%;
   }
 }

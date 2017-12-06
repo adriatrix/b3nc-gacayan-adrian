@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-    <title>OverBreak Guild - a Capstone Project 1 for tuitt batch 3 night class</title>
+    <title>OverBreak Guild - a Capstone Project 1 for an aspiring developer of tuitt batch 3 night class</title>
 
     <!--Link local favicon ico image-->
     <link rel="icon" href="img/emblem-1.png" type="image/png">
@@ -28,7 +28,7 @@
     <!-- NOTE: thy navbar -->
 
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
+      <!-- <div class="container-fluid"> -->
         <div class="navbar-header"> <!--navbar-header-->
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -50,7 +50,7 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
-      </div><!--/.container-fluid-->
+      <!--</div>/.container-fluid-->
     </nav> <!--/.navbar-->
 
 <!-- NOTE: HOME SECTION -->
@@ -60,7 +60,7 @@
         <img src="./img/emblem-1.png" alt="guild emblem">
         <h1 class="text-bitmap"><span class="text-orange">O</span>ver<span class="text-orange">B</span>reak</h1>
         <h5 class="text-bitmap">[ a petmalu AoV guild ]</h5>
-        <p>We are a group of like-minded, non-professional AoV <span class="text-highlight">gamers</span> based in the <span class="text-highlight">Philippines</span>. We built this team on the foundation of <strong>friendship</strong>, <strong>hard work</strong>, and <strong>dedication</strong> to have <span class="text-highlight">fun</span> and be the very <span class="text-highlight">best</span> we can be.</p>
+        <p>We are a group of like-minded, non-professional AoV <span class="text-highlight">gamers</span> based in the <span class="text-highlight">Philippines</span>. We built this team on the foundation of <strong>friendship</strong>, <strong>hard work</strong>, and <strong>dedication</strong> to have <span class="text-highlight">fun</span> and be the very <span class="text-highlight">best</span> in epic gaming.</p>
         <button id="singlebutton" name="singlebutton" class="btn btn-warning center-block" data-toggle="modal" data-target="#myModal">Apply Here!</button>
       </div>  <!--/.intro-->
     </div> <!--/#home-->
@@ -324,8 +324,11 @@
               <h2 class="text-center text-bitmap text-orange item-header">Events</h1>
               <h5 class="text-center text-bitmap">[ news and calendar ]</h5>
               <p class="text-center">Here we will publish <strong>live feeds</strong> and monthly <strong>activities</strong> of the guild. You can <span class="text-highlight">follow</span> this section to always be <span class="text-highlight">informed</span> about <strong>articles</strong> and <strong>news</strong> related to the guild and AoV. </p>
-              <p class="text-center">We are currently working on this new <span class="text-highlight">project</span>. Stay tuned for more information. <span class="text-highlight">Click</span> the button below to <strong>subscribe</strong> to our newsletter for updates and more.</p>
-              <button id="singlebutton" name="singlebutton" class="btn btn-warning center-block">Notify Me!</button>
+              <p class="text-center space-above">We are currently working on a new <span class="text-highlight">event</span> that will blow minds. Stay tuned for more information. <span class="text-highlight">Subscribe</span> to our newsletter for updates and more.</p>
+              <p id="countdownto"></p>
+              <a href="#contact">
+                <button id="singlebutton" name="singlebutton" class="btn btn-warning center-block">Notify Me!</button>
+              </a>
             </div><!--/.col-md-12 -->
           </div><!--/.row -->
         </div>  <!--/.comingsoon-->
@@ -474,6 +477,36 @@
         $(".navbar-toggle").trigger( "click" );
       }
     });
+
+
+    // Set thy date we're counting down to
+    var countDownDate = new Date("Jan 1, 2018 00:00:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      // Get todays date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now an the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Output the result in an element with id="demo"
+      document.getElementById("countdownto").innerHTML = days + " days, " + hours + " hours, "
+      + minutes + " minutes, and " + seconds + " seconds ";
+
+      // If the count down is over, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdownto").innerHTML = "HAPPY NEW YEAR!!";
+      }
+    }, 1000);
     </script>
 
   </body>
