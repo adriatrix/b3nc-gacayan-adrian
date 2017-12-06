@@ -12,10 +12,18 @@ body {
   line-height: 1.6;
   padding: .15em .3em;
   position: relative;
+  max-width: 1500px;
+  margin: auto;
+  border-left: 1px solid #ff851b;
+  border-right: 1px solid #ff851b;
 }
 
 .text-white {
   color: white;
+}
+
+.text-black {
+  color: black;
 }
 
 .text-orange {
