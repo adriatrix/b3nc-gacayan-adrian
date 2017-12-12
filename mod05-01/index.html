@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>What JavaScript Can Do?</title>
+
+    <!--Import custom css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <h1 id="elements">What JavaScript can do?</h1>
+      <hr>
+
+      <h2>JavaScript can hide/show HTML elements.</h2>
+      <button type="button" name="button" onclick="hideAll()">Hide All</button>
+      <br>
+      <button type="button" name="button" onclick="showAll()">Show All</button>
+
+      <div id="all">
+        <h2 id="content">JavaScript can change HTML content.</h2>
+        <button type="button" name="button" onclick="changeContent()">Change HTML Content</button>
+
+        <h2>JavaScript can change HTML attributes.</h2>
+        <button type="button" name="button" onclick="changeAttr()">Change Image Height</button>
+        <button type="button" name="button" onclick="changeImage()">Change Image</button>
+        <br>
+        <img src="./img/image1.png" id="attr" alt="" height="230">
+
+        <h2 id="css">JavaScript can change HTML styles.</h2>
+        <button type="button" name="button" onclick="changeColor()">Change Style</button>
+
+        <h2 id="elements">JavaScript can get and manipulate HTML elements</h2>
+        <form class="" action="index.html" method="post">
+          <input id="input1" type="number" name="" value="1">+
+          <input id="input2" type="number" name="" value="3">=
+          <span id="sum"></span>
+        </form>
+        <br>
+        <button type="button" name="button" onclick="computeSum()">Compute Sum</button>
+      </div>
+
+      <hr>
+
+      <button type="button" name="button" onclick="alert('This is inline.')">Inline</button>
+
+      <hr>
+
+      <h3 id="heading">This is a heading</h3>
+
+    </div>
+
+    <script>
+      function  hideAll() {
+        document.getElementById("all").style.display = "none";
+      }
+
+      function  showAll() {
+        document.getElementById("all").style.display = "block";
+      }
+
+      function changeContent() {
+        document.getElementById("content").innerHTML = "Adrian Gacayan";
+      }
+
+      function changeAttr() {
+        document.getElementById("attr").height =  100;
+      }
+
+      document.getElementById("heading").innerHTML = "JavaScript"
+    </script>
+
+    <script src="./js/script.js"></script>
+
+  </body>
+</html>
