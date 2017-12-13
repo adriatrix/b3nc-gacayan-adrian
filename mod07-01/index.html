@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>JavaScript Programming</title>
+
+    <!--Import custom css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+
+    <div class="wrapper">
+      <h1 id="firstVar" onclick="changeMeToNumber()">Click me to change my value.</h1>
+
+      <p id="secondVar" onclick="getNewName()">Click me to change my value as well.</p>
+
+      <span id="thirdVar" onclick="welcome()">Click me to change my value too.</span>
+
+      <hr>
+
+      <h1>Expressions</h1>
+
+      <!-- <p>var1 is equal to <span id="var1"></span></p>
+      <p>var2 is equal to <span id="var2"></span></p> -->
+      <p>var1 is equal to <input type="text" id="var1" name="" value="var1"></p>
+      <p>var2 is equal to <input type="text" id="var2" name="" value="var2"></p>
+
+      <p>result is <span id="result"></span></p>
+      <div class="buttons">
+        <button onclick="addThem()" type="button" name="button">Add</button>
+        <button onclick="subtractThem()"type="button" name="button">Subtract</button>
+        <button onclick="multiplyThem()"type="button" name="button">Multiply</button>
+        <button onclick="divideThem()"type="button" name="button">Divide</button>
+        <button onclick="modulateThem()"type="button" name="button">Modulo</button>
+      </div>
+    </div> <!--/.wrapper-->
+
+    <script src="./js/script.js"></script>
+
+  </body>
+</html>
