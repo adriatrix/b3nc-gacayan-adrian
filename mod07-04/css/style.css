@@ -1,0 +1,62 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: grey;
+}
+
+.wrapper {
+	background-color: white;
+	width: 80vw; /* vw = viewport width */
+	height: 100vh;  /*vh = viewport height*/
+	margin: 0 auto;
+	text-align: center;
+}
+
+.clear:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+h1,
+hr,
+p {
+	margin: 25px 0;
+}
+
+h1 {
+	padding: 25px;
+}
+
+p {
+	font-size: 3em;
+	color: white;
+}
+
+input,
+button {
+	padding: 25px;
+	font-size: 2em;
+	margin: 25px;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}

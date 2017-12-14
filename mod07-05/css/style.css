@@ -1,0 +1,51 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: grey;
+}
+
+.wrapper {
+	background-color: white;
+	width: 80vw; /* vw = viewport width */
+	height: 100vh;  /*vh = viewport height*/
+	margin: 0 auto;
+	text-align: center;
+}
+
+.clear:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.box {
+	width: 25%;
+	border: 2px solid black;
+	text-align: center;
+	float: left;
+}
+
+.black {
+	background-color: black;
+	color: white;
+}
+
+.white {
+	background-color: white;
+	color: black;
+}
