@@ -15,9 +15,9 @@ function generateTable() {
 
 	var z = step;
 
-	for (var x = 0; x <= (row / 4); x++) {
+	for (var x = 0; x <= (row/4); x++) {
 		for (var y = 0; y < 4; y++) {
-			if (step <= num) {
+			if (z <= num) {
 				if ((x % 2 == 0) && (y % 2 == 0)) {
 					boxClass = "black";
 				}
