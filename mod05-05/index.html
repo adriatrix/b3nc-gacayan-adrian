@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  	<title>JS Intro</title>
+
+    <style>
+      input[type='number'] {
+          -moz-appearance:textfield;
+      }
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      function getNum() {
+        var num = parseInt(document.getElementById("num").value);
+        var percent = parseInt(document.getElementById("percent").value) / 100;
+        document.getElementById("show").innerHTML = (num * percent);
+      }
+
+    </script>
+
+    <input type="number" id="num">
+    <input type="number" id="percent" max="100" min="1">
+    <button onclick="getNum()">Go!</button>
+    <p id="show">Show result here</p>
+  </body>
+</html>

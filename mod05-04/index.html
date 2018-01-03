@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  	<title>Guess the number</title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      var gnum = Math.floor((Math.random() * 10) + 1);;
+      console.log (gnum);
+      var tries = 3;
+      console.log (tries);
+
+      function getNumber() {
+        while (tries > 0) {
+          var numbr = document.getElementById("numbr").value;
+
+          if (numbr == gnum) {
+            document.getElementById("display").innerHTML = "Correct!!!";
+            break;
+          } else if (numbr > gnum) {
+            document.getElementById("display").innerHTML = "Lower!!!";
+            break;
+          } else if (numbr < gnum) {
+            document.getElementById("display").innerHTML = "Higher!!!";
+            break;
+          }
+          document.getElementById("tries").innerHTML = tries;
+          tries--;
+        }
+      }
+
+
+      function clearDisplay() {
+        document.getElementById("display").innerHTML = "";
+      }
+
+
+    </script>
+
+    <h1 id="intro">Guess the Number</h1>
+    <input type="text" id="numbr" onkeypress="clearDisplay()">
+    <button onclick="getNumber()">Guess!</button>
+    <h2 id="display"></h2>
+    <h3>Number of guesses: <span id="tries"></span></h3>
+
+  </body>
+</html>
