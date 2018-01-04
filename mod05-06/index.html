@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <title>JS Activity</title>
+
+  <style>
+
+    body {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    input[type='number'] {
+        -moz-appearance:textfield;
+        width: 20px;
+        /* text-align: center; */
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+  </style>
+</head>
+<body>
+	<button onclick="executeNow()">Alert</button>
+	<button onclick="executeThen()">Start</button>
+  <input type="number" id="numbr">
+	<button onclick="executeStar()">Stars</button>
+	<p id="showstars"></p>
+
+<script type="">
+
+	function executeNow() {
+  	var count = 0;
+    var sumeven = 0;
+    var sumodd = 0;
+    var sumall = 0;
+
+		while (count <= 50) {
+    	if (count % 2) {
+        sumodd = sumodd + count;
+      } else {
+      	sumeven = sumeven + count;
+      }
+      count++;
+    }
+    sumall = "EVEN: " + sumeven + " | " + "ODD: " + sumodd;
+    alert(sumall);
+	}
+
+  function executeThen() {
+    for (var x = 1; x <= 20; x++) {
+      if (x % 3 == 0 && x % 5 == 0) {
+        console.log (x + " is a multiple of 3 AND 5")
+      } else if (x % 3 == 0) {
+        console.log (x + " is a multiple of 3 but not of 5")
+      } else if (x % 5 == 0) {
+        console.log (x + " is a multiple of 5 but not of 3")
+      } else {
+        console.log (x + " is NOT a multiple of 5 NOR of 3")
+      }
+    }
+  }
+
+  function clearDisplay() {
+    document.getElementById("showstars").innerHTML = "";
+  }
+
+  function executeStar() {
+    var star = "";
+    var maxstars = document.getElementById("numbr").value;
+    clearDisplay();
+    for (var y = 1; y <= maxstars; y++) {
+      for (var z = 1; z <= maxstars; z++) {
+        if (z == 1) {
+          star = star + "*";
+        } else {
+          star = star + " *";
+        }
+      }
+      star = star + "<br>";
+    }
+    document.getElementById("showstars").innerHTML = star;
+  }
+
+</script>
+</body>
+</html>
