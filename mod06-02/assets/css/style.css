@@ -1,0 +1,44 @@
+.red {
+  color: red;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.blue {
+  color: blue;
+}
+
+.bold {
+  font-size: 2em;
+}
+
+li {
+  text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.no-bullet {
+  list-style-type: none;
+}
+
+/* table, */
+th,
+td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.bg-black {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
