@@ -11,23 +11,33 @@
 
      <title><?php echo getTitle(); ?> Lyrics</title>
 
-     <link rel="stylesheet" href="css/style.css">
+     <!-- <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> -->
+     <link rel="stylesheet" href="assets/css/style.css">
    </head>
    <body>
+     <!-- <div id="top">
 
-     <button type="button" name="button" onclick="function singIt()">Sing It!!</button>
-     <br>
+       <div class="button">
+         <button onclick="SingIt()">SING</button>
+       </div> -->
 
      <?php
 
-
       function getVerse($ver) {
         $dverse = getLyrics($ver);
-        echo "On the " .$dverse[0]. " day of Christmas, my true love sent to me... <br>";
-        for ($i=$ver; $i>=0; $i--) {
-          $gverse = getLyrics($i);
-          echo "" .$gverse[1]. "<br>";
+        echo "<div class='foo-".$ver."' id='section-".$ver."'><h2>On the " .$dverse[0]. " day of Christmas, my true love sent to me.. </h2>";
+        if ($ver == 0) {
+          $gverse = getLyrics(0);
+          echo "<h3 class='foo-".$ver."v'>" .ucfirst($gverse[1]). "</h3>";
+        } else {
+          for ($i=$ver; $i>0; $i--) {
+            $gverse = getLyrics($i);
+            echo "<h3 class='foo-".$ver."v'>" .ucfirst($gverse[1]). "</h3>";
+          }
+          $gverse = getLyrics(0);
+          echo "<h3 class='foo-".$ver."v'>And " .$gverse[1]. "</h3>";
         }
+        echo "</div>";
       }
 
       for ($j=0; $j < 12 ; $j++) {
@@ -37,6 +47,8 @@
 
       ?>
 
+      <!-- </div> -->
+      <script type="text/javascript" src="assets/js/scrollreveal.min.js"></script>
       <script type="text/javascript" src="assets/js/script.js"></script>
    </body>
  </html>
