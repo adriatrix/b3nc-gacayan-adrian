@@ -1,7 +1,7 @@
     <?php
 
       function getTitle() {
-        echo 'Index | Welcome to my Web App';
+        echo 'Contact | Welcome to my Web App';
       }
 
       include 'partials/head.php';
@@ -17,7 +17,7 @@
     </header> <!-- /.header -->
 
     <main class="wrapper">
-      <h1>Index</h1>
+      <h1>Contact</h1>
     </main> <!-- /.wrapper -->
 
     <footer>
