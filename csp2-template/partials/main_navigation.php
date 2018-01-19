@@ -11,13 +11,17 @@
       <li><a href="contact.php">Contact</a></li>
       <?php
 
-      if (isset($_SESSION['current_user']))
+      if (isset($_SESSION['current_user'])) {
+          if($_SESSION['role'] == 'user')
+            echo'<li><a href="profile.php">Profile</a></li>';
+          else
+           echo'<li><a href="settings.php">Settings</a></li>';
         echo'<li><a href="logout.php">Log Out</a></li>';
-      else
+      } else {
         echo'<li><a href="login.php">Log In</a></li>';
-
+        echo'<li><a href="register.php">Register</a></li>';
+      }
       ?>
-      <li><a href="register.php">Register</a></li>
     </ul>
   </div>
 </nav>

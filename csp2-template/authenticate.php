@@ -2,11 +2,16 @@
 
   session_start();
 
-  $users = [
-    ['username' => 'admin', 'password' => 'abc123'],
-    ['username' => 'billy', 'password' => 'ABC*()'],
-    ['username' => 'user1', 'password' => 'abc123ABC*()']
-  ];
+  // $users = [
+  //   ['username' => 'admin', 'password' => 'abc123'],
+  //   ['username' => 'billy', 'password' => 'ABC*()'],
+  //   ['username' => 'user1', 'password' => 'abc123ABC*()']
+  // ];
+
+  // require 'assets/users.php';
+  // use json instead of users.php
+  $file = file_get_contents('assets/users.json');
+  $users = json_decode($file, true);
 
   $isLoginSuccessful = false;
 
@@ -26,6 +31,7 @@
         // echo 'Password is correct.';
         // header('location: home.php');
         $isLoginSuccessful = true;
+        $_SESSION['role'] = $user['role']; //get role of current user
         break;
       }
   }
