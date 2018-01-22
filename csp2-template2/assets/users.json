@@ -1,0 +1,17 @@
+[
+  {
+    "username" : "admin",
+    "password" : "admin",
+    "email" : "admin@tuitt.com"
+  },
+  {
+    "username" : "user1",
+    "password" : "user1",
+    "email" : "user1@facebook.com"
+  },
+  {
+    "username" : "user2",
+    "password" : "user2",
+    "email" : "user2@twitter.com"
+  },
+]
