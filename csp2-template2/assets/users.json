@@ -1,17 +1,56 @@
 [
-  {
-    "username" : "admin",
-    "password" : "admin",
-    "email" : "admin@tuitt.com"
-  },
-  {
-    "username" : "user1",
-    "password" : "user1",
-    "email" : "user1@facebook.com"
-  },
-  {
-    "username" : "user2",
-    "password" : "user2",
-    "email" : "user2@twitter.com"
-  },
+    {
+        "username": "admin",
+        "password": "admin",
+        "email": "admin@gmail.com",
+        "role": "admin"
+    },
+    {
+        "username": "billy",
+        "password": "billy",
+        "email": "user@yahoo.com",
+        "role": "user"
+    },
+    {
+        "username": "user1",
+        "password": "user1",
+        "email": "user1@facebook.com",
+        "role": "user"
+    },
+    {
+        "username": "user3",
+        "password": "user3",
+        "email": "user@lycos.com",
+        "role": "user"
+    },
+    {
+        "username": "user4",
+        "password": "user4",
+        "email": "user@bluebottle.com",
+        "role": "user"
+    },
+    {
+        "username": "user5",
+        "password": "user5",
+        "email": "user@twitter.com",
+        "role": "user"
+    },
+    {
+        "username": "arante",
+        "password": "arante",
+        "email": "arante@user.com",
+        "role": "user"
+    },
+    {
+        "username": "user6",
+        "password": "user6",
+        "email": "user6@google.com",
+        "role": "user"
+    },
+    {
+        "username": "user5",
+        "password": "user5",
+        "email": "user5@domain.com",
+        "role": "user"
+    }
 ]

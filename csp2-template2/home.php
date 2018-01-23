@@ -1,29 +1,48 @@
 <?php
 
-  function getTitle() {
-    echo 'Welcome to my page';
-  }
+session_start();
 
-  include 'partials/head.php';
- ?>
+if (!isset($_SESSION['current_user'])) {
+	header('location: login.php');
+}
 
-  </head>
-  <body>
+function getTitle() {
+	echo 'Home';
+}
 
-    <?php
-      include 'partials/main_header.php';
-     ?>
+include 'partials/head.php';
 
-     <main class="wrapper">
-       <h1>Index</h1>
-     </main> <!-- /.wrapper -->
+?>
 
-     <footer class="footer">
-       <?php
-        include 'partials/main_footer.php';
-       ?>
-     </footer>
+</head>
+<body>
 
-     <?php
-       include 'partials/foot.php';
-     ?>
+	<!-- main header -->
+	<?php include 'partials/main_header.php'; ?>
+
+	<!-- wrapper -->
+	<main class="wrapper">
+
+		<h1>Home Page</h1>
+
+		<?php
+
+		if (isset($_SESSION['current_user'])) {
+			echo '<h3>Welcome ' . $_SESSION['current_user'] . '!</h3>';
+		}
+
+		?>
+
+	</main>
+
+	<!-- main footer -->
+	<?php include 'partials/main_footer.php'; ?>
+
+<?php
+
+include 'partials/foot.php';
+
+?>
+
+</body>
+</html>

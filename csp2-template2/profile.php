@@ -1,29 +1,40 @@
 <?php
 
-  function getTitle() {
-    echo 'Profile';
-  }
+session_start();
 
-  include 'partials/head.php';
- ?>
+if(!isset($_SESSION['current_user'])) {
+	header('location: login.php');
+}
 
-  </head>
-  <body>
+function getTitle() {
+	echo 'Profile';
+}
 
-    <?php
-      include 'partials/main_header.php';
-     ?>
+include 'partials/head.php';
 
-     <main class="wrapper">
-       <h1>Profile</h1>
-     </main> <!-- /.wrapper -->
+?>
 
-     <footer class="footer">
-       <?php
-        include 'partials/main_footer.php';
-       ?>
-     </footer>
+</head>
+<body>
 
-     <?php
-       include 'partials/foot.php';
-     ?>
+	<!-- main header -->
+	<?php include 'partials/main_header.php'; ?>
+
+	<!-- wrapper -->
+	<main class="wrapper">
+
+		<h1>Profile Page</h1>
+
+	</main>
+
+	<!-- main footer -->
+	<?php include 'partials/main_footer.php'; ?>
+
+<?php
+
+include 'partials/foot.php';
+
+?>
+
+</body>
+</html>

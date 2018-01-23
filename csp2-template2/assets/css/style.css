@@ -1,0 +1,44 @@
+body {
+	background-color: brown;
+}
+
+/* main header */
+.navbar-inverse {
+	margin-bottom: 0;
+}
+
+/* content */
+.wrapper {
+	width: 80vw;
+	min-width: height: 84vh;
+	background-color: #fff;
+	margin: 0 auto;
+}
+
+h1 {
+	margin: 0;
+}
+
+#loginForm,
+#registerForm {
+	width: 40%;
+	margin: 0 auto;
+}
+
+/* main footer */
+.main-footer {
+	background-color: lightgrey;
+	padding: 15px;
+	text-align: center;
+}
+
+table,
+thead,
+tbody,
+th,
+tr,
+td {
+	border: 1px solid black;
+	padding: 15px;
+	border-collapse: collapse;
+}

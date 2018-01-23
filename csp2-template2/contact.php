@@ -1,9 +1,7 @@
 <?php
 
-session_start();
-
 function getTitle() {
-	echo 'About';
+	echo 'Contact';
 }
 
 include 'partials/head.php';
@@ -19,8 +17,8 @@ include 'partials/head.php';
 	<!-- wrapper -->
 	<main class="wrapper">
 
-		<h1>About Page</h1>
-
+		<h1>Contact Page</h1>
+		
 	</main>
 
 	<!-- main footer -->

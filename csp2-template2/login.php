@@ -1,40 +1,44 @@
 <?php
 
-  function getTitle() {
-    echo 'Login';
-  }
+function getTitle() {
+	echo 'Login';
+}
 
-  include 'partials/head.php';
- ?>
+include 'partials/head.php';
 
-  </head>
-  <body>
+?>
 
-    <?php
-      include 'partials/main_header.php';
-     ?>
+</head>
+<body>
 
-     <main class="wrapper">
+	<!-- main header -->
+	<?php include 'partials/main_header.php'; ?>
 
-       <h1>Log In</h1>
+	<!-- wrapper -->
+	<main class="wrapper">
 
-       <form method="POST" action="authenticate.php">
-         <label>Username: </label>
-         <input type="text" name="username" id="username" placeholder="Username">
+		<h1>Login Page</h1>
 
-         <label>Password: </label>
-         <input type="password" name="password" id="password" placeholder="Password">
+		<form id="loginForm" method="POST" action="assets/authenticate.php" class="form-group">
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" placeholder="Enter username" class="form-control">
 
-         <input type="submit" name="submit" value="Log In">
-       </form>
-     </main> <!-- /.wrapper -->
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" placeholder="Enter password" class="form-control">
 
-     <footer class="footer">
-       <?php
-        include 'partials/main_footer.php';
-       ?>
-     </footer>
+			<input type="submit" name="submit" id="submit" value="Login" class="btn btn-primary">
+		</form>
+		
+	</main>
 
-     <?php
-       include 'partials/foot.php';
-     ?>
+	<!-- main footer -->
+	<?php include 'partials/main_footer.php'; ?>
+
+<?php
+
+include 'partials/foot.php';
+
+?>
+
+</body>
+</html>

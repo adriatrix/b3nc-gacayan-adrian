@@ -1,72 +1,62 @@
 <?php
 
-  function getTitle() {
-    echo 'Welcome to my page';
-  }
+function getTitle() {
+	echo 'Register';
+}
 
-  include 'partials/head.php';
- ?>
+include 'partials/head.php';
 
-  </head>
-  <body>
+?>
 
-    <?php
-      include 'partials/main_header.php';
-     ?>
+</head>
+<body>
 
-     <section class="wrapper">
-       <div class="container">
-         <h1>Register</h1>
+	<!-- main header -->
+	<?php include 'partials/main_header.php'; ?>
 
-         <form method="POST" action="registration.php">
-           <div class="field is-horizontal">
-             <div class="field-label is-normal">
-               <label class="label">Username: </label>
-             </div>
-             <div class="field-body">
-               <div class="field">
-                 <div class="control">
-                   <input class="input" type="text" name="username" id="username" placeholder="Username">
-                 </div>
-               </div>
-             </div>
-             <div class="field-label is normal">
-               <label class="label">Email: </label>
-             </div>
-             <div class="field-body">
-               <div class="field">
-                 <div class="control">
-                   <input class="input" type="email" name="email" id="email" placeholder="Email">
-                </div>
-              </div>
-            </div>
-          </div>
+	<!-- wrapper -->
+	<main class="wrapper">
 
+		<h1>Register Page</h1>
 
-           <div class="field">
-             <label class="label">Password: </label>
-             <input class="control" type="password" name="password" id="password" placeholder="Password">
-           </div>
+		<form id="registerForm" method="POST" action="assets/registration.php" class="form-group">
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" placeholder="Enter new username" class="form-control" required>
 
-           <div class="field">
-             <label class="label">Confirm Password: </label>
-             <input class="control" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
-           </div>
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" placeholder="Enter new password" class="form-control" required>
 
+			<label for="confirmPassword">Confirm Password</label>
+			<input type="password" name="confirmPassword" id="confirmPassword" placeholder="Enter password again" class="form-control" required>
 
-           <div class="field">
-             <input class="button is-link"type="submit" name="submit" value="Register">
-           </div>
-         </form>
-       </div>
-     </section> <!-- /.wrapper -->
+			<label for="email">Email Address</label>
+			<input type="email" name="email" id="email" placeholder="email@domain.com" class="form-control" required>
 
-     <footer class="footer">
-       <?php
-        include 'partials/main_footer.php';
-       ?>
-     </footer>
+			<input type="submit" name="submit" id="submit" value="Register" class="btn btn-primary">
+		</form>
 
-     <?php
-       include 'partials/foot.php';
-     ?>
+	</main>
+
+	<!-- main footer -->
+	<?php include 'partials/main_footer.php'; ?>
+
+<?php
+
+include 'partials/foot.php';
+
+?>
+
+<script type="text/javascript">
+	$('#username').keypress(function() {
+		var usernameText = $(this).val();
+		$.post('username_validation.php',
+			{username: usernameText},
+			function(data, status) {
+				console.log ('Processed: ' + data);
+			});
+		// console.log(usernameText);
+	});
+</script>
+
+</body>
+</html>
