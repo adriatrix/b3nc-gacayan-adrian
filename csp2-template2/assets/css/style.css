@@ -42,3 +42,37 @@ td {
 	padding: 15px;
 	border-collapse: collapse;
 }
+
+
+.red-message {
+	color: red;
+}
+
+.green-message {
+	color: green;
+}
+
+.item-container {
+	width: 30%;
+	height: 500px;
+	background-color: lightgrey;
+	padding: 15px;
+	margin: 10px;
+	text-align: center;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.item-container img {
+	width: 100%;
+}
+
+
+.item-container p:last-child {
+	height: 100px;
+	overflow: hidden;
+}
+
+.item-container h3 {
+	height: 50px;
+}

@@ -27,7 +27,7 @@ include 'partials/head.php';
 			<input type="password" name="password" id="password" placeholder="Enter new password" class="form-control" required>
 
 			<label for="confirmPassword">Confirm Password</label>
-			<input type="password" name="confirmPassword" id="confirmPassword" placeholder="Enter password again" class="form-control" required>
+			<input type="password" name="confirmPassword" id="confirmPassword" placeholder="Enter password again" class="form-control" required disabled>
 
 			<label for="email">Email Address</label>
 			<input type="email" name="email" id="email" placeholder="email@domain.com" class="form-control" required>
@@ -47,12 +47,61 @@ include 'partials/foot.php';
 ?>
 
 <script type="text/javascript">
-	$('#username').keypress(function() {
+	$('#username').on('input', function() {
 		var usernameText = $(this).val();
-		$.post('username_validation.php',
+		$.post('assets/username_validation.php',
 			{username: usernameText},
 			function(data, status) {
+				// console.log ('Processed: ' + data);
+
+				$('[for="username"]').html(data);
+			});
+		// console.log(usernameText);
+	});
+
+
+	$('#confirmPassword').on('input', function() {
+		var passConfirmed = $(this).val();
+		var passEntered = $('#password').val();
+		console.log(passConfirmed);
+		if (passConfirmed == "")
+			$('[for="confirmPassword"]').html('Confirm Password')
+			else {
+				if (passEntered == passConfirmed)
+				$('[for="confirmPassword"]').html('Confirm Password <span class="green-message "><i class="glyphicon glyphicon-ok"></i></span>')
+				else
+				$('[for="confirmPassword"]').html('Confirm Password <span class="red-message "><i class="glyphicon glyphicon-remove"></i></span>')
+			}
+	});
+
+	$('#password').on('input', function() {
+		var passConfirmed = $('#passwordConfirm').val();
+		var passEntered = $(this).val();
+		console.log (passEntered);
+		console.log (passConfirmed);
+
+		if (passEntered == "" || passConfirmed == undefined) {
+			$('[for="confirmPassword"]').html('Confirm Password')
+			$('[for="confirmPassword"]').prop("disabled", true);
+		}
+		else {
+			$('[for="confirmPassword"]').prop("disabled", false)
+			if (passEntered == passConfirmed)
+			$('[for="confirmPassword"]').html('Confirm Password <span class="green-message "><i class="glyphicon glyphicon-ok"></i></span>')
+			else
+			$('[for="confirmPassword"]').html('Confirm Password <span class="red-message "><i class="glyphicon glyphicon-remove"></i></span>')
+		}
+	});
+
+
+	$('#email').on('input', function() {
+		var emailText = $(this).val();
+		$.post('assets/email_validation.php',
+			{email: emailText},
+			function(data, status) {
 				console.log ('Processed: ' + data);
+
+				$('[for="email"]').html(data);
 			});
 		// console.log(usernameText);
 	});
