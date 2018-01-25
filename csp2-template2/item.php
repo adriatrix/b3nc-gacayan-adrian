@@ -24,16 +24,16 @@ include 'partials/head.php';
 	<!-- wrapper -->
 	<main class="wrapper">
 
-		<h1>Index Page</h1>
+		<h1>Item Page</h1>
 
 		<?php
 
 		$id = $_GET['id'];
 
-		$file = file_get_contents('assets/users.json');
-		$users = json_decode($file, true);
+		$file = file_get_contents('assets/items.json');
+		$items = json_decode($file, true);
 
-		// foreach ($users as $key => $user) {
+		// foreach ($items as $key => $user) {
 		// 	if($key == $id) {
     //
 		// 	}
@@ -42,20 +42,20 @@ include 'partials/head.php';
 		echo '
 		<table>
 			<tr>
-				<td>Username</td>
-				<td>' . $users[$id]['username'] . '</td>
+				<td>Product Name</td>
+				<td>' . $items[$id]['name'] . '</td>
 			</tr>
 			<tr>
-				<td>Password</td>
-				<td>' . $users[$id]['password']. '</td>
+				<td>Image</td>
+				<td><img src="' . $items[$id]['image']. '"></td>
 			</tr>
 			<tr>
-				<td>Email</td>
-				<td>'. $users[$id]['email']. '</td>
+				<td>Price</td>
+				<td>'. $items[$id]['price']. '</td>
 			</tr>
 			<tr>
-				<td>Role</td>
-				<td>'. $users[$id]['role']. '</td>
+				<td>Description</td>
+				<td>'. $items[$id]['desciption']. '</td>
 			</tr>
 
 		</table>
@@ -64,7 +64,7 @@ include 'partials/head.php';
 
 		?>
 
-		<a href="settings.php"><button class="btn btn-default">Back</button></a>
+		<a href="catalog.php"><button class="btn btn-default">Back</button></a>
 
 		<button class="btn btn-primary">Edit</button>
 		<button class="btn btn-danger">Delete</button>
