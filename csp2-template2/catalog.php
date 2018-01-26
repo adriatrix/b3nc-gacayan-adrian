@@ -24,9 +24,17 @@ $items = json_decode($file, true);
 
 		<h1>Catalog Page</h1>
 
-		<a href="create_new_item.php">
-			<button class="btn btn-primary">Add New Item</button>
-		</a>
+		<?php
+
+			if ($_SESSION['role'] = 'admin') {
+				echo '
+				<a href="create_new_item.php">
+				<button class="btn btn-primary">Add New Item</button>
+				</a>
+				';
+			}
+		 ?>
+
 
 		<div class="itemsWrapper">
 		<?php
