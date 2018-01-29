@@ -8,7 +8,7 @@ if (isset($_SESSION['current_user'])) {
 }
 
 function getTitle() {
-	echo 'User Page';
+	echo 'Item Page';
 }
 
 include 'partials/head.php';
@@ -66,9 +66,63 @@ include 'partials/head.php';
 
 		<a href="catalog.php"><button class="btn btn-default">Back</button></a>
 
-		<button class="btn btn-primary">Edit</button>
-		<button class="btn btn-danger">Delete</button>
+		<button type="button" id="editItem" class="btn btn-primary" data-toggle="modal" data-target="#editItemModal" data-Index="<?php echo $id; ?>">Edit</button>
+		<button type="button" id="deleteItem" class="btn btn-danger" data-toggle="modal" data-target="#deleteItemModal" data-Index="<?php echo $id; ?>">Delete</button>
 	</main>
+
+
+
+	<div id="editItemModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+
+		<form action="assets/update_item.php" method="POST">
+			<div class="modal-content">
+				<input name="name_id" value="<?php echo $id ?>" hidden>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Edit Item Details</h4>
+				</div>
+				<div class="modal-body" id="editItemModalBody">
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-default">Save</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</form>
+
+
+  </div>
+</div>
+
+<div id="deleteItemModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+	<!-- Modal content-->
+
+	<form action="assets/delete_item.php" method="POST">
+		<div class="modal-content">
+			<input name="name_id" value="<?php echo $id ?>" hidden>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Delete Item Details</h4>
+			</div>
+			<div class="modal-body" id="deleteItemModalBody">
+				<p>Do you really really really want to delete this item from the Catalog?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-default">Save</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</form>
+
+
+</div>
+</div>
+
 
 	<!-- main footer -->
 	<?php include 'partials/main_footer.php'; ?>
@@ -78,6 +132,24 @@ include 'partials/head.php';
 include 'partials/foot.php';
 
 ?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#editItem').click(function() {
+			var itemId = $(this).data('index');
+			// console.log(userId);
+			$.get('assets/edit_item.php',
+			{
+				id: itemId
+			},
+			function(data, status) {
+				// console.log(data);
+				$('#editItemModalBody').html(data);
+		});
+		});
+	});
+
+</script>
 
 </body>
 </html>

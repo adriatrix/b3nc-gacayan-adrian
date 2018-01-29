@@ -2,12 +2,8 @@
 
 session_start();
 
-if(!isset($_SESSION['current_user'])) {
-	header('location: login.php');
-}
-
 function getTitle() {
-	echo 'Profile';
+	echo 'Welcome to Kraff Beeer Philippines!';
 }
 
 include 'partials/head.php';
@@ -24,6 +20,19 @@ include 'partials/head.php';
 	<main class="wrapper">
 
 		<h1>Profile Page</h1>
+
+		<?php
+		$file = file_get_contents('assets/users.json');
+		$users = json_decode($file, true);
+
+		foreach ($users as $key => $user) {
+						$_SESSION['current_user'] = $user['username'];
+						break;
+						$id = $key;
+				}
+
+		echo $users[$id]['username'];
+		 ?>
 
 	</main>
 

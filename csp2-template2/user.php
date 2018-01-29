@@ -24,7 +24,7 @@ include 'partials/head.php';
 	<!-- wrapper -->
 	<main class="wrapper">
 
-		<h1>Index Page</h1>
+		<h1>User Page</h1>
 
 		<?php
 
