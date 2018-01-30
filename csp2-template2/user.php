@@ -46,6 +46,10 @@ include 'partials/head.php';
 				<td>' . $users[$id]['username'] . '</td>
 			</tr>
 			<tr>
+				<td>Photo</td>
+				<td><img src="' . $users[$id]['photo']. '"></td>
+			</tr>
+			<tr>
 				<td>Password</td>
 				<td>' . $users[$id]['password']. '</td>
 			</tr>

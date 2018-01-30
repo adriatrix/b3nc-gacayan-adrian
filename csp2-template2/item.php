@@ -28,7 +28,7 @@ include 'partials/head.php';
 
 		<?php
 
-		$id = $_GET['id'];
+		$id = $_GET['id']-1;
 
 		$file = file_get_contents('assets/items.json');
 		$items = json_decode($file, true);
@@ -57,6 +57,10 @@ include 'partials/head.php';
 				<td>Description</td>
 				<td>'. $items[$id]['desciption']. '</td>
 			</tr>
+			<tr>
+				<td>Category</td>
+				<td>'. $items[$id]['category']. '</td>
+			</tr>
 
 		</table>
 		';
@@ -64,7 +68,7 @@ include 'partials/head.php';
 
 		?>
 
-		<a href="catalog.php"><button class="btn btn-default">Back</button></a>
+		<a href="catalog.php"><button onclick="window.history.go(-1); return false;"class="btn btn-default">Back</button></a>
 
 		<button type="button" id="editItem" class="btn btn-primary" data-toggle="modal" data-target="#editItemModal" data-Index="<?php echo $id; ?>">Edit</button>
 		<button type="button" id="deleteItem" class="btn btn-danger" data-toggle="modal" data-target="#deleteItemModal" data-Index="<?php echo $id; ?>">Delete</button>

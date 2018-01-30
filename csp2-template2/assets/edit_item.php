@@ -24,62 +24,79 @@ echo '
   <label>Category</label>
   <select name="category" id="category" placeholder="'.$items[$id]['category'].'" class="form-control" required>
   ';
-  if ($items[$id]['category'] == "Category 1") {
-    echo '
-    <option value="Category 1" selected>Category 1</option>
-    <option value="Category 2">Category 2</option>
-    <option value="Category 3">Category 3</option>
-    <option value="Category 4">Category 4</option>
-    <option value="Category 5">Category 5</option>
-    <option value="Category 6">Category 6</option>
-    ';
-  } else if ($items[$id]['category'] == "Category 2") {
-    echo '
-    <option value="Category 1">Category 1</option>
-    <option value="Category 2" selected>Category 2</option>
-    <option value="Category 3">Category 3</option>
-    <option value="Category 4">Category 4</option>
-    <option value="Category 5">Category 5</option>
-    <option value="Category 6">Category 6</option>
-    ';
-  } else if ($items[$id]['category'] == "Category 3") {
-    echo '
-    <option value="Category 1">Category 1</option>
-    <option value="Category 2">Category 2</option>
-    <option value="Category 3" selected>Category 3</option>
-    <option value="Category 4">Category 4</option>
-    <option value="Category 5">Category 5</option>
-    <option value="Category 6">Category 6</option>
-    ';
-  } else if ($items[$id]['category'] == "Category 4") {
-    echo '
-    <option value="Category 1">Category 1</option>
-    <option value="Category 2">Category 2</option>
-    <option value="Category 3">Category 3</option>
-    <option value="Category 4" selected>Category 4</option>
-    <option value="Category 5">Category 5</option>
-    <option value="Category 6">Category 6</option>
-    ';
-  } else if ($items[$id]['category'] == "Category 5") {
-    echo '
-    <option value="Category 1">Category 1</option>
-    <option value="Category 2">Category 2</option>
-    <option value="Category 3">Category 3</option>
-    <option value="Category 4">Category 4</option>
-    <option value="Category 5" selected>Category 5</option>
-    <option value="Category 6">Category 6</option>
-    ';
-  } else {
-    echo '
-    <option value="Category 1">Category 1</option>
-    <option value="Category 2">Category 2</option>
-    <option value="Category 3">Category 3</option>
-    <option value="Category 4">Category 4</option>
-    <option value="Category 5">Category 5</option>
-    <option value="Category 6" selected>Category 6</option>
-    ';
 
+  $categories = array_column($items, 'category');
+
+  $categories = array_unique($categories);
+  sort($categories);
+
+  foreach ($categories as $category) {
+    if($category === $items[$id]['category']) {
+      echo '
+      <option value="'.$category.'" selected>'.$category.'</option>
+      ';
+    } else {
+      echo '
+      <option value="'.$category.'">'.$category.'</option>
+      ';
+    }
   }
+  // if ($items[$id]['category'] == "Category 1") {
+  //   echo '
+  //   <option value="Category 1" selected>Category 1</option>
+  //   <option value="Category 2">Category 2</option>
+  //   <option value="Category 3">Category 3</option>
+  //   <option value="Category 4">Category 4</option>
+  //   <option value="Category 5">Category 5</option>
+  //   <option value="Category 6">Category 6</option>
+  //   ';
+  // } else if ($items[$id]['category'] == "Category 2") {
+  //   echo '
+  //   <option value="Category 1">Category 1</option>
+  //   <option value="Category 2" selected>Category 2</option>
+  //   <option value="Category 3">Category 3</option>
+  //   <option value="Category 4">Category 4</option>
+  //   <option value="Category 5">Category 5</option>
+  //   <option value="Category 6">Category 6</option>
+  //   ';
+  // } else if ($items[$id]['category'] == "Category 3") {
+  //   echo '
+  //   <option value="Category 1">Category 1</option>
+  //   <option value="Category 2">Category 2</option>
+  //   <option value="Category 3" selected>Category 3</option>
+  //   <option value="Category 4">Category 4</option>
+  //   <option value="Category 5">Category 5</option>
+  //   <option value="Category 6">Category 6</option>
+  //   ';
+  // } else if ($items[$id]['category'] == "Category 4") {
+  //   echo '
+  //   <option value="Category 1">Category 1</option>
+  //   <option value="Category 2">Category 2</option>
+  //   <option value="Category 3">Category 3</option>
+  //   <option value="Category 4" selected>Category 4</option>
+  //   <option value="Category 5">Category 5</option>
+  //   <option value="Category 6">Category 6</option>
+  //   ';
+  // } else if ($items[$id]['category'] == "Category 5") {
+  //   echo '
+  //   <option value="Category 1">Category 1</option>
+  //   <option value="Category 2">Category 2</option>
+  //   <option value="Category 3">Category 3</option>
+  //   <option value="Category 4">Category 4</option>
+  //   <option value="Category 5" selected>Category 5</option>
+  //   <option value="Category 6">Category 6</option>
+  //   ';
+  // } else {
+  //   echo '
+  //   <option value="Category 1">Category 1</option>
+  //   <option value="Category 2">Category 2</option>
+  //   <option value="Category 3">Category 3</option>
+  //   <option value="Category 4">Category 4</option>
+  //   <option value="Category 5">Category 5</option>
+  //   <option value="Category 6" selected>Category 6</option>
+  //   ';
+  //
+  // }
   echo '
   </select>
 

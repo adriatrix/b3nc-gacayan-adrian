@@ -19,19 +19,24 @@ include 'partials/head.php';
 	<!-- wrapper -->
 	<main class="wrapper">
 
-		<h1>Profile Page</h1>
+		<h1><?php echo '' . $_SESSION['current_user'] . ''; ?>'s Profile Page</h1>
 
 		<?php
 		$file = file_get_contents('assets/users.json');
 		$users = json_decode($file, true);
 
 		foreach ($users as $key => $user) {
-						$_SESSION['current_user'] = $user['username'];
-						break;
-						$id = $key;
+						if ($_SESSION['current_user'] = $user['username']) {
+							$id = $key;
+							break;
+						}
 				}
 
-		echo $users[$id]['username'];
+		// $users[$id]['username']
+
+		// echo
+		echo "<img src=". $users[$id]['photo']. "";
+
 		 ?>
 
 	</main>

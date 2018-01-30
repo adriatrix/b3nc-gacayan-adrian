@@ -3,36 +3,42 @@
         "username": "admin",
         "password": "admin",
         "email": "admin@gmail.com",
+        "photo": "assets/img/user/avatar.png",
         "role": "admin"
     },
     {
         "username": "billy",
         "password": "billy",
         "email": "user@yahoo.com",
+        "photo": "https:\/\/lorempixel.com\/200\/200\/",
         "role": "user"
     },
     {
         "username": "user1",
         "password": "user1",
         "email": "user1@facebook.com",
+        "photo": "https:\/\/lorempixel.com\/200\/200\/",
         "role": "user"
     },
     {
         "username": "user3",
         "password": "user3",
         "email": "user@lycos.com",
+        "photo": "https:\/\/lorempixel.com\/200\/200\/",
         "role": "user"
     },
     {
         "username": "arante",
         "password": "arante",
         "email": "arante@user.com",
+        "photo": "https:\/\/lorempixel.com\/200\/200\/",
         "role": "user"
     },
     {
         "username": "adrian",
         "password": "adrian",
         "email": "adrian@gacayan.com",
+        "photo": "https:\/\/lorempixel.com\/200\/200\/",
         "role": "admin"
     }
 ]

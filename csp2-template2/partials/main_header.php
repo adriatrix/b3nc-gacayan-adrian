@@ -37,11 +37,11 @@
         <?php
 
         if (isset($_SESSION['current_user'])) {
-          echo '
-                <li>
-                <a href="profile.php">Profile</a>
-                </li>
-              ';
+          // echo '
+          //       <li>
+          //       <a href="profile.php">Profile</a>
+          //       </li>
+          //     ';
           if ($_SESSION['role'] == 'admin') {
             echo '
             <li>
