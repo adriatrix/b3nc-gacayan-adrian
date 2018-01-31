@@ -4,6 +4,12 @@ function getTitle() {
 	echo 'Register';
 }
 
+$file = file_get_contents('assets/items.json');
+$items = json_decode($file, true);
+
+$last_id = count($items)+1;
+// var_dump($last_id);
+
 include 'partials/head.php';
 
 ?>
@@ -41,6 +47,8 @@ include 'partials/head.php';
         <option value="Category 5">Category 5</option>
         <option value="Category 6">Category 6</option>
       </select>
+
+			<input type="number" name="id" id="id" value="<?php echo $last_id ?>" hidden>
 
 			<input type="submit" name="submit" id="submit" value="Create some Magick" class="btn btn-primary">
 		</form>

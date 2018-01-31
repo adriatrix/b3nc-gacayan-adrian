@@ -68,7 +68,11 @@ include 'partials/head.php';
 
 		?>
 
-		<a href="catalog.php"><button onclick="window.history.go(-1); return false;"class="btn btn-default">Back</button></a>
+		<!-- <a href="catalog.php"><button onclick="window.history.go(-1); return false;"class="btn btn-default">Back</button></a> -->
+
+		<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
+			<button class="btn btn-default">Back</button>
+		</a>
 
 		<button type="button" id="editItem" class="btn btn-primary" data-toggle="modal" data-target="#editItemModal" data-Index="<?php echo $id; ?>">Edit</button>
 		<button type="button" id="deleteItem" class="btn btn-danger" data-toggle="modal" data-target="#deleteItemModal" data-Index="<?php echo $id; ?>">Delete</button>

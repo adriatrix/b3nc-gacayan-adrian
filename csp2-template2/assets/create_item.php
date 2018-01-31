@@ -2,16 +2,17 @@
 
 $product_name = $_POST['pname'];
 $desciption = $_POST['desciption'];
-$price = $_POST['price'];
+$price = intval($_POST['price']);
 $category = $_POST['category'];
 $image =  $_POST['image'];
+$id =  intval($_POST['id']);
 
 // echo $userName . ' ' . $passWord . ' ' . $email;
 
 $file = file_get_contents('items.json');
 $items = json_decode($file, true);
 
-$newItem = array('name' => $product_name, 'desciption' => $desciption, 'image' => 'assets/img/' .$image, 'price' => $price, 'category' => $category);
+$newItem = array('id' => $id, 'name' => $product_name, 'desciption' => $desciption, 'image' => 'assets/img/' .$image, 'price' => $price, 'category' => $category);
 
 array_push($items, $newItem);
 

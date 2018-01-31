@@ -93,10 +93,13 @@ if (isset($_GET['search']) && $_GET['category']!=="All") {
 				<img src='.$item['image'].' alt="Mock Data">
 				<p>PHP '.$item['price'].'</p>
 				<p>'.$item['desciption'].'</p>
-				<p>'.$item['category'].'</p>
 				</div>
 				</a>
-				<button class="btn btn-primary form-control">Add to Cart</button>
+
+
+
+				<input class="form-control" type="number" value="0" min="0" id="itemQuantity'.$item['id'].'">
+				<button class="btn btn-primary form-control" onclick="addToCart('.$item['id'].')">Add to Cart</button>
 				</div>
 				';
 			}
@@ -115,6 +118,24 @@ if (isset($_GET['search']) && $_GET['category']!=="All") {
 include 'partials/foot.php';
 
 ?>
+
+<script>
+	function addToCart(itemId) {
+		var id = itemId;
+		// retrieve value of item quantity
+		var quantity = $('#itemQuantity' + id).val();
+		//create a post request to update session cart variable
+		$.post('assets/add_to_cart.php',
+		{
+			item_id: id,
+			item_quantity: quantity
+		},
+		function(data, status) {
+			// console.log(data);
+			$('a[href="cart.php"]').html('My Cart ' + data);
+		});
+	}
+</script>
 
 </body>
 </html>

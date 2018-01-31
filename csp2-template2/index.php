@@ -3,7 +3,7 @@
 
 session_start();
 if (isset($_SESSION['current_user'])) {
-	
+
 }
 
 function getTitle() {
@@ -11,6 +11,15 @@ function getTitle() {
 }
 
 include 'partials/head.php';
+
+
+// create a session variable for car
+$_SESSION['cart'] = array();
+
+// create a session variable for item counter
+$_SESSION['item_count'] = 0;
+
+
 
 ?>
 

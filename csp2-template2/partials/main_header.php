@@ -25,8 +25,22 @@
           }
          ?>
 
+
+
         <li>
-          <a href="about.php">About</a></li>
+          <a href="cart.php">My Cart
+            <?php
+              if (isset($_SESSION['item_count'])) {
+                echo '
+                  <strong style="color:red;">( '.$_SESSION['item_count'].' )</strong>
+                ';
+              }
+             ?>
+          </a>
+        </li>
+        <li>
+          <a href="about.php">About</a>
+        </li>
         <li>
           <a href="careers.php">Careers</a>
         </li>
