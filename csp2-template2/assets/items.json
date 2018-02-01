@@ -12,7 +12,7 @@
         "name": "San Mig Light",
         "desciption": "San Mig Light is the country's leading low calorie beer with only 100 calories per 330ml serving. That's why you'll feel so light as you enjoy its full beer flavor that hits just right...",
         "image": "assets\/img\/beer.jpg",
-        "price": 201.25,
+        "price": 202,
         "category": "Category 2"
     },
     {
@@ -20,7 +20,7 @@
         "name": "Gold Eagle Beer",
         "desciption": "The ultimate reward to a hard day's work is Gold Eagle Beer. It is moderately light bodied, yet flavorful, hopped just enough to give a little bite on the finish bringing out an over-all \"easy drinking\" character. Relax and enjoy the moment with this beer. Its alcohol content is 3.5% by weight and 4.55% by volume",
         "image": "assets\/img\/beer.jpg",
-        "price": 401.1,
+        "price": 402,
         "category": "Category 3"
     },
     {
@@ -36,7 +36,7 @@
         "name": "Fat Pauly's Ales & Lagers",
         "desciption": "Fat Pauly's Hand-crafted Ales & Lagers is a proud local brand that makes fresh home-brewed beers using both the finest imported brew grade malt and some local indegenous ingredients such as Timoga Spring waters, and wild Putyukan Honey",
         "image": "https:\/\/lorempixel.com\/300\/300\/",
-        "price": 600.21,
+        "price": 601,
         "category": "Category 2"
     },
     {
@@ -52,7 +52,7 @@
         "name": "San Mig Heavy",
         "desciption": "The quick brown fox jumps over the lazy laaaaazy dog.",
         "image": "assets\/img\/beer.jpg",
-        "price": 125.59,
+        "price": 126,
         "category": "Category 5"
     },
     {
@@ -86,5 +86,13 @@
         "image": "assets\/img\/beer.jpg",
         "price": 225,
         "category": "Category 3"
+    },
+    {
+        "id": 12,
+        "name": "Pure Blonde Beer",
+        "desciption": "True beer",
+        "image": "assets\/img\/beer.jpg",
+        "price": 65,
+        "category": "Category 1"
     }
 ]

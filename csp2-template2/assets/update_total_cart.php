@@ -5,6 +5,11 @@
   $id = $_POST['item_id'];
   $quantity = $_POST['item_quantity'];
 
+  $file = file_get_contents('items.json');
+  $items = json_decode($file, true);
+
+  $substotal = $quantity * $items[$id-1]['price'];
+
   // echo $id . ' ' . $quantity;
 
   // update the items for session cart variable
@@ -16,6 +21,5 @@
   // $_SESSION['item_count'] += $quantity;
   $_SESSION['item_count'] = array_sum($_SESSION['cart']);
 
-    echo '<strong style="color:red;">( '.$_SESSION['item_count'].' )</strong>';
-
+    echo $substotal;
  ?>
