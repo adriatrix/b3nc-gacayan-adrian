@@ -32,7 +32,9 @@
             <?php
               if (isset($_SESSION['item_count'])) {
                 echo '
-                  <strong style="color:red;">( '.$_SESSION['item_count'].' )</strong>
+                  <strong style="color:dimgrey;">( </strong>
+                  <strong id="cart-number" style="color:red;">'.$_SESSION['item_count'].'</strong>
+                  <strong style="color:dimgrey;"> )</strong>
                 ';
               }
              ?>

@@ -16,6 +16,6 @@
   // $_SESSION['item_count'] += $quantity;
   $_SESSION['item_count'] = array_sum($_SESSION['cart']);
 
-    echo '<strong style="color:red;">( '.$_SESSION['item_count'].' )</strong>';
+    echo "". $_SESSION['item_count']."";
 
  ?>

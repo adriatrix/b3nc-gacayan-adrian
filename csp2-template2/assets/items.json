@@ -17,10 +17,10 @@
     },
     {
         "id": 3,
-        "name": "Gold Eagle Beer",
+        "name": "Sarsi Beer",
         "desciption": "The ultimate reward to a hard day's work is Gold Eagle Beer. It is moderately light bodied, yet flavorful, hopped just enough to give a little bite on the finish bringing out an over-all \"easy drinking\" character. Relax and enjoy the moment with this beer. Its alcohol content is 3.5% by weight and 4.55% by volume",
         "image": "assets\/img\/beer.jpg",
-        "price": 402,
+        "price": "402",
         "category": "Category 3"
     },
     {

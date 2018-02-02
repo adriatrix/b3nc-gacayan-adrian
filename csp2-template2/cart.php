@@ -105,28 +105,62 @@ include 'partials/foot.php';
 		var id = itemId;
 		// retrieve value of item quantity
 		var quantity = $('#updateQuantity' + id).val();
+		// console.log("QTY: " + quantity);
+
 		var price = $('#cart-price' + id).val();
-		// var subtotal = $('#subTotal' + id).val();
-		var total = $('.cart-total').val();
+		price = parseInt(price,10);
+		// console.log("PRICE: " + price);
+
+		var subtotal = quantity * price;
+		console.log("SUBTOTAL: " + subtotal);
+
+		$('#subTotal' + id).html(subtotal);
+
+
+		var oldsubtotal = $('#subTotal' + id).val();
+		console.log(oldsubtotal);
+
+		// $.each(json, function () {
+		// 	$.each(this, function (name, value) {
+		// 		console.log(name + '=' + value);
+		// 	});
+		// });
+
+
+		// if (oldsubtotal > subtotal) {
+		// 	var total = $('.cart-total').val();
+		// 	total = parseInt(total,10);
+		// 	console.log("TOTAL: " + total);
+		// 	total = total - price;
+		// 	console.log("TOTAL: " + total);
+		// 	$('.cart-total').html(total);
+		// } else {
+		// 	var total = $('.cart-total').val();
+		// 	total = parseInt(total,10);
+		// 	// console.log("TOTAL: " + total);
+		// 	total = total + price;
+		// 	$('.cart-total').html(total);
+		// }
+
 		// total = total + price;
 		// $('.cart-total').html(total);
 
-		console.log(quantity);
-		console.log(price);
-		// console.log(subtotal);
-		console.log(total);
 		//create a post request to update session cart variable
-		$.post('assets/update_to_cart.php',
+		$.post('assets/add_to_cart.php',
 		{
 			item_id: id,
 			item_quantity: quantity
 		},
 		function(data, status) {
-			$('#subTotal' + id).html(data);
-			console.log(total);
-			console.log(data);
-			$('.cart-total').html(total + data);
+			// $('#subTotal' + id).html(data);
+
+			$('#cart-number').html(data);
+			$('.qty-total').html(data);
+			// console.log(data);
+
 		});
+
+
 	}
 </script>
 
