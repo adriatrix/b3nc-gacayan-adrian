@@ -1,5 +1,7 @@
 <?php
 
+require 'connect.php';
+
 
 session_start();
 if (isset($_SESSION['current_user'])) {
@@ -30,8 +32,14 @@ include 'partials/head.php';
 
 		$id = $_GET['id'];
 
-		$file = file_get_contents('assets/users.json');
-		$users = json_decode($file, true);
+		$sql = "select * from users where id = '$id'";
+		$result = mysqli_query($conn, $sql);
+		$user = mysqli_fetch_assoc($result);
+		extract($user);
+
+
+		// $file = file_get_contents('assets/users.json');
+		// $users = json_decode($file, true);
 
 		// foreach ($users as $key => $user) {
 		// 	if($key == $id) {
@@ -43,23 +51,23 @@ include 'partials/head.php';
 		<table>
 			<tr>
 				<td>Username</td>
-				<td>' . $users[$id]['username'] . '</td>
+				<td>' . $username . '</td>
 			</tr>
 			<tr>
 				<td>Photo</td>
-				<td><img src="' . $users[$id]['photo']. '"></td>
+				<td><img src="' . $image. '"></td>
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td>' . $users[$id]['password']. '</td>
+				<td>' . $password. '</td>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td>'. $users[$id]['email']. '</td>
+				<td>'. $email. '</td>
 			</tr>
 			<tr>
 				<td>Role</td>
-				<td>'. $users[$id]['role']. '</td>
+				<td>'. $role_id. '</td>
 			</tr>
 
 		</table>
@@ -135,6 +143,7 @@ include 'partials/head.php';
 
 include 'partials/foot.php';
 
+mysqli_close($conn);
 
 ?>
 
