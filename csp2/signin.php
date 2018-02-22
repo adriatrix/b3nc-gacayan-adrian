@@ -11,14 +11,14 @@ include 'partials/header.php';
 
 ?>
 
-<h1 hidden>Login Page</h1>
+<h1 hidden>Sign In Page</h1>
 
   <section class="hero">
     <div class="hero-body">
-      <div class="container has-text-centered">
+      <div class="container">
         <div class="columns">
           <div class="column is-4 is-offset-4">
-            <h3 class="title has-text-grey">Sign In to Pop! Stop PH</h3>
+            <h3 class="title has-text-grey has-text-centered">Sign In to Pop! Stop PH</h3>
             <div class="box">
               <!-- <figure class="avatar">
                 <img src="https://placehold.it/128x128">

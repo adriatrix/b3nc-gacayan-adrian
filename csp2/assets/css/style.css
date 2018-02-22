@@ -4,14 +4,15 @@
 
 .my-footer {
 
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   bottom: 0;
   width: 100%;
 
-  background-color: royalblue;
-  padding: 15px;
-  text-align: center;
+  /* color: white; */
+  /* background-color: royalblue; */
+  /* padding: 15px; */
+  /* text-align: center; */
 }
 
 .my-wrapper {

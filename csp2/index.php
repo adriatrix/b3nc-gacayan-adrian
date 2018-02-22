@@ -11,13 +11,8 @@
 
  ?>
 
- <main class="my-wrapper">
+  <h1>Index Page</h1>
 
-   <h1>Index Page</h1>
-
-   <button class="button is-primary" name="button">Button</button>
-
- </main>
 
 <?php
 
