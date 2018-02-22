@@ -3,7 +3,7 @@
 require '../connect.php'; //Database connection
 
 $username = $_POST['username'];
-$password = $_POST['password'];
+$password = sha1($_POST['password']);
 $email = $_POST['email'];
 $image = 'http://lorempixel.com/300/300';
 $role_id = 3;

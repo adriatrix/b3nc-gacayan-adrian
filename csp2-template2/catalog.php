@@ -8,15 +8,27 @@ function getTitle() {
 
 include 'partials/head.php';
 
-$file = file_get_contents('assets/items.json');
-$items = json_decode($file, true);
+// $file = file_get_contents('assets/items.json');
+// $items = json_decode($file, true);
+
+require 'connect.php';
+
+$sql = "SELECT * FROM items";
+$items = mysqli_query($conn, $sql);
+
 
 //Retrieve all categories
-$categories = array_column($items, 'category');
+// $categories = array_column($items, 'category');
+
+$sql = "SELECT name FROM categories";
+$categories = mysqli_query($conn, $sql);
+// $categories = mysqli_fetch_all($result);
+// $categories = array_column($categories, 'name');
+// var_export($categories);
 
 //Filter unique entry of category
-$categories = array_unique($categories);
-sort($categories);
+// $categories = array_unique($categories);
+// sort($categories);
 
 $result = array(); // empty array
 
@@ -65,14 +77,16 @@ if (isset($_GET['search']) && $_GET['category']!=="All") {
 			 <select name="category">
 				 <option>All</option>
 				 <?php
-				 		foreach ($categories as $category) {
-							if ($category === $_GET['category']) {
+				 		// foreach ($categories as $category) {
+						while ($category = mysqli_fetch_assoc($categories)) {
+							extract ($category);
+							if ($name === $_GET['category']) {
 								echo '
-								<option selected>'.$category.'</option>
+								<option selected>'.$name.'</option>
 								';
 							} else {
 								echo '
-								<option>'.$category.'</option>
+								<option>'.$name.'</option>
 								';
 							}
 						}
@@ -84,22 +98,24 @@ if (isset($_GET['search']) && $_GET['category']!=="All") {
 
 		<div class="itemsWrapper">
 		<?php
-			foreach ($result as $key => $item) {
+		// foreach ($result as $key => $item) {
+		while ($item = mysqli_fetch_assoc($items)) {
+				extract ($item);
 				echo '
 				<div class="item-parent-container form-group">
-				<a href="item.php?id='.$item['id'].'">
+				<a href="item.php?id='.$id.'">
 				<div class="item-container">
-				<h3>'.$item['name'].'</h3>
-				<img src='.$item['image'].' alt="Mock Data">
-				<p>PHP '.$item['price'].'</p>
-				<p>'.$item['desciption'].'</p>
+				<h3>'.$name.'</h3>
+				<img src='.$image.' alt="Mock Data">
+				<p>PHP '.$price.'</p>
+				<p>'.$description.'</p>
 				</div>
 				</a>
 
 
 
-				<input class="form-control" type="number" value="0" min="0" id="itemQuantity'.$item['id'].'">
-				<button class="btn btn-primary form-control" onclick="addToCart('.$item['id'].')">Add to Cart</button>
+				<input class="form-control" type="number" value="0" min="0" id="itemQuantity'.$id.'">
+				<button class="btn btn-primary form-control" onclick="addToCart('.$id.')">Add to Cart</button>
 				</div>
 				';
 			}
@@ -116,6 +132,8 @@ if (isset($_GET['search']) && $_GET['category']!=="All") {
 <?php
 
 include 'partials/foot.php';
+
+mysqli_close($conn);
 
 ?>
 
