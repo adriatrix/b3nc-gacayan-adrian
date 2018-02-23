@@ -2,7 +2,7 @@
 
 
 function getTitle() {
-  echo 'Your one stop shop for Funko Pops!';
+  echo 'Sign In to Pop! Stop PH';
 }
 
 include 'partials/head.php';
@@ -20,19 +20,16 @@ include 'partials/header.php';
           <div class="column is-4 is-offset-4">
             <h3 class="title has-text-grey has-text-centered">Sign In to Pop! Stop PH</h3>
             <div class="box">
-              <!-- <figure class="avatar">
-                <img src="https://placehold.it/128x128">
-              </figure> -->
-                <form>
+              <form id="loginForm" method="POST" action="assets/signingin.php">
                 <div class="field">
                   <div class="control">
-                    <input class="input" type="email" placeholder="Your Email" autofocus="">
+                    <input class="input" name="username" id="username" type="text" placeholder="Your Username" autofocus="">
                   </div>
                 </div>
 
                 <div class="field">
                   <div class="control">
-                    <input class="input" type="password" placeholder="Your Password">
+                    <input class="input" name="password" id="password" type="password" placeholder="Your Password">
                   </div>
                 </div>
                 <div class="field">
@@ -60,3 +57,6 @@ include 'partials/footer.php';
 include 'partials/foot.php';
 
 ?>
+
+</body>
+</html>

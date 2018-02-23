@@ -21,3 +21,6 @@
   include 'partials/foot.php';
 
 ?>
+
+</body>
+</html>
