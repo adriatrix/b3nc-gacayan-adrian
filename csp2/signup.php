@@ -21,52 +21,48 @@
            <h3 class="title has-text-grey has-text-centered">Create your personal account</h3>
            <form id="signupForm" method="POST" action="assets/signingup.php" class="box">
              <div class="field">
-               <p><label class="has-text-weight-bold">Username</label><span class="is-pulled-right has-text-danger">Required</span></p>
+               <p><label class="has-text-weight-bold">Username</label><span class="has-text-danger username-errormsg"> *</span></p>
                <div class="control has-icons-left has-icons-right">
-                 <input class="input" name="username" id="username" placeholder="jdelacruz" type="text" required>
+                 <input class="input" name="username" id="username" placeholder="jdelacruz" type="text" autocomplete="off" required>
                  <span class="icon is-left"><i class="fas fa-user"></i></span>
-                 <div>
-                   <span class="icon is-right has-text-success"><i class="fas fa-check"></i></span>
-                </div>
+                 <div class="username-icon">
+                 </div>
                </div>
                <div class="control">
                  <p class="is-size-7">This will be your username. You can update your account profile later.</p>
                </div>
              </div>
              <div class="field">
-               <p><label class="has-text-weight-bold">Email</label><span class="is-pulled-right has-text-danger">Required</span></p>
+               <p><label class="has-text-weight-bold">Email</label><span class="has-text-danger email-errormsg"> *</span></p>
                <div class="control has-icons-left has-icons-right">
                  <input class="input" name="email" id="email" placeholder="jdelacruz@example.org" type="email" required>
                  <span class="icon is-left"><i class="fas fa-envelope"></i></span>
-                 <div>
-                   <span class="icon is-right has-text-success"><i class="fas fa-check"></i></span>
-                </div>
+                 <div class="email-icon">
+                 </div>
                </div>
                <div class="control">
                  <p class="is-size-7">We'll never share your email address with anyone.</p>
                </div>
              </div>
              <div class="field">
-               <p><label class="has-text-weight-bold">Password</label><span class="is-pulled-right has-text-danger">Required</span></p>
+               <p><label class="has-text-weight-bold">Password</label><span class="has-text-danger password-errormsg"> *</span></p>
                <div class="control has-icons-left has-icons-right">
                  <input class="input" name="password" id="password" placeholder="●●●●●●●" type="password" required>
                  <span class="icon is-left"><i class="fas fa-lock-open"></i></span>
-                 <div>
-                   <span class="icon is-right has-text-success"><i class="fas fa-check"></i></span>
-                </div>
+                 <div class="password-icon">
+                 </div>
                </div>
                <div class="control">
                  <p class="is-size-7">Use at least one lowercase letter, one numeral, and seven characters.</p>
                </div>
              </div>
              <div class="field">
-               <p><label class="has-text-weight-bold">Confirm Password</label><span class="is-pulled-right has-text-danger">Required</span></p>
+               <p><label class="has-text-weight-bold">Confirm Password</label><span class="has-text-danger confpass-errormsg"> *</span></p>
                <div class="control has-icons-left has-icons-right">
-                 <input class="input" name="confirmPassword" id="confirmPassword" placeholder="●●●●●●●" type="password" required>
+                 <input class="input" name="confirmPassword" id="confirmPassword" placeholder="●●●●●●●" type="password" disabled required>
                  <span class="icon is-left"><i class="fas fa-lock-open"></i></span>
-                 <div>
-                   <span class="icon is-right has-text-success"><i class="fas fa-check"></i></span>
-                </div>
+                 <div class="confpass-icon">
+                 </div>
                </div>
              </div>
 
@@ -102,58 +98,113 @@
 <script type="text/javascript">
 	$('#username').on('input', function() {
 		var usernameText = $(this).val();
+    if (usernameText == "") {
+      $('.username-errormsg').addClass("has-text-danger");
+      $('.username-errormsg').removeClass("is-pulled-right");
+      $('.username-errormsg').html(" *");
+    }
+
 		$.post('assets/user_authentication.php',
 			{username: usernameText},
 			function(data, status) {
-				$('[for="username"]').html(data);
+				$('.username-icon').html(data);
 			});
 	});
 
+  //$(document).on('blur', '#email', function() {
+  $('#username').blur(function () {
+    var usernameText = $(this).val();
+    var usernameLength = $(this).val().length;
+    console.log(usernameLength);
+    if (usernameText != "")  {
+      var re = /\w/;
+      if ((re.test(usernameText)) && ((usernameLength > 5) && (usernameLength < 15))) {
+        $('.username-errormsg').addClass("has-text-success is-pulled-right");
+        $('.username-errormsg').removeClass("has-text-danger");
+        $('.username-errormsg').html(" valid username");
+      } else {
+        $('.username-errormsg').addClass("has-text-danger is-pulled-right");
+        $('.username-errormsg').removeClass("has-text-success");
+        $('.username-errormsg').html(" invalid username");
+      }
+    }
+  });
+
+  $('#email').on('input', function() {
+    var emailText = $(this).val();
+    if (emailText == "") {
+      $('.email-errormsg').addClass("has-text-danger");
+      $('.email-errormsg').removeClass("is-pulled-right");
+      $('.email-errormsg').html(" *");
+    }
+
+    $.post('assets/email_authentication.php',
+      {email: emailText},
+      function(data, status) {
+        $('.email-icon').html(data);
+      });
+  });
+
+  //$(document).on('blur', '#email', function() {
+  $('#email').blur(function () {
+      var emailText = $(this).val();
+      if (emailText != "")  {
+        var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
+        if (re.test(emailText)) {
+          $('.email-errormsg').addClass("has-text-success is-pulled-right");
+          $('.email-errormsg').removeClass("has-text-danger");
+          $('.email-errormsg').html(" valid email address");
+        } else {
+          $('.email-errormsg').addClass("has-text-danger is-pulled-right");
+          $('.email-errormsg').removeClass("has-text-success");
+          $('.email-errormsg').html(" invalid email address");
+        }
+      }
+  });
+
+
+  $('#password').on('input', function() {
+    var passConfirmed = $('#passwordConfirm').val();
+    var passEntered = $(this).val();
+    // console.log (passEntered);
+    // console.log (passConfirmed);
+
+    if (passEntered == "") {
+      $('.confpass-icon').html('<span class="icon is-right has-text-danger"><i class="fas fa-times"></i></span>')
+      $('.password-icon').html('')
+      $('input[name="confirmPassword"]').attr("disabled", true)
+      // $('.confpass-icon').prop("disabled", true);
+    } else {
+      $('input[name="confirmPassword"]').attr("disabled", false)
+      if (passEntered == passConfirmed)
+      $('.confpass-icon').html('<span class="icon is-right has-text-success"><i class="fas fa-check"></i></span>')
+      else
+      $('.confpass-icon').html('<span class="icon is-right has-text-danger"><i class="fas fa-times"></i></span>')
+    }
+  });
 
 	$('#confirmPassword').on('input', function() {
 		var passConfirmed = $(this).val();
 		var passEntered = $('#password').val();
-		console.log(passConfirmed);
+    // console.log(passEntered);
+		// console.log(passConfirmed);
 		if (passConfirmed == "")
 			$('[for="confirmPassword"]').html('Confirm Password')
 			else {
-				if (passEntered == passConfirmed)
-				$('[for="confirmPassword"]').html('Confirm Password <span class="green-message "><i class="glyphicon glyphicon-ok"></i></span>')
-				else
-				$('[for="confirmPassword"]').html('Confirm Password <span class="red-message "><i class="glyphicon glyphicon-remove"></i></span>')
+				if (passEntered == passConfirmed) {
+          $('.confpass-icon').html('<span class="icon is-right has-text-success"><i class="fas fa-check"></i></span>')
+          $('.password-icon').html('<span class="icon is-right has-text-success"><i class="fas fa-check"></i></span>')
+          $('input[name="password"]').attr("disabled", true)
+        }
+				else {
+          $('.confpass-icon').html('<span class="icon is-right has-text-danger"><i class="fas fa-times"></i></span>')
+          $('.password-icon').html('')
+          $('input[name="password"]').attr("disabled", false)
+        }
 			}
 	});
 
-	$('#password').on('input', function() {
-		var passConfirmed = $('#passwordConfirm').val();
-		var passEntered = $(this).val();
-		console.log (passEntered);
-		console.log (passConfirmed);
 
-		if (passEntered == "" || passConfirmed == undefined) {
-			$('[for="confirmPassword"]').html('Confirm Password')
-			$('[for="confirmPassword"]').prop("disabled", true);
-		}
-		else {
-			$('[for="confirmPassword"]').prop("disabled", false)
-			if (passEntered == passConfirmed)
-			$('[for="confirmPassword"]').html('Confirm Password <span class="green-message "><i class="glyphicon glyphicon-ok"></i></span>')
-			else
-			$('[for="confirmPassword"]').html('Confirm Password <span class="red-message "><i class="glyphicon glyphicon-remove"></i></span>')
-		}
-	});
-
-
-	$('#email').on('input', function() {
-		var emailText = $(this).val();
-		$.post('assets/email_validation.php',
-			{email: emailText},
-			function(data, status) {
-				console.log ('Processed: ' + data);
-
-				$('[for="email"]').html(data);
-			});
-	});
 </script>
 
 </body>
