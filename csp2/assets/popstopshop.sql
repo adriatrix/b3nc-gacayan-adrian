@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2018 at 01:25 PM
+-- Generation Time: Feb 27, 2018 at 02:22 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.2.0
 
@@ -32,6 +32,21 @@ CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
   `brand` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `brand`) VALUES
+(1, 'Marvel'),
+(2, 'Disney'),
+(3, 'DC'),
+(4, 'Game of Thrones'),
+(5, 'Stranger Things'),
+(6, 'My Little Pony'),
+(7, 'Ghostbusters'),
+(8, 'Star Wars'),
+(9, 'Walking Dead');
 
 -- --------------------------------------------------------
 
@@ -66,6 +81,17 @@ CREATE TABLE `item_status` (
   `id` int(11) NOT NULL,
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item_status`
+--
+
+INSERT INTO `item_status` (`id`, `status`) VALUES
+(1, 'Pre-Order'),
+(2, 'New Arrival'),
+(3, 'Exclusive'),
+(4, 'Limited Edition'),
+(5, 'Stock');
 
 -- --------------------------------------------------------
 
@@ -116,6 +142,15 @@ CREATE TABLE `products` (
   `type` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `type`) VALUES
+(1, 'Bobble Head'),
+(2, 'Vinyl Figure'),
+(3, 'Action Figure');
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +161,18 @@ CREATE TABLE `rarities` (
   `id` int(11) NOT NULL,
   `rarity` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rarities`
+--
+
+INSERT INTO `rarities` (`id`, `rarity`) VALUES
+(1, 'Common'),
+(2, 'Uncommon'),
+(3, 'Rare'),
+(4, 'Ultra Rare'),
+(5, 'Super Rare'),
+(6, 'Retired');
 
 -- --------------------------------------------------------
 
@@ -158,6 +205,20 @@ CREATE TABLE `serials` (
   `series` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `serials`
+--
+
+INSERT INTO `serials` (`id`, `series`) VALUES
+(1, 'Funko POP! Disney'),
+(2, 'Funko POP! Games'),
+(3, 'Funko POP! Anime'),
+(4, 'Funko POP! Heroes'),
+(5, 'Funko POP! Movies'),
+(6, 'Funko POP! TV'),
+(7, 'Funko POP! Sports'),
+(8, 'Funko POP! Star Wars');
+
 -- --------------------------------------------------------
 
 --
@@ -168,6 +229,20 @@ CREATE TABLE `sub_brands` (
   `id` int(11) NOT NULL,
   `sub_brand` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sub_brands`
+--
+
+INSERT INTO `sub_brands` (`id`, `sub_brand`) VALUES
+(1, 'Avengers'),
+(2, 'Daredevil'),
+(3, 'Captain America'),
+(4, 'Black Panther'),
+(5, 'Thor'),
+(6, 'Superman'),
+(7, 'Batman'),
+(8, 'Suicide Squad');
 
 -- --------------------------------------------------------
 
@@ -194,7 +269,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `email`, `address1`, `address2`, `city`, `contact_num`, `role_id`) VALUES
-(1, 'admin', 'password', 'Adrian', 'Gacayan', 'adrian@gacayan.com', 'Ballesteros Street, New Zaniga', '', 'Mandaluyong', '4771319', 1),
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Adrian', 'Gacayan', 'adrian@gacayan.com', 'Ballesteros Street, New Zaniga', '', 'Mandaluyong', '4771319', 1),
 (2, 'user1', 'b3daa77b4c04a9551b8781d03191fe098f325e67', '', '', 'user1@email.com', '', '', '', '', 3);
 
 --
@@ -294,7 +369,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -306,7 +381,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `item_status`
 --
 ALTER TABLE `item_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -330,13 +405,13 @@ ALTER TABLE `order_status`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rarities`
 --
 ALTER TABLE `rarities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -348,19 +423,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `serials`
 --
 ALTER TABLE `serials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `sub_brands`
 --
 ALTER TABLE `sub_brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

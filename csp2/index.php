@@ -1,5 +1,6 @@
 <?php
 
+  session_start();
 
   function getTitle() {
     echo 'Your one stop shop for Funko Pops!';
@@ -13,8 +14,8 @@
 
   <h1>Index Page</h1>
 
-
 <?php
+
 
   include 'partials/footer.php';
 

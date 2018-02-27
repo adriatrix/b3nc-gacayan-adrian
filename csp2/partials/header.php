@@ -39,7 +39,7 @@
        <div id="navbarMenu" class="navbar-menu">
          <div class="navbar-start">
            <a class="navbar-item" href="#">Home</a>
-           <a class="navbar-item" href="#">Shop</a>
+           <a class="navbar-item" href="catalogue.php">Shop</a>
            <a class="navbar-item" href="#">About</a>
          </div>
          <div class="navbar-end">
