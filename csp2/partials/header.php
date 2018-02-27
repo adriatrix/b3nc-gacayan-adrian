@@ -76,7 +76,6 @@
  </div>
  <div class="hero-body">
    <div class="container has-text-centered">
-     <!-- <img src="assets/img/small-banner.png" alt="Logo"> -->
      <h1>The Pop! Stop PH</h1>
      <h2>Your one stop shop for Funko Pops!</h2>
    </div>
