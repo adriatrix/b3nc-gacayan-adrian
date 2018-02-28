@@ -23,3 +23,16 @@
 	background-color: white;
 	margin: 0 auto;
 } */
+
+
+.accordion {
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.panel-accordion {
+    /* display: none; */
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+}

@@ -15,6 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+$("#editItem").click(function() {
+  $("#editItemModal").addClass("is-active");
+});
+
+$(".modal-button-close").click(function() {
+   $("#editItemModal").removeClass("is-active");
+});
+
 
 // function validateFormOnCreate(theForm) {
 // var reason = "";

@@ -64,9 +64,9 @@
            <span class="navbar-item">
              <a class="button is-white is-outlined is-small" href="https://github.com/dansup/bulma-templates/blob/master/templates/hero.html">
                <span class="icon">
-                 <i class="fas fa-shopping-bag"></i>
+                 <i class="fas fa-shopping-basket"></i>
                </span>
-               <span>Shopping Bag</span>
+               <span>Shopping Basket</span>
              </a>
            </span>
          </div>
