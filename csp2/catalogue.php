@@ -22,12 +22,10 @@ $items = mysqli_query($conn, $sql);
 	<div class="container">
 		<div class="columns">
 			<div class="column">
-				<div class="breadcrumb" aria-label="breadcrumbs">
+				<div class="breadcrumb is-small" aria-label="breadcrumbs">
 					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Series</a></li>
-						<li><a href="#">Brands</a></li>
-						<li class="is-active"><a href="#" aria-current="page">Sub-brands</a></li>
+						<li><a href="home.php">Home</a></li>
+						<li class="is-active"><a href="#" aria-current="page">Shop</a></li>
 					</ul>
 				</div>
 			</div>
@@ -59,7 +57,7 @@ $items = mysqli_query($conn, $sql);
 			<div class="column is-3">
 				<div class="panel">
 					<p class="panel-heading">
-						repositories
+						categories
 					</p>
 					<div class="panel-block">
 						<p class="control has-icons-left">

@@ -21,9 +21,9 @@
  ?>
 
  <div class="container">
-   <h1 class="is-5 title has-text-centered">Item Page</h1>
    <div class="columns">
-     <div class="column is-6 is-offset-3">
+     <div class="column">
+
        <?php
 
        $id = $_GET['id'];
@@ -33,16 +33,43 @@
        $item = mysqli_fetch_assoc($result);
        extract($item);
 
+        ?>
+       <div class="breadcrumb is-small" aria-label="breadcrumbs">
+         <ul>
+           <li><a href="home.php">Home</a></li>
+           <li><a href="#"><?php echo $series; ?></a></li>
+           <li><a href="#"><?php echo $brand; ?></a></li>
+           <li><a href="#"><?php echo $sub_brand; ?></a></li>
+           <li class="is-active"><a href="#" aria-current="page"><?php echo $name; ?></a></li>
+         </ul>
+       </div>
+     </div>
+   </div>
+   <h1 class="is-5 title has-text-centered">Item Page</h1>
+   <div class="columns">
+     <div class="column is-6">
+
+       <?php
+
+       echo'
+
+       <div class="box">
+       <img class="image" src="' . $image . '">
+       </div>
+
+       ';
+       ?>
+
+     </div>
+     <div class="column is-6">
+       <?php
+
        echo '
        <table class="table is-bordered">
        <tbody>
        <tr>
        <td>Item:</td>
        <td>' . $name . '</td>
-       </tr>
-       <tr>
-       <td>Image:</td>
-       <td><img class="image is-128x128" src="' . $image . '"></td>
        </tr>
        <tr>
        <td>Price:</td>
@@ -72,7 +99,7 @@
        </table>
        ';
        ?>
-       <div class="has-text-centered">
+       <div class="">
          <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
            <button class="button is-dark is-outlined">Back</button>
          </a>
