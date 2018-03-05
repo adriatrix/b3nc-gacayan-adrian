@@ -84,10 +84,17 @@ $items = mysqli_query($conn, $sql);
 				<div class="panel-accordion">
 					<div class="panel-block">
 						<div class="columns">
-							<div class="column is-9 is-offset-3">
-								<div>List 1</div>
-								<div>List 2</div>
-								<div>List 3</div>
+							<div class="column is-1">
+							</div>
+							<div class="column is-11">
+								<label class="checkbox"><input type="checkbox">Funko POP! Anime</label><br>
+								<label class="checkbox"><input type="checkbox">Funko POP! Disney</label><br>
+								<label class="checkbox"><input type="checkbox">Funko POP! Games</label><br>
+								<label class="checkbox"><input type="checkbox">Funko POP! Heroes</label><br>
+								<label class="checkbox"><input type="checkbox">Funko POP! Movies</label><br>
+								<label class="checkbox"><input type="checkbox">Funko POP! Sports</label><br>
+								<label class="checkbox"><input type="checkbox">Funko POP! Star Wars</label><br>
+								<label class="checkbox"><input type="checkbox">Funko POP! TV</label><br>
 							</div>
 						</div>
 					</div>
@@ -101,10 +108,18 @@ $items = mysqli_query($conn, $sql);
 				<div class="panel-accordion">
 					<div class="panel-block">
 						<div class="columns">
-							<div class="column is-9 is-offset-3">
-								<div>List 1</div>
-								<div>List 2</div>
-								<div>List 3</div>
+							<div class="column is-1">
+							</div>
+							<div class="column is-11">
+								<label class="checkbox"><input type="checkbox">DC</label><br>
+								<label class="checkbox"><input type="checkbox">Disney</label><br>
+								<label class="checkbox"><input type="checkbox">Game of Thrones</label><br>
+								<label class="checkbox"><input type="checkbox">Ghostbusters</label><br>
+								<label class="checkbox"><input type="checkbox">Marvel</label><br>
+								<label class="checkbox"><input type="checkbox">My Little Pony</label><br>
+								<label class="checkbox"><input type="checkbox">Star Wars</label><br>
+								<label class="checkbox"><input type="checkbox">Stranger Things</label><br>
+								<label class="checkbox"><input type="checkbox">Walking Dead</label><br>
 							</div>
 						</div>
 					</div>
@@ -118,10 +133,18 @@ $items = mysqli_query($conn, $sql);
 				<div class="panel-accordion">
 					<div class="panel-block">
 						<div class="columns">
-							<div class="column is-9 is-offset-3">
-								<div>List 1</div>
-								<div>List 2</div>
-								<div>List 3</div>
+							<div class="column is-1">
+							</div>
+							<div class="column is-11">
+								<label class="checkbox"><input type="checkbox">None</label><br>
+								<label class="checkbox"><input type="checkbox">Dardevil</label><br>
+								<label class="checkbox"><input type="checkbox">Captain America</label><br>
+								<label class="checkbox"><input type="checkbox">Black Panther</label><br>
+								<label class="checkbox"><input type="checkbox">Thor</label><br>
+								<label class="checkbox"><input type="checkbox">Superman</label><br>
+								<label class="checkbox"><input type="checkbox">Batman</label><br>
+								<label class="checkbox"><input type="checkbox">Suicide Squad</label><br>
+								<label class="checkbox"><input type="checkbox">Avengers</label><br>
 							</div>
 						</div>
 					</div>
@@ -135,10 +158,15 @@ $items = mysqli_query($conn, $sql);
 				<div class="panel-accordion">
 					<div class="panel-block">
 						<div class="columns">
-							<div class="column is-9 is-offset-3">
-								<div>List 1</div>
-								<div>List 2</div>
-								<div>List 3</div>
+							<div class="column is-1">
+							</div>
+							<div class="column is-11">
+								<label class="checkbox"><input type="checkbox">Common</label><br>
+								<label class="checkbox"><input type="checkbox">Uncommon</label><br>
+								<label class="checkbox"><input type="checkbox">Rare</label><br>
+								<label class="checkbox"><input type="checkbox">Ultra Rare</label><br>
+								<label class="checkbox"><input type="checkbox">Super Rare</label><br>
+								<label class="checkbox"><input type="checkbox">Retired</label><br>
 							</div>
 						</div>
 					</div>
@@ -170,7 +198,8 @@ $items = mysqli_query($conn, $sql);
 										<p class="title is-7 is-spaced">'.$name.'</p>
 										<p class="subtitle is-5">PHP '.$price.'</p>
 										<hr>
-										<a class="button is-medium is-info is-outlined">
+										<input class="input is-hidden" type="number" value="1" min="0" id="itemQuantity'.$id.'">
+										<a class="button is-medium is-info is-outlined" onclick="addToBasket('.$id.')">
 											<span>Add to Basket</span>
 											<span class="icon">
 												<i class="fas fa-shopping-basket"></i>
@@ -230,19 +259,19 @@ $items = mysqli_query($conn, $sql);
   ?>
 
 <script>
-	function addToCart(itemId) {
+	function addToBasket(itemId) {
 		var id = itemId;
 		// retrieve value of item quantity
 		var quantity = $('#itemQuantity' + id).val();
 		//create a post request to update session cart variable
-		$.post('assets/add_to_cart.php',
+		$.post('assets/add_to_basket.php',
 		{
 			item_id: id,
 			item_quantity: quantity
 		},
 		function(data, status) {
-			// console.log(data);
-			$('a[href="cart.php"]').html('My Cart ' + data);
+			console.log(data);
+			$('#basket-badge').html(data);
 		});
 	}
 </script>

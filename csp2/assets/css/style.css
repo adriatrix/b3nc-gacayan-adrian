@@ -36,3 +36,51 @@
     max-height: 0;
     transition: max-height 0.2s ease-out;
 }
+
+
+#basket-badge {
+   position:relative;
+}
+
+.my-badge {
+   /* content:attr(data-badge); */
+   position:absolute;
+   top:-25px;
+   right:-25px;
+   /* font-size:.7em; */
+   font-weight: bold;
+   background:orange;
+   color:white;
+   width:25px;height:25px;
+   text-align:center;
+   line-height:25px;
+   border-radius:50%;
+   box-shadow:1px 3px 2px #000;
+   /* padding: 0 9px; */
+}
+
+/* .my-badge[data-badge=””]:after {
+content: none;
+} */
+
+/* #basket-badge {
+  position: relative;
+}
+
+
+.my-badge {
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  font-size:.7em;
+  width: 18px;
+  height: 18px;
+  background: blue;
+  color: pink;
+  text-align: center;
+  line-height: 18px;
+  border-radius: 50px;
+  box-shadow: 0 0 1px #333;
+  padding: 0 5px;
+  margin-left : 5px;
+} */

@@ -50,6 +50,11 @@
                    <strong>Sign In</strong>
                  </a>
                </p>
+               <p class="control">
+                 <a class="button is-primary is-inverted" href="signout.php">
+                   <strong>Sign Out</strong>
+                 </a>
+               </p>
                <p class="control has-text-white">or</p>
                <p class="control">
                  <a class="button is-primary" href="signup.php">
@@ -58,15 +63,21 @@
                </p>
              </div>
            </div>
-           <!-- <a class="navbar-item" href="signin.php">Sign In</a>
-           <p class="is-vcentered"> or </p>
-           <a class="navbar-item" href="signup.php">Sign Up</a> -->
            <span class="navbar-item">
-             <a class="button is-white is-outlined is-small" href="https://github.com/dansup/bulma-templates/blob/master/templates/hero.html">
+             <a class="button is-white is-outlined is-small" href="basket.php">
                <span class="icon">
                  <i class="fas fa-shopping-basket"></i>
                </span>
                <span>Shopping Basket</span>
+               <span id="basket-badge">
+                 <?php
+                 if (isset($_SESSION['basket_count'])) {
+                   echo '
+                   <span class="my-badge">'.$_SESSION['basket_count'].'</span>
+                   ';
+                 }
+                 ?>
+               </span>
              </a>
            </span>
          </div>

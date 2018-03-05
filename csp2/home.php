@@ -12,8 +12,6 @@ include 'partials/header.php';
 
 require 'connect.php';
 
-$sql = "SELECT * FROM items";
-$items = mysqli_query($conn, $sql);
 
 ?>
 
@@ -30,6 +28,9 @@ $items = mysqli_query($conn, $sql);
 			<div class="column is-12">
 				<h2 class="title is-3">Featured Items</h2>
 				<?php
+				$sql = "SELECT i.*, its.status FROM items i JOIN item_status its ON (i.item_status_id = its.id) WHERE (its.status = 'Pre-Order')";
+				$items = mysqli_query($conn, $sql);
+
 				$itemcount = 0;
 				while ($item = mysqli_fetch_assoc($items)) {
 					if (($itemcount % 4) == 0) {echo '<div class="columns">';}
@@ -61,7 +62,10 @@ $items = mysqli_query($conn, $sql);
 						</div>
 						';
 						$itemcount++;
-						if (($itemcount % 4) == 0) {echo '</div>';}
+						if (($itemcount % 4) == 0) {
+							echo '</div>';
+							break;
+						}
 					}
 					?>
 
@@ -72,6 +76,9 @@ $items = mysqli_query($conn, $sql);
 			<div class="column is-12">
 				<p class="title is-3">New Arrivals</p>
 				<?php
+				$sql = "SELECT i.*, its.status FROM items i JOIN item_status its ON (i.item_status_id = its.id) WHERE (its.status = 'New Arrival')";
+				$items = mysqli_query($conn, $sql);
+
 				$itemcount = 0;
 				while ($item = mysqli_fetch_assoc($items)) {
 					if (($itemcount % 4) == 0) {echo '<div class="columns">';}
