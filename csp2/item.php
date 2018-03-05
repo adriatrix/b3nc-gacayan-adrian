@@ -28,7 +28,7 @@
 
        $id = $_GET['id'];
 
-       $sql = "SELECT i.*, b.brand, sb.sub_brand, its.status, sr.series FROM items i JOIN brands b ON (i.brand_id = b.id) JOIN sub_brands sb ON (i.sub_brand_id = sb.id) JOIN item_status its ON (i.item_status_id = its.id) JOIN serials sr ON (i.serial_id = sr.id) WHERE i.id = '$id'";
+       $sql = "SELECT i.*, b.brand, sb.sub_brand, r.rarity, sr.series FROM items i JOIN brands b ON (i.brand_id = b.id) JOIN sub_brands sb ON (i.sub_brand_id = sb.id) JOIN rarities r ON (i.rarity_id = r.id) JOIN serials sr ON (i.serial_id = sr.id) WHERE i.id = '$id'";
        $result = mysqli_query($conn, $sql);
        $item = mysqli_fetch_assoc($result);
        extract($item);
@@ -76,12 +76,20 @@
        <td>PHP '. $price . '</td>
        </tr>
        <tr>
+       <td>Stock:</td>
+       <td>'. $stock . '</td>
+       </tr>
+       <tr>
        <td>Description:</td>
        <td>'. $description . '</td>
        </tr>
        <tr>
-       <td>Item Status:</td>
-       <td>'. $status . '</td>
+       <td>Released Date:</td>
+       <td>'. $release_date . '</td>
+       </tr>
+       <tr>
+       <td>Rarity:</td>
+       <td>'. $rarity . '</td>
        </tr>
        <tr>
        <td>Series:</td>
@@ -112,7 +120,7 @@
 
  <div class="modal" id="editItemModal">
    <div class="modal-background"></div>
-     <form action="assets/edit_item.php" method="POST">
+     <form action="assets/update_item.php" method="POST">
        <div class="modal-card">
          <input name="name_id" value="<?php echo $id ?>" hidden>
          <div class="modal-card-head">

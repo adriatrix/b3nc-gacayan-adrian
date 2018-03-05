@@ -28,7 +28,7 @@ require 'connect.php';
 			<div class="column is-12">
 				<h2 class="title is-3">Featured Items</h2>
 				<?php
-				$sql = "SELECT i.*, its.status FROM items i JOIN item_status its ON (i.item_status_id = its.id) WHERE (its.status = 'Pre-Order')";
+				$sql = "SELECT * FROM items WHERE YEAR(release_date) > 2016";
 				$items = mysqli_query($conn, $sql);
 
 				$itemcount = 0;
@@ -76,7 +76,7 @@ require 'connect.php';
 			<div class="column is-12">
 				<p class="title is-3">New Arrivals</p>
 				<?php
-				$sql = "SELECT i.*, its.status FROM items i JOIN item_status its ON (i.item_status_id = its.id) WHERE (its.status = 'New Arrival')";
+				$sql = "SELECT * FROM items WHERE YEAR(release_date) <= 2016";
 				$items = mysqli_query($conn, $sql);
 
 				$itemcount = 0;

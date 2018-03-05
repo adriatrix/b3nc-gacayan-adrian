@@ -2,6 +2,8 @@
 
 session_start();
 
+var_dump ($_SESSION['user_role']);
+
 function getTitle() {
 	echo 'Catalog';
 }
@@ -16,6 +18,7 @@ $sql = "SELECT * FROM items";
 $items = mysqli_query($conn, $sql);
 
 ?>
+
 
 </head>
 <body>
@@ -34,7 +37,19 @@ $items = mysqli_query($conn, $sql);
 			<div class="column is-3">
 			</div>
 			<div class="column is-3">
-				<h1 class="is-size-3 is-title">Catalog Page</h1>
+				<h1 class="is-size-3 is-title">Catalog Page
+					<span>
+						<?php
+							if (isset($_SESSION['user_role']) = 'admin') {
+								echo '
+									<a href="create_item.php">
+									<button class="button is-primary is-outlined">Create New Item</button>
+									</a>
+								';
+							}
+						 ?>
+					</span>
+				</h1>
 			</div>
 			<div class="column">
 				<div class="pagination is-right" role="navigation" aria-label="pagination">

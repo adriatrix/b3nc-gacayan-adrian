@@ -43,18 +43,41 @@
            <a class="navbar-item" href="#">About</a>
          </div>
          <div class="navbar-end">
+             <?php
+             if(isset($_SESSION['current_user'])) {
+              echo'
+                <span class="navbar-item">
+                <a class="button is-info is-small" href="profile.php">
+                <span class="icon">
+                <i class="fas fa-user"></i>
+                </span>
+                <span>' . ucfirst($_SESSION['current_user']) . '</span>
+                </a>
+                </span>
+                ';
+                }
+              ?>
            <div class="navbar-item">
              <div class="field is-grouped is-outlined">
-               <p class="control">
-                 <a class="button is-primary is-inverted" href="signin.php">
-                   <strong>Sign In</strong>
-                 </a>
-               </p>
-               <p class="control">
-                 <a class="button is-primary is-inverted" href="signout.php">
-                   <strong>Sign Out</strong>
-                 </a>
-               </p>
+               <?php
+                 if (isset($_SESSION['current_user'])) {
+                  echo '
+                  <p class="control">
+                  <a class="button is-danger is-inverted" href="signout.php">
+                  <strong>Sign Out</strong>
+                  </a>
+                  </p>
+                  ';
+                } else {
+                  echo '
+                  <p class="control">
+                  <a class="button is-primary is-inverted" href="signin.php">
+                  <strong>Sign In</strong>
+                  </a>
+                  </p>
+                  ';
+                }
+                ?>
                <p class="control has-text-white">or</p>
                <p class="control">
                  <a class="button is-primary" href="signup.php">

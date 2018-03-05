@@ -14,44 +14,57 @@ extract($item);
 echo '
   <div class="columns">
   <div class="column is-12">
-  <form class="" action="index.html" method="post">
   <div class="field">
   <p class="control"><strong>Name:</strong>
   <input class="input" type="text" name="name" value="'.$name.'" required>
   </p>
   </div>
+  <div class="field is-horizontal">
+  <div class="field-body">
   <div class="field">
   <p class="control"><strong>Price:</strong>
-  <input class="input" type="number" step="any" name="price" value="'.$price.'" required>
+  <input class="input" type="number" step=".01" min="0" name="price" value="'.$price.'" required>
   </p>
   </div>
   <div class="field">
+  <p class="control"><strong>Stock:</strong>
+  <input class="input" type="number" step="1" min="0" name="stock" value="'.$stock.'" required>
+  </p>
+  </div>
+  </div>
+  </div>
+  <div class="field">
   <p class="control"><strong>Description:</strong>
-  <textarea class="textarea" name="description" value="'.$description.'" required></textarea>
+  <textarea class="textarea" name="description">'.$description.'</textarea>
+  </p>
+  </div>
+  <div class="field">
+  <p class="control"><strong>Release Date:</strong>
+  <input class="input" type="date" name="release_date" value="'.$release_date.'" required>
   </p>
   </div>
   ';
 
 
-  $sql = "SELECT * FROM item_status";
+  $sql = "SELECT * FROM rarities";
   $result = mysqli_query($conn, $sql);
 
   echo '
   <div class="field">
-  <p class="control"><strong>Item Status:</strong>
+  <p class="control"><strong>Rarity:</strong>
   <div class="select">
-  <select name="item_status">
+  <select name="rarity">
   ';
 
-  while ($item_status = mysqli_fetch_assoc($result)) {
-    extract($item_status);
-    if ($item_status_id == $id) {
+  while ($rarity = mysqli_fetch_assoc($result)) {
+    extract($rarity);
+    if ($rarity_id == $id) {
       echo '
-      <option value ="'.$status.'" selected>'.$status.'</option>
+      <option value ="'.$rarity.'" selected>'.$rarity.'</option>
       ';
     } else {
       echo '
-      <option value ="'.$status.'">'.$status.'</option>
+      <option value ="'.$rarity.'">'.$rarity.'</option>
       ';
     }
   }
@@ -100,7 +113,7 @@ echo '
   <div class="field">
   <p class="control"><strong>Brands:</strong>
   <div class="select">
-  <select name="brands">
+  <select name="brand">
   ';
 
   while ($brand = mysqli_fetch_assoc($result)) {
@@ -152,7 +165,6 @@ echo '
   </p>
   </div>
 
-  </form>
   </div>
   </div>
   ';
