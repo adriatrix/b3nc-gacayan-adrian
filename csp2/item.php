@@ -103,8 +103,8 @@
          <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
            <button class="button is-dark is-outlined">Back</button>
          </a>
-         <button type="button" id="editItem" class="button is-primary" data-toggle="modal" data-target="#editItemModal" data-Index="<?php echo $id; ?>">Edit</button>
-         <button type="button" id="deleteItem" class="button is-danger" data-toggle="modal" data-target="#deleteItemModal" data-Index="<?php echo $id; ?>">Delete</button>
+         <button type="button" id="editItem" class="button is-primary" data-toggle="modal" data-target="#editItemModal" data-index="<?php echo $id; ?>">Edit</button>
+         <button type="button" id="deleteItem" class="button is-danger" data-toggle="modal" data-target="#deleteItemModal" data-index="<?php echo $id; ?>">Delete</button>
        </div>
      </div>
    </div>
@@ -117,6 +117,7 @@
          <input name="name_id" value="<?php echo $id ?>" hidden>
          <div class="modal-card-head">
            <p class="modal-card-title">Edit Item Details</p>
+           <img class="image is-64x64" src="<?php echo $image ?>">
          </div>
          <div class="modal-card-body" id="editItemModalBody">
          </div>
@@ -137,6 +138,24 @@
   include 'partials/foot.php';
 
 ?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#editItem').click(function() {
+			var itemId = $(this).data('index');
+			// console.log(userId);
+			$.get('assets/edit_item.php',
+			{
+				id: itemId
+			},
+			function(data, status) {
+				// console.log(data);
+				$('#editItemModalBody').html(data);
+		});
+		});
+	});
+
+</script>
 
 </body>
 </html>
