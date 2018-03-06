@@ -2,15 +2,11 @@
 
 session_start();
 
-var_dump ($_SESSION['user_role']);
-
 function getTitle() {
 	echo 'Catalog';
 }
 
 include 'partials/head.php';
-
-include 'partials/header.php';
 
 require 'connect.php';
 
@@ -22,6 +18,9 @@ $items = mysqli_query($conn, $sql);
 
 </head>
 <body>
+
+	<?php include 'partials/header.php'; ?>
+
 	<div class="container">
 		<div class="columns">
 			<div class="column">
@@ -40,12 +39,14 @@ $items = mysqli_query($conn, $sql);
 				<h1 class="is-size-3 is-title">Catalog Page
 					<span>
 						<?php
-							if (isset($_SESSION['user_role']) = 'admin') {
-								echo '
+							if (isset($_SESSION['user_role'])) {
+								if ($_SESSION['user_role'] == 'admin') {
+									echo '
 									<a href="create_item.php">
 									<button class="button is-primary is-outlined">Create New Item</button>
 									</a>
-								';
+									';
+								}
 							}
 						 ?>
 					</span>

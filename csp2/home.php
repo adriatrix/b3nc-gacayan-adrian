@@ -8,8 +8,6 @@ function getTitle() {
 
 include 'partials/head.php';
 
-include 'partials/header.php';
-
 require 'connect.php';
 
 
@@ -17,6 +15,10 @@ require 'connect.php';
 
 </head>
 <body>
+
+	<?php include 'partials/header.php'; ?>
+
+
 	<div class="container">
 		<div class="columns">
 			<div class="column">

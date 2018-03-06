@@ -7,7 +7,7 @@ $email = $_POST['email'];
 $password = sha1($_POST['password']);
 $role_id = 3;
 
-$sql = "insert into users (username, email, password, role_id) values ('$username','$email','$password','$role_id')";
+$sql = "INSERT INTO users (username, email, password, role_id) VALUES ('$username','$email','$password','$role_id')";
 
 $result = mysqli_query($conn, $sql);
 

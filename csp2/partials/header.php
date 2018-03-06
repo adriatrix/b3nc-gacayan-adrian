@@ -41,6 +41,18 @@
            <a class="navbar-item" href="home.php">Home</a>
            <a class="navbar-item" href="catalogue.php">Shop</a>
            <a class="navbar-item" href="#">About</a>
+
+           <?php
+
+           if (isset($_SESSION['current_user'])) {
+             if ($_SESSION['current_user'] == 'admin') {
+               echo '
+               <a class="navbar-item" href="accounts.php">Accounts</a>
+               ';
+             }
+           }
+
+            ?>
          </div>
          <div class="navbar-end">
              <?php

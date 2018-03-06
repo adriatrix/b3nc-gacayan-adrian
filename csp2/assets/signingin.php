@@ -18,13 +18,14 @@ $isLogInSuccessful = false;
 
 if (mysqli_num_rows($result) > 0) {
   $user = mysqli_fetch_assoc($result);
+  // var_dump($user);
   if ($userName == $user['username'] && $passWord == $user['password']) {
       echo 'Login was successful.';
       $isLogInSuccessful = true;
       $_SESSION['current_user'] = $user['username'];
       $_SESSION['user_role'] = $user['role'];
-      var_dump ($_SESSION['current_user']);
-      var_dump ($_SESSION['user_role']);
+      // var_dump ($_SESSION['current_user']);
+      // var_dump ($_SESSION['user_role']);
     }
 } else {
   echo("user not found");

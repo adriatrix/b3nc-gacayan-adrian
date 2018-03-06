@@ -34,13 +34,21 @@ for (i = 0; i < acc.length; i++) {
 }
 
 
-$("#editItem").click(function() {
-  $("#editItemModal").addClass("is-active");
-});
-
-$(".modal-button-close").click(function() {
-   $("#editItemModal").removeClass("is-active");
-});
+// $("#editItem").click(function() {
+//   $("#editItemModal").addClass("is-active");
+// });
+//
+// $(".modal-button-close").click(function() {
+//    $("#editItemModal").removeClass("is-active");
+// });
+//
+// $("#deleteItem").click(function() {
+//   $("#deleteItemModal").addClass("is-active");
+// });
+//
+// $(".modal-button-close").click(function() {
+//    $("#deleteItemModal").removeClass("is-active");
+// });
 
 
 // function validateFormOnCreate(theForm) {

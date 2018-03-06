@@ -7,9 +7,12 @@
 
   include 'partials/head.php';
 
-  include 'partials/header.php';
-
  ?>
+
+</head>
+<body>
+
+ <?php include 'partials/header.php'; ?>
 
  <h1 hidden>Sign Up Page</h1>
 

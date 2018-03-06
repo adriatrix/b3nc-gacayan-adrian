@@ -5,11 +5,10 @@ require '../connect.php';
 $item_id = $_GET['id'];
 
 // $sql = "SELECT i.*, b.brand, sb.sub_brand, its.status, sr.series FROM items i JOIN brands b ON (i.brand_id = b.id) JOIN sub_brands sb ON (i.sub_brand_id = sb.id) JOIN item_status its ON (i.item_status_id = its.id) JOIN serials sr ON (i.serial_id = sr.id) WHERE i.id = '$id'";
-$sql = "SELECT * FROM items WHERE id = '$item_id'";
+$sql = "SELECT i.* FROM items i WHERE i.id = '$item_id'";
 $result = mysqli_query($conn, $sql);
-$item = mysqli_fetch_assoc($result);
+$item = mysqli_fetch_array($result);
 extract($item);
-
 
 echo '
   <div class="columns">
