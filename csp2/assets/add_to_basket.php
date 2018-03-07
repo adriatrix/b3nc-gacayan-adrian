@@ -10,6 +10,4 @@
 
   // echo "". $_SESSION['basket_count']."";
 
-  echo '
-  <span class="my-badge">'.$_SESSION['basket_count'].'</span>
-  ';
+  echo ''.$_SESSION['basket_count'].'';

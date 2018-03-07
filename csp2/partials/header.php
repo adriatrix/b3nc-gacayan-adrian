@@ -101,13 +101,13 @@
                </span>
                <span>Shopping Basket</span>
                <span id="basket-badge">
+                 <span class="my-badge">
                  <?php
                  if (isset($_SESSION['basket_count'])) {
-                   echo '
-                   <span class="my-badge">'.$_SESSION['basket_count'].'</span>
-                   ';
+                   echo ''.$_SESSION['basket_count'].'';
                  }
                  ?>
+                 </span>
                </span>
              </a>
            </span>

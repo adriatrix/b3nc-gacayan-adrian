@@ -128,6 +128,12 @@
                 </a>
               ';
             }
+          } else {
+            echo '
+            <a href="'.$_SERVER['HTTP_REFERER'].'">
+            <button class="button is-dark is-outlined">Back</button>
+            </a>
+            ';
           }
 
           ?>
