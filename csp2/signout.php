@@ -4,4 +4,6 @@ session_start();
 
 session_destroy();
 
-header('location: index.php');
+session_start();
+$_SESSION['feedback_msg'] = "Signed out successfully";
+header('location: home.php');

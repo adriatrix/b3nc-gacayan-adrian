@@ -58,46 +58,42 @@
              <?php
              if(isset($_SESSION['current_user'])) {
               echo'
-                <span class="navbar-item">
-                <a class="button is-info is-small" href="profile.php">
+                <div class="navbar-item">
+                <div class="field is-grouped">
+                <a class="button is-inverted is-info" href="profile.php">
                 <span class="icon">
                 <i class="fas fa-user"></i>
                 </span>
                 <span>' . ucfirst($_SESSION['current_user']) . '</span>
                 </a>
+                <a class="button is-danger" href="signout.php">
+                <span class="icon">
+                <i class="fas fa-sign-out-alt"></i>
                 </span>
+                </a>
+                </div>
+                </div>
                 ';
-                }
-              ?>
-           <div class="navbar-item">
-             <div class="field is-grouped is-outlined">
-               <?php
-                 if (isset($_SESSION['current_user'])) {
-                  echo '
-                  <p class="control">
-                  <a class="button is-danger is-inverted" href="signout.php">
-                  <strong>Sign Out</strong>
-                  </a>
-                  </p>
-                  ';
                 } else {
                   echo '
+                  <div class="navbar-item">
+                  <div class="field is-grouped is-outlined">
                   <p class="control">
                   <a class="button is-primary is-inverted" href="signin.php">
                   <strong>Sign In</strong>
                   </a>
                   </p>
+                  <p class="control has-text-white">or</p>
+                  <p class="control">
+                  <a class="button is-primary" href="signup.php">
+                  <strong>Sign Up</strong>
+                  </a>
+                  </p>
+                  </div>
+                  </div>
                   ';
                 }
                 ?>
-               <p class="control has-text-white">or</p>
-               <p class="control">
-                 <a class="button is-primary" href="signup.php">
-                   <strong>Sign Up</strong>
-                 </a>
-               </p>
-             </div>
-           </div>
            <span class="navbar-item">
              <a class="button is-white is-outlined is-small" href="basket.php">
                <span class="icon">
@@ -117,13 +113,37 @@
            </span>
          </div>
        </div>
-     </div>
    </nav>
- </div>
+
+
  <div class="hero-body">
    <div class="container has-text-centered">
      <h1>The Pop! Stop PH</h1>
      <h2>Your one stop shop for Funko Pops!</h2>
    </div>
+   <div id="userFeedback">
+   </div>
+
+   <script>
+     function notifyIt(msg) {
+       var x = document.getElementById("userFeedback")
+       x.innerHTML = msg;
+       x.className = "show";
+       setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+     }
+   </script>
+
+   <?php
+     if (isset($_SESSION['feedback_msg'])) {
+      echo '
+        <script>
+
+          notifyIt("'.$_SESSION['feedback_msg'].'");
+        </script>
+      ';
+      unset($_SESSION['feedback_msg']);
+    }
+   ?>
+
  </div>
 </section>

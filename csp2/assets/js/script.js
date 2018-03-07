@@ -34,6 +34,7 @@ for (i = 0; i < acc.length; i++) {
 }
 
 
+
 // $("#editItem").click(function() {
 //   $("#editItemModal").addClass("is-active");
 // });

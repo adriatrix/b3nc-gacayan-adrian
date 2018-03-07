@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 function getTitle() {
   echo 'Sign In to Pop! Stop PH';
@@ -7,12 +8,18 @@ function getTitle() {
 
 include 'partials/head.php';
 
+// var_dump($_SESSION['feedback_msg']);
+
+
+
 ?>
 
 </head>
 <body>
 
-<?php include 'partials/header.php'; ?>
+<?php require 'partials/header.php'; ?>
+
+
 
 <h1 hidden>Sign In Page</h1>
 
@@ -26,13 +33,13 @@ include 'partials/head.php';
               <form id="loginForm" method="POST" action="assets/signingin.php">
                 <div class="field">
                   <div class="control">
-                    <input class="input" name="username" id="username" type="text" placeholder="Your Username" autofocus="">
+                    <input class="input" name="username" id="username" type="text" placeholder="Your Username" autofocus="" required>
                   </div>
                 </div>
 
                 <div class="field">
                   <div class="control">
-                    <input class="input" name="password" id="password" type="password" placeholder="Your Password">
+                    <input class="input" name="password" id="password" type="password" placeholder="Your Password" required>
                   </div>
                 </div>
                 <div class="field">

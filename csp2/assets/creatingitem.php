@@ -57,6 +57,7 @@ $result = mysqli_query($conn, $sql);
 
 // check if successful
 if ($result)
+  $_SESSION['feedback_msg'] = "Created new item successfully";
   header('location: ../catalogue.php');
 else
   die('Error: ' .$sql. '<br>' . mysqli_error($conn));

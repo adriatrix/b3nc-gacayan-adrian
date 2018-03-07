@@ -20,19 +20,19 @@ if (mysqli_num_rows($result) > 0) {
   $user = mysqli_fetch_assoc($result);
   // var_dump($user);
   if ($userName == $user['username'] && $passWord == $user['password']) {
-      echo 'Login was successful.';
       $isLogInSuccessful = true;
       $_SESSION['current_user'] = $user['username'];
       $_SESSION['user_role'] = $user['role'];
       // var_dump ($_SESSION['current_user']);
       // var_dump ($_SESSION['user_role']);
     }
-} else {
-  echo("user not found");
-}
+  }
+
 
 if ($isLogInSuccessful) {
+    $_SESSION['feedback_msg'] = "Signed in successfully";
     header('location: ../index.php');
 } else {
+    $_SESSION['feedback_msg'] = "Invalid username and/or password";
     header('location: ../signin.php');
 }

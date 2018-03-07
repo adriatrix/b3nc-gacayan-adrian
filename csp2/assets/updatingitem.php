@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 require '../connect.php';
 
@@ -51,7 +52,7 @@ $sql = "UPDATE items i JOIN sub_brands sb SET i.sub_brand_id = sb.id WHERE (i.id
 
 mysqli_query($conn, $sql);
 
-header("location: ../catalogue.php",false);
+$_SESSION['feedback_msg'] = "Updated item details successfully";
 header("location: ../item.php?id=$item_id");
 
 mysqli_close($conn);

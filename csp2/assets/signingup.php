@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require '../connect.php';
 
 $username = $_POST['username'];
@@ -12,9 +13,10 @@ $sql = "INSERT INTO users (username, email, password, role_id) VALUES ('$usernam
 $result = mysqli_query($conn, $sql);
 
 //check if current new user was successful
-if ($result)
+if ($result) {
+  $_SESSION['feedback_msg'] = "Created a new account successfully";
   header('location: ../signin.php');
-else
+} else
   die('Error: ' .$sql. '<br>' . mysqli_error($conn));
 
 
