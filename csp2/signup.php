@@ -1,5 +1,6 @@
 <?php
 
+  session_start();
 
   function getTitle() {
     echo 'Create your personal account';

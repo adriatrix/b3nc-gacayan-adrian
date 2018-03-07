@@ -36,7 +36,7 @@
                 <div class="column is-6">
                   <div class="field">
                     <p><label class="has-text-weight-bold">Product Name</label></p>
-                    <input class="input control" name="name" id="itemName" placeholder="What's it called?" type="text" autocomplete="off">
+                    <input class="input control" name="name" id="itemName" placeholder="What's it called?" type="text" autocomplete="off" required>
                   </div>
                   <div class="field">
                     <p><label class="has-text-weight-bold">Image</label></p>
@@ -60,11 +60,11 @@
                     <div class="field-body">
                       <div class="field">
                         <p><label class="has-text-weight-bold">Price</label></p>
-                        <input class="input control" name="price" id="itemPrice" placeholder="How much is it?" type="number" step=".01" min="0" autocomplete="off">
+                        <input class="input control" name="price" id="itemPrice" placeholder="How much is it?" type="number" step=".01" min="0" autocomplete="off" required>
                       </div>
                       <div class="field">
                         <p><label class="has-text-weight-bold">Stock</label></p>
-                        <input class="input control" name="stock" id="itemStock" placeholder="How much is it?" type="number" step="1" min="0"  autocomplete="off">
+                        <input class="input control" name="stock" id="itemStock" placeholder="How much is it?" type="number" step="1" min="0"  autocomplete="off" required>
                       </div>
                     </div>
                   </div>
@@ -74,6 +74,10 @@
                   </div>
                 </div>
                 <div class="column is-6">
+                  <div class="field">
+                    <p><label class="has-text-weight-bold">Release Date</label></p>
+                    <input class="input control" name="release-date" id="itemDate" placeholder="When was this released?" type="date" autocomplete="off">
+                  </div>
                   <?php
                   require 'connect.php';
 
