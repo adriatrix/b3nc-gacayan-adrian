@@ -29,102 +29,172 @@
 
   <h1 hidden>Basket Page</h1>
 
-  <div class="container">
+  <div class="container box">
     <div class="columns">
-      <div class="column is-12">
-        <h2 class="title is-3">Shopping Basket</h2>
+      <div class="column is-2 is-hidden-mobile">
+        <a class="button is-large is-info" href="catalogue.php">
+          <span class="icon">
+            <i class="fas fa-angle-left"></i>
+          </span>
+          <span>Back to Shop</span>
+        </a>
+      </div>
+      <div class="column is-8 has-text-centered">
+        <h2 class="title">YOUR <span class="is-hidden-mobile">SHOPPING</span> BASKET</h2>
+      </div>
+      <div class="column is-2 has-text-right is-hidden-mobile">
+        <a class="button is-large is-info" href="checkout.php">
+          <span>Checkout</span>
+          <span class="icon">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </a>
+      </div>
+      <div class="column is-2 has-text-centered is-hidden-tablet">
+        <a class="button is-large is-info" href="checkout.php">
+          <span>Checkout</span>
+          <span class="icon">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </a>
       </div>
     </div>
+
     <div class="columns is-hidden-mobile">
       <div class="column is-10 is-offset-1">
-        <table class="table is-striped is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <td></td>
-              <td><strong>Item</strong></td>
-              <td class="has-text-centered"><strong>Quantity</strong></td>
-              <td class="has-text-right"><strong>Price</strong></td>
-              <td class="has-text-right"><strong>Subtotal</strong></td>
-            </tr>
-          </thead>
-          <tbody>
-
-          <?php
-
-            $totalprice = 0;
-            $totalqty = 0;
-            if (isset($_SESSION['cart'])) {
-              $my_basket = $_SESSION['cart'];
-
-
-              foreach ($my_basket as $key => $basket) {
-                $sql = "SELECT id, image, name, price FROM items WHERE id = '".$key."'";
-                $result = mysqli_query($conn, $sql);
-                $item = mysqli_fetch_assoc($result);
-                extract($item);
-
-                $sub_total = $my_basket[$key] * intval($price);
-                $fsub_total = number_format($sub_total,2);
-
-                echo '
-                <tr>
-                <td>
-                <img class="image is-64x64" src="' . $image . '">
-                </td>
-                <td>"' . $name . '"</td>
-                <td>
-                <input class="basket-quantity" onchange="updateBasket('.$id.')" min="1" type="number" name="basket-qty" id="basketQuantity'.$id.'" value="'. $my_basket[$key] .'">
-                </td>
-                <td class="has-text-right">
-                <span>PHP </span>
-                <input type="number" hidden name="basket-price" id="basketPrice'.$id.'" value="'. $price. '">'. $price. '
-                </td>
-                <td class="has-text-right">
-                <span>PHP </span>
-                <span id="subTotal'.$id.'">'. $fsub_total .'</span>
-                </td>
-                </tr>
-                ';
-                $totalqty = $totalqty + $my_basket[$key];
-                // var_dump($sub_total,10);
-                // var_dump($sub_total);
-                // var_dump($sub_total);
-                $totalprice = intval($totalprice,10) + intval($sub_total,10);
-                // var_dump($totalprice);
-              }
-            } else {
-              echo '
-                <tr>
-                <td></td>
-                <td class="has-text-centered"><em>Your basket is empty!</em></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-              ';
-            }
-
-            echo '
-            </tbody>
-            <tfoot>
-            <tr>
-            <td></td>
-            <td><strong>TOTAL</strong></td>
-            <td><strong><span id="updateTotalQty">' . $totalqty . '</span></strong></td>
-            <td></td>
-            <td class="has-text-right"><strong>
-            <span>PHP </span>
-            <span id="updateTotalPrice">' . number_format($totalprice,2) . '</span>
-            </strong></td>
-            </tr>
-            </tfoot>
-            ';
-           ?>
-
-        </table>
+        <div class="columns is-gapless has-text-grey">
+          <div class="column is-7">
+            <p class="is-size-6 has-text-weight-bold">PRODUCT</p>
+          </div>
+          <div class="column is-2">
+            <p class="is-size-6 has-text-weight-bold">PRICE</p>
+          </div>
+          <div class="column is-1">
+            <p class="is-size-6 has-text-weight-bold has-text-centered">QTY</p>
+          </div>
+          <div class="column is-2">
+            <p class="is-size-6 has-text-weight-bold has-text-right">SUBTOTAL</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+
+        <?php
+
+        $totalprice = 0;
+        $totalqty = 0;
+        if (isset($_SESSION['cart'])) {
+          $my_basket = $_SESSION['cart'];
+
+
+          foreach ($my_basket as $key => $basket) {
+            $sql = "SELECT id, image, name, price, stock FROM items WHERE id = '".$key."'";
+            $result = mysqli_query($conn, $sql);
+            $item = mysqli_fetch_assoc($result);
+            extract($item);
+
+            $sub_total = $my_basket[$key] * intval($price);
+            $fsub_total = number_format($sub_total,2);
+
+            echo '
+            <div class="columns is-gapless">
+              <div class="column">
+                <a href="item.php?id='.$id.'">
+                  <div class="media">
+                    <div class="media-left">
+                     <p class="image is-64x64">
+                        <img src="' . $image . '">
+                     </p>
+                    </div>
+                    <div class="media-content">
+                      <div class="content">
+                        <p class="has-text-weight-semibold"> '. $name .'</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="column is-2">
+                <span>PHP </span>
+                <input type="number" hidden name="basket-price" id="basketPrice'.$id.'" value="'. $price. '">'. $price. '
+              </div>
+              <div class="is-hidden-mobile column is-1">
+                <div class="columns">
+                  <div class="column is-10 is-offset-1">
+                    <input class="input basket-quantity" onchange="updateBasket('.$id.')" min="0" max="'. $stock .'" type="number" name="basket-qty" id="basketQuantity'.$id.'" value="'. $my_basket[$key] .'" pattern="[^0-9]">
+                    <p class="help">stock: <strong class="stockcolor">'. $stock .'</strong></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="is-hidden column is-1">
+                <div class="columns">
+                  <div class="column is-10 is-offset-1">
+                    <div class="field is-grouped">
+                      <div class="control">
+                        <input class="input basket-quantity" onchange="updateBasket('.$id.')" min="0" max="'. $stock .'" type="number" name="basket-qty" id="basketQuantity'.$id.'" value="'. $my_basket[$key] .'" pattern="[^0-9]">
+                      </div>
+                      <div class="control">
+                        <button class="button"><i class="fas fa-times"></i></button>
+                      </div>
+                    <p class="help">stock: <strong class="stockcolor">'. $stock .'</strong></p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="column is-2 has-text-right">
+                <span class="is-hidden-tablet is-size-7">subtotal:</span>
+                <span>PHP </span>
+                <span id="subTotal'.$id.'">'. $fsub_total .'</span>
+              </div>
+            </div>
+            <hr>
+              ';
+              $totalqty = $totalqty + $my_basket[$key];
+              $totalprice = intval($totalprice,10) + intval($sub_total,10);
+            }
+          } else {
+            echo '
+            <div class="column has-text-centered">
+            <em>Your shopping basket is empty!</em>
+            </div>
+            </div>
+            ';
+          }
+          ?>
+
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-10 is-offset-1">
+          <div class="columns is-gapless">
+            <div class="column is-7 is-hidden-mobile">
+              <p class="is-size-6 has-text-weight-bold">TOTAL</p>
+            </div>
+            <div class="column is-2">
+              <span class="is-hidden-tablet is-size-7">total items:</span>
+              <span class="is-size-6 has-text-weight-bold"><span id="updateTotalQty"><?php echo ' '. $totalqty .' '; ?></span></span>
+            </div>
+            <div class="column is-1">
+              <p class="is-size-6 has-text-weight-bold"></p>
+            </div>
+            <div class="column is-2">
+              <p class="is-size-6 has-text-weight-bold has-text-right">
+                <span class="is-hidden-tablet is-size-7">TOTAL:</span>
+                <span>PHP </span>
+                <span id="updateTotalPrice"><?php echo ' '. number_format($totalprice,2) .' '; ?></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
 
 <?php
 
@@ -187,13 +257,23 @@
 		});
 	}
 
-  $(function() {
-    $(".basket-quantity").keypress(function(event) {
-        if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
-            $(".alert").html("Enter only digits!").show().fadeOut(2000);
-            return false;
-        }
-    });
+  // $(function() {
+  //   $(".basket-quantity").keypress(function(event) {
+  //       if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
+  //           $(".alert").html("Enter only digits!").show().fadeOut(2000);
+  //           return false;
+  //       }
+  //   });
+  // });
+
+  $('.basket-quantity').keyup(function(){
+  if ($(this).val() > $(this).attr("max")){
+    // alert("No numbers above stock");
+    $(this).css('color','red');
+    $(this).val($(this).attr("max"));
+  } else {
+    $(this).css('color','black');
+  }
   });
 
 </script>

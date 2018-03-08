@@ -299,6 +299,8 @@ $items = mysqli_query($conn, $sql);
 	// window.open("basket.php","_self")
 	}
 
+
+
 </script>
 
 </body>
