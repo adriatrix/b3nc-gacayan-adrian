@@ -56,7 +56,7 @@
 
        echo'
 
-       <div class="box">
+       <div>
        <img class="image" src="' . $image . '">
        </div>
 

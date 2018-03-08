@@ -215,8 +215,14 @@ $items = mysqli_query($conn, $sql);
 										<p class="subtitle is-5">PHP '.$price.'</p>
 										<hr>
 										<input class="input is-hidden" type="number" value="1" min="0" id="itemQuantity'.$id.'">
-										<a class="button is-medium is-info is-outlined" onclick="addToBasket('.$id.')">
-											<span>Add to Basket</span>
+										<a class="button is-medium is-info is-outlined" id="addBasket-'. $id .'" onclick="addToBasket('.$id.', this.id)">
+										';
+										if (isset($_SESSION['cart'])) {
+											echo '<span>Add this one</span>';
+										} else {
+											echo '<span>Buy one now!</span>';
+										}
+										echo '
 											<span class="icon">
 												<i class="fas fa-shopping-basket"></i>
 											</span>
@@ -275,11 +281,9 @@ $items = mysqli_query($conn, $sql);
   ?>
 
 <script>
-	function addToBasket(itemId) {
+	function addToBasket(itemId, btnId) {
 		var id = itemId;
-		// retrieve value of item quantity
 		var quantity = $('#itemQuantity' + id).val();
-		//create a post request to update session cart variable
 		$.post('assets/add_to_basket.php',
 		{
 			item_id: id,
@@ -287,9 +291,14 @@ $items = mysqli_query($conn, $sql);
 		},
 		function(data, status) {
 			console.log(data);
-			$('#basket-badge').html(data);
+			$('.my-badge').html(data);
+			$('#' + btnId).addClass('is-static');
+			// document.getElementById(btnId).disabled = true;
 		});
+
+	// window.open("basket.php","_self")
 	}
+
 </script>
 
 </body>

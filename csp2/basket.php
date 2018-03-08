@@ -19,6 +19,12 @@
   <?php include 'partials/header.php';
 
 
+
+   if (!isset($_SESSION['current_user']) ) {
+     $_SESSION['feedback_msg'] = "Please sign in first";
+     header('location: signin.php');
+   }
+
   ?>
 
   <h1 hidden>Basket Page</h1>
@@ -29,7 +35,7 @@
         <h2 class="title is-3">Shopping Basket</h2>
       </div>
     </div>
-    <div class="columns">
+    <div class="columns is-hidden-mobile">
       <div class="column is-10 is-offset-1">
         <table class="table is-striped is-hoverable is-fullwidth">
           <thead>
@@ -43,48 +49,59 @@
           </thead>
           <tbody>
 
-            <img src="" alt="">
-
           <?php
-            $my_basket = $_SESSION['cart'];
+
             $totalprice = 0;
             $totalqty = 0;
+            if (isset($_SESSION['cart'])) {
+              $my_basket = $_SESSION['cart'];
 
 
-            foreach ($my_basket as $key => $basket) {
-              $sql = "SELECT id, image, name, price FROM items WHERE id = '".$key."'";
-              $result = mysqli_query($conn, $sql);
-              $item = mysqli_fetch_assoc($result);
-              extract($item);
+              foreach ($my_basket as $key => $basket) {
+                $sql = "SELECT id, image, name, price FROM items WHERE id = '".$key."'";
+                $result = mysqli_query($conn, $sql);
+                $item = mysqli_fetch_assoc($result);
+                extract($item);
 
-              $sub_total = $my_basket[$key] * intval($price);
-              $fsub_total = number_format($sub_total,2);
+                $sub_total = $my_basket[$key] * intval($price);
+                $fsub_total = number_format($sub_total,2);
 
-              echo '
-              <tr>
-              <td>
-              <img class="image is-64x64" src="' . $image . '">
-              </td>
-              <td>"' . $name . '"</td>
-              <td>
+                echo '
+                <tr>
+                <td>
+                <img class="image is-64x64" src="' . $image . '">
+                </td>
+                <td>"' . $name . '"</td>
+                <td>
                 <input class="basket-quantity" onchange="updateBasket('.$id.')" min="1" type="number" name="basket-qty" id="basketQuantity'.$id.'" value="'. $my_basket[$key] .'">
-              </td>
-              <td class="has-text-right">
+                </td>
+                <td class="has-text-right">
                 <span>PHP </span>
                 <input type="number" hidden name="basket-price" id="basketPrice'.$id.'" value="'. $price. '">'. $price. '
-              </td>
-              <td class="has-text-right">
+                </td>
+                <td class="has-text-right">
                 <span>PHP </span>
                 <span id="subTotal'.$id.'">'. $fsub_total .'</span>
-              </td>
-              </tr>
+                </td>
+                </tr>
+                ';
+                $totalqty = $totalqty + $my_basket[$key];
+                // var_dump($sub_total,10);
+                // var_dump($sub_total);
+                // var_dump($sub_total);
+                $totalprice = intval($totalprice,10) + intval($sub_total,10);
+                // var_dump($totalprice);
+              }
+            } else {
+              echo '
+                <tr>
+                <td></td>
+                <td class="has-text-centered"><em>Your basket is empty!</em></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
               ';
-      				$totalqty = $totalqty + $my_basket[$key];
-              // var_dump($sub_total,10);
-              // var_dump($sub_total);
-              // var_dump($sub_total);
-              $totalprice = intval($totalprice,10) + intval($sub_total,10);
-              // var_dump($totalprice);
             }
 
             echo '
@@ -132,7 +149,7 @@
 
 	function updateBasket(itemId) {
 		var id = itemId;
-		// retrieve value of item quantity
+
 		var quantity = $('#basketQuantity' + id).val();
     quantity = parseInt(quantity,10);
 
@@ -142,27 +159,21 @@
     var oldsubtotal = $('#subTotal' + id).html();
     oldsubtotal = Number(oldsubtotal.replace(/[^0-9\.-]+/g,""));
     console.log(oldsubtotal);
-    // console.log(typeof(oldsubtotal));
 
 		var subtotal = quantity * price;
-    console.log(subtotal);
     $('#subTotal' + id).html(parseInt(subtotal).formatMoney(2));
+    console.log(subtotal);
+
+    var subtotaldiff = subtotal-oldsubtotal;
+    console.log(subtotaldiff);
 
     var total = $('#updateTotalPrice').html();
-    if (oldsubtotal > subtotal) {
-      total = Number(total.replace(/[^0-9\.-]+/g,"")) - price;
-    }
+    total = Number(total.replace(/[^0-9\.-]+/g,"")) + subtotaldiff;
+    total = parseInt(total).formatMoney(2)
 
-    if (oldsubtotal < subtotal) {
-      total = Number(total.replace(/[^0-9\.-]+/g,"")) + price;
-      console.log(total);
-      console.log(typeof(total));
-    }
+    $('#updateTotalPrice').html(total);
 
-    // total = total.formatMoney(2);
-    $('#updateTotalPrice').html(parseInt(total).formatMoney(2));
-
-		//create a post request to update session cart variable
+		//create a post request to update session cart variables
 		$.post('assets/add_to_basket.php',
 		{
 			item_id: id,

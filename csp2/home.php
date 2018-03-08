@@ -51,8 +51,9 @@ require 'connect.php';
 											<p class="title is-7 is-spaced">'.$name.'</p>
 											<p class="subtitle is-5">PHP '.$price.'</p>
 											<hr>
-											<a class="button is-medium is-info is-outlined">
-												<span>Add to Basket</span>
+											<input class="input is-hidden" type="number" value="1" min="0" id="itemQuantity'.$id.'">
+											<a class="button is-medium is-info is-outlined" onclick="addToBasket('.$id.')" href="basket.php">
+												<span>Buy one now!</span>
 												<span class="icon">
 													<i class="fas fa-shopping-basket"></i>
 												</span>
@@ -99,8 +100,9 @@ require 'connect.php';
 											<p class="title is-7 is-spaced">'.$name.'</p>
 											<p class="subtitle is-5">PHP '.$price.'</p>
 											<hr>
-											<a class="button is-medium is-info is-outlined">
-												<span>Add to Basket</span>
+											<input class="input is-hidden" type="number" value="1" min="0" id="itemQuantity'.$id.'">
+											<a class="button is-medium is-info is-outlined" onclick="addToBasket('.$id.')" href="basket.php">
+												<span>Buy one now!</span>
 												<span class="icon">
 													<i class="fas fa-shopping-basket"></i>
 												</span>
@@ -145,23 +147,22 @@ require 'connect.php';
 
   ?>
 
-<script>
-	function addToCart(itemId) {
-		var id = itemId;
-		// retrieve value of item quantity
-		var quantity = $('#itemQuantity' + id).val();
-		//create a post request to update session cart variable
-		$.post('assets/add_to_cart.php',
-		{
-			item_id: id,
-			item_quantity: quantity
-		},
-		function(data, status) {
-			// console.log(data);
-			$('a[href="cart.php"]').html('My Cart ' + data);
-		});
-	}
-</script>
+	<script>
+		function addToBasket(itemId) {
+			var id = itemId;
+			var quantity = $('#itemQuantity' + id).val();
+			$.post('assets/add_to_basket.php',
+			{
+				item_id: id,
+				item_quantity: quantity
+			},
+			function(data, status) {
+				console.log(data);
+				$('.my-badge').html(data);
+			});
+		}
+
+	</script>
 
 </body>
 </html>

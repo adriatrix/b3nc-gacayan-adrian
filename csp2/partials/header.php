@@ -22,11 +22,11 @@
 </nav> -->
 
 
-<section class="hero is-info is-bold">
+<section class="hero is-dark is-bold">
  <div class="hero-head">
    <nav class="navbar">
      <div class="container">
-       <div class="navbar-brand">
+       <div class="navbar-brand is-inverted">
          <a class="navbar-item" href="index.php">
            <img src="assets/img/logo.jpg" alt="Logo">
          </a>
@@ -100,15 +100,15 @@
                  <i class="fas fa-shopping-basket"></i>
                </span>
                <span>Shopping Basket</span>
-               <span id="basket-badge">
-                 <span class="my-badge">
-                 <?php
-                 if (isset($_SESSION['basket_count'])) {
-                   echo ''.$_SESSION['basket_count'].'';
-                 }
-                 ?>
+                 <span id="basket-badge">
+                  <span class="my-badge">
+                   <?php
+                   if (isset($_SESSION['basket_count'])) {
+                     echo ''.$_SESSION['basket_count'].'';
+                   }
+                   ?>
                  </span>
-               </span>
+                </span>
              </a>
            </span>
          </div>
@@ -137,7 +137,6 @@
      if (isset($_SESSION['feedback_msg'])) {
       echo '
         <script>
-
           notifyIt("'.$_SESSION['feedback_msg'].'");
         </script>
       ';
