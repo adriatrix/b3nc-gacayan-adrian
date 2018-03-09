@@ -48,7 +48,40 @@
        </div>
      </div>
    </div>
-   <h1 class="is-5 title has-text-centered">Item Page</h1>
+   <div class="columns">
+     <div class="column is-11 has-text-centered">
+       <h1 class="is-5 title">Item Page</h1>
+     </div>
+     <div class="is-column">
+       <?php
+        if (isset($_SESSION['current_user'])) {
+          if ($_SESSION['current_user'] == 'admin') {
+            echo '
+            <a href="catalogue.php">
+            <button class="button is-dark is-outlined">Back</button>
+            </a>
+            <button type="button" id="editItem" class="button is-primary" data-toggle="modal" data-target="#editItemModal" data-index="'.$id.'">Edit</button>
+            <button type="button" id="deleteItem" class="button is-danger" data-toggle="modal" data-target="#deleteItemModal" data-index="'.$id.'">Delete</button>
+            ';
+          } else {
+            echo '
+              <a href="'.$_SERVER['HTTP_REFERER'].'">
+              <button class="button is-dark is-outlined">Back</button>
+              </a>
+            ';
+          }
+        } else {
+          echo '
+          <a href="'.$_SERVER['HTTP_REFERER'].'">
+          <button class="button is-dark is-outlined">Back</button>
+          </a>
+          ';
+        }
+
+        ?>
+
+     </div>
+   </div>
    <div class="columns">
      <div class="column is-6">
 
@@ -110,35 +143,6 @@
        </table>
        ';
        ?>
-       <div class="">
-         <?php
-          if (isset($_SESSION['current_user'])) {
-            if ($_SESSION['current_user'] == 'admin') {
-              echo '
-              <a href="catalogue.php">
-              <button class="button is-dark is-outlined">Back</button>
-              </a>
-              <button type="button" id="editItem" class="button is-primary" data-toggle="modal" data-target="#editItemModal" data-index="'.$id.'">Edit</button>
-              <button type="button" id="deleteItem" class="button is-danger" data-toggle="modal" data-target="#deleteItemModal" data-index="'.$id.'">Delete</button>
-              ';
-            } else {
-              echo '
-                <a href="'.$_SERVER['HTTP_REFERER'].'">
-                <button class="button is-dark is-outlined">Back</button>
-                </a>
-              ';
-            }
-          } else {
-            echo '
-            <a href="'.$_SERVER['HTTP_REFERER'].'">
-            <button class="button is-dark is-outlined">Back</button>
-            </a>
-            ';
-          }
-
-          ?>
-
-       </div>
      </div>
    </div>
  </div>

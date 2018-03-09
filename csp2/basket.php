@@ -85,15 +85,19 @@
 
         $totalprice = 0;
         $totalqty = 0;
+
         if (isset($_SESSION['cart'])) {
           $my_basket = $_SESSION['cart'];
-
 
           foreach ($my_basket as $key => $basket) {
             $sql = "SELECT id, image, name, price, stock FROM items WHERE id = '".$key."'";
             $result = mysqli_query($conn, $sql);
             $item = mysqli_fetch_assoc($result);
             extract($item);
+
+            if($my_basket[$key] == 0 || is_nan($my_basket[$key])) {
+              $my_basket[$key] = 1;
+            }
 
             $sub_total = $my_basket[$key] * intval($price);
             $fsub_total = number_format($sub_total,2);
@@ -119,31 +123,38 @@
               <div class="column is-2">
                 <span>PHP </span>
                 <input type="number" hidden name="basket-price" id="basketPrice'.$id.'" value="'. $price. '">'. $price. '
+                <button class="button is-danger is-outlined is-small is-pulled-right delete-basket-item-modal" data-toggle="modal" data-target="#deleteBasketItemModal'.$key.'" data-index="'.$key.'"><span><i class="fas fa-times"></i></span></button>
               </div>
-              <div class="is-hidden-mobile column is-1">
+
+
+              <div class="modal" id="deleteBasketItemModal'.$key.'">
+                <div class="modal-background"></div>
+                <form action="assets/deletingbasketitem.php" method="POST">
+                  <div class="modal-card">
+                    <input name="item_id" value="'. $key .'" hidden>
+                    <div class="modal-card-head">
+                      <p class="modal-card-title">'.$name.'</p>
+                      <img class="image is-64x64" src="'. $image .'">
+                    </div>
+                    <div class="modal-card-body">
+                      <p>Please confirm deletion of this item from your Shopping Basket. <span class="has-text-warning"><i class="far fa-frown"></i></span></p>
+                    </div>
+                    <div class="modal-card-foot">
+                      <button type="submit" class="button is-success">Confirm</button>
+                      <button type="button" class="button is-danger modal-button-close" data-index="'.$key.'">Cancel</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="column is-2">
                 <div class="columns">
                   <div class="column is-10 is-offset-1">
-                    <input class="input basket-quantity" onchange="updateBasket('.$id.')" min="0" max="'. $stock .'" type="number" name="basket-qty" id="basketQuantity'.$id.'" value="'. $my_basket[$key] .'" pattern="[^0-9]">
-                    <p class="help">stock: <strong class="stockcolor">'. $stock .'</strong></p>
+                    <input class="input basket-quantity" onchange="updateBasket('.$id.')" min="0" max="'. $stock .'" type="number" name="basket-qty" id="basketQuantity'.$id.'" value="'. $my_basket[$key] .'" pattern="[^1-9]">
+                    <p class="help">stock: <strong id="stockColor'.$id.'">'. $stock .'</strong></p>
                   </div>
                 </div>
               </div>
-
-              <div class="is-hidden column is-1">
-                <div class="columns">
-                  <div class="column is-10 is-offset-1">
-                    <div class="field is-grouped">
-                      <div class="control">
-                        <input class="input basket-quantity" onchange="updateBasket('.$id.')" min="0" max="'. $stock .'" type="number" name="basket-qty" id="basketQuantity'.$id.'" value="'. $my_basket[$key] .'" pattern="[^0-9]">
-                      </div>
-                      <div class="control">
-                        <button class="button"><i class="fas fa-times"></i></button>
-                      </div>
-                    <p class="help">stock: <strong class="stockcolor">'. $stock .'</strong></p>
-                  </div>
-                </div>
-              </div>
-
 
               <div class="column is-2 has-text-right">
                 <span class="is-hidden-tablet is-size-7">subtotal:</span>
@@ -194,8 +205,6 @@
     </div>
 
 
-
-
 <?php
 
   include 'partials/footer.php';
@@ -205,6 +214,22 @@
 ?>
 
 <script>
+
+  var basketItemId = 0;
+
+  $(".delete-basket-item-modal").click(function() {
+    basketItemId = $(this).data('index');
+    console.log(basketItemId);
+    $("#deleteBasketItemModal" + basketItemId).addClass("is-active");
+  });
+
+  $(".modal-button-close").click(function() {
+    basketItemId = $(this).data('index');
+    // console.log(basketItemId);
+    $("#deleteBasketItemModal" + basketItemId).removeClass("is-active");
+  });
+
+
   // currency formatter from Patrick Desjardins at stackoverflow
   Number.prototype.formatMoney = function(c, d, t){
   var n = this,
@@ -222,6 +247,9 @@
 
 		var quantity = $('#basketQuantity' + id).val();
     quantity = parseInt(quantity,10);
+
+    var maxstock = $('#basketQuantity' + id).attr("max");
+    maxstock = parseInt(maxstock,10);
 
 		var price = $('#basketPrice' + id).val();
 		price = parseInt(price,10);
@@ -242,6 +270,19 @@
     total = parseInt(total).formatMoney(2)
 
     $('#updateTotalPrice').html(total);
+
+
+    if (quantity > maxstock){
+      // alert("No numbers above stock");
+      $('#basketQuantity' + id).css('color','red');
+      $('#stockColor' + id).css('color','red');
+      $('#basketQuantity' + id).val($('#basketQuantity' + id).attr("max"));
+      quantity = $('#basketQuantity' + id).val();
+      quantity = parseInt(quantity,10);
+    } else {
+      $('#basketQuantity' + id).css('color','black');
+      $('#stockColor' + id).css('color','black');
+    }
 
 		//create a post request to update session cart variables
 		$.post('assets/add_to_basket.php',
@@ -266,15 +307,17 @@
   //   });
   // });
 
-  $('.basket-quantity').keyup(function(){
-  if ($(this).val() > $(this).attr("max")){
-    // alert("No numbers above stock");
-    $(this).css('color','red');
-    $(this).val($(this).attr("max"));
-  } else {
-    $(this).css('color','black');
-  }
-  });
+  // $('.basket-quantity').keyup(function(){
+  // if ($(this).val() > $(this).attr("max")){
+  //   // alert("No numbers above stock");
+  //   $(this).css('color','red');
+  //   $('.stockcolor').css('color','red');
+  //   $(this).val($(this).attr("max"));
+  // } else {
+  //   $(this).css('color','black');
+  //   $('.stockcolor').css('color','black');
+  // }
+  // });
 
 </script>
 

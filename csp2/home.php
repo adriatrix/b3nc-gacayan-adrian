@@ -2,6 +2,10 @@
 
 session_start();
 
+if (!isset($_SESSION['basket_count']) ) {
+	$_SESSION['basket_count'] = 0;
+}
+
 function getTitle() {
 	echo 'Catalog';
 }
