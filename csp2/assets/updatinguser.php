@@ -1,7 +1,9 @@
 <?php
 
-session_start();
+header("location: ../profile.php");
 
+session_start();
+$_SESSION['feedback_msg'] = "Updated user details successfully";
 require '../connect.php';
 
 $user_id = $_POST['name_id'];
@@ -31,7 +33,5 @@ if ($password != '6df9ba338b43e718b5b8f880607f402081c3a172') {
   mysqli_query($conn, $sql);
 }
 
-$_SESSION['feedback_msg'] = "Updated user details successfully";
-header("location: ../profile.php");
 
 mysqli_close($conn);

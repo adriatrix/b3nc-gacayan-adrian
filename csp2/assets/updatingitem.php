@@ -1,14 +1,22 @@
 <?php
 
+$item_id = $_POST['name_id'];
+header("location: ../item.php?id=$item_id");
+
 session_start();
+$_SESSION['feedback_msg'] = "Updated item details successfully";
 
 require '../connect.php';
 
-$item_id = $_POST['name_id'];
+//
+// $target_dir = "img/items/";
+// $target_file = $target_dir . basename($_FILES['image']['name']);
+// $target = "assets/img/items/";
 
 // var_dump($item_id);
 //
 $name = $_POST['name'];
+// $image = $target .''. ($_FILES['image']['name']);
 
 $price = $_POST['price'];
 $description = $_POST['description'];
@@ -24,6 +32,12 @@ $rarity = $_POST['rarity'];
 $series = $_POST['series'];
 $brand = $_POST['brand'];
 $sub_brand = $_POST['sub-brand'];
+
+// if(move_uploaded_file($_FILES['image']['tmp_name'],$target_file)) {
+//   echo "file is uploaded";
+// } else {
+//   echo "error has occured";
+// }
 
 // echo $name . '<br>' .  $price . '<br>' .  $description . '<br>' .  $rarity . '<br>' .  $release_date;
 // echo $series . '<br>' .  $brand . '<br>' .  $sub_brand . '<br>' .  $stock;
@@ -52,7 +66,5 @@ $sql = "UPDATE items i JOIN sub_brands sb SET i.sub_brand_id = sb.id WHERE (i.id
 
 mysqli_query($conn, $sql);
 
-$_SESSION['feedback_msg'] = "Updated item details successfully";
-header("location: ../item.php?id=$item_id");
 
 mysqli_close($conn);

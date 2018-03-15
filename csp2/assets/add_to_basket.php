@@ -8,6 +8,4 @@
   $_SESSION['cart'][$id] = $quantity;
   $_SESSION['basket_count'] = array_sum($_SESSION['cart']);
 
-  // echo "". $_SESSION['basket_count']."";
-
   echo ''.$_SESSION['basket_count'].'';

@@ -18,6 +18,8 @@ echo '
   <input class="input" type="text" name="name" value="'.$name.'" required>
   </p>
   </div>
+
+
   <div class="field is-horizontal">
   <div class="field-body">
   <div class="field">

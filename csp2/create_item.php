@@ -31,7 +31,7 @@
         </div>
         <div class="columns">
           <div class="column is-10 is-offset-1">
-            <form id="createitemForm" method="POST" action="assets/creatingitem.php" class="box">
+            <form id="createitemForm" method="POST" enctype="multipart/form-data" action="assets/creatingitem.php" class="box">
               <div class="columns">
                 <div class="column is-6">
                   <div class="field">
@@ -52,6 +52,9 @@
                           </span>
                         </span>
                         <span class="file-name">
+                          <?php
+                            echo '';
+                           ?>
                         </span>
                       </label>
                     </div>

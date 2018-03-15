@@ -1,10 +1,20 @@
 <?php
 
+session_start();
+
+$_SESSION['feedback_msg'] = "Created new item successfully";
+header('location: ../catalogue.php');
+
 require '../connect.php';
+
+$target_dir = "img/items/";
+$target_file = $target_dir . basename($_FILES['image']['name']);
+$target = "assets/img/items/";
+
 
 // $id =  intval($_POST['id']);
 $name = $_POST['name'];
-// $image =  $_POST['image'];
+$image = $target .''. ($_FILES['image']['name']);
 $price = intval($_POST['price']);
 $stock = $_POST['stock'];
 $description = $_POST['description'];
@@ -14,6 +24,14 @@ $rarity = $_POST['rarity'];
 $series = $_POST['series'];
 $brand = $_POST['brand'];
 $sub_brand = $_POST['sub-brand'];
+
+if(move_uploaded_file($_FILES['image']['tmp_name'],$target_file)) {
+  echo "file is uploaded";
+} else {
+  echo "error has occured";
+}
+
+
 //
 // echo $name . ' ' . $price;
 // echo $stock . ' ' . $description . ' ' . $rarity;
@@ -50,19 +68,10 @@ while ($sub_brand = mysqli_fetch_assoc($result)) {
 }
 
 
-$sql = "INSERT INTO items (name, price, stock, description, release_date, item_status_id, rarity_id, serial_id, brand_id, sub_brand_id, product_id) VALUES ('".$name."','".$price."','".$stock."','".$description."','".$release_date."','1','".$rarity_id."','".$serial_id."','".$brand_id."','".$sub_brand_id."','1')";
-// var_dump($sql);
-
-$result = mysqli_query($conn, $sql);
+$sql = "INSERT INTO items (name, price, image, stock, description, release_date, item_status_id, rarity_id, serial_id, brand_id, sub_brand_id, product_id) VALUES ('".$name."','".$price."','".$image."','".$stock."','".$description."','".$release_date."','1','".$rarity_id."','".$serial_id."','".$brand_id."','".$sub_brand_id."','1')";
+mysqli_query($conn, $sql);
 
 // check if successful
-if ($result)
-  $_SESSION['feedback_msg'] = "Created new item successfully";
-  header('location: ../catalogue.php');
-else
-  die('Error: ' .$sql. '<br>' . mysqli_error($conn));
 
 
 mysqli_close($conn);
-
-// header('location: ../catalogue.php');

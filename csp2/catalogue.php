@@ -215,17 +215,11 @@ $items = mysqli_query($conn, $sql);
 										<p class="subtitle is-5">PHP '.$price.'</p>
 										<hr>
 										<input class="input is-hidden" type="number" value="1" min="0" id="itemQuantity'.$id.'">
-										<a class="button is-medium is-info is-outlined" id="addBasket-'. $id .'" onclick="addToBasket('.$id.', this.id)">
-										';
-										if (isset($_SESSION['cart'])) {
-											echo '<span>Add this one</span>';
-										} else {
-											echo '<span>Buy one now!</span>';
-										}
-										echo '
-											<span class="icon">
-												<i class="fas fa-shopping-basket"></i>
-											</span>
+										<a class="button is-medium is-info is-outlined" id="addBasket-'. $id .'" onclick="addToBasket('.$id.')">
+										<span>Buy one!</span>
+										<span class="icon">
+											<i class="fas fa-shopping-basket"></i>
+										</span>
 										</a>
 									</div>
 								</div>
@@ -238,7 +232,7 @@ $items = mysqli_query($conn, $sql);
 				}
 				?>
 
-				<div class="pagination is-centered" role="navigation" aria-label="pagination">
+				<!-- <div class="pagination is-centered" role="navigation" aria-label="pagination">
 					<a class="pagination-previous">Previous</a>
 					<a class="pagination-next">Next page</a>
 					<ul class="pagination-list">
@@ -250,7 +244,7 @@ $items = mysqli_query($conn, $sql);
 						<li><span class="pagination-ellipsis">&hellip;</span></li>
 						<li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -281,7 +275,7 @@ $items = mysqli_query($conn, $sql);
   ?>
 
 <script>
-	function addToBasket(itemId, btnId) {
+	function addToBasket(itemId) {
 		var id = itemId;
 		var quantity = $('#itemQuantity' + id).val();
 		$.post('assets/add_to_basket.php',
@@ -292,7 +286,7 @@ $items = mysqli_query($conn, $sql);
 		function(data, status) {
 			console.log(data);
 			$('.my-badge').html(data);
-			$('#' + btnId).addClass('is-static');
+			// $('#' + btnId).addClass('is-static');
 			// document.getElementById(btnId).disabled = true;
 		});
 

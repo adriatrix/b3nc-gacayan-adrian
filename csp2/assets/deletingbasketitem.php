@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+$_SESSION['feedback_msg'] = "Deleted item successfully";
+header("location: ../basket.php");
 
 $id = $_POST['item_id'];
 
@@ -18,5 +20,4 @@ if (empty($_SESSION['cart'])) {
 echo ''.$_SESSION['basket_count'].'';
 
 
-$_SESSION['feedback_msg'] = "Deleted item successfully";
-header("location: ../basket.php");
+// echo "<script>location='../basket.php'</script>";

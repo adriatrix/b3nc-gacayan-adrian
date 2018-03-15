@@ -52,6 +52,7 @@
                <p><label class="has-text-weight-bold">Password</label><span class="has-text-danger password-errormsg"> *</span></p>
                <div class="control has-icons-left has-icons-right">
                  <input class="input" name="password" id="password" placeholder="●●●●●●●" type="password" autocomplete="off" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                 <!-- <input class="input" name="password" id="password" placeholder="●●●●●●●" type="password" autocomplete="off" required"> -->
                  <span class="icon is-left"><i class="fas fa-lock-open"></i></span>
                  <div class="password-icon">
                  </div>

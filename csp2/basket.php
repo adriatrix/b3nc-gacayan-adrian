@@ -134,10 +134,9 @@
                     <input name="item_id" value="'. $key .'" hidden>
                     <div class="modal-card-head">
                       <p class="modal-card-title">'.$name.'</p>
-                      <img class="image is-64x64" src="'. $image .'">
                     </div>
                     <div class="modal-card-body">
-                      <p>Please confirm deletion of this item from your Shopping Basket. <span class="has-text-warning"><i class="far fa-frown"></i></span></p>
+                      <p><img class="image is-64x64" src="'. $image .'"> Please confirm deletion of this item from your Shopping Basket. <span class="has-text-warning"><i class="far fa-frown"></i></span></p>
                     </div>
                     <div class="modal-card-foot">
                       <button type="submit" class="button is-success">Confirm</button>
