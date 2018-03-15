@@ -9,13 +9,13 @@
         echo'
         <div class="navbar-item is-hidden-desktop is-pulled-left">
         <div class="field is-grouped">
-        <a class="button is-inverted is-info is-small" href="profile.php">
+        <a class="button is-inverted is-info" href="profile.php">
         <span class="icon">
         <i class="fas fa-user"></i>
         </span>
         <span>' . ucfirst($_SESSION['current_user']) . '</span>
         </a>
-        <a class="button is-danger is-small" href="signout.php">
+        <a class="button is-danger" href="signout.php">
         <span class="icon">
         <i class="fas fa-sign-out-alt"></i>
         </span>
@@ -47,7 +47,9 @@
             <span class="my-badge">
               <?php
               if (isset($_SESSION['basket_count'])) {
-                echo ''.$_SESSION['basket_count'].'';
+                echo '
+                '.$_SESSION['basket_count'].'
+                ';
               }
               ?>
             </span>
@@ -132,7 +134,9 @@
               <span class="my-badge">
                 <?php
                 if (isset($_SESSION['basket_count'])) {
-                  echo ''.$_SESSION['basket_count'].'';
+                  echo '
+                  '.$_SESSION['basket_count'].'
+                  ';
                 }
                 ?>
               </span>
@@ -141,42 +145,44 @@
         </span>
       </div>
     </div>
-  </nav>
-
-
-<section class="hero is-dark is-bold">
-
-  <div class="hero-head">
-
   </div>
+</nav>
 
- <div class="hero-body">
-   <div class="container has-text-centered">
-     <h1>The Pop! Stop PH</h1>
-     <h2>Your one stop shop for Funko Pops!</h2>
-   </div>
-   <div id="userFeedback">
-   </div>
 
-   <script>
-     function notifyIt(msg) {
-       var x = document.getElementById("userFeedback")
-       x.innerHTML = msg;
-       x.className = "show";
-       setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-     }
-   </script>
+<section class="hero is-dark is-medium">
+  <div class="container">
+    <div class="hero-head">
 
-   <?php
-     if (isset($_SESSION['feedback_msg'])) {
-      echo '
+    </div>
+
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <h1>The Pop! Stop PH</h1>
+        <h2>Your one stop shop for Funko Pops!</h2>
+      </div>
+      <div id="userFeedback">
+      </div>
+
+      <script>
+      function notifyIt(msg) {
+        var x = document.getElementById("userFeedback")
+        x.innerHTML = msg;
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      }
+      </script>
+
+      <?php
+      if (isset($_SESSION['feedback_msg'])) {
+        echo '
         <script>
-          notifyIt("'.$_SESSION['feedback_msg'].'");
+        notifyIt("'.$_SESSION['feedback_msg'].'");
         </script>
-      ';
-      unset($_SESSION['feedback_msg']);
-    }
-   ?>
+        ';
+        unset($_SESSION['feedback_msg']);
+      }
+      ?>
 
- </div>
+    </div>
+  </div>
 </section>

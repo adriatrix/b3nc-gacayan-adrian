@@ -31,7 +31,7 @@ if (mysqli_num_rows($result) > 0) {
 
 if ($isLogInSuccessful) {
     $_SESSION['feedback_msg'] = "Signed in successfully";
-    header('location: ../index.php');
+    header('location: ../catalogue.php');
 } else {
     $_SESSION['feedback_msg'] = "Invalid username and/or password";
     header('location: ../signin.php');

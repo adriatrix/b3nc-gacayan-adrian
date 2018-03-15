@@ -206,7 +206,7 @@ $items = mysqli_query($conn, $sql);
 							<div class="card box">
 								<div class="card-image">
 									<figure class="image is-square">
-										<img src='.$image.' alt="placeholder">
+										<img src='.$image.' alt="image placeholder for '.$name.'">
 									</figure>
 								</div>
 								<div class="card-content">

@@ -49,10 +49,10 @@
      </div>
    </div>
    <div class="columns">
-     <div class="column is-11 has-text-centered">
+     <div class="column is-6 has-text-left">
        <h1 class="is-5 title">Item Page</h1>
      </div>
-     <div class="is-column">
+     <div class="column has-text-right">
        <?php
         if (isset($_SESSION['current_user'])) {
           if ($_SESSION['current_user'] == 'admin') {
@@ -90,7 +90,7 @@
        echo'
 
        <div>
-       <img class="image" src="' . $image . '">
+       <img class="image" src="' . $image . '" alt="image placeholder for '.$name.'">
        </div>
 
        ';

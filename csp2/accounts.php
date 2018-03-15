@@ -2,12 +2,12 @@
 
 session_start();
 
-// if (!isset($_SESSION['current_user'])) {
-// 	header('location: signin.php');
-// } else {
-// 	if ($_SESSION['current_role'] != 'admin')
-// 		header('location: home.php');
-// }
+if (!isset($_SESSION['current_user'])) {
+	header('location: signin.php');
+} else {
+	if ($_SESSION['user_role'] != 'admin')
+		header('location: home.php');
+}
 
 
 function getTitle() {
@@ -30,17 +30,17 @@ require 'connect.php';
 
 		<h1>Accounts Page</h1>
 
-		<table>
+		<table class="table is-bordered is-striped is-hoverable is-fullwidth">
 			<thead>
 				<th>Username</th>
-				<th>Password</th>
+				<th>Name</th>
 				<th>Email</th>
 				<th>Role</th>
 			</thead>
 			<tbody>
 				<?php
 
-				$sql = "SELECT * FROM users";
+				$sql = "SELECT u.*, r.role FROM users u JOIN roles r ON (u.role_id = r.id)";
 				$users = mysqli_query($conn, $sql);
 
 				while ($user = mysqli_fetch_assoc($users)) {
@@ -49,9 +49,9 @@ require 'connect.php';
 				echo '
 				<tr>
 					<td><a href="user.php?id='.$id.'">'. $username .'</a></td>
-					<td>'. $password .'</td>
+					<td>'. $firstname .' '. $lastname .'</td>
 					<td>'. $email .'</td>
-					<td>'. $role_id .'</td>
+					<td>'. $role .'</td>
 				</tr>
 				';
 				}

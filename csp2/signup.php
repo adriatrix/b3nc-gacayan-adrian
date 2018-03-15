@@ -148,22 +148,6 @@
     }
   });
 
-  // $('#email').on('input', function() {
-  //   var emailText = $(this).val();
-  //   if (emailText == "") {
-  //     $('.email-errormsg').addClass("has-text-danger");
-  //     $('.email-errormsg').removeClass("is-pulled-right");
-  //     $('.email-errormsg').html(" *");
-  //   }
-  //
-  //   $.post('assets/email_authentication.php',
-  //     {email: emailText},
-  //     function(data, status) {
-  //       $('.email-icon').html(data);
-  //     });
-  // });
-
-  // $(document).on('blur', '#email', function() {
   $('#email').blur(function () {
       var emailText = $(this).val();
       if (emailText == "") {
