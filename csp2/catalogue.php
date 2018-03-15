@@ -200,6 +200,21 @@ $items = mysqli_query($conn, $sql);
 			while ($item = mysqli_fetch_assoc($items)) {
 				if (($itemcount % 3) == 0) {echo '<div class="columns">';}
 					extract ($item);
+
+					if (isset($_SESSION['cart'])) {
+						$my_basket = $_SESSION['cart'];
+						// var_dump($id);
+						// var_dump($my_basket[$id]);
+						// var_dump(array_key_exists($id, $my_basket));
+						if (isset($my_basket[$id])) {
+								$quantity = $my_basket[$id];
+							} else {
+								$quantity = "0";
+							}
+					} else {
+						$quantity = "0";
+					}
+
 					echo '
 					<div class="column is-4">
 						<a href="item.php?id='.$id.'">
@@ -214,13 +229,16 @@ $items = mysqli_query($conn, $sql);
 										<p class="title is-7 is-spaced">'.$name.'</p>
 										<p class="subtitle is-5">PHP '.$price.'</p>
 										<hr>
-										<input class="input is-hidden" type="number" value="1" min="0" id="itemQuantity'.$id.'">
-										<a class="button is-medium is-info is-outlined" id="addBasket-'. $id .'" onclick="addToBasket('.$id.')">
+										<div class="field is-horizontal">
+										<input class="field input is-static is-small" type="number" value="'.$quantity.'" min="0" id="itemQuantity'.$id.'">
+										<a class="button field is-medium is-info is-outlined" id="addBasket-'. $id .'" onclick="addToBasket('.$id.')">
 										<span>Buy one!</span>
 										<span class="icon">
-											<i class="fas fa-shopping-basket"></i>
+										<i class="fas fa-shopping-basket"></i>
 										</span>
 										</a>
+										<input class="field input is-static is-small" type="number" value="'.$stock.'" min="0" id="itemStock'.$id.'">
+										</div>
 									</div>
 								</div>
 							</div>
@@ -278,6 +296,9 @@ $items = mysqli_query($conn, $sql);
 	function addToBasket(itemId) {
 		var id = itemId;
 		var quantity = $('#itemQuantity' + id).val();
+		quantity = parseInt(quantity,10);
+		quantity = quantity + 1;
+		$('#itemQuantity' + id).val(quantity);
 		$.post('assets/add_to_basket.php',
 		{
 			item_id: id,
