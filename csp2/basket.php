@@ -20,10 +20,10 @@
 
 
 
-   if (!isset($_SESSION['current_user']) ) {
-     $_SESSION['feedback_msg'] = "Please sign in first";
-     header('location: signin.php');
-   }
+   // if (!isset($_SESSION['current_user']) ) {
+   //   $_SESSION['feedback_msg'] = "Please sign in first";
+   //   header('location: signin.php');
+   // }
 
   ?>
 

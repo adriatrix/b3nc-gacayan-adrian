@@ -1,4 +1,4 @@
-<nav class="navbar is-dark is-fixed-top">
+<nav class="navbar is-info is-fixed-top">
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item" href="index.php">
@@ -149,7 +149,7 @@
 </nav>
 
 
-<section class="hero is-dark is-medium">
+<section class="hero is-info is-medium">
   <div class="container">
     <div class="hero-head">
 
