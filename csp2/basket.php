@@ -16,16 +16,7 @@
 </head>
 <body>
 
-  <?php include 'partials/header.php';
-
-
-
-   // if (!isset($_SESSION['current_user']) ) {
-   //   $_SESSION['feedback_msg'] = "Please sign in first";
-   //   header('location: signin.php');
-   // }
-
-  ?>
+  <?php include 'partials/header.php'; ?>
 
   <h1 hidden>Basket Page</h1>
 
@@ -40,7 +31,7 @@
         </a>
       </div>
       <div class="column is-8 has-text-centered">
-        <h2 class="title">YOUR <span class="is-hidden-mobile">SHOPPING</span> BASKET</h2>
+        <h2 class="is-size-3">YOUR <span class="is-hidden-mobile">SHOPPING</span> BASKET</h2>
       </div>
       <div class="column is-2 has-text-right is-hidden-mobile">
         <a class="button is-large is-info" href="checkout.php">
@@ -200,6 +191,14 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="column is-2 has-text-centered is-hidden-tablet">
+        <a class="button is-large is-info" href="checkout.php">
+          <span>Checkout</span>
+          <span class="icon">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </a>
       </div>
     </div>
 

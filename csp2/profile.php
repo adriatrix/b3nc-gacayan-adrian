@@ -24,7 +24,7 @@
 
  <?php include 'partials/header.php'; ?>
 
- <div class="container">
+ <div class="container box">
    <div class="columns">
      <div class="column is-6 has-text-left">
        <h1 class="is-5 title">Profile Page</h1>
@@ -60,7 +60,7 @@
 
        echo'
 
-       <table class="table is-bordered is-striped">
+       <table class="table is-bordered is-striped is-fullwidth">
        <tbody>
        <tr>
        <td>Username:</td>
@@ -89,7 +89,7 @@
        <?php
 
        echo '
-       <table class="table is-bordered is-striped">
+       <table class="table is-bordered is-striped is-fullwidth">
        <tbody>
        <tr>
        <td>Address 1:</td>

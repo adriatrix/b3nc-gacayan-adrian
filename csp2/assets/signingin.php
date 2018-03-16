@@ -31,7 +31,11 @@ if (mysqli_num_rows($result) > 0) {
 
 if ($isLogInSuccessful) {
     $_SESSION['feedback_msg'] = "Signed in successfully";
+    if (isset($_SESSION['cart'])) {
+    header('location: ../basket.php');
+    } else {
     header('location: ../catalogue.php');
+    }
 } else {
     $_SESSION['feedback_msg'] = "Invalid username and/or password";
     header('location: ../signin.php');
