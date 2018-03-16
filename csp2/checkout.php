@@ -78,9 +78,9 @@
       <div class="column is-4 box is-radiusless">
         <div class="columns">
           <div class="column">
-            <p class="is-size-6 box"><span class="is-size-4">1. </span><span>Shipping address</span></p>
-            <p class="has-text-justified">
-              Confirm your address details below. If incorrect or incomplete, kindly update in your Profile page. Click <a href="profile.php">here</a>.
+            <p class="is-size-6 box"><span class="is-size-4">1. </span><span>Shipping address</span><span class="is-pulled-right"><a href="profile.php" class="button is-primary is-rounded is-outlined">edit address</a></span></p>
+            <p class="is-size-7 has-text-justified">
+              Confirm your address details below. If incorrect or incomplete, kindly update in your Profile page.
             </p>
           </div>
         </div>
@@ -134,13 +134,14 @@
             <p class="is-size-6 box"><span class="is-size-4">2. </span><span>Shipping Method</span></p>
             <div class="control">
               <label class="radio">
-                <input type="radio" name="shipping" checked>
+                <input type="radio" name="shipping" value = "meetup" checked onclick="updateShipping()">
                 <span class="has-text-weight-semibold has-text-info">Scheduled Meetup</span>
               </label>
                 <span class="is-size-6 is-pulled-right"><strong> PHP 0.00</strong></span>
               <br>
+              <br>
               <label class="radio">
-                <input type="radio" name="shipping">
+                <input type="radio" name="shipping" value = "local" onclick="updateShipping()">
               <span class="has-text-weight-semibold has-text-info">Local Shipping</span>
             </label>
               <span class="is-size-6 is-pulled-right"><strong> PHP 150.00</strong></span>
@@ -154,18 +155,19 @@
               <label class="radio">
                 <input type="radio" name="payment" checked>
                 <span class="has-text-weight-semibold has-text-info">Direct Bank Transfer</span>
-                <p class="has-text-justified">
-                  Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
-                </p>
               </label>
+              <p class="is-size-7 has-text-justified">
+                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
+              </p>
+              <br>
               <br>
               <label class="radio">
                 <input type="radio" name="payment" disabled>
                 <span class="has-text-weight-semibold has-text-info">Paypal</span>
-                <p class="has-text-justified">
-                  We are still in the process of adding this feature to our site. Stay tune for more updates.
-                </p>
               </label>
+              <p class="is-size-7 has-text-justified">
+                We are still in the process of adding this feature to our site. Stay tune for more updates.
+              </p>
             </div>
           </div>
         </div>
@@ -173,7 +175,7 @@
       <div class="column is-4 box is-radiusless">
         <div class="columns">
           <div class="column is-12">
-            <p class="is-size-6 box"><span class="is-size-4">4. </span><span>Review Order</span></p>
+            <p class="is-size-6 box"><span class="is-size-4">4. </span><span>Review Order</span><span class="is-pulled-right"><a href="basket.php" class="button is-primary is-rounded is-outlined">edit basket</a></span></p>
             <?php
             $totalprice = 0;
             $totalqty = 0;
@@ -221,9 +223,16 @@
           ?>
           </div>
         </div>
+        <div class="ship-charge is-hidden">
+          <div class="columns">
+            <div class="column">
+              <small>Local Shipping</small><span class="is-size-6 is-pulled-right"><strong> PHP 150.00</strong></span>
+            </div>
+          </div>
+        </div>
         <div class="columns">
           <div class="column">
-            <strong>TOTAL</strong><span class="is-size-6 is-pulled-right"><strong> PHP <?php echo ' '. number_format($totalprice,2) .' '; ?></strong></span>
+            <strong>TOTAL</strong><span class="is-size-6 is-pulled-right"><strong> PHP <span class="update-total-price"><?php echo ' '. number_format($totalprice,2) .' '; ?></span></strong></span>
           </div>
         </div>
       </div>
@@ -250,8 +259,34 @@
 ?>
 
 <script>
+  // currency formatter from Patrick Desjardins at stackoverflow
+  Number.prototype.formatMoney = function(c, d, t){
+  var n = this,
+      c = isNaN(c = Math.abs(c)) ? 2 : c,
+      d = d == undefined ? "." : d,
+      t = t == undefined ? "," : t,
+      s = n < 0 ? "-" : "",
+      i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+      j = (j = i.length) > 3 ? j % 3 : 0;
+     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+   };
 
+  var total = $('.update-total-price').html();
+  var localtotal = Number(total.replace(/[^0-9\.-]+/g,"")) + 150;
+  localtotal = parseInt(localtotal).formatMoney(2)
+  console.log(localtotal);
 
+  function updateShipping() {
+    var shipmethod = $('input[type="radio"][name="shipping"]:checked').val();
+    if (shipmethod == "local") {
+      $('.ship-charge').removeClass('is-hidden');
+      $('.update-total-price').html(localtotal);
+    } else  {
+      $('.ship-charge').addClass('is-hidden');
+      $('.update-total-price').html(total);
+    }
+
+  }
 </script>
 
 </body>

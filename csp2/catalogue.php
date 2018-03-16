@@ -103,14 +103,16 @@ $items = mysqli_query($conn, $sql);
 							<div class="column is-1">
 							</div>
 							<div class="column is-11">
-								<label class="checkbox"><input type="checkbox">Funko POP! Anime</label><br>
-								<label class="checkbox"><input type="checkbox">Funko POP! Disney</label><br>
-								<label class="checkbox"><input type="checkbox">Funko POP! Games</label><br>
-								<label class="checkbox"><input type="checkbox">Funko POP! Heroes</label><br>
-								<label class="checkbox"><input type="checkbox">Funko POP! Movies</label><br>
-								<label class="checkbox"><input type="checkbox">Funko POP! Sports</label><br>
-								<label class="checkbox"><input type="checkbox">Funko POP! Star Wars</label><br>
-								<label class="checkbox"><input type="checkbox">Funko POP! TV</label><br>
+								<?php
+									$sql = "SELECT * FROM serials";
+									$result = mysqli_query($conn, $sql);
+									while ($serial = mysqli_fetch_assoc($result)) {
+								    extract($serial);
+										echo '
+											<label class="checkbox"><input type="checkbox">'.$series.'</label><br>
+										';
+									}
+								 ?>
 							</div>
 						</div>
 					</div>
@@ -127,15 +129,16 @@ $items = mysqli_query($conn, $sql);
 							<div class="column is-1">
 							</div>
 							<div class="column is-11">
-								<label class="checkbox"><input type="checkbox">DC</label><br>
-								<label class="checkbox"><input type="checkbox">Disney</label><br>
-								<label class="checkbox"><input type="checkbox">Game of Thrones</label><br>
-								<label class="checkbox"><input type="checkbox">Ghostbusters</label><br>
-								<label class="checkbox"><input type="checkbox">Marvel</label><br>
-								<label class="checkbox"><input type="checkbox">My Little Pony</label><br>
-								<label class="checkbox"><input type="checkbox">Star Wars</label><br>
-								<label class="checkbox"><input type="checkbox">Stranger Things</label><br>
-								<label class="checkbox"><input type="checkbox">Walking Dead</label><br>
+								<?php
+									$sql = "SELECT * FROM brands";
+									$result = mysqli_query($conn, $sql);
+									while ($brand = mysqli_fetch_assoc($result)) {
+								    extract($brand);
+										echo '
+											<label class="checkbox"><input type="checkbox">'.$brand.'</label><br>
+										';
+									}
+								 ?>
 							</div>
 						</div>
 					</div>
@@ -152,15 +155,16 @@ $items = mysqli_query($conn, $sql);
 							<div class="column is-1">
 							</div>
 							<div class="column is-11">
-								<label class="checkbox"><input type="checkbox">None</label><br>
-								<label class="checkbox"><input type="checkbox">Dardevil</label><br>
-								<label class="checkbox"><input type="checkbox">Captain America</label><br>
-								<label class="checkbox"><input type="checkbox">Black Panther</label><br>
-								<label class="checkbox"><input type="checkbox">Thor</label><br>
-								<label class="checkbox"><input type="checkbox">Superman</label><br>
-								<label class="checkbox"><input type="checkbox">Batman</label><br>
-								<label class="checkbox"><input type="checkbox">Suicide Squad</label><br>
-								<label class="checkbox"><input type="checkbox">Avengers</label><br>
+								<?php
+								$sql = "SELECT * FROM sub_brands";
+								$result = mysqli_query($conn, $sql);
+								while ($sub_brand = mysqli_fetch_assoc($result)) {
+									extract($sub_brand);
+									echo '
+									<label class="checkbox"><input type="checkbox">'.$sub_brand.'</label><br>
+									';
+								}
+								?>
 							</div>
 						</div>
 					</div>
@@ -177,12 +181,16 @@ $items = mysqli_query($conn, $sql);
 							<div class="column is-1">
 							</div>
 							<div class="column is-11">
-								<label class="checkbox"><input type="checkbox">Common</label><br>
-								<label class="checkbox"><input type="checkbox">Uncommon</label><br>
-								<label class="checkbox"><input type="checkbox">Rare</label><br>
-								<label class="checkbox"><input type="checkbox">Ultra Rare</label><br>
-								<label class="checkbox"><input type="checkbox">Super Rare</label><br>
-								<label class="checkbox"><input type="checkbox">Retired</label><br>
+								<?php
+								$sql = "SELECT * FROM rarities";
+								$result = mysqli_query($conn, $sql);
+								while ($rarity = mysqli_fetch_assoc($result)) {
+									extract($rarity);
+									echo '
+									<label class="checkbox"><input type="checkbox">'.$rarity.'</label><br>
+									';
+								}
+								?>
 							</div>
 						</div>
 					</div>
