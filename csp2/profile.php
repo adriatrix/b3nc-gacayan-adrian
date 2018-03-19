@@ -132,7 +132,12 @@
 
                 // $sql = "SELECT os.*, os.status FROM users u JOIN order_status os ON o.order_status_id = os.id WHERE (user_id = '$user_id')";
 
-                $sql = "SELECT * FROM orders WHERE (user_id = '$user_id')";
+                if ($_SESSION['current_user'] == 'admin') {
+                  $sql = "SELECT * FROM orders";
+                } else {
+                  $sql = "SELECT * FROM orders WHERE (user_id = '$user_id')";
+                }
+
                 $orders = mysqli_query($conn, $sql);
 
                 while ($order = mysqli_fetch_assoc($orders)) {

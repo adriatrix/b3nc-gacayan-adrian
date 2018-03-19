@@ -2,8 +2,8 @@
 
 session_start();
 
-$_SESSION['feedback_msg'] = "Created new item successfully";
-header('location: ../catalogue.php');
+// $_SESSION['feedback_msg'] = "Created new item successfully";
+// header('location: ../catalogue.php');
 
 require '../connect.php';
 
@@ -39,6 +39,7 @@ if(move_uploaded_file($_FILES['image']['tmp_name'],$target_file)) {
 
 $sql = "SELECT * FROM rarities WHERE rarity = '".$rarity."'";
 $result = mysqli_query($conn, $sql);
+
 while ($rarity = mysqli_fetch_assoc($result)) {
   extract($rarity);
   $rarity_id = $id;
@@ -46,6 +47,13 @@ while ($rarity = mysqli_fetch_assoc($result)) {
 
 $sql = "SELECT * FROM serials WHERE series = '".$series."'";
 $result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) == '0') {
+  $newsql = "INSERT INTO serials (series) VALUES ('".$series."')";
+  mysqli_query($conn, $newsql);
+  $result = mysqli_query($conn, $sql);
+}
+
 while ($series = mysqli_fetch_assoc($result)) {
   extract($series);
   $series_id = $id;
@@ -53,6 +61,12 @@ while ($series = mysqli_fetch_assoc($result)) {
 
 $sql = "SELECT * FROM brands WHERE brand = '".$brand."'";
 $result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) == '0') {
+  $newsql = "INSERT INTO brands (brand) VALUES ('".$brand."')";
+  mysqli_query($conn, $newsql);
+  $result = mysqli_query($conn, $sql);
+}
 
 while ($brand = mysqli_fetch_assoc($result)) {
   extract($brand);
@@ -62,6 +76,12 @@ while ($brand = mysqli_fetch_assoc($result)) {
 $sql = "SELECT * FROM sub_brands WHERE sub_brand = '".$sub_brand."'";
 $result = mysqli_query($conn, $sql);
 
+if (mysqli_num_rows($result) == '0') {
+  $newsql = "INSERT INTO sub_brands (sub_brand) VALUES ('".$sub_brand."')";
+  mysqli_query($conn, $newsql);
+  $result = mysqli_query($conn, $sql);
+}
+
 while ($sub_brand = mysqli_fetch_assoc($result)) {
   extract($sub_brand);
   $sub_brand_id = $id;
@@ -69,7 +89,9 @@ while ($sub_brand = mysqli_fetch_assoc($result)) {
 
 
 $sql = "INSERT INTO items (name, price, image, stock, description, release_date, item_status_id, rarity_id, series_id, brand_id, sub_brand_id, product_id) VALUES ('".$name."','".$price."','".$image."','".$stock."','".$description."','".$release_date."','1','".$rarity_id."','".$series_id."','".$brand_id."','".$sub_brand_id."','1')";
-mysqli_query($conn, $sql);
+var_dump($sql);
+
+// mysqli_query($conn, $sql);
 
 // check if successful
 
