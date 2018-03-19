@@ -72,5 +72,6 @@
 <!-- Your customer chat code -->
 <div class="fb-customerchat"
 page_id="343068612864114"
+minimized = "true"
 theme_color="#ff7e29">
 </div>

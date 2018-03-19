@@ -30,7 +30,6 @@
    extract($order);
 
 
-
   ?>
 
   <h1 hidden>Order Details Page</h1>
@@ -99,7 +98,7 @@
             <table class="table is-bordered is-striped is-fullwidth">
               <tbody>
                 <?php
-                  $sql = "SELECT * FROM users WHERE (username = '$user_name')";
+                  $sql = "SELECT * FROM users WHERE (id = '$user_id')";
                   $users = mysqli_query($conn, $sql);
                   while ($user = mysqli_fetch_assoc($users)) {
                     extract($user);
