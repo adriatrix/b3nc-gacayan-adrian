@@ -4,7 +4,7 @@
 
 
   function getTitle() {
-    echo 'Basket page';
+    echo 'Shopping Basket';
   }
 
   include 'partials/head.php';
@@ -33,22 +33,73 @@
       <div class="column is-8 has-text-centered">
         <h2 class="is-size-3">YOUR <span class="is-hidden-mobile">SHOPPING</span> BASKET</h2>
       </div>
-      <div class="column is-2 has-text-right is-hidden-mobile">
-        <a class="button is-large is-info" href="checkout.php">
-          <span>Checkout</span>
-          <span class="icon">
+
+      <?php
+        if (!isset($_SESSION['cart'])) {
+          echo '
+            <div class="column is-2 has-text-right is-hidden-mobile">
+            <a class="button is-large is-info" disabled href="checkout.php">
+            <span>Checkout</span>
+            <span class="icon">
             <i class="fas fa-angle-right"></i>
-          </span>
-        </a>
-      </div>
-      <div class="column is-2 has-text-centered is-hidden-tablet">
-        <a class="button is-large is-info" href="checkout.php">
-          <span>Checkout</span>
-          <span class="icon">
+            </span>
+            </a>
+            </div>
+            <div class="column is-2 has-text-centered is-hidden-tablet">
+            <a class="button is-large is-info" disabled href="checkout.php">
+            <span>Checkout</span>
+            <span class="icon">
             <i class="fas fa-angle-right"></i>
-          </span>
-        </a>
-      </div>
+            </span>
+            </a>
+            </div>
+          ';
+        } else {
+          if (isset($_SESSION['current_user'])) {
+            echo '
+              <div class="column is-2 has-text-right is-hidden-mobile">
+              <a class="button is-large is-info" href="checkout.php">
+              <span>Checkout</span>
+              <span class="icon">
+              <i class="fas fa-angle-right"></i>
+              </span>
+              </a>
+              </div>
+              <div class="column is-2 has-text-centered is-hidden-tablet">
+              <a class="button is-large is-info" href="checkout.php">
+              <span>Checkout</span>
+              <span class="icon">
+              <i class="fas fa-angle-right"></i>
+              </span>
+              </a>
+              </div>
+            ';
+          } else {
+            echo '
+              <div class="column is-2 has-text-right is-hidden-mobile">
+              <a class="button is-large is-info" href="signin.php">
+              <span>Sign In</span>
+              <span class="icon">
+              <i class="fas fa-angle-right"></i>
+              </span>
+              </a>
+              </div>
+              <div class="column is-2 has-text-centered is-hidden-tablet">
+              <a class="button is-large is-info" href="signin.php">
+              <span>Sign In</span>
+              <span class="icon">
+              <i class="fas fa-angle-right"></i>
+              </span>
+              </a>
+              </div>
+            ';
+          }
+        }
+      ?>
+
+
+
+
     </div>
 
     <div class="columns is-hidden-mobile">
@@ -164,6 +215,7 @@
             </div>
             </div>
             ';
+            unset($_SESSION['cart']);
           }
           ?>
 
@@ -192,14 +244,46 @@
           </div>
         </div>
       </div>
-      <div class="column is-2 has-text-centered is-hidden-tablet">
-        <a class="button is-large is-info" href="checkout.php">
-          <span>Checkout</span>
-          <span class="icon">
+
+      <?php
+        if (!isset($_SESSION['cart'])) {
+          echo '
+            <div class="column is-2 has-text-centered is-hidden-tablet">
+            <a class="button is-large is-info" disabled href="checkout.php">
+            <span>Checkout</span>
+            <span class="icon">
             <i class="fas fa-angle-right"></i>
-          </span>
-        </a>
-      </div>
+            </span>
+            </a>
+            </div>
+          ';
+        } else {
+          if (isset($_SESSION['current_user'])) {
+            echo '
+              <div class="column is-2 has-text-centered is-hidden-tablet">
+              <a class="button is-large is-info" href="checkout.php">
+              <span>Checkout</span>
+              <span class="icon">
+              <i class="fas fa-angle-right"></i>
+              </span>
+              </a>
+              </div>
+            ';
+          } else {
+            echo '
+              <div class="column is-2 has-text-centered is-hidden-tablet">
+              <a class="button is-large is-info" href="signin.php">
+              <span>Sign In</span>
+              <span class="icon">
+              <i class="fas fa-angle-right"></i>
+              </span>
+              </a>
+              </div>
+            ';
+          }
+        }
+      ?>
+
     </div>
 
 

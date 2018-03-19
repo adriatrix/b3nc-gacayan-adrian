@@ -15,7 +15,7 @@
 
  <?php include 'partials/header.php'; ?>
 
- <h1 hidden>Sign Up Page</h1>
+ <h1 hidden>Sign Up</h1>
 
  <section class="hero">
    <div class="hero-body">

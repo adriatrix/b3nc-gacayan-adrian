@@ -65,7 +65,7 @@ CREATE TABLE `items` (
   `release_date` date NOT NULL,
   `item_status_id` int(11) NOT NULL,
   `rarity_id` int(11) NOT NULL,
-  `serial_id` int(11) NOT NULL,
+  `series_id` int(11) NOT NULL,
   `brand_id` int(11) NOT NULL,
   `sub_brand_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
@@ -75,7 +75,7 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `stock`, `image`, `price`, `discount`, `release_date`, `item_status_id`, `rarity_id`, `serial_id`, `brand_id`, `sub_brand_id`, `product_id`) VALUES
+INSERT INTO `items` (`id`, `name`, `description`, `stock`, `image`, `price`, `discount`, `release_date`, `item_status_id`, `rarity_id`, `series_id`, `brand_id`, `sub_brand_id`, `product_id`) VALUES
 (2, 'Funko POP! Game of Thrones Jon Snow', 'Ahead of the highly anticipated return of season 7, Game of Thrones Pop! Jon Snow Vinyl Figure. Notable for the distinctive style and collectability, featuring a fearless Jon Snow prepared for battle.', 2, 'assets/img/items/funko-game-of-thrones-funko-pop-jon-snow.jpg', '650.00', '0.00', '2017-03-01', 4, 3, 6, 4, 1, 1),
 (3, 'Deadpool Funko POP! Marvel Cable', 'Description coming soon... ', 2, 'assets/img/items/funko-marvel-deadpool-funko-pop-marvel-cable.jpg', '550.00', '0.00', '2018-05-09', 1, 3, 5, 1, 1, 1),
 (4, 'Thor: Ragnarok Funko POP! Marvel Hela', 'Hela, Goddess of Death in the movie Thor Ragnarok. Thor imprisoned on the other side of the universe, now finds himself fighting against his Avengers teammate, the Hulk! ', 2, 'assets/img/items/funko-marvel-thor-funko-pop-marvel-hela.jpg', '550.00', '0.00', '2017-12-20', 3, 2, 5, 1, 5, 1),
@@ -313,7 +313,7 @@ ALTER TABLE `items`
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `items_fk0` (`item_status_id`),
   ADD KEY `items_fk1` (`rarity_id`),
-  ADD KEY `items_fk2` (`serial_id`),
+  ADD KEY `items_fk2` (`series_id`),
   ADD KEY `items_fk3` (`brand_id`),
   ADD KEY `items_fk4` (`sub_brand_id`),
   ADD KEY `items_fk5` (`product_id`);
@@ -471,7 +471,7 @@ ALTER TABLE `users`
 ALTER TABLE `items`
   ADD CONSTRAINT `items_fk0` FOREIGN KEY (`item_status_id`) REFERENCES `item_status` (`id`),
   ADD CONSTRAINT `items_fk1` FOREIGN KEY (`rarity_id`) REFERENCES `rarities` (`id`),
-  ADD CONSTRAINT `items_fk2` FOREIGN KEY (`serial_id`) REFERENCES `serials` (`id`),
+  ADD CONSTRAINT `items_fk2` FOREIGN KEY (`series_id`) REFERENCES `serials` (`id`),
   ADD CONSTRAINT `items_fk3` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
   ADD CONSTRAINT `items_fk4` FOREIGN KEY (`sub_brand_id`) REFERENCES `sub_brands` (`id`),
   ADD CONSTRAINT `items_fk5` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);

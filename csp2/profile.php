@@ -12,7 +12,7 @@
 
 
   function getTitle() {
-    echo 'Profile Page';
+    echo 'Account Details';
   }
 
   include 'partials/head.php';
@@ -27,17 +27,20 @@
  <div class="container box">
    <div class="columns">
      <div class="column is-6 has-text-left">
-       <h1 class="is-5 title">Profile Page</h1>
+       <h1 class="is-5 title">Account Details</h1>
      </div>
      <div class="column has-text-right">
        <?php
 
-       $name = $_SESSION['current_user'];
+      if (isset($_SESSION['current_user']) ) {
+        $name = $_SESSION['current_user'];
+      }
 
        $sql = "SELECT u.*, r.role FROM users u JOIN roles r ON (u.role_id = r.id) WHERE u.username = '$name'";
        $result = mysqli_query($conn, $sql);
        $user = mysqli_fetch_assoc($result);
        extract($user);
+       $user_id = $id;
 
         if (isset($_SESSION['current_user'])) {
           echo '
@@ -113,6 +116,51 @@
        ?>
      </div>
    </div>
+  <div class="columns">
+    <div class="column has-text-left">
+      <h1 class="is-5 title">Order History</h1>
+      <div class="columns">
+        <div class="column">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+      			<thead>
+      				<th>Date</th>
+      				<th>Order ID</th>
+      				<th>Status</th>
+      			</thead>
+      			<tbody>
+              <?php
+
+                // $sql = "SELECT os.*, os.status FROM users u JOIN order_status os ON o.order_status_id = os.id WHERE (user_id = '$user_id')";
+
+                $sql = "SELECT * FROM orders WHERE (user_id = '$user_id')";
+                $orders = mysqli_query($conn, $sql);
+
+                while ($order = mysqli_fetch_assoc($orders)) {
+                  extract($order);
+                  $o_id = $id;
+
+                  $sql = "SELECT * FROM order_status WHERE (id = '$order_status_id')";
+                  $result = mysqli_query($conn, $sql);
+                  $order_status = mysqli_fetch_assoc($result);
+                  extract($order_status);
+
+
+                  echo '
+                    <tr>
+                    <td>'.$purchase_date.'</td>
+                    <td><a href="order_details.php?id='.$o_id.'">'.$reference_num.'</a></td>
+                    <td>'.$status.'</td>
+                    </tr>
+                    ';
+                }
+
+               ?>
+             </tbody>
+           </table>
+         </div>
+      </div>
+    </div>
+  </div>
  </div>
 
  <div class="modal" id="editUserModal">

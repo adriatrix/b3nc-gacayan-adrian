@@ -1,6 +1,74 @@
-/* body {
-	background-color: indigo;
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.is-bg {
+    background-image: url("../img/banner.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.my-title {
+	font-family: 'Bangers', cursive;
+	font-size: 70px;
+
+	-webkit-text-stroke: 2px black;
+   color: white;
+   text-shadow:
+       4px 4px 0 orange,
+     -1px -1px 0 orange,
+      1px -1px 0 orange,
+      -1px 1px 0 orange,
+       2px 2px 0 orange;
+}
+
+.my-title-bold {
+	-webkit-text-stroke: 2px white;
+   color: orange;
+   text-shadow:
+       4px 4px 0 black,
+     -1px -1px 0 black,
+      1px -1px 0 black,
+      -1px 1px 0 black,
+       2px 2px 0 black;
+}
+
+/* .my-image-relative {
+	position: relative;
+}
+
+.my-image {
+	position: absolute;
+	z-index: 1;
+	bottom: 0px;
+	right: 100px;
 } */
+
+/* .fb-customerchat {
+	position: fixed;
+	z-index: 1;
+	left: 500px;
+	bottom: 500px;
+} */
+
+
+@media screen and (max-width: 425px) {
+	.is-bg {
+	    background-image: url("../img/banner.jpg");
+	    height: 100%;
+	    background-position: right center;
+	    background-repeat: no-repeat;
+	    background-size: auto;
+	}
+
+	.my-title {
+		font-size: 50px;
+	}
+}
+
+
 
 .my-footer {
 
@@ -34,6 +102,13 @@
     /* display: none; */
     overflow: hidden;
     max-height: 0;
+    transition: max-height 0.2s ease-out;
+}
+
+.panel-accordion-show {
+    /* display: none; */
+    overflow: hidden;
+    max-height: none;
     transition: max-height 0.2s ease-out;
 }
 

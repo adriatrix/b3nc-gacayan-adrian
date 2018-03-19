@@ -10,9 +10,6 @@ include 'partials/head.php';
 
 require 'connect.php';
 
-$sql = "SELECT * FROM items";
-$items = mysqli_query($conn, $sql);
-
 ?>
 
 
@@ -22,40 +19,40 @@ $items = mysqli_query($conn, $sql);
 	<?php include 'partials/header.php'; ?>
 
 	<div class="container">
-		<div class="columns">
+		<div class="columns is-hidden-mobile">
 			<div class="column">
-				<div class="breadcrumb is-small" aria-label="breadcrumbs">
+				<div class="breadcrumb" aria-label="breadcrumbs">
 					<ul>
 						<li><a href="home.php">Home</a></li>
-						<li class="is-active"><a href="#" aria-current="page">Shop</a></li>
+						<?php
+							if (isset($_GET['category']) AND (isset($_GET['filter'])) AND (isset($_GET['text']))) {
+								$category = $_GET['category'];
+								$filter = $_GET['filter'];
+								$text = $_GET['text'];
+								echo '
+								<li><a href="catalogue.php">Shop</a></li>
+								<li class="is-active"><a href="#" aria-current="page">'.$text.'</a></li>
+								';
+							} else {
+								echo '
+									<li class="is-active"><a href="#" aria-current="page">Shop</a></li>
+								';
+							}
+						 ?>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="columns">
+		<h1 class="is-hidden">Catalog Page</h1>
+		<!-- <div class="columns">
 			<div class="column is-3">
 			</div>
 			<div class="column is-3">
-				<h1 class="is-size-3 is-title">Catalog Page
-					<span>
-						<?php
-							if (isset($_SESSION['user_role'])) {
-								if ($_SESSION['user_role'] == 'admin') {
-									echo '
-									<a href="create_item.php">
-									<button class="button is-primary is-outlined">Create New Item</button>
-									</a>
-									';
-								}
-							}
-						 ?>
-					</span>
-				</h1>
 			</div>
 			<div class="column">
 				<div class="pagination is-right" role="navigation" aria-label="pagination">
-					<!-- <a class="pagination-previous">Previous</a>
-					<a class="pagination-next">Next page</a> -->
+					<a class="pagination-previous"><</a>
+					<a class="pagination-next">></a>
 					<ul class="pagination-list">
 						<li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
 						<li><span class="pagination-ellipsis">&hellip;</span></li>
@@ -67,32 +64,45 @@ $items = mysqli_query($conn, $sql);
 					</ul>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="columns">
 			<div class="column is-3">
 				<div class="panel">
+					<?php
+					if (isset($_SESSION['user_role'])) {
+						if ($_SESSION['user_role'] == 'admin') {
+							echo '
+							<div class="panel-block">
+							<a class="button is-primary is-fullwidth" href="create_item.php">
+								Create New Item
+							</a>
+							</div>
+							';
+						}
+					}
+					?>
+					<div class="panel-block">
+						<form action="catalogue.php" method="GET">
+							<div class="field has-addons">
+								<div class="control has-icons-left">
+									<input class="input" type="text" name="query" placeholder="enter keyword/s">
+									<span class="icon is-small is-left">
+										<i class="fas fa-search"></i>
+									</span>
+								</div>
+								<div class="control">
+									<input class="button is-link" type="submit" value="Search">
+								</div>
+							</div>
+						</form>
+					</div>
 					<p class="panel-heading">
 						categories
 					</p>
-					<div class="panel-block">
-						<p class="control has-icons-left">
-							<input class="input is-small" type="text" placeholder="search">
-							<span class="icon is-small is-left">
-								<i class="fas fa-search"></i>
-							</span>
-						</p>
-					</div>
-					<!-- <p class="panel-tabs">
-					<a class="is-active">all</a>
-					<a>new arrivals</a>
-					<a>pre-orders</a>
-					<a>sources</a>
-					<a>forks</a>
-				</p> -->
 
-				<a class="panel-block accordion">
-					<span class="panel-icon">
+				<a class="panel-block accordion has-text-link">
+					<span class="panel-icon has-text-link">
 						<i class="fas fa-book"></i>
 					</span>
 					Series
@@ -109,7 +119,7 @@ $items = mysqli_query($conn, $sql);
 									while ($serial = mysqli_fetch_assoc($result)) {
 								    extract($serial);
 										echo '
-											<label class="checkbox"><input type="checkbox">'.$series.'</label><br>
+											<label><a href="catalogue.php?category=serials&filter=series&text='.$series.'">'.$series.'</a></label><br>
 										';
 									}
 								 ?>
@@ -117,8 +127,8 @@ $items = mysqli_query($conn, $sql);
 						</div>
 					</div>
 				</div>
-				<a class="panel-block accordion">
-					<span class="panel-icon">
+				<a class="panel-block accordion has-text-link">
+					<span class="panel-icon has-text-link">
 						<i class="fas fa-book"></i>
 					</span>
 					Brands
@@ -135,7 +145,7 @@ $items = mysqli_query($conn, $sql);
 									while ($brand = mysqli_fetch_assoc($result)) {
 								    extract($brand);
 										echo '
-											<label class="checkbox"><input type="checkbox">'.$brand.'</label><br>
+											<label><a href="catalogue.php?category=brands&filter=brand&text='.$brand.'">'.$brand.'</a></label><br>
 										';
 									}
 								 ?>
@@ -143,8 +153,8 @@ $items = mysqli_query($conn, $sql);
 						</div>
 					</div>
 				</div>
-				<a class="panel-block accordion">
-					<span class="panel-icon">
+				<a class="panel-block accordion has-text-link">
+					<span class="panel-icon has-text-link">
 						<i class="fas fa-book"></i>
 					</span>
 					Sub-brands
@@ -161,7 +171,7 @@ $items = mysqli_query($conn, $sql);
 								while ($sub_brand = mysqli_fetch_assoc($result)) {
 									extract($sub_brand);
 									echo '
-									<label class="checkbox"><input type="checkbox">'.$sub_brand.'</label><br>
+									<label><a href="catalogue.php?category=sub_brands&filter=sub_brand&text='.$sub_brand.'">'.$sub_brand.'</a></label><br>
 									';
 								}
 								?>
@@ -169,8 +179,8 @@ $items = mysqli_query($conn, $sql);
 						</div>
 					</div>
 				</div>
-				<a class="panel-block accordion">
-					<span class="panel-icon">
+				<a class="panel-block accordion has-text-link">
+					<span class="panel-icon has-text-link">
 						<i class="fas fa-book"></i>
 					</span>
 					Rarity
@@ -187,7 +197,7 @@ $items = mysqli_query($conn, $sql);
 								while ($rarity = mysqli_fetch_assoc($result)) {
 									extract($rarity);
 									echo '
-									<label class="checkbox"><input type="checkbox">'.$rarity.'</label><br>
+									<label><a href="catalogue.php?category=rarities&filter=rarity&text='.$rarity.'">'.$rarity.'</a></label><br>
 									';
 								}
 								?>
@@ -195,16 +205,42 @@ $items = mysqli_query($conn, $sql);
 						</div>
 					</div>
 				</div>
-				<div class="panel-block">
-					<button class="button is-link is-outlined is-fullwidth">
-						reset all filters
-					</button>
-				</div>
+				<p class="panel-heading">
+					&nbsp;
+				</p>
 			</div>
 		</div>
 		<div class="column is-9">
 			<?php
+
 			$itemcount = 0;
+
+			if (isset($_GET['query'])) {
+				$query = $_GET['query'];
+				$query = htmlspecialchars($query);
+				$query = mysqli_real_escape_string($conn, $query);
+				$sql = "SELECT * FROM items WHERE (name LIKE '%".$query."%') OR (description LIKE '%".$query."%')";
+				$items = mysqli_query($conn, $sql);
+				if(mysqli_num_rows($items) < 1) {
+					echo 'No results found.';
+				}
+			} else {
+				if (isset($_GET['category']) AND (isset($_GET['filter'])) AND (isset($_GET['text']))) {
+					$category = $_GET['category'];
+					$filter = $_GET['filter'];
+					$filter_id = $_GET['filter'].'_id';
+					$text = $_GET['text'];
+					$sql = "SELECT i.*, a.$filter FROM items i JOIN $category a ON i.$filter_id = a.id WHERE ($filter = '$text')";
+					$items = mysqli_query($conn, $sql);
+					if(mysqli_num_rows($items) < 1) {
+						echo 'No results found.';
+					}
+				} else {
+					$sql = "SELECT * FROM items";
+					$items = mysqli_query($conn, $sql);
+				}
+			}
+
 			while ($item = mysqli_fetch_assoc($items)) {
 				if (($itemcount % 3) == 0) {echo '<div class="columns">';}
 					extract ($item);
@@ -245,11 +281,20 @@ $items = mysqli_query($conn, $sql);
 											</div>
 											';
 
-											if ($quantity == $stock) {
+											if ($stock == 0) {
 												echo '
+												<div class="level-item has-text-centered">
+												<a class="button is-medium is-danger" disabled>
+												<span>No Stock</span>
+												</a>
+												</div>
+												';
+											} else {
+												if ($quantity == $stock) {
+													echo '
 													<div class="level-item has-text-centered">
 													<div class="is-hidden"  id="addBasket'. $id .'">
-													<a class="button is-medium is-info" onclick="addToBasket('.$id.')">
+													<a class="button is-medium is-link" onclick="addToBasket('.$id.')">
 													<span>Buy1</span>
 													<span class="icon">
 													<i class="fas fa-shopping-basket"></i>
@@ -257,7 +302,7 @@ $items = mysqli_query($conn, $sql);
 													</a>
 													</div>
 													<div id="viewBasket'. $id .'">
-													<a class="button is-medium is-info is-outlined" href="basket.php">
+													<a class="button is-medium is-link is-outlined" href="basket.php">
 													<span>View</span>
 													<span class="icon">
 													<i class="fas fa-shopping-basket"></i>
@@ -265,12 +310,12 @@ $items = mysqli_query($conn, $sql);
 													</a>
 													</div>
 													</div>
-												';
-											} else {
-												echo '
+													';
+												} else {
+													echo '
 													<div class="level-item has-text-centered">
 													<div id="addBasket'. $id .'">
-													<a class="button is-medium is-info" onclick="addToBasket('.$id.')">
+													<a class="button is-medium is-link" onclick="addToBasket('.$id.')">
 													<span>Buy1</span>
 													<span class="icon">
 													<i class="fas fa-shopping-basket"></i>
@@ -278,7 +323,7 @@ $items = mysqli_query($conn, $sql);
 													</a>
 													</div>
 													<div class="is-hidden" id="viewBasket'. $id .'">
-													<a class="button is-medium is-info is-outlined" href="basket.php">
+													<a class="button is-medium is-link is-outlined" href="basket.php">
 													<span>View</span>
 													<span class="icon">
 													<i class="fas fa-shopping-basket"></i>
@@ -286,8 +331,10 @@ $items = mysqli_query($conn, $sql);
 													</a>
 													</div>
 													</div>
-												';
+													';
+												}
 											}
+
 
 											echo '
 											<div class="level-item has-text-centered">
@@ -310,20 +357,6 @@ $items = mysqli_query($conn, $sql);
 			</div>
 		</div>
 	</div>
-
-
-		<?php
-
-			// if ($_SESSION['role'] = 'admin') {
-			// 	echo '
-			// 	<a href="create_new_item.php">
-			// 	<button class="btn btn-primary">Add New Item</button>
-			// 	</a>
-			// 	';
-			// }
-		 ?>
-
-
 
   <?php
 

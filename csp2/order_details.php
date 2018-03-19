@@ -4,7 +4,7 @@
 
 
   function getTitle() {
-    echo 'Checkout';
+    echo 'Order Details';
   }
 
   include 'partials/head.php';
@@ -22,33 +22,68 @@
     $user_name = $_SESSION['current_user'];
    }
 
-   $sql = "SELECT * FROM users WHERE (username = '$user_name')";
-   $users = mysqli_query($conn, $sql);
+   $o_id = $_GET['id'];
+
+   $sql = "SELECT * FROM orders WHERE (id = '$o_id')";
+   $orders = mysqli_query($conn, $sql);
+   $order = mysqli_fetch_assoc($orders);
+   extract($order);
+
+
 
   ?>
 
-  <h1 hidden>Checkout Page</h1>
+  <h1 hidden>Order Details Page</h1>
 
   <div class="container box">
-    <form action="assets/creatingorder.php" method="post">
     <div class="columns">
-      <div class="column is-2 is-hidden-mobile">
-        <a class="button is-large is-info" href="catalogue.php">
-          <span class="icon">
-            <i class="fas fa-angle-left"></i>
-          </span>
-          <span>Back to Shop</span>
+      <div class="column is-8">
+        <h2 class="is-size-3">Order Details for <?php echo'<strong>'.$reference_num.'</strong>'; ?></h2>
+      </div>
+      <div class="column is-3 has-text-right">
+        <form action="assets/updatingorder.php" method="POST">
+          <input name="order_id" value="<?php echo $o_id ?>" hidden>
+          <?php
+          if ($_SESSION['current_user'] == 'admin') {
+            echo '
+            <div class="field has-addons">
+            <div class="control is-expanded">
+            <div class="select is-fullwidth">
+            <select name="order-status">
+            ';
+
+            $sql = "SELECT * FROM order_status";
+            $order_stati = mysqli_query($conn, $sql);
+            while ($order_statuses = mysqli_fetch_assoc($order_stati)) {
+              extract($order_statuses);
+              if ($order_status_id == $id) {
+                echo '
+                <option value ="'.$status.'" selected>'.$status.'</option>
+                ';
+              } else {
+                echo '
+                <option value ="'.$status.'">'.$status.'</option>
+                ';
+              }
+            }
+
+            echo '
+            </select>
+            </div>
+            </div>
+            <div class="control">
+            <button type="submit" class="button is-primary">Update</button>
+            </div>
+            </div>
+            ';
+          }
+          ?>
+        </form>
+      </div>
+      <div class="column is-1">
+        <a href="profile.php">
+          <button class="button is-dark is-outlined">Back</button>
         </a>
-      </div>
-      <div class="column is-8 has-text-centered">
-        <h2 class="is-size-3">CHECKOUT </h2>
-        <span class="is-size-7">Please enter your details below to complete your purchase...</span>
-      </div>
-      <div class="column is-2 has-text-right is-hidden-mobile">
-        <input class="button is-large is-info" type="submit" name="submit" value="Place Order">
-      </div>
-      <div class="column is-2 has-text-centered is-hidden-tablet">
-        <input class="button is-large is-info" type="submit" name="submit" value="Place Order">
       </div>
     </div>
 
@@ -56,15 +91,7 @@
       <div class="column is-4 box is-radiusless">
         <div class="columns">
           <div class="column">
-            <p class="is-size-6 box"><span class="is-size-4">1. </span><span>Shipping address</span>
-              <span class="is-pulled-right">
-                <a href="profile.php" class="button is-primary is-rounded is-outlined is-hidden-touch">edit address</a>
-                <a href="profile.php" class="button is-primary is-rounded is-outlined is-hidden-desktop">edit</a>
-              </span>
-            </p>
-            <p class="is-size-7 has-text-justified">
-              Confirm your address details below. If incorrect or incomplete, kindly update in your Profile page.
-            </p>
+            <p class="is-size-6 box"><span class="is-size-4">1. </span><span>Shipping address</span></p>
           </div>
         </div>
         <div class="columns">
@@ -72,6 +99,8 @@
             <table class="table is-bordered is-striped is-fullwidth">
               <tbody>
                 <?php
+                  $sql = "SELECT * FROM users WHERE (username = '$user_name')";
+                  $users = mysqli_query($conn, $sql);
                   while ($user = mysqli_fetch_assoc($users)) {
                     extract($user);
                     echo '
@@ -117,16 +146,38 @@
             <p class="is-size-6 box"><span class="is-size-4">2. </span><span>Shipping Method</span></p>
             <div class="control">
               <label class="radio">
-                <input type="radio" name="shipping" value = "meetup" checked onclick="updateShipping()">
-                <span class="has-text-weight-semibold has-text-info">Scheduled Meetup</span>
-              </label>
-                <span class="is-size-6 is-pulled-right"><strong> PHP 0.00</strong></span>
-              <br>
-              <br>
-              <label class="radio">
-                <input type="radio" name="shipping" value = "local" onclick="updateShipping()">
-              <span class="has-text-weight-semibold has-text-info">Local Shipping</span>
-            </label>
+
+                <?php
+                  if ($ship_method == 'local') {
+                    echo '
+                      <input type="radio" name="shipping" value = "meetup" disabled>
+                      <span class="has-text-weight-semibold has-text-grey">Scheduled Meetup</span>
+                      </label>
+                      <span class="is-size-6 is-pulled-right"><strong> PHP 0.00</strong></span>
+                      <br>
+                      <br>
+                      <label class="radio">
+                      <input type="radio" name="shipping" value = "local" checked disabled>
+                      <span class="has-text-weight-semibold has-text-info">Local Shipping</span>
+                      </label>
+                    ';
+                  } else {
+                    echo '
+                    <input type="radio" name="shipping" value = "meetup" checked disabled>
+                    <span class="has-text-weight-semibold has-text-info">Scheduled Meetup</span>
+                    </label>
+                    <span class="is-size-6 is-pulled-right"><strong> PHP 0.00</strong></span>
+                    <br>
+                    <br>
+                    <label class="radio">
+                    <input type="radio" name="shipping" value = "local" disabled>
+                    <span class="has-text-weight-semibold has-text-grey">Local Shipping</span>
+                    </label>
+                    ';
+                  }
+
+                 ?>
+
               <span class="is-size-6 is-pulled-right"><strong> PHP 150.00</strong></span>
             </div>
           </div>
@@ -136,7 +187,7 @@
             <p class="is-size-6 box"><span class="is-size-4">3. </span><span>Payment Method</span></p>
             <div class="control">
               <label class="radio">
-                <input type="radio" name="payment" checked>
+                <input type="radio" name="payment" checked disabled>
                 <span class="has-text-weight-semibold has-text-info">Direct Bank Transfer</span>
               </label>
               <p class="is-size-7 has-text-justified">
@@ -146,7 +197,7 @@
               <br>
               <label class="radio">
                 <input type="radio" name="payment" disabled>
-                <span class="has-text-weight-semibold has-text-info">Paypal</span>
+                <span class="has-text-weight-semibold has-text-grey">Paypal</span>
               </label>
               <p class="is-size-7 has-text-justified">
                 We are still in the process of adding this feature to our site. Stay tune for more updates.
@@ -158,29 +209,25 @@
       <div class="column is-4 box is-radiusless">
         <div class="columns">
           <div class="column is-12">
-            <p class="is-size-6 box"><span class="is-size-4">4. </span><span>Review Order</span>
-              <span class="is-pulled-right">
-                <a href="basket.php" class="button is-primary is-rounded is-outlined is-hidden-touch">edit basket</a>
-                <a href="basket.php" class="button is-primary is-rounded is-outlined is-hidden-desktop">edit</a>
-              </span>
+            <p class="is-size-6 box"><span class="is-size-4">4. </span><span>Ordered Items</span>
             </p>
             <?php
             $totalprice = 0;
             $totalqty = 0;
-            $my_basket = $_SESSION['cart'];
 
-            foreach ($my_basket as $key => $basket) {
-              $sql = "SELECT id, image, name, price, stock FROM items WHERE id = '".$key."'";
-              $result = mysqli_query($conn, $sql);
-              $item = mysqli_fetch_assoc($result);
+            $sql = "SELECT * FROM order_details WHERE (order_id = '$o_id')";
+            // var_dump($sql);
+            $order_details = mysqli_query($conn, $sql);
+
+            while ($order_detail = mysqli_fetch_assoc($order_details)) {
+              extract($order_detail);
+
+              $sql = "SELECT id, image, name FROM items WHERE id = '".$item_id."'";
+              $items = mysqli_query($conn, $sql);
+              $item = mysqli_fetch_assoc($items);
               extract($item);
 
-              if($my_basket[$key] == 0 || is_nan($my_basket[$key])) {
-                $my_basket[$key] = 1;
-              }
-
-              $sub_total = $my_basket[$key] * intval($price);
-              $fsub_total = number_format($sub_total,2);
+              $fsub_total = number_format($subtotal,2);
 
               echo '
               <div class="columns is-gapless">
@@ -195,7 +242,7 @@
                       <div class="content">
                         <p><span class="is-size-6 has-text-weight-semibold has-text-info">'. $name .'</span>
                         <br>
-                        <span class="is-size-7"> qty:<strong class="is-size-6"> '. $my_basket[$key] .'</strong></span>
+                        <span class="is-size-7"> qty:<strong class="is-size-6"> '. $quantity .'</strong></span>
                         <span class="is-size-6 is-pulled-right">subtotal:<strong> PHP '. $fsub_total .'</strong></span>
                         </p>
                       </div>
@@ -205,19 +252,26 @@
               </div>
             <hr>
             ';
-            $totalqty = $totalqty + $my_basket[$key];
-            $totalprice = intval($totalprice,10) + intval($sub_total,10);
+            $totalqty = $totalqty + $quantity;
+            $totalprice = intval($totalprice,10) + intval($subtotal,10);
           }
           ?>
           </div>
         </div>
-        <div class="ship-charge is-hidden">
-          <div class="columns">
-            <div class="column">
+        <?php
+          if ($ship_method == 'local') {
+            $totalprice = intval($totalprice,10) + 150;
+            echo '
+              <div class="ship-charge">
+              <div class="columns">
+              <div class="column">
               <small>Local Shipping</small><span class="is-size-6 is-pulled-right"><strong> PHP 150.00</strong></span>
-            </div>
-          </div>
-        </div>
+              </div>
+              </div>
+              </div>
+            ';
+          }
+         ?>
         <div class="columns">
           <div class="column">
             <strong>TOTAL</strong><span class="is-size-6 is-pulled-right"><strong> PHP <span class="update-total-price"><?php echo ' '. number_format($totalprice,2) .' '; ?></span></strong></span>
@@ -228,7 +282,6 @@
     <div class="column is-2 has-text-centered is-hidden-tablet">
       <input class="button is-large is-info" type="submit" name="submit" value="Place Order">
     </div>
-  </form>
   </div>
 
 
@@ -240,37 +293,6 @@
   include 'partials/foot.php';
 
 ?>
-
-<script>
-  // currency formatter from Patrick Desjardins at stackoverflow
-  Number.prototype.formatMoney = function(c, d, t){
-  var n = this,
-      c = isNaN(c = Math.abs(c)) ? 2 : c,
-      d = d == undefined ? "." : d,
-      t = t == undefined ? "," : t,
-      s = n < 0 ? "-" : "",
-      i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
-      j = (j = i.length) > 3 ? j % 3 : 0;
-     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
-   };
-
-  var total = $('.update-total-price').html();
-  var localtotal = Number(total.replace(/[^0-9\.-]+/g,"")) + 150;
-  localtotal = parseInt(localtotal).formatMoney(2)
-  // console.log(localtotal);
-
-  function updateShipping() {
-    var shipmethod = $('input[type="radio"][name="shipping"]:checked').val();
-    if (shipmethod == "local") {
-      $('.ship-charge').removeClass('is-hidden');
-      $('.update-total-price').html(localtotal);
-    } else  {
-      $('.ship-charge').addClass('is-hidden');
-      $('.update-total-price').html(total);
-    }
-
-  }
-</script>
 
 </body>
 </html>

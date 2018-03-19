@@ -11,7 +11,7 @@ if (!isset($_SESSION['current_user'])) {
 
 
 function getTitle() {
-	echo 'Settings';
+	echo 'Accounts';
 }
 
 include 'partials/head.php';
@@ -26,9 +26,9 @@ require 'connect.php';
 	<?php include 'partials/header.php'; ?>
 
 	<!-- wrapper -->
-	<main class="wrapper">
+	<div class="container box">
 
-		<h1>Accounts Page</h1>
+		<h1 class="title">Accounts</h1>
 
 		<table class="table is-bordered is-striped is-hoverable is-fullwidth">
 			<thead>
@@ -61,7 +61,7 @@ require 'connect.php';
 
 		</table>
 
-	</main>
+	</div>
 
 <?php
 include 'partials/footer.php';

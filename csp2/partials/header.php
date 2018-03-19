@@ -1,8 +1,8 @@
-<nav class="navbar is-info is-fixed-top">
+<nav class="navbar is-link is-fixed-top">
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item" href="index.php">
-        <img src="assets/img/logo.jpg" alt="Logo">
+        <img src="assets/img/logo.png" alt="Logo">
       </a>
       <?php
       if(isset($_SESSION['current_user'])) {
@@ -70,7 +70,7 @@
       <div class="navbar-start">
         <a class="navbar-item" href="home.php">Home</a>
         <a class="navbar-item" href="catalogue.php">Shop</a>
-        <a class="navbar-item" href="#">About</a>
+        <a class="navbar-item" href="about.php">About</a>
 
         <?php
 
@@ -149,16 +149,19 @@
 </nav>
 
 
-<section class="hero is-info is-medium">
+<section class="hero is-link is-bg is-medium">
   <div class="container">
     <div class="hero-head">
 
     </div>
 
     <div class="hero-body">
-      <div class="has-text-centered">
-        <h1>The Pop! Stop PH</h1>
-        <h2>Your one stop shop for Funko Pops!</h2>
+      <div class="has-text-centered my-image-relative">
+        <h1 class="title is-paddingless"><span class="my-title">Pop<span class="">!</span>StopShop</span></h1>
+        <h2 class="subtitle is-size-6 has-text-dark">Your one stop shop for Funko Pops!</h2>
+        <!-- <figure class="image is-96x96 my-image">
+          <img src="assets/img/funko-logo.png">
+        </figure> -->
       </div>
       <div id="userFeedback">
       </div>

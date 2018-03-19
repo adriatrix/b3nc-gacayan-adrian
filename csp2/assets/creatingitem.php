@@ -48,7 +48,7 @@ $sql = "SELECT * FROM serials WHERE series = '".$series."'";
 $result = mysqli_query($conn, $sql);
 while ($series = mysqli_fetch_assoc($result)) {
   extract($series);
-  $serial_id = $id;
+  $series_id = $id;
 }
 
 $sql = "SELECT * FROM brands WHERE brand = '".$brand."'";
@@ -68,7 +68,7 @@ while ($sub_brand = mysqli_fetch_assoc($result)) {
 }
 
 
-$sql = "INSERT INTO items (name, price, image, stock, description, release_date, item_status_id, rarity_id, serial_id, brand_id, sub_brand_id, product_id) VALUES ('".$name."','".$price."','".$image."','".$stock."','".$description."','".$release_date."','1','".$rarity_id."','".$serial_id."','".$brand_id."','".$sub_brand_id."','1')";
+$sql = "INSERT INTO items (name, price, image, stock, description, release_date, item_status_id, rarity_id, series_id, brand_id, sub_brand_id, product_id) VALUES ('".$name."','".$price."','".$image."','".$stock."','".$description."','".$release_date."','1','".$rarity_id."','".$series_id."','".$brand_id."','".$sub_brand_id."','1')";
 mysqli_query($conn, $sql);
 
 // check if successful

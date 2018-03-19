@@ -47,14 +47,11 @@ $sql = "UPDATE items SET name = '$name', price = '$price', description = '$descr
 // var_dump($sql);
 mysqli_query($conn, $sql);
 
-// $sql = "SELECT i.*, b.brand, sb.sub_brand, its.status, sr.series FROM items i JOIN brands b ON (i.brand_id = b.id) JOIN sub_brands sb ON (i.sub_brand_id = sb.id) JOIN item_status its ON (i.item_status_id = its.id) JOIN serials sr ON (i.serial_id = sr.id) WHERE i.id = '$id'";
-
-
 $sql = "UPDATE items i JOIN rarities r SET i.rarity_id = r.id WHERE (i.id = '$item_id' AND r.rarity = '$rarity')";
 
 mysqli_query($conn, $sql);
 
-$sql = "UPDATE items i JOIN serials sr SET i.serial_id = sr.id WHERE (i.id = '$item_id' AND sr.series = '$series')";
+$sql = "UPDATE items i JOIN serials sr SET i.series_id = sr.id WHERE (i.id = '$item_id' AND sr.series = '$series')";
 
 mysqli_query($conn, $sql);
 

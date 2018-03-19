@@ -4,14 +4,15 @@
 
   session_start();
 
-  // if (isset($_SESSION['current_user'])) {
-  // 	if ($_SESSION['role'] != 'admin')
-  // 		header ('location: home.php');
-  // }
+  $id = $_GET['id'];
 
+  $sql = "SELECT i.*, b.brand, sb.sub_brand, r.rarity, sr.series FROM items i JOIN brands b ON (i.brand_id = b.id) JOIN sub_brands sb ON (i.sub_brand_id = sb.id) JOIN rarities r ON (i.rarity_id = r.id) JOIN serials sr ON (i.series_id = sr.id) WHERE i.id = '$id'";
+  $result = mysqli_query($conn, $sql);
+  $item = mysqli_fetch_assoc($result);
+  extract($item);
 
   function getTitle() {
-    echo 'Item Page';
+    echo ''.$name.'';
   }
 
   include 'partials/head.php';
@@ -24,25 +25,14 @@
  <?php include 'partials/header.php'; ?>
 
  <div class="container">
-   <div class="columns">
+   <div class="columns is-hidden-mobile">
      <div class="column">
-
-       <?php
-
-       $id = $_GET['id'];
-
-       $sql = "SELECT i.*, b.brand, sb.sub_brand, r.rarity, sr.series FROM items i JOIN brands b ON (i.brand_id = b.id) JOIN sub_brands sb ON (i.sub_brand_id = sb.id) JOIN rarities r ON (i.rarity_id = r.id) JOIN serials sr ON (i.serial_id = sr.id) WHERE i.id = '$id'";
-       $result = mysqli_query($conn, $sql);
-       $item = mysqli_fetch_assoc($result);
-       extract($item);
-
-        ?>
-       <div class="breadcrumb is-small" aria-label="breadcrumbs">
+       <div class="breadcrumb" aria-label="breadcrumbs">
          <ul>
            <li><a href="home.php">Home</a></li>
-           <li><a href="#"><?php echo $series; ?></a></li>
-           <li><a href="#"><?php echo $brand; ?></a></li>
-           <li><a href="#"><?php echo $sub_brand; ?></a></li>
+           <li><a href="<?php echo 'catalogue.php?category=serials&filter=series&text='.$series.''; ?>"><?php echo $series; ?></a></li>
+           <li><a href="<?php echo 'catalogue.php?category=brands&filter=brand&text='.$brand.''; ?>"><?php echo $brand; ?></a></li>
+           <li><a href="<?php echo 'catalogue.php?category=sub_brands&filter=sub_brand&text='.$sub_brand.''; ?>"><?php echo $sub_brand; ?></a></li>
            <li class="is-active"><a href="#" aria-current="page"><?php echo $name; ?></a></li>
          </ul>
        </div>
@@ -50,7 +40,7 @@
    </div>
    <div class="columns">
      <div class="column is-6 has-text-left">
-       <h1 class="is-5 title">Item Page</h1>
+       <h1 class="is-hidden">Item Page</h1>
      </div>
      <div class="column has-text-right">
        <?php
@@ -101,7 +91,7 @@
        <?php
 
        echo '
-       <table class="table is-bordered">
+       <table class="table is-bordered is-striped">
        <tbody>
        <tr>
        <td>Item:</td>

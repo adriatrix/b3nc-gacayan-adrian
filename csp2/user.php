@@ -11,7 +11,7 @@
 
 
   function getTitle() {
-    echo 'User Page';
+    echo 'User Info';
   }
 
   include 'partials/head.php';
@@ -25,10 +25,8 @@
 
  <div class="container">
    <div class="columns">
-     <div class="column is-6 has-text-left">
-       <h1 class="is-5 title">User Page</h1>
-     </div>
-     <div class="column has-text-right">
+     <div class="column has-text-left">
+       <h1 class="is-hidden">User Page</h1>
        <?php
 
        $id = $_GET['id'];
@@ -57,7 +55,7 @@
 
        echo'
 
-       <table class="table is-bordered is-striped">
+       <table class="table is-bordered is-striped is-fullwidth">
        <tbody>
        <tr>
        <td>Username:</td>
@@ -86,7 +84,7 @@
        <?php
 
        echo '
-       <table class="table is-bordered is-striped">
+       <table class="table is-bordered is-striped is-fullwidth">
        <tbody>
        <tr>
        <td>Address 1:</td>

@@ -3,7 +3,7 @@
 session_start();
 
 function getTitle() {
-  echo 'Sign In to Pop! Stop PH';
+  echo 'Sign in to Pop!StopShop';
 }
 
 include 'partials/head.php';
@@ -21,7 +21,7 @@ include 'partials/head.php';
 
 
 
-<h1 hidden>Sign In Page</h1>
+<h1 hidden>Sign In</h1>
 
   <section class="hero">
     <div class="hero-body">

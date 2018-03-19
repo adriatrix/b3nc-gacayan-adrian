@@ -52,9 +52,6 @@
                           </span>
                         </span>
                         <span class="file-name">
-                          <?php
-                            echo '';
-                           ?>
                         </span>
                       </label>
                     </div>
@@ -67,7 +64,7 @@
                       </div>
                       <div class="field">
                         <p><label class="has-text-weight-bold">Stock</label></p>
-                        <input class="input control" name="stock" id="itemStock" placeholder="How much is it?" type="number" step="1" min="0"  autocomplete="off" required>
+                        <input class="input control" name="stock" id="itemStock" placeholder="How many you've got?" type="number" step="1" min="0"  autocomplete="off" required>
                       </div>
                     </div>
                   </div>
@@ -108,85 +105,36 @@
                   </div>
                   ';
 
-                  $sql = "SELECT * FROM serials";
-                  $result = mysqli_query($conn, $sql);
-
-                  echo '
-                  <div class="field">
-                  <p><label class="has-text-weight-bold">Series</label></p>
-                  <div class="select control is-fullwidth">
-                  <select name="series">
-                  <option selected></option>
-                  ';
-
-                  while ($series = mysqli_fetch_assoc($result)) {
-                    extract($series);
-                    echo '
-                    <option value ="'.$series.'">'.$series.'</option>
-                    ';
-                  }
-
-                  echo '
-                  </select>
-                  </div>
-                  </div>
-                  ';
-
-                  $sql = "SELECT * FROM brands";
-                  $result = mysqli_query($conn, $sql);
-
-                  echo '
-                  <div class="field">
-                  <p><label class="has-text-weight-bold">Brand</label></p>
-                  <div class="select control is-fullwidth">
-                  <select name="brand">
-                  <option selected></option>
-                  ';
-
-                  while ($brand = mysqli_fetch_assoc($result)) {
-                    extract($brand);
-                    echo '
-                    <option value ="'.$brand.'">'.$brand.'</option>
-                    ';
-                  }
-
-                  echo '
-                  </select>
-                  </div>
-                  </div>
-                  ';
-
-                  $sql = "SELECT * FROM sub_brands";
-                  $result = mysqli_query($conn, $sql);
-
-                  echo '
-                  <div class="field">
-                  <p><label class="has-text-weight-bold">Sub-brand</label></p>
-                  <div class="select control is-fullwidth">
-                  <select name="sub-brand">
-                  <option selected></option>
-                  ';
-
-                  while ($sub_brand = mysqli_fetch_assoc($result)) {
-                    extract($sub_brand);
-                    echo '
-                    <option value ="'.$sub_brand.'">'.$sub_brand.'</option>
-                    ';
-                  }
-
-                  echo '
-                  </select>
-                  </div>
-                  </div>
-                  ';
-
                   ?>
+
+                  <div class="field">
+                    <p><label class="has-text-weight-bold">Series</label></p>
+                    <input class="input control" name="series" placeholder="i.e. Funko POP! Disney" type="text" required>
+                  </div>
+                  <div class="field">
+                    <p><label class="has-text-weight-bold">Brand</label></p>
+                    <input class="input control" name="brand" placeholder="i.e. Disney" type="text" required>
+                  </div>
+                  <div class="field">
+                    <p><label class="has-text-weight-bold">Sub-brand</label></p>
+                    <input class="input control" name="sub-brand" placeholder="i.e. Moana" type="text" required>
+                  </div>
+
                   <p> </p>
                   <hr>
 
                   <div class="field is-grouped is-grouped-right">
                     <p class="control">
                       <input type="number" name="id" id="id" value="<?php echo $last_id ?>" hidden>
+                      <?php
+                        if(isset($_SERVER['HTTP_REFERER'])) {
+                          echo '
+                            <a href="'.$_SERVER['HTTP_REFERER'].'">
+                            <button class="button is-dark is-outlined">Back</button>
+                            </a>
+                          ';
+                        }
+                      ?>
                       <input class="button is-primary" name="submit" id="submit" type ="submit" value="Create item">
                     </p>
                   </div>
@@ -200,14 +148,28 @@
     </div>
   </section>
 
-
 <?php
 
   include 'partials/footer.php';
 
   include 'partials/foot.php';
 
+  mysqli_close($conn);
+
 ?>
+
+<script>
+
+$('#itemImage').change(function() {
+  var filename = $(this).val();
+  var lastIndex = filename.lastIndexOf("\\");
+  if (lastIndex >= 0) {
+      filename = filename.substring(lastIndex + 1);
+  }
+  $('.file-name').html(filename);
+});
+
+</script>
 
 </body>
 </html>

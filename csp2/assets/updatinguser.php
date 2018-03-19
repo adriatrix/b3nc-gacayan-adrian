@@ -26,7 +26,6 @@ $sql = "UPDATE users SET email = '$email', firstname = '$firstname', lastname = 
 
 mysqli_query($conn, $sql);
 
-// $sql = "SELECT i.*, b.brand, sb.sub_brand, its.status, sr.series FROM items i JOIN brands b ON (i.brand_id = b.id) JOIN sub_brands sb ON (i.sub_brand_id = sb.id) JOIN item_status its ON (i.item_status_id = its.id) JOIN serials sr ON (i.serial_id = sr.id) WHERE i.id = '$id'";
 
 if ($password != '6df9ba338b43e718b5b8f880607f402081c3a172') {
   $sql = "UPDATE users SET password = '$password' WHERE (id = '$user_id')";

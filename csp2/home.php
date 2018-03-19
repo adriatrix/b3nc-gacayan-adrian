@@ -7,7 +7,7 @@ if (!isset($_SESSION['basket_count']) ) {
 }
 
 function getTitle() {
-	echo 'Catalog';
+	echo 'Home';
 }
 
 include 'partials/head.php';
@@ -77,11 +77,20 @@ require 'connect.php';
 												</div>
 												';
 
-												if ($quantity == $stock) {
+												if ($stock == 0) {
 													echo '
+													<div class="level-item has-text-centered">
+													<a class="button is-medium is-danger" disabled>
+													<span>No Stock</span>
+													</a>
+													</div>
+													';
+												} else {
+													if ($quantity == $stock) {
+														echo '
 														<div class="level-item has-text-centered">
 														<div class="is-hidden"  id="addBasket'. $id .'">
-														<a class="button is-medium is-info" onclick="addToBasket('.$id.')">
+														<a class="button is-medium is-link" onclick="addToBasket('.$id.')">
 														<span>Buy1</span>
 														<span class="icon">
 														<i class="fas fa-shopping-basket"></i>
@@ -89,7 +98,7 @@ require 'connect.php';
 														</a>
 														</div>
 														<div id="viewBasket'. $id .'">
-														<a class="button is-medium is-info is-outlined" href="basket.php">
+														<a class="button is-medium is-link is-outlined" href="basket.php">
 														<span>View</span>
 														<span class="icon">
 														<i class="fas fa-shopping-basket"></i>
@@ -97,12 +106,12 @@ require 'connect.php';
 														</a>
 														</div>
 														</div>
-													';
-												} else {
-													echo '
+														';
+													} else {
+														echo '
 														<div class="level-item has-text-centered">
 														<div id="addBasket'. $id .'">
-														<a class="button is-medium is-info" onclick="addToBasket('.$id.')">
+														<a class="button is-medium is-link" onclick="addToBasket('.$id.')">
 														<span>Buy1</span>
 														<span class="icon">
 														<i class="fas fa-shopping-basket"></i>
@@ -110,7 +119,7 @@ require 'connect.php';
 														</a>
 														</div>
 														<div class="is-hidden" id="viewBasket'. $id .'">
-														<a class="button is-medium is-info is-outlined" href="basket.php">
+														<a class="button is-medium is-link is-outlined" href="basket.php">
 														<span>View</span>
 														<span class="icon">
 														<i class="fas fa-shopping-basket"></i>
@@ -118,8 +127,10 @@ require 'connect.php';
 														</a>
 														</div>
 														</div>
-													';
+														';
+													}
 												}
+
 
 												echo '
 												<div class="level-item has-text-centered">
@@ -193,11 +204,20 @@ require 'connect.php';
 												</div>
 												';
 
-												if ($quantity == $stock) {
+												if ($stock == 0) {
 													echo '
+													<div class="level-item has-text-centered">
+													<a class="button is-medium is-danger" disabled>
+													<span>No Stock</span>
+													</a>
+													</div>
+													';
+												} else {
+													if ($quantity == $stock) {
+														echo '
 														<div class="level-item has-text-centered">
 														<div class="is-hidden"  id="addBasket'. $id .'">
-														<a class="button is-medium is-info" onclick="addToBasket('.$id.')">
+														<a class="button is-medium is-link" onclick="addToBasket('.$id.')">
 														<span>Buy1</span>
 														<span class="icon">
 														<i class="fas fa-shopping-basket"></i>
@@ -205,7 +225,7 @@ require 'connect.php';
 														</a>
 														</div>
 														<div id="viewBasket'. $id .'">
-														<a class="button is-medium is-info is-outlined" href="basket.php">
+														<a class="button is-medium is-link is-outlined" href="basket.php">
 														<span>View</span>
 														<span class="icon">
 														<i class="fas fa-shopping-basket"></i>
@@ -213,12 +233,12 @@ require 'connect.php';
 														</a>
 														</div>
 														</div>
-													';
-												} else {
-													echo '
+														';
+													} else {
+														echo '
 														<div class="level-item has-text-centered">
 														<div id="addBasket'. $id .'">
-														<a class="button is-medium is-info" onclick="addToBasket('.$id.')">
+														<a class="button is-medium is-link" onclick="addToBasket('.$id.')">
 														<span>Buy1</span>
 														<span class="icon">
 														<i class="fas fa-shopping-basket"></i>
@@ -226,7 +246,7 @@ require 'connect.php';
 														</a>
 														</div>
 														<div class="is-hidden" id="viewBasket'. $id .'">
-														<a class="button is-medium is-info is-outlined" href="basket.php">
+														<a class="button is-medium is-link is-outlined" href="basket.php">
 														<span>View</span>
 														<span class="icon">
 														<i class="fas fa-shopping-basket"></i>
@@ -234,8 +254,10 @@ require 'connect.php';
 														</a>
 														</div>
 														</div>
-													';
+														';
+													}
 												}
+
 
 												echo '
 												<div class="level-item has-text-centered">
