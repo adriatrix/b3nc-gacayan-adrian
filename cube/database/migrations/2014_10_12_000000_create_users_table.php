@@ -32,15 +32,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('name');
             $table->string('nickname');
-            $table->integer('role_id')->unsigned();
-            $table->integer('team_id')->unsigned();
+            $table->string('team');
             $table->rememberToken();
             $table->timestamps();
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-           $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
-           $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
         });
     }
 
