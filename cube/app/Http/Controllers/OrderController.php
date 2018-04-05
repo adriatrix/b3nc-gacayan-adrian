@@ -8,6 +8,7 @@ use App\Order;
 use Auth;
 use App\User;
 use App\Customer;
+use App\OrderState;
 
 
 class OrderController extends Controller
@@ -19,6 +20,7 @@ class OrderController extends Controller
    public function showOrders() {
       $id = \Auth::user()->id;
       $user = User::find($id);
-      return view ('orders/orders_list', compact('user'));
+      $order_states = OrderState::all();
+      return view ('orders/orders_list', compact('user','order_states'));
    }
 }

@@ -21,7 +21,8 @@ class OrdersTableSeeder extends Seeder
                 'po_num' => $faker->randomNumber($nbDigits = NULL, $strict = false),
                 'notes' => $faker->text($maxNbChars = 50),
                 'customer_id' => $faker->numberBetween($min = 1, $max = 10),
-                'user_id' => $faker->numberBetween($min = 1, $max = 10),
+                'user_id' => $faker->numberBetween($min = 1, $max = 1),
+                'order_state_id' => $faker->numberBetween($min = 1, $max = 7),
             ]);
         }
     }

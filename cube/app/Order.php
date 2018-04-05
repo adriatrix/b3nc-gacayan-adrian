@@ -13,4 +13,8 @@ class Order extends Model
    function get_customer() {
       return $this->belongsTo('App\Customer','customer_id');
    }
+
+   function get_status() {
+      return $this->belongsTo('App\OrderState','order_state_id');
+   }
 }
