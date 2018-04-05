@@ -18,6 +18,10 @@ class User extends Authenticatable
         'name', 'team', 'nickname', 'email', 'password',
     ];
 
+    function orders() {
+     return $this->hasMany('App\Order','user_id','id');
+   }
+
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -13,6 +13,12 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
+         Schema::create('task_states', function (Blueprint $table) {
+             $table->increments('id');
+             $table->string('name');
+             $table->timestamps();
+         });
+
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description');
@@ -21,9 +27,11 @@ class CreateTasksTable extends Migration
             $table->date('due_date');
             $table->string('notes');
             $table->timestamps();
+        });
 
-            $table->foreign('task_state_id')->references('id')->on('task_states')->onDelete('cascade');
+        Schema::table('tasks', function (Blueprint $table) {
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('task_state_id')->references('id')->on('task_states')->onDelete('cascade');
         });
     }
 
@@ -35,5 +43,6 @@ class CreateTasksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tasks');
+        Schema::dropIfExists('task_states');
     }
 }
