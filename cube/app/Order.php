@@ -18,6 +18,10 @@ class Order extends Model
       return $this->belongsTo('App\OrderState','order_state_id');
    }
 
+   function tasks() {
+       return $this->hasMany('App\Task');
+   }
+
    function tags() {
       return $this->belongsToMany('App\Tag');
  }

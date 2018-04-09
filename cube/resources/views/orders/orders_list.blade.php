@@ -6,15 +6,26 @@ Orders List
 
 @section('content')
 <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-dark btn-sm createbutton"><i class="fas fa-plus text-white"></i></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p> </p>
+      </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col">
            <table class="table table-hover table-sm text-center my-table">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">Received</th>
+                  <th scope="col"><i class="fas fa-tasks"></i></th>
                   <th scope="col">SO#</th>
                   <th scope="col">Customer Name</th>
                   <th scope="col">PO#</th>
+                  <th scope="col">Deadline</th>
                   <th scope="col">Tags</th>
                   <th scope="col" class="my-align">Notes</th>
                   <th style="width: 12%" scope="col">Status</th>
@@ -24,27 +35,30 @@ Orders List
               <tbody>
                  @foreach($user->orders as $order)
                  <tr id="showRow{{$order->id}}">
-                    <td data-title="Received Date"><small>{{$order->received_date}}</small></td>
-                    <td data-title="Sales Order Number"><strong>{{$order->so_num}}</strong></td>
-                    <td data-title="Customer Name">{{$order->get_customer->name}}</td>
-                    <td data-title="Purchase Order Number">{{$order->po_num}}</td>
-                    <td data-title="Tags">
+                    <td>
+                      @if (count($order->tasks))
+                      <button class="badge badge-pill badge-warning taskbutton" data-index="{{$order->id}}">{{count($order->tasks)}}</button>
+                      @endif
+                    </td>
+                    <td><strong>{{$order->so_num}}</strong></td>
+                    <td>{{$order->get_customer->name}}</td>
+                    <td>{{$order->po_num}}</td>
+                    <td><small>{{$order->received_date}}</small></td>
+                    <td>
                     @foreach($order->tags as $tag)
                       <a href="#" class="badge badge-primary">{{$tag->name}}</a>
                     @endforeach
                     </td>
-                    <td data-title="Notes" class="my-align">{{$order->notes}}</td>
-                    <td data-title="Status">{{$order->get_status->name}}</td>
-                    <td data-title="Actions">
-                      <button class="btn btn-info btn-sm editbutton" data-index="{{$order->id}}"><i class="fas fa-pen-square text-white"></i></button>
-                      <button class="btn btn-danger btn-sm deletebutton" data-index="{{$order->id}}"><i class="fas fa-minus-circle text-white"></i></button>
+                    <td class="my-align">{{$order->notes}}</td>
+                    <td>{{$order->get_status->name}}</td>
+                    <td>
+                      <button class="btn btn-info btn-sm editbutton" data-index="{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
+                      <button class="btn btn-danger btn-sm deletebutton" data-index="{{$order->id}}"><i class="fas fa-trash-alt text-white"></i></button>
                     </td>
                  </tr>
                  <form action="" method="post">
                  <tr id="editRow{{$order->id}}" class="hidden">
-                    <td data-title="Received Date">
-                       <input type="text" class="form-control form-control-sm text-center" value="{{$order->received_date}}">
-                    </td>
+                    <td></td>
                     <td data-title="Sales Order Number">
                        <input type="text" class="form-control form-control-sm text-center" value="{{$order->so_num}}">
                     </th>
@@ -53,8 +67,11 @@ Orders List
                     </td>
                     <td data-title="Purchase Order Number">
                        <input type="text" class="form-control form-control-sm text-center" value="{{$order->po_num}}">
-                      </td>
-                      <td data-title="Tags">
+                    </td>
+                    <td data-title="Received Date">
+                       <input type="text" class="form-control form-control-sm text-center" value="{{$order->received_date}}">
+                    </td>
+                    <td data-title="Tags">
                        <input type="text" class="form-control form-control-sm text-center" value="@foreach($order->tags as $tag){{$tag->name}} @endforeach">
                     </td>
                     <td data-title="Notes" class="my-align">
@@ -83,6 +100,20 @@ Orders List
                     </td>
                   </tr>
                   </form>
+                  @foreach ($order->tasks as $task)
+                  <tr class="showtask{{$order->id}} hidden table-warning">
+                    <td><i class="fas fa-caret-right fa-2x"></i></td>
+                    <td colspan="3" class="my-align bg-warning text-center"><strong>{{$task->description}}</strong></td>
+                    <td><small>{{$task->due_date}}</small></td>
+                    <td></td>
+                    <td class="my-align">{{$task->notes}}</td>
+                    <td>{{$task->get_status->name}}</td>
+                    <td>
+                      <button class="btn btn-info btn-sm editbutton" data-index="{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
+                      <button class="btn btn-danger btn-sm deletebutton" data-index="{{$order->id}}"><i class="fas fa-trash-alt text-white"></i></button>
+                    </td>
+                  </tr>
+                  @endforeach
                  @endforeach
               </tbody>
             </table>

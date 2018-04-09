@@ -16,4 +16,9 @@ $(function() {
        $('#showRow'+rowItemId).show().fadeIn().removeClass('hidden');
        $('#editRow'+rowItemId).hide().fadeOut().addClass('hidden');
     });
+
+    $('.taskbutton').click(function(){
+      taskId = $(this).data('index');
+      $('.showtask' + taskId).toggle();
+    });
 });

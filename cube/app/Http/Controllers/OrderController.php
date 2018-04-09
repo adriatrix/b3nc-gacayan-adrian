@@ -10,6 +10,7 @@ use App\User;
 use App\Customer;
 use App\OrderState;
 use App\Tag;
+use App\Task;
 
 
 class OrderController extends Controller
@@ -23,6 +24,7 @@ class OrderController extends Controller
       $user = User::find($id);
       $order_states = OrderState::all();
       $tags = Tag::all();
-      return view ('orders/orders_list', compact('user','order_states','tags'));
+      $tasks = Task::all();
+      return view ('orders/orders_list', compact('user','order_states','tags','tasks'));
    }
 }
