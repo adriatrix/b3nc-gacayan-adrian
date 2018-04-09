@@ -4,6 +4,7 @@ $(function() {
     $('.editbutton').click(function() {
       rowItemId = $(this).data('index');
        $('.editbutton').prop('disabled', true);
+      //  $('.deletebutton').prop('disabled', true);
        $('#showRow'+rowItemId).hide().fadeOut().addClass('hidden');
        $('#editRow'+rowItemId).show().fadeIn().removeClass('hidden');
     });
@@ -11,6 +12,7 @@ $(function() {
     $('.savebutton').click(function() {
       rowItemId = $(this).data('index');
        $('.editbutton').prop('disabled', false);
+      //  $('.deletebutton').prop('disabled', false);
        $('#showRow'+rowItemId).show().fadeIn().removeClass('hidden');
        $('#editRow'+rowItemId).hide().fadeOut().addClass('hidden');
     });

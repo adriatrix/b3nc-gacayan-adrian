@@ -17,4 +17,8 @@ class Order extends Model
    function get_status() {
       return $this->belongsTo('App\OrderState','order_state_id');
    }
+
+   function tags() {
+      return $this->belongsToMany('App\Tag');
+ }
 }

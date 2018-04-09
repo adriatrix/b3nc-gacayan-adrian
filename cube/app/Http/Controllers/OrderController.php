@@ -9,6 +9,7 @@ use Auth;
 use App\User;
 use App\Customer;
 use App\OrderState;
+use App\Tag;
 
 
 class OrderController extends Controller
@@ -21,6 +22,7 @@ class OrderController extends Controller
       $id = \Auth::user()->id;
       $user = User::find($id);
       $order_states = OrderState::all();
-      return view ('orders/orders_list', compact('user','order_states'));
+      $tags = Tag::all();
+      return view ('orders/orders_list', compact('user','order_states','tags'));
    }
 }
