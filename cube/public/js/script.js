@@ -21,4 +21,15 @@ $(function() {
       taskId = $(this).data('index');
       $('.showtask' + taskId).toggle();
     });
+
 });
+
+function updateStatus(stateId) {
+   var id = stateId;
+
+   $('.show-status-options').hide();
+   $('.show-status').show();
+
+   $('#showStatusOptions'+id).show();
+   $('#showStatus'+id).hide();
+}

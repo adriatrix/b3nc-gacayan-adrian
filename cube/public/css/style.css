@@ -1,3 +1,7 @@
+body {
+   font-family: 'Poppins', sans-serif;
+}
+
 .hidden {
     display: none;
 }
@@ -10,6 +14,15 @@
 	text-align: left;
 }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 
 @media only screen and (max-width: 800px) {
 
@@ -30,12 +43,15 @@
 		left: -9999px;
 	}
 
-	tr { border: 1px solid #ccc; }
+	tr {
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+   }
 
 	td {
 		/* Behave  like a "row" */
 		border: none;
-		border-bottom: 1px solid #eee;
+		border-bottom: 1px solid #ccc;
 		position: relative;
 		padding-left: 50%;
 		white-space: normal;
@@ -46,6 +62,7 @@
 		/* Now like a table header */
 		position: absolute;
 		/* Top/left values mimic padding */
+      display: block;
 		top: 6px;
 		left: 6px;
 		width: 45%;
@@ -53,6 +70,8 @@
 		white-space: nowrap;
 		text-align:left;
 		font-weight: bold;
+      color: dimgrey;
+      font-size: 10px;
 	}
 
 	.my-align {
@@ -62,5 +81,5 @@
 	/*
 	Label the data
 	*/
-	/* td:before { content: attr(data-title); } */
+	td:before { content: attr(data-title); }
 }
