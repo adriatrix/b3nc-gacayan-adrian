@@ -5,15 +5,10 @@ Orders List
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
     <div class="row">
       <div class="col">
         <button class="btn btn-dark btn-sm createbutton"><i class="fas fa-plus text-white"></i></button>
-         <select id="choose" name="choose" style=display:none;"">
-           <option value="burger">Burger</option>
-           <option value="fries">French Fries</option>
-           <option value="banana">Banana</option>
-         </select>
       </div>
     </div>
     <div class="row">
@@ -26,15 +21,13 @@ Orders List
            <table class="table table-hover table-sm my-table text-center">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col"><i class="fas fa-tasks"></i></th>
+                  <th style="width: 3%" scope="col"><i class="fas fa-tasks"></i></th>
                   <th scope="col">SO#</th>
                   <th scope="col">Customer Name</th>
                   <th scope="col">PO#</th>
-                  <th scope="col">Deadline</th>
                   <th scope="col">Tags</th>
-                  <th style="width: 25%" scope="col" class="my-align">Notes</th>
                   <th style="width: 12%" scope="col">Status</th>
-                  <th style="width: 8%"scope="col">Actions</th>
+                  <th style="width: 30%" scope="col" class="my-align">Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,7 +43,6 @@ Orders List
                     <td data-title="SO#"><strong>{{$order->so_num}}</strong></td>
                     <td data-title="Customer">{{$order->get_customer->name}}</td>
                     <td data-title="PO#">{{$order->po_num}}</td>
-                    <td data-title="Due"><small>{{$order->received_date}}</small></td>
                     @if (count($order->tags))
                        <td data-title="Tags">
                           @foreach($order->tags as $tag)
@@ -60,10 +52,9 @@ Orders List
                     @else
                        <td></td>
                     @endif
-                    <td class="my-align">{{$order->notes}}</td>
                     <td data-title="Status">
-                       <span id="showStatus{{$order->id}}" class="show-status" ondblclick="updateStatus({{$order->id}})">{{$order->get_status->name}}</span>
-                       <select id="showStatusOptions{{$order->id}}" class="show-status-options form-control form-control-sm" data-index="{{$order->id}}" name="status" style="display:none;">
+                       <span id="status{{$order->id}}" class="show-status" ondblclick="showStatus({{$order->id}})">{{$order->get_status->name}}</span>
+                       <select id="showStatusOptions{{$order->id}}" class="show-status-options form-control form-control-sm" onchange="updateStatus({{$order->id}})" data-index="{{$order->id}}" name="status" style="display:none">
                           @foreach($order_states as $order_state)
                           @if($order_state->name == $order->get_status->name)
                           <option value="{{$order->get_status->name}}" selected>{{$order->get_status->name}}</option>
@@ -73,10 +64,7 @@ Orders List
                           @endforeach
                         </select>
                     </td>
-                    <td>
-                      <button class="btn btn-info btn-sm editbutton" data-index="{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
-                      <button class="btn btn-danger btn-sm deletebutton" data-index="{{$order->id}}"><i class="fas fa-trash-alt text-white"></i></button>
-                    </td>
+                    <td class="my-align">{{$order->notes}}</td>
                  </tr>
                  <form action="" method="post">
                  <tr id="editRow{{$order->id}}" class="hidden">
@@ -140,58 +128,6 @@ Orders List
               </tbody>
             </table>
         </div>
-
-        <div class="modal">
-          <div class="modal-background"></div>
-          <div class="modal-card">
-             <form class="" action="{{url("/orders/create")}}" method="post">
-                <header class="modal-card-head">
-                   <p class="modal-card-title">Add a new Order</p>
-                   <button class="delete" aria-label="close"></button>
-                </header>
-                <section class="modal-card-body">
-                   {{ csrf_field() }}
-                   <div class="field">
-                      <label class="label" for="title">Title:</label><br>
-                      <input class="input control" type="text" name="title"><br>
-                   </div>
-                   <div class="field">
-                      <label class="label" for="content">Content:</label><br>
-                      <div class="control">
-                         <textarea class="textarea" name="content" rows="4" cols="18"></textarea><br>
-                      </div>
-                   </div>
-                </section>
-                <footer class="modal-card-foot">
-                   <input class="button is-link" type="submit" name="submit" value="Add">
-                   <button class="button is-danger cancel">Cancel</button>
-                </footer>
-             </form>
-          </div>
-       </div>
     </div>
 </div>
-
-<script type="text/javascript">
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $('show-status-options').on('change', function() {
-        var status = $('select[name=status]').val();
-        console.log(status);
-
-        $.ajax({
-           type:'POST',
-           url:'/orders',
-           data:{status:status},
-           success:function(data){
-              alert(data.success);
-           }
-        });
-	});
-</script>
 @endsection

@@ -27,9 +27,4 @@ class OrderController extends Controller
       $tasks = Task::all();
       return view ('orders/orders_list', compact('user','order_states','tags','tasks'));
    }
-
-   public function showOrdersPost() {
-      $input = request()->all();
-      return response()->json(['success'=>'Got Simple Ajax Request.']);
-   }
 }

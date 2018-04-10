@@ -21,15 +21,25 @@ $(function() {
       taskId = $(this).data('index');
       $('.showtask' + taskId).toggle();
     });
-
+// 
 });
 
-function updateStatus(stateId) {
+function showStatus(stateId) {
    var id = stateId;
 
    $('.show-status-options').hide();
    $('.show-status').show();
 
    $('#showStatusOptions'+id).show();
-   $('#showStatus'+id).hide();
+   $('#status'+id).hide();
+}
+
+function updateStatus(stateId) {
+  var id = stateId;
+  var status = $('#showStatusOptions'+id).val();
+  console.log(status);
+  $('#status'+id).show();
+  $('#status'+id).html(status);
+  $('#showStatusOptions'+id).hide();
+
 }
