@@ -57,7 +57,7 @@ Orders List
                     <td class="my-align">{{$order->notes}}
                     </td>
                     <td data-title="Actions">
-                       <button class="btn btn-info btn-sm editbutton center-block" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
+                       <button class="btn btn-info btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
                     </td>
                  </tr>
 
@@ -129,6 +129,7 @@ Orders List
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           <button type="button" class="btn btn-primary">Save</button>
+                          <input type="hidden" id="order_id" name="order_id" value="0">
                         </div>
                       </div>
                     </div>
@@ -136,7 +137,7 @@ Orders List
 
                   @foreach ($order->tasks as $task)
                   <tr class="showtask{{$order->id}} hidden table-warning">
-                    <td><i class="fas fa-caret-right fa-2x"></i></td>
+                    <td><i class="fas fa-caret-right"></i></td>
                     <td colspan="4" class="my-align"><strong>{{$task->description}}</strong></td>
                     <td>{{$task->get_status->name}}</td>
                     <td class="my-align">{{$task->notes}}</td>
@@ -145,6 +146,69 @@ Orders List
                  @endforeach
               </tbody>
             </table>
+
+            <div class="modal fade" id="createOrderModal" tabindex="-1" role="dialog" aria-labelledby="edit Order {{$order->id}}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="createOrder">Create Order</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                           <form action="{{url("/orders/create")}}" method="post">
+                           {{ csrf_field() }}
+                        <div class="modal-body">
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="" name="so_num" required>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="" name="customer" required>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="" name="po_num" required>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Tags:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="" name="tags">
+                                    <small id="emailHelp" class="form-text text-muted">Separate each tags by a space.</small>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
+                                 <div class="col-sm-8">
+                                    <textarea class="form-control form-control-sm my-align" name="notes" rows="4"></textarea>
+                                 </div>
+                              </div>
+                              <input type="hidden" class="form-control" name="status" value="Received">
+                              <hr>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Received Date/Time:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control form-control-sm" value="" name="received_date" required>
+                                 </div>
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <input class="btn btn-secondary" type="submit" name="submit" value="Create">
+                        </div>
+                           </form>
+                      </div>
+                    </div>
+                  </div>
+
+            
 
 
         </div>

@@ -21,6 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/orders', 'OrderController@showOrders');
 
-Route::post('/orders', 'OrderController@showOrdersPost');
+Route::post('/orders/create', 'OrderController@createOrders');
 
-Route::get('/orders/{id}', 'ArticleController@show');
+
