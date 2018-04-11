@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('so_num');
-            $table->integer('po_num');
+            $table->string('po_num');
             $table->string('notes');
             $table->string('received_date')->nullable();
             $table->integer('user_id')->unsigned();

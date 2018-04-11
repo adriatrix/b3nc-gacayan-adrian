@@ -1,45 +1,87 @@
-var rowItemId = 0;
-
 $(function() {
-    $('.editbutton').click(function() {
-      rowItemId = $(this).data('index');
-       $('.editbutton').prop('disabled', true);
-      //  $('.deletebutton').prop('disabled', true);
-       $('#showRow'+rowItemId).hide().fadeOut().addClass('hidden');
-       $('#editRow'+rowItemId).show().fadeIn().removeClass('hidden');
+
+   $('.taskbutton').click(function(){
+     taskId = $(this).data('index');
+     $('.showtask' + taskId).toggle();
+   });
+
+    var url = "/orders";
+
+    //delete task and remove it from list
+    $('.delete-task').click(function(){
+        var task_id = $(this).val();
+
+        $.ajax({
+
+            type: "DELETE",
+            url: url + '/' + task_id,
+            success: function (data) {
+                console.log(data);
+
+                $("#task" + task_id).remove();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
     });
 
-    $('.savebutton').click(function() {
-      rowItemId = $(this).data('index');
-       $('.editbutton').prop('disabled', false);
-      //  $('.deletebutton').prop('disabled', false);
-       $('#showRow'+rowItemId).show().fadeIn().removeClass('hidden');
-       $('#editRow'+rowItemId).hide().fadeOut().addClass('hidden');
-    });
+    //create new task / update existing task
+    $("#btn-save").click(function (e) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        })
 
-    $('.taskbutton').click(function(){
-      taskId = $(this).data('index');
-      $('.showtask' + taskId).toggle();
+        e.preventDefault();
+
+        var formData = {
+            task: $('#task').val(),
+            description: $('#description').val(),
+        }
+
+        //used to determine the http verb to use [add=POST], [update=PUT]
+        var state = $('#btn-save').val();
+
+        var type = "POST"; //for creating new resource
+        var task_id = $('#task_id').val();;
+        var my_url = url;
+
+        if (state == "update"){
+            type = "PUT"; //for updating existing resource
+            my_url += '/' + task_id;
+        }
+
+        console.log(formData);
+
+        $.ajax({
+
+            type: type,
+            url: my_url,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+
+                var task = '<tr id="task' + data.id + '"><td>' + data.id + '</td><td>' + data.task + '</td><td>' + data.description + '</td><td>' + data.created_at + '</td>';
+                task += '<td><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">Edit</button>';
+                task += '<button class="btn btn-danger btn-xs btn-delete delete-task" value="' + data.id + '">Delete</button></td></tr>';
+
+                if (state == "add"){ //if user added a new record
+                    $('#tasks-list').append(task);
+                }else{ //if user updated an existing record
+
+                    $("#task" + task_id).replaceWith( task );
+                }
+
+                $('#frmTasks').trigger("reset");
+
+                $('#myModal').modal('hide')
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
     });
-// 
 });
-
-function showStatus(stateId) {
-   var id = stateId;
-
-   $('.show-status-options').hide();
-   $('.show-status').show();
-
-   $('#showStatusOptions'+id).show();
-   $('#status'+id).hide();
-}
-
-function updateStatus(stateId) {
-  var id = stateId;
-  var status = $('#showStatusOptions'+id).val();
-  console.log(status);
-  $('#status'+id).show();
-  $('#status'+id).html(status);
-  $('#showStatusOptions'+id).hide();
-
-}

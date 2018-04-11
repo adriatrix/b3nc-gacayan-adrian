@@ -8,7 +8,7 @@ Orders List
 <div class="container">
     <div class="row">
       <div class="col">
-        <button class="btn btn-dark btn-sm createbutton"><i class="fas fa-plus text-white"></i></button>
+        <button class="btn btn-dark btn-sm createbutton" data-toggle="modal" data-target="#createOrderModal"><i class="fas fa-plus text-white"></i></button>
       </div>
     </div>
     <div class="row">
@@ -28,6 +28,7 @@ Orders List
                   <th scope="col">Tags</th>
                   <th style="width: 12%" scope="col">Status</th>
                   <th style="width: 30%" scope="col" class="my-align">Notes</th>
+                  <th style="width: 3%" scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,81 +53,100 @@ Orders List
                     @else
                        <td></td>
                     @endif
-                    <td data-title="Status">
-                       <span id="status{{$order->id}}" class="show-status" ondblclick="showStatus({{$order->id}})">{{$order->get_status->name}}</span>
-                       <select id="showStatusOptions{{$order->id}}" class="show-status-options form-control form-control-sm" onchange="updateStatus({{$order->id}})" data-index="{{$order->id}}" name="status" style="display:none">
-                          @foreach($order_states as $order_state)
-                          @if($order_state->name == $order->get_status->name)
-                          <option value="{{$order->get_status->name}}" selected>{{$order->get_status->name}}</option>
-                          @else
-                          <option value="{{$order_state->name}}">{{$order_state->name}}</option>
-                          @endif
-                          @endforeach
-                        </select>
+                    <td data-title="Status">{{$order->get_status->name}}</td>
+                    <td class="my-align">{{$order->notes}}
                     </td>
-                    <td class="my-align">{{$order->notes}}</td>
+                    <td data-title="Actions">
+                       <button class="btn btn-info btn-sm editbutton center-block" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
+                    </td>
                  </tr>
-                 <form action="" method="post">
-                 <tr id="editRow{{$order->id}}" class="hidden">
-                    <td></td>
-                    <td>
-                       <input type="text" class="form-control form-control-sm text-center" value="{{$order->so_num}}">
-                    </th>
-                    <td>
-                       <input type="text" class="form-control form-control-sm text-center" value="{{$order->get_customer->name}}">
-                    </td>
-                    <td>
-                       <input type="text" class="form-control form-control-sm text-center" value="{{$order->po_num}}">
-                    </td>
-                    <td>
-                       <input type="text" class="form-control form-control-sm text-center" value="{{$order->received_date}}">
-                    </td>
-                    <td>
-                       <input type="text" class="form-control form-control-sm text-center" value="@foreach($order->tags as $tag){{$tag->name}} @endforeach">
-                    </td>
-                    <td>
-                       <textarea class="form-control form-control-sm my-align" rows="1" id="note">{{$order->notes}}</textarea>
-                    </td>
-                    <td>
-                      <select class="form-control form-control-sm" name="state" id="state_change">
-                         @foreach($order_states as $order_state)
-                         @if($order_state->name == $order->get_status->name)
-                         <option value="{{$order->get_status->name}}" selected>{{$order->get_status->name}}</option>
-                         @else
-                         <option value="{{$order_state->name}}">{{$order_state->name}}</option>
-                         @endif
-                         @endforeach
-                        </select>
-                      </td>
-                      <td data-title="Actions">
-                        <div class="row">
-                          <div class="col text-center">
-                            <!-- <button class="btn btn-success btn-sm savebutton" data-index="{{$order->id}}" onclick="document.getElementById('updateRow').submit()"><i class="fas fa-save text-white"></i></button> -->
-                            <a class="btn btn-success btn-sm savebutton center-block" href=""><i class="fas fa-check-circle text-white"></i></a>
-                            <!-- <button class="btn btn-success btn-sm savebutton" data-index="{{$order->id}}"><i class="fas fa-save text-white"></i></button> -->
-                            <button class="btn btn-danger btn-sm deletebutton center-block" data-index="{{$order->id}}"><i class="fas fa-times-circle text-white"></i></button>
-                          </div>
+
+                 <div class="modal fade" id="editOrderModal{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="edit Order {{$order->id}}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="editOrder{{$order->id}}">Edit SO# {{$order->so_num}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
-                    </td>
-                  </tr>
-                  </form>
+                        <div class="modal-body">
+                           <form action="" method="post">
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="{{$order->so_num}}" required>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="{{$order->get_customer->name}}" required>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="{{$order->po_num}}" required>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Tags:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="@foreach($order->tags as $tag){{$tag->name}} @endforeach">
+                                    <small id="emailHelp" class="form-text text-muted">Separate each tags by a space.</small>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
+                                 <div class="col-sm-8">
+                                    <textarea class="form-control form-control-sm my-align" rows="4" id="note">{{$order->notes}}</textarea>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Order Status:</label>
+                                 <div class="col-sm-8">
+                                    <select class="form-control" name="state" id="state_change">
+                                       @foreach($order_states as $order_state)
+                                       @if($order_state->name == $order->get_status->name)
+                                       <option value="{{$order->get_status->name}}" selected>{{$order->get_status->name}}</option>
+                                       @else
+                                       <option value="{{$order_state->name}}">{{$order_state->name}}</option>
+                                       @endif
+                                       @endforeach
+                                    </select>
+                                 </div>
+                              </div>
+                              <hr>
+                              <div class="form-group row">
+                                 <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Received Date/Time:</label>
+                                 <div class="col-sm-8">
+                                    <input type="text" class="form-control form-control-sm" value="{{$order->received_date}}" required>
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   @foreach ($order->tasks as $task)
                   <tr class="showtask{{$order->id}} hidden table-warning">
                     <td><i class="fas fa-caret-right fa-2x"></i></td>
-                    <td colspan="3" class="my-align bg-warning text-center"><strong>{{$task->description}}</strong></td>
-                    <td><small>{{$task->due_date}}</small></td>
-                    <td></td>
-                    <td class="my-align">{{$task->notes}}</td>
+                    <td colspan="4" class="my-align"><strong>{{$task->description}}</strong></td>
                     <td>{{$task->get_status->name}}</td>
-                    <td>
-                      <button class="btn btn-info btn-sm editbutton" data-index="{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
-                      <button class="btn btn-danger btn-sm deletebutton" data-index="{{$order->id}}"><i class="fas fa-trash-alt text-white"></i></button>
-                    </td>
+                    <td class="my-align">{{$task->notes}}</td>
                   </tr>
                   @endforeach
                  @endforeach
               </tbody>
             </table>
+
+
         </div>
     </div>
 </div>
