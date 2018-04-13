@@ -23,4 +23,6 @@ Route::get('/orders', 'OrderController@showOrders');
 
 Route::post('/orders/create', 'OrderController@createOrders');
 
+Route::post('/orders/edit', 'OrderController@editOrder');
 
+Route::get('/tasks', 'TaskController@showTasks');

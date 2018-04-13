@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title>{{ config('app.name', 'Cube') }} - @yield('title')</title>
 
     <!-- Scripts -->
@@ -40,6 +40,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                        <li><a class="nav-link" href="{{url("/orders")}}">Orders</a></li>
+                       <li><a class="nav-link" href="{{url("/tasks")}}">Tasks</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

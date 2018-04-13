@@ -2,6 +2,22 @@ body {
    font-family: 'Poppins', sans-serif;
 }
 
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
+
 .hidden {
     display: none;
 }
@@ -51,7 +67,7 @@ body {
 	td {
 		/* Behave  like a "row" */
 		border: none;
-		border-bottom: 1px solid rgb(226, 226, 226);
+		/* border-bottom: 1px solid rgb(226, 226, 226); */
 		position: relative;
 		padding-left: 50%;
 		white-space: normal;
@@ -78,4 +94,8 @@ body {
 	Label the data
 	*/
 	td:before { content: attr(data-title); }
+
+   .my-align{
+   	text-align: center;
+   }
 }

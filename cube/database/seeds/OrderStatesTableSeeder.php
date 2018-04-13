@@ -11,7 +11,7 @@ class OrderStatesTableSeeder extends Seeder
      */
     public function run()
     {
-        $status = ['Received','Entered','Booked','Acknowledged','Cancelled','On Hold','Closed'];
+        $status = ['Received','Entered','Booked','Acknowledged','On Hold','Cancelled','Closed'];
         $limit = 7;
 
         for ($i = 0; $i < $limit; $i++) {

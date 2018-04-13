@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Orders List
+Tasks List
 @endsection
 
 @section('content')
@@ -33,18 +33,11 @@ Orders List
             </thead>
             <tbody>
                @foreach($orders as $order)
-               @if($order->get_status->name == 'Cancelled'OR $order->get_status->name == 'Closed')
-               <tr id="showRow{{$order->id}}" class="text-secondary">
-                  @else
-                  <tr id="showRow{{$order->id}}">
-                     @endif
-                     @if (count($order->tasks))
+                     @if (count($order->tasks) > 0)
+                     <tr id="showRow{{$order->id}}">
                      <td data-title="Tasks" class="align-middle">
                         <button class="badge badge-pill badge-warning taskbutton" disabled>{{count($order->tasks)}}</button>
                      </td>
-                     @else
-                     <td></td>
-                     @endif
                      <td data-title="SO#" class="align-middle"><strong>{{$order->so_num}}</strong></td>
                      <td data-title="Customer" class="align-middle">{{$order->get_customer->name}}</td>
                      <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
@@ -63,18 +56,19 @@ Orders List
                      <td data-title="Actions" class="align-middle">
                         <button class="btn btn-info btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
                      </td>
-                  </tr>
-                  <!-- @foreach ($order->tasks as $task)
-                  <tr class="showtask{{$order->id}} hidden table-warning">
-                     <td><i class="fas fa-caret-right"></i></td>
-                     <td colspan="4" class="my-align"><strong>{{$task->description}}</strong></td>
-                     <td>{{$task->get_status->name}}</td>
-                     <td class="my-align">{{$task->notes}}</td>
-                     <td>
-                        <button class="btn btn-info btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
-                     </td>
-                  </tr>
-                  @endforeach -->
+                     </tr>
+                     @foreach ($order->tasks as $task)
+                     <tr class="showtask{{$order->id}} table-warning">
+                        <td><i class="fas fa-caret-right"></i></td>
+                        <td colspan="4" class="my-align"><strong>{{$task->description}}</strong></td>
+                        <td>{{$task->get_status->name}}</td>
+                        <td class="my-align">{{$task->notes}}</td>
+                        <td>
+                           <button class="btn btn-info btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
+                        </td>
+                     </tr>
+                     @endforeach
+                     @endif
                   @endforeach
                </tbody>
             </table>
