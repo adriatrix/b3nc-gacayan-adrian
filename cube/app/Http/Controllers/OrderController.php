@@ -31,13 +31,9 @@ class OrderController extends Controller
    }
 
    public function showOrder($id) {
-     $order = Order::find($id);
-     $tasks = Task::all();
-     // $collection = Task::all();
-     // $sorted = $collection->sortBy('description');
-     // $tasks = $sorted->values()->all();
-     return view ('orders/single_order', compact('order','tasks'));
-   }
+    $order = Order::find($id);
+    return view ('orders/single_order', compact('order'));
+ }
 
    public function createOrders(Request $request) {
       $rules = array (

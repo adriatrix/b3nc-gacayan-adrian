@@ -58,11 +58,16 @@ Tasks List
                      </td>
                      </tr>
                      @foreach ($order->tasks as $task)
-                     <tr class="showtask{{$order->id}} table-warning">
-                        <td><i class="fas fa-caret-right"></i></td>
-                        <td colspan="4" class="my-align"><strong>{{$task->description}}</strong></td>
-                        <td>{{$task->get_status->name}}</td>
+                        <tr class="showtask{{$order->id}}">
+                     @if ($task->get_status->name == 'Done')
+                        <td colspan="5" class="table-warning"><del>{{$task->description}}</del></td>
+                        <td> </td>    
                         <td class="my-align">{{$task->notes}}</td>
+                     @else
+                        <td colspan="5" class="table-warning"><strong>{{$task->description}}</strong></td>
+                        <td> </td>    
+                        <td class="my-align">{{$task->notes}}</td>
+                     @endif
                         <td>
                            <button class="btn btn-info btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
                         </td>

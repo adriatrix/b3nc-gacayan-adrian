@@ -11,6 +11,7 @@ use App\Customer;
 use App\OrderState;
 use App\Tag;
 use App\Task;
+use App\TaskState;
 
 class TaskController extends Controller
 {
@@ -34,14 +35,18 @@ class TaskController extends Controller
      $notes = $request->notes;
      $due_date = $request->due_date;
      $order_id = $id;
-     $task_state_id = 5;
 
+     
+     //  $task_state_id = 5;
+     
      $task_obj = new Task;
      $task_obj->description = $description;
      $task_obj->notes = $notes;
      $task_obj->due_date = $due_date;
      $task_obj->order_id = $order_id;
-     $task_obj->task_state_id = $task_state_id;
+     $task_states = TaskState::all();
+     $get_state = $task_states->where('name','Pending')->first();
+     $task_obj->task_state_id = $get_state->id;
      $task_obj->save();
 
      return redirect()->back();
