@@ -25,4 +25,11 @@ Route::post('/orders/create', 'OrderController@createOrders');
 
 Route::post('/orders/edit', 'OrderController@editOrder');
 
+Route::get('/orders/{id}', 'OrderController@showOrder');
+
+Route::post('/orders/{id}/task', 'TaskController@addTask');
+
+
 Route::get('/tasks', 'TaskController@showTasks');
+
+Route::post('/tasks/change_status', 'TaskController@statusTask');

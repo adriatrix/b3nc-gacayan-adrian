@@ -45,7 +45,7 @@ Orders List
                      @else
                      <td></td>
                      @endif
-                     <td data-title="SO#" class="align-middle"><strong>{{$order->so_num}}</strong></td>
+                     <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong>{{$order->so_num}}</strong></a></td>
                      <td data-title="Customer" class="align-middle">{{$order->get_customer->name}}</td>
                      <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
                      @if (count($order->tags))

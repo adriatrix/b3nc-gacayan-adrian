@@ -30,6 +30,15 @@ class OrderController extends Controller
       return view ('orders/orders_list', compact('orders','order_states','tags','tasks'));
    }
 
+   public function showOrder($id) {
+     $order = Order::find($id);
+     $tasks = Task::all();
+     // $collection = Task::all();
+     // $sorted = $collection->sortBy('description');
+     // $tasks = $sorted->values()->all();
+     return view ('orders/single_order', compact('order','tasks'));
+   }
+
    public function createOrders(Request $request) {
       $rules = array (
         'so_num' => 'required',

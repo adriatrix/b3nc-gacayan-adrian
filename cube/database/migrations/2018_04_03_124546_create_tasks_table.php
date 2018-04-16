@@ -24,8 +24,8 @@ class CreateTasksTable extends Migration
             $table->string('description');
             $table->integer('task_state_id')->unsigned();
             $table->integer('order_id')->unsigned();
-            $table->date('due_date');
-            $table->string('notes');
+            $table->date('due_date')->nullable();
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
 
