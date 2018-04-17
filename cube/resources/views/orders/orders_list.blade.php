@@ -34,9 +34,9 @@ Orders List
             <tbody>
                @foreach($orders as $order)
                @if($order->get_status->name == 'Cancelled'OR $order->get_status->name == 'Closed')
-               <tr id="showRow{{$order->id}}" class="text-secondary">
+               <tr class="text-secondary">
                   @else
-                  <tr id="showRow{{$order->id}}">
+                  <tr>
                      @endif
                      @if (count($order->tasks))
                      <td data-title="Tasks" class="align-middle">
@@ -46,7 +46,7 @@ Orders List
                      <td></td>
                      @endif
                      <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong>{{$order->so_num}}</strong></a></td>
-                     <td data-title="Customer" class="align-middle">{{$order->get_customer->name}}</td>
+                     <td data-title="Customer" class="align-middle"><a href='{{url("/customers/$order->customer_id")}}'>{{$order->get_customer->name}}</a></td>
                      <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
                      @if (count($order->tags))
                      <td data-title="Tags" class="align-middle">

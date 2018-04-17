@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('po_num')->nullable();
             $table->string('notes')->nullable();
             $table->string('received_date')->nullable();
+            $table->string('booked_date')->nullable();
             $table->integer('user_id')->unsigned();
             $table->integer('order_state_id')->unsigned();
             $table->timestamps();

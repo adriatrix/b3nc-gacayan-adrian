@@ -33,7 +33,7 @@ class OrderController extends Controller
    public function showOrder($id) {
     $order = Order::find($id);
     return view ('orders/single_order', compact('order'));
- }
+  }
 
    public function createOrders(Request $request) {
       $rules = array (

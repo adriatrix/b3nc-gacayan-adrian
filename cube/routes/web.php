@@ -29,7 +29,8 @@ Route::get('/orders/{id}', 'OrderController@showOrder');
 
 Route::post('/orders/{id}/task', 'TaskController@addTask');
 
+Route::get('/customers/{id}', 'CustomerController@showCustomer');
 
-Route::get('/tasks', 'TaskController@showTasks');
+Route::post('/comments/create', 'CommentController@createComment');
 
 Route::post('/tasks/change_status', 'TaskController@statusTask');

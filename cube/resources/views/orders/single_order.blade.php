@@ -10,11 +10,11 @@ Order # {{$order->so_num}}
       <div class="col">
       <div class="card text-center">
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">Order # {{$order->so_num}}</h5>
+            <p class="card-text">{{$order->get_customer->name}} - {{$order->po_num}}</p>
+            <p></p>
         </div>
-        </div>   
+        </div>
       </div>
    </div>
    <div class="row justify-content-center">
@@ -28,14 +28,12 @@ Order # {{$order->so_num}}
             <div class="card-header pb-0">
                <div class="form-group row">
                 <div class="col-sm-1">
-                    <!-- <i class="fas fa-plus text-secondary align-middle"></i> -->
                 </div>
                 <div class="col-sm-4">
                     <input type="text" class="task-input form-control text-primary" value="" name="description" placeholder="Enter Task" required>
                 </div>
                 <div class="col-sm-4">
                     <input type="text" class="task-input form-control text-primary" value="" name="notes" placeholder="Enter Notes">
-                    <!-- <textarea class="form-control form-control-sm" rows="1" name="notes"></textarea> -->
                 </div>
                 <div class="col-sm-3">
                     <input type="date" class="task-input form-control text-primary" value="@php echo date('Y-m-d'); @endphp" name="due_date" required>
@@ -56,13 +54,13 @@ Order # {{$order->so_num}}
                     <tbody>
                     @foreach($order->tasks as $task)
                     @if ($task->get_status->name == 'Done')
-                    <tr>
+                    <tr style="text-decoration:line-through;">
                     <td>
                         <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}" checked>
                     </td>
-                    <td><del>{{$task->description}}</del></td>
-                    <td><del>{{$task->notes}}</del></td>
-                    <td><del>{{$task->due_date}}</del></td>
+                    <td>{{$task->description}}</td>
+                    <td>{{$task->notes}}</td>
+                    <td>{{$task->due_date}}</td>
                     </tr>
                     @else
                     <tr>

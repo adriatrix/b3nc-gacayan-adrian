@@ -36,9 +36,9 @@ class TaskController extends Controller
      $due_date = $request->due_date;
      $order_id = $id;
 
-     
+
      //  $task_state_id = 5;
-     
+
      $task_obj = new Task;
      $task_obj->description = $description;
      $task_obj->notes = $notes;
@@ -53,17 +53,10 @@ class TaskController extends Controller
 }
 
    public function statusTask(Request $request) {
-       dd($request);
-      //  $task = Task::find(Input::get('idTask'));
-      //  $status = Input::has('checkboxStatus');
-      //
-      //  $task_states = OrderState::all();
-      //  $get_state = $task_states->where('name',$status)->first();
-      //  $task->task_state_id = $get_state->id;
-      //
-      //  $task->save();
-      //
-      // return redirect()->back();
+       $task = Task::find($request->idTask);
+       $get_state = TaskState::where('name',$request->checkboxStatus)->first();
+       $task->task_state_id = $get_state->id;
+       $task->save();
 }
 
 }
