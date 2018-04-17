@@ -6,15 +6,19 @@ Order # {{$order->so_num}}
 
 @section('content')
 <div class="container">
+   <div class="row justify-content-center mb-1">
+      <div class="col-sm-10">
+         <div class="d-flex justify-content-between">
+            <a class="btn btn-secondary" href='{{url("/orders")}}'>Back to Orders</a>
+         </div>
+      </div>
+   </div>
    <div class="row justify-content-center">
-      <div class="col">
-      <div class="card text-center">
-        <div class="card-body">
-            <h5 class="card-title">Order # {{$order->so_num}}</h5>
-            <p class="card-text">{{$order->get_customer->name}} - {{$order->po_num}}</p>
-            <p></p>
-        </div>
-        </div>
+      <div class="col-sm-10">
+         <div class="text-center">
+           <h1 class="display-5"><span class="border-bottom">Order # {{$order->so_num}}</span></h1>
+           <p class="card-text"><a href='{{url("/customers/$order->customer_id")}}'>{{$order->get_customer->name}}</a> - PO # {{$order->po_num}}</p>
+         </div>
       </div>
    </div>
    <div class="row justify-content-center">
