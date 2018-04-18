@@ -11,6 +11,7 @@ use App\Customer;
 use App\OrderState;
 use App\Tag;
 use App\Task;
+use App\TaskState;
 
 
 class OrderController extends Controller
@@ -26,8 +27,12 @@ class OrderController extends Controller
       $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
       $order_states = OrderState::all();
       $tags = Tag::all();
-      $tasks = Task::all();
-      return view ('orders/orders_list', compact('orders','order_states','tags','tasks'));
+
+      $get_task_states = TaskState::all();
+      $tasks_states = $get_task_states->where('name','Pending')->first();
+      $tasks_states_id = $tasks_states->id;
+
+      return view ('orders/orders_list', compact('orders','order_states','tags','tasks_states_id'));
    }
 
    public function showOrder($id) {

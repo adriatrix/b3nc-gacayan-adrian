@@ -29,6 +29,10 @@ Route::get('/orders/{id}', 'OrderController@showOrder');
 
 Route::post('/orders/{id}/task', 'TaskController@addTask');
 
+Route::get('/customers', 'CustomerController@showCustomers');
+
+Route::get('/customers/search','CustomerController@search');
+
 Route::get('/customers/{id}', 'CustomerController@showCustomer');
 
 Route::post('/comments/create', 'CommentController@createComment');

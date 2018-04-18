@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-   <div class="row justify-content-center mb-1">
+   <div class="row justify-content-center mb-5">
       <div class="col-sm-10">
          <div class="d-flex justify-content-between">
             <a class="btn btn-secondary" href='{{url("/orders")}}'>Back to Orders</a>

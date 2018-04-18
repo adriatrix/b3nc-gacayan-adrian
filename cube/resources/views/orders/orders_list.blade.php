@@ -6,14 +6,9 @@ Orders List
 
 @section('content')
 <div class="container">
-   <div class="row">
+   <div class="row justify-content-center mb-5">
       <div class="col">
-         <button class="btn btn-dark btn-sm createbutton" data-toggle="modal" data-target="#createOrderModal"><i class="fas fa-plus text-white"></i></button>
-      </div>
-   </div>
-   <div class="row">
-      <div class="col">
-         <p> </p>
+         <button class="btn btn-dark createbutton" data-toggle="modal" data-target="#createOrderModal">Create Order</button>
       </div>
    </div>
    <div class="row justify-content-center">
@@ -33,20 +28,21 @@ Orders List
             </thead>
             <tbody>
                @foreach($orders as $order)
-               @if($order->get_status->name == 'Cancelled'OR $order->get_status->name == 'Closed')
+               @if($order->get_status->name == 'Cancelled' OR $order->get_status->name == 'Closed')
                <tr class="text-secondary">
                   @else
                   <tr>
                      @endif
-                     @if (count($order->tasks))
+                     @if ($order->tasks()->where('task_state_id',$tasks_states_id)->count())
                      <td data-title="Tasks" class="align-middle">
-                        <button class="badge badge-pill badge-warning taskbutton" disabled>{{count($order->tasks)}}</button>
+                        <button class="badge badge-pill badge-warning taskbutton" disabled>{{$order->tasks()->where('task_state_id',$tasks_states_id)->count()}}</button>
                      </td>
                      @else
                      <td></td>
                      @endif
-                     <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong>{{$order->so_num}}</strong></a></td>
-                     <td data-title="Customer" class="align-middle"><a href='{{url("/customers/$order->customer_id")}}'>{{$order->get_customer->name}}</a></td>
+                     <!-- <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-dark">{{$order->so_num}}</strong></a></td> -->
+                     <td data-title="SO#" class="align-middle"><strong>{{$order->so_num}}</strong><a class="text-info float-right" href='{{url("/orders/$order->id")}}'><i class="fas fa-folder-open"></i></a></td>
+                     <td data-title="Customer" class="align-middle">{{$order->get_customer->name}}<a class="text-info float-right" href='{{url("/customers/$order->customer_id")}}'><i class="fas fa-folder-open"></i></a></td>
                      <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
                      @if (count($order->tags))
                      <td data-title="Tags" class="align-middle">
@@ -64,17 +60,6 @@ Orders List
                         <button class="btn btn-info btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
                      </td>
                   </tr>
-                  <!-- @foreach ($order->tasks as $task)
-                  <tr class="showtask{{$order->id}} hidden table-warning">
-                     <td><i class="fas fa-caret-right"></i></td>
-                     <td colspan="4" class="my-align"><strong>{{$task->description}}</strong></td>
-                     <td>{{$task->get_status->name}}</td>
-                     <td class="my-align">{{$task->notes}}</td>
-                     <td>
-                        <button class="btn btn-info btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
-                     </td>
-                  </tr>
-                  @endforeach -->
                   @endforeach
                </tbody>
             </table>
@@ -155,7 +140,8 @@ Orders List
             </div>
             @endforeach
 
-            <div class="modal fade" id="createOrderModal" tabindex="-1" role="dialog" aria-labelledby="edit Order {{$order->id}}" aria-hidden="true">
+
+            <div class="modal fade" id="createOrderModal" tabindex="-1" role="dialog" aria-labelledby="create new Order" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                      <div class="modal-header">
