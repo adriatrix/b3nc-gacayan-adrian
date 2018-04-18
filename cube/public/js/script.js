@@ -5,17 +5,6 @@ $(function() {
    //   $('.showtask' + taskId).toggle();
    // });
 
-   $("#search").keyup(function(){
-       var str=  $("#search").val();
-       if(str == "") {
-               $( "#documentList" ).html("<b>Customer Information will be listed here...</b>");
-       }else {
-               $.get( "{{ url('customers/search?search=') }}"+str, function( data ) {
-                   $( "#documentList" ).html( data );
-            });
-       }
-   });
-
    $("input[type='checkbox']").on('click', function (){
     var $this = $(this);
     var isChecked = $this.is(':checked');

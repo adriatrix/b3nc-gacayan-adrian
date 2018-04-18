@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Customers List
+Search
 @endsection
 
 @section('content')
@@ -58,28 +58,22 @@ Customers List
          </div>
       </div>
    </div>
-@endsection
+   @endsection
 
-@section('script')
-<script type="text/javascript">
-$(document).ready(function () {
-  $('#search').on('keyup',function(){
-    $value =$(this).val();
-    $.ajax({
-      data: {
-        query: $value,
-        _token: $('meta[name="csrf-token"]').attr('content'),
-      },
-      url : '/customers/search',
-      type : 'GET',
-      success:function(data){
-        $('#customerList').html(data);
-      }
-    });
-  });
+   @section('script')
+   <script>
+       $('#search').on('keyup',function(){
+           $value=$(this).val();
+           #.ajax ({
+               type: 'GET',
+               url : '{{URL:to('search')}}',
+               data : {'search':$value},
+               success : function(data){
+                   $('customerList').html(data);
+               }
+           });
+       });
 
-$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-
-});
-</script>
-@endsection
+       $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script>
+   @endsection

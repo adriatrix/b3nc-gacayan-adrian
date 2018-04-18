@@ -32,16 +32,16 @@ class CustomerController extends Controller
    }
 
    public function search(Request $request) {
-      // if ($request->ajax()) {
-         $output = "";
-         $results = DB::table('customers')->where('name','LIKE','%'.$request->search."%")->get();
-         if ($results) {
-            foreach ($results as $result)  {
-               $output = '<a href="#" class="badge badge-info">'.$result->name.'</a>&nbsp;';
-            }
-            dd($output);
-            return Response($output);
-         }
-      // }
+       if($request->ajax()) {
+           $output = "";
+           $customers = DB::table('customers')->where('title','LIKE','%'.$request->search."%")->get();
+           dd($customers);
+           if($customers) {
+               foreach($customers as $customer) {
+                   $output = '<a href="#" class="badge badge-info">'.$customer->name.'</a>&nbsp;';
+               }
+               return Response($output);
+           }
+       }
    }
 }
