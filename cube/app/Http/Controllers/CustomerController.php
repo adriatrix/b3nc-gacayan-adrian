@@ -13,15 +13,27 @@ use DB;
 
 class CustomerController extends Controller
 {
-   public function __construct() {
-      $this->middleware('auth');
-   }
+   // public function __construct() {
+   //    $this->middleware('auth');
+   // }
 
    public function showCustomers() {
       $get_customers = Customer::all();
       $customers = $get_customers->sortBy('name');
 
       return view ('customers/customers_list', compact('customers'));
+    }
+
+    public function searchCustomers(Request $request) {
+         $output='';
+         $customers = Customer::where('name','LIKE','%'.$request->search.'%')->get();
+
+         if($customers) {
+            foreach ($customers as $customer) {
+               $output .= '<a href="/customers/'.$customer->id.'" class="badge badge-info mb-1">'.$customer->name.'</a>&nbsp;';
+            }
+            return Response($output);
+         }
    }
 
    public function showCustomer($id) {
@@ -29,19 +41,5 @@ class CustomerController extends Controller
       $get_comments = Comment::all();
       $comments = $get_comments->where('customer_id',$id)->sortBy('created_at');
       return view ('customers/single_customer', compact('customer','comments'));
-   }
-
-   public function search(Request $request) {
-       if($request->ajax()) {
-           $output = "";
-           $customers = DB::table('customers')->where('title','LIKE','%'.$request->search."%")->get();
-           dd($customers);
-           if($customers) {
-               foreach($customers as $customer) {
-                   $output = '<a href="#" class="badge badge-info">'.$customer->name.'</a>&nbsp;';
-               }
-               return Response($output);
-           }
-       }
    }
 }

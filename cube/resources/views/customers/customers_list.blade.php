@@ -22,11 +22,11 @@ Customers List
    </div>
    <div class="row justify-content-center">
       <div class="col-10">
-         <span class="h5" id="customerList">
+         <div class="h5" id="customerList">
             @foreach($customers as $customer)
-              <a href="#" class="badge badge-info">{{$customer->name}}</a>&nbsp;
+              <a href='{{url("/customers/$customer->id")}}' class="badge badge-info mb-1">{{$customer->name}}</a>&nbsp;
             @endforeach
-         </span>
+         </div>
 
             <div class="modal fade" id="createCustomerModal" tabindex="-1" role="dialog" aria-labelledby="create new Customer" aria-hidden="true">
                <div class="modal-dialog" role="document">
@@ -58,28 +58,4 @@ Customers List
          </div>
       </div>
    </div>
-@endsection
-
-@section('script')
-<script type="text/javascript">
-$(document).ready(function () {
-  $('#search').on('keyup',function(){
-    $value =$(this).val();
-    $.ajax({
-      data: {
-        query: $value,
-        _token: $('meta[name="csrf-token"]').attr('content'),
-      },
-      url : '/customers/search',
-      type : 'GET',
-      success:function(data){
-        $('#customerList').html(data);
-      }
-    });
-  });
-
-$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-
-});
-</script>
 @endsection

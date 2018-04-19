@@ -5,6 +5,21 @@ $(function() {
    //   $('.showtask' + taskId).toggle();
    // });
 
+   $("#search").on('keyup', function (){
+      var $value=$(this).val();
+      $.ajax({
+         url: '/customers/search',
+         type: 'GET',
+         data: {
+              search : $value,
+          },
+         success: function(data) {
+            console.log(data);
+             $('#customerList').html(data);
+         }
+      });
+   });
+
    $("input[type='checkbox']").on('click', function (){
     var $this = $(this);
     var isChecked = $this.is(':checked');

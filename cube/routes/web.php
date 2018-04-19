@@ -31,7 +31,7 @@ Route::post('/orders/{id}/task', 'TaskController@addTask');
 
 Route::get('/customers', 'CustomerController@showCustomers');
 
-Route::get('/customers/search','CustomerController@search');
+Route::get('/customers/search', 'CustomerController@searchCustomers');
 
 Route::get('/customers/{id}', 'CustomerController@showCustomer');
 

@@ -7,6 +7,14 @@ input[type=date]::-webkit-inner-spin-button {
     display: none;
 }
 
+.my-footer {
+  /* position: fixed; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(0, 75, 141);
+}
+
 .task-input {
   background: transparent;
   border: none;
@@ -82,7 +90,7 @@ input[type=date]::-webkit-inner-spin-button {
 
 	tr {
       border: 1px solid rgb(22, 21, 21);
-      border-top-width: 25px;
+      border-top-width: 40px;
       margin-bottom: 10px;
    }
 
