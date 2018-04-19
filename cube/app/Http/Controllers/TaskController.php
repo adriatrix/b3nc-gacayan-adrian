@@ -50,13 +50,13 @@ class TaskController extends Controller
      $task_obj->save();
 
      return redirect()->back();
-}
+  }
 
    public function statusTask(Request $request) {
        $task = Task::find($request->idTask);
        $get_state = TaskState::where('name',$request->checkboxStatus)->first();
        $task->task_state_id = $get_state->id;
        $task->save();
-}
+  }
 
 }

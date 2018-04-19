@@ -26,9 +26,11 @@ $(function() {
      if(isChecked) {
         $isChecked = 'Done';
         $(this).parent().parent().css("text-decoration", "line-through");
+        $(this).parent().parent().addClass("text-secondary");
      } else {
         $isChecked = 'Pending';
         $(this).parent().parent().css("text-decoration", "none");
+        $(this).parent().parent().removeClass("text-secondary");
      }
 
     $.ajax({

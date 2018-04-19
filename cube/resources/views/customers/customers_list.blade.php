@@ -24,7 +24,7 @@ Customers List
       <div class="col-10">
          <div class="h5" id="customerList">
             @foreach($customers as $customer)
-              <a href='{{url("/customers/$customer->id")}}' class="badge badge-info mb-1">{{$customer->name}}</a>&nbsp;
+              <a href='{{url("/customers/$customer->id")}}' class="badge badge-primary mb-1">{{$customer->name}}</a>&nbsp;
             @endforeach
          </div>
 

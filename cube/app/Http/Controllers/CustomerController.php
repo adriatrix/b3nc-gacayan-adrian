@@ -13,9 +13,9 @@ use DB;
 
 class CustomerController extends Controller
 {
-   // public function __construct() {
-   //    $this->middleware('auth');
-   // }
+   public function __construct() {
+      $this->middleware('auth');
+   }
 
    public function showCustomers() {
       $get_customers = Customer::all();

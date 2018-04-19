@@ -79,59 +79,14 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 my-container">
             @yield('content')
         </main>
 
-        <footer class="text-light my-footer py-5">
-        	<div class="container">
-        		<div class="content text-center">
-        			<div class="row justify-content-center">
-        				<div class="col-9 text-left">
-        					<p>Contact Me</p>
-        					<dl>
-        						<dt><small class="font-weight-bold">Email: </small>
-        							<span class="h6">adrian.gacayan@Emerson.com</span>
-        						</dt>
-        						<dt><small class="font-weight-bold">Address: </small>
-        							<span class="h6">16/F SM Cyber West Ave cor. EDSA, Bulacan, Project 7, Quezon City, 1105</span>
-        						</dt>
-        						<dt><small class="font-weight-bold">Contact No.: </small>
-        							<span class="h6">(02) 479-5100</span>
-        						</dt>
-        					</dl>
-        				</div>
-        				<div class="col-3 text-center">
-        					<p>Visit me at social media!</p>
-        					<p class="field">
-        						<a class="btn btn-md text-primary">
-        							<span>
-        								<i class="fab fa-facebook fa-2x"></i>
-        							</span>
-        						</a>
-        						<a class="btn btn-md text-warning">
-        							<span>
-        								<i class="fab fa-instagram fa-2x"></i>
-        							</span>
-        						</a>
-        						<a class="btn btn-md text-info">
-        							<span>
-        								<i class="fab fa-twitter fa-2x"></i>
-        							</span>
-        						</a>
-        						<a class="btn btn-md text-danger">
-        							<span>
-        								<i class="fab fa-pinterest fa-2x"></i>
-        							</span>
-        						</a>
-        					</p>
-
-        				</div>
-        			</div>
-        			<hr>
-        			<p>Copyright &copy; 2018 Adrian's Cube by <a class="is-white" href="https://github.com/adriatrix">Adrian Gacayan</a></p>
-        		</div>
-        	</div>
+        <footer class="text-light my-footer py-3">
+      		<div class="text-center">
+      			<span class="align-middle">Copyright &copy; 2018 Adrian's Cube by <a class="is-white" href="https://github.com/adriatrix">Adrian Gacayan</a></span>
+      		</div>
         </footer>
     </div>
     @yield('scripts')

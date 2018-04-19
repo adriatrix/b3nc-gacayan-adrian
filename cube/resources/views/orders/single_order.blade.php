@@ -17,7 +17,7 @@ Order # {{$order->so_num}}
       <div class="col-sm-10">
          <div class="text-center">
            <h1 class="display-5"><span class="border-bottom">Order # {{$order->so_num}}</span></h1>
-           <p class="card-text">{{$order->get_customer->name}} &nbsp;&nbsp;<a class="text-info" href='{{url("/customers/$order->customer_id")}}'><i class="fas fa-folder-open"></i></a> - PO # {{$order->po_num}}</p>
+           <p class="card-text">{{$order->get_customer->name}} &nbsp;&nbsp;<a class="text-emerson" href='{{url("/customers/$order->customer_id")}}'><i class="fas fa-folder-open"></i></a> - PO # {{$order->po_num}}</p>
          </div>
       </div>
    </div>
@@ -34,13 +34,13 @@ Order # {{$order->so_num}}
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" class="task-input form-control text-info" value="" name="description" placeholder="Enter Task" required>
+                    <input type="text" class="task-input form-control text-emerson" value="" name="description" placeholder="Enter Task" required>
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" class="task-input form-control text-info" value="" name="notes" placeholder="Enter Notes">
+                    <input type="text" class="task-input form-control text-emerson" value="" name="notes" placeholder="Enter Notes">
                 </div>
                 <div class="col-sm-3">
-                    <input type="date" class="task-input form-control text-info" value="@php echo date('Y-m-d'); @endphp" name="due_date" required>
+                    <input type="date" class="task-input form-control text-emerson" value="@php echo date('Y-m-d'); @endphp" name="due_date" required>
                 </div>
                 <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
                 </div>
@@ -58,7 +58,7 @@ Order # {{$order->so_num}}
                     <tbody>
                     @foreach($order->tasks as $task)
                     @if ($task->get_status->name == 'Done')
-                    <tr style="text-decoration:line-through;">
+                    <tr class="text-secondary" style="text-decoration:line-through;">
                     <td>
                         <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}" checked>
                     </td>
@@ -79,7 +79,7 @@ Order # {{$order->so_num}}
                     <!-- <hr> -->
                     @endforeach
                     </tbody>
-                <table>
+                </table>
            </div>
         </div>
          </form>
