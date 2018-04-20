@@ -11,4 +11,10 @@ class Tag extends Model
     function orders() {
         return $this->belongsToMany('App\Order');
      }
+
+    function getRouteKeyName() {
+        return 'name';
+     }
+
+
 }

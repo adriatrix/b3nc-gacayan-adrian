@@ -8,7 +8,16 @@ Orders List
 <div class="container">
    <div class="row justify-content-center mb-5">
       <div class="col">
-         <button class="btn btn-dark createbutton" data-toggle="modal" data-target="#createOrderModal">Create Order</button>
+         <div class="form-row">
+            <div class="col-2.5 mb-1">
+               <button class="btn btn-dark createbutton" data-toggle="modal" data-target="#createOrderModal">Create new Order</button>
+            </div>
+            <div class="col-sm-1 col-md-6 col-lg-6 mb-1">
+            </div>
+            <div class="col">
+               <input type="text" class="form-control" id="orderSearch" name="search" placeholder="Search Orders" autocomplete="off">
+            </div>
+         </div>
       </div>
    </div>
    <div class="row justify-content-center">
@@ -26,7 +35,7 @@ Orders List
                   <th style="width: 3%" scope="col">Actions</th>
                </tr>
             </thead>
-            <tbody>
+            <tbody id="orderList">
                @foreach($orders as $order)
                @if($order->get_status->name == 'Cancelled' OR $order->get_status->name == 'Closed')
                <tr class="text-secondary">
@@ -40,14 +49,13 @@ Orders List
                      @else
                      <td></td>
                      @endif
-                     <!-- <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-dark">{{$order->so_num}}</strong></a></td> -->
-                     <td data-title="SO#" class="align-middle"><strong>{{$order->so_num}}</strong><a class="text-info float-right" href='{{url("/orders/$order->id")}}'><i class="fas fa-folder-open"></i></a></td>
-                     <td data-title="Customer" class="align-middle">{{$order->get_customer->name}}<a class="text-info float-right" href='{{url("/customers/$order->customer_id")}}'><i class="fas fa-folder-open"></i></a></td>
+                     <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-emerson">{{$order->so_num}}</strong></a></td>
+                     <td data-title="Customer" class="align-middle"><a class="text-emerson" href='{{url("/customers/$order->customer_id")}}'>{{$order->get_customer->name}}</a></td>
                      <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
                      @if (count($order->tags))
                      <td data-title="Tags" class="align-middle">
                         @foreach($order->tags as $tag)
-                        <a href="#" class="badge badge-primary">{{$tag->name}}</a>
+                        <a href='{{url("/orders/tags/$tag->name")}}' class="badge badge-info">{{$tag->name}}</a>
                         @endforeach
                      </td>
                      @else
@@ -57,7 +65,7 @@ Orders List
                      <td class="my-align align-middle">{{$order->notes}}
                      </td>
                      <td data-title="Actions" class="align-middle">
-                        <button class="btn btn-info btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt text-white"></i></button>
+                        <button class="btn btn-outline-primary btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt"></i></button>
                      </td>
                   </tr>
                   @endforeach

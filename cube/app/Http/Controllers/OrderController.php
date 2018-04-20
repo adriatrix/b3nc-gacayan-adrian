@@ -23,7 +23,7 @@ class OrderController extends Controller
    public function showOrders() {
       $id = \Auth::user()->id;
       // $user = User::find($id);
-      $get_orders = Order::all();
+      $get_orders = Order::latest()->get();
       $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
       $order_states = OrderState::all();
       $tags = Tag::all();
@@ -38,6 +38,76 @@ class OrderController extends Controller
    public function showOrder($id) {
     $order = Order::find($id);
     return view ('orders/single_order', compact('order'));
+  }
+
+  public function searchOrders(Request $request) {
+      $id = \Auth::user()->id;
+      // $user = User::find($id);
+      $get_orders = Order::latest()->get();
+      $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+      $order_states = OrderState::all();
+      $tags = Tag::all();
+
+      $get_task_states = TaskState::all();
+      $tasks_states = $get_task_states->where('name','Pending')->first();
+      $tasks_states_id = $tasks_states->id;
+
+      $output='';
+      $orders = Order::where('so_num','LIKE','%'.$request->search.'%')->orWhere('po_num','LIKE','%'.$request->search.'%')->get();
+
+      if($orders) {
+          foreach ($orders as $order) {
+             if($order->get_status->name == 'Cancelled' OR $order->get_status->name == 'Closed') {
+                $output .= '<tr class="text-secondary">'
+             } else {
+                $output .= '<tr>'
+             }
+                   @if ($order->tasks()->where('task_state_id',$tasks_states_id)->count())
+                   <td data-title="Tasks" class="align-middle">
+                      <button class="badge badge-pill badge-warning taskbutton" disabled>{{$order->tasks()->where('task_state_id',$tasks_states_id)->count()}}</button>
+                   </td>
+                   @else
+                   <td></td>
+                   @endif
+                   <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-emerson">{{$order->so_num}}</strong></a></td>
+                   <td data-title="Customer" class="align-middle"><a class="text-emerson" href='{{url("/customers/$order->customer_id")}}'>{{$order->get_customer->name}}</a></td>
+                   <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
+                   @if (count($order->tags))
+                   <td data-title="Tags" class="align-middle">
+                      @foreach($order->tags as $tag)
+                      <a href='{{url("/orders/tags/$tag->name")}}' class="badge badge-info">{{$tag->name}}</a>
+                      @endforeach
+                   </td>
+                   @else
+                   <td></td>
+                   @endif
+                   <td data-title="Status" class="align-middle">{{$order->get_status->name}}</td>
+                   <td class="my-align align-middle">{{$order->notes}}
+                   </td>
+                   <td data-title="Actions" class="align-middle">
+                      <button class="btn btn-outline-primary btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt"></i></button>
+                   </td>
+                </tr>
+          }
+          return Response($output);
+      }
+}
+
+  public function showTaggedOrders(Tag $tag) {
+     $id = \Auth::user()->id;
+
+     $get_orders = $tag->orders;
+     $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+
+
+     $order_states = OrderState::all();
+     $tags = Tag::all();
+
+     $get_task_states = TaskState::all();
+     $tasks_states = $get_task_states->where('name','Pending')->first();
+     $tasks_states_id = $tasks_states->id;
+
+     return view ('orders/orders_list', compact('orders','order_states','tags','tasks_states_id'));
   }
 
    public function createOrders(Request $request) {

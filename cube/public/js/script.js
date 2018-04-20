@@ -4,8 +4,22 @@ $(function() {
    //   taskId = $(this).data('index');
    //   $('.showtask' + taskId).toggle();
    // });
+   $("#orderSearch").on('keyup', function (){
+      var $value=$(this).val();
+      $.ajax({
+         url: '/orders/search',
+         type: 'GET',
+         data: {
+            search : $value,
+         },
+         success: function(data) {
+            console.log(data);
+            $('#orderList').html(data);
+         }
+      });
+   });
 
-   $("#search").on('keyup', function (){
+   $("#customerSearch").on('keyup', function (){
       var $value=$(this).val();
       $.ajax({
          url: '/customers/search',
@@ -19,6 +33,7 @@ $(function() {
          }
       });
    });
+
 
    $("input[type='checkbox']").on('click', function (){
     var $this = $(this);

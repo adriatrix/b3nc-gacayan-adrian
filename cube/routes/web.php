@@ -25,7 +25,11 @@ Route::post('/orders/create', 'OrderController@createOrders');
 
 Route::post('/orders/edit', 'OrderController@editOrder');
 
+Route::get('/orders/search', 'OrderController@searchOrders');
+
 Route::get('/orders/{id}', 'OrderController@showOrder');
+
+Route::get('/orders/tags/{tag}', 'OrderController@showTaggedOrders');
 
 Route::post('/orders/{id}/task', 'TaskController@addTask');
 

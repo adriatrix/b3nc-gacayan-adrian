@@ -7,24 +7,24 @@ Customers List
 @section('content')
 <div class="container">
    <div class="row justify-content-center mb-5">
-      <div class="col-10">
+      <div class="col">
          <div class="form-row">
             <div class="col-2.5 mb-1">
-               <button class="btn btn-dark createbutton form-control" data-toggle="modal" data-target="#createCustomerModal">Create Customer</button>
+               <button class="btn btn-dark createbutton form-control" data-toggle="modal" data-target="#createCustomerModal">Create new Customer</button>
             </div>
             <div class="col-sm-1 col-md-6 col-lg-6 mb-1">
             </div>
             <div class="col">
-               <input type="text" class="form-control" id="search" name="search" placeholder="Search" autocomplete="off">
+               <input type="text" class="form-control" id="customerSearch" name="search" placeholder="Search Customers" autocomplete="off">
             </div>
          </div>
       </div>
    </div>
    <div class="row justify-content-center">
-      <div class="col-10">
+      <div class="col">
          <div class="h5" id="customerList">
             @foreach($customers as $customer)
-              <a href='{{url("/customers/$customer->id")}}' class="badge badge-primary mb-1">{{$customer->name}}</a>&nbsp;
+              <a href='{{url("/customers/$customer->id")}}' class="badge badge-info mb-1">{{$customer->name}}</a>&nbsp;
             @endforeach
          </div>
 
