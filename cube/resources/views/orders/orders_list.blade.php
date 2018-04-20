@@ -137,6 +137,14 @@ Orders List
                                  <input type="text" class="form-control form-control-sm" value="{{$order->received_date}}" name="received_date" required>
                               </div>
                            </div>
+                           @if ($order->booked_date)
+                             <div class="form-group row">
+                               <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Booked Date/Time:</label>
+                               <div class="col-sm-8">
+                                 <input type="text" class="form-control form-control-sm" value="{{$order->booked_date}}" name="booked_date" required>
+                               </div>
+                             </div>
+                           @endif
                         </div>
                         <div class="modal-footer">
                            <input type="hidden" id="order_id" name="order_id" value="{{$order->id}}">

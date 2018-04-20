@@ -58,36 +58,31 @@ class OrderController extends Controller
       if($orders) {
           foreach ($orders as $order) {
              if($order->get_status->name == 'Cancelled' OR $order->get_status->name == 'Closed') {
-                $output .= '<tr class="text-secondary">'
+                $output .= '<tr class="text-secondary">';
              } else {
-                $output .= '<tr>'
+                $output .= '<tr>';
              }
-                   @if ($order->tasks()->where('task_state_id',$tasks_states_id)->count())
-                   <td data-title="Tasks" class="align-middle">
-                      <button class="badge badge-pill badge-warning taskbutton" disabled>{{$order->tasks()->where('task_state_id',$tasks_states_id)->count()}}</button>
-                   </td>
-                   @else
-                   <td></td>
-                   @endif
-                   <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-emerson">{{$order->so_num}}</strong></a></td>
-                   <td data-title="Customer" class="align-middle"><a class="text-emerson" href='{{url("/customers/$order->customer_id")}}'>{{$order->get_customer->name}}</a></td>
-                   <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
-                   @if (count($order->tags))
-                   <td data-title="Tags" class="align-middle">
-                      @foreach($order->tags as $tag)
-                      <a href='{{url("/orders/tags/$tag->name")}}' class="badge badge-info">{{$tag->name}}</a>
-                      @endforeach
-                   </td>
-                   @else
-                   <td></td>
-                   @endif
-                   <td data-title="Status" class="align-middle">{{$order->get_status->name}}</td>
-                   <td class="my-align align-middle">{{$order->notes}}
-                   </td>
-                   <td data-title="Actions" class="align-middle">
-                      <button class="btn btn-outline-primary btn-sm editbutton center-block" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal{{$order->id}}"><i class="fas fa-pencil-alt"></i></button>
-                   </td>
-                </tr>
+             if ($order->tasks()->where('task_state_id',$tasks_states_id)->count()) {
+               $output .= '<td data-title="Tasks" class="align-middle"><button class="badge badge-pill badge-warning taskbutton" disabled>'.$order->tasks()->where('task_state_id',$tasks_states_id)->count().'</button></td>';
+             } else {
+               $output .= '<td></td>';
+             }
+             $output .= '<td data-title="SO#" class="align-middle"><a href="/orders/'.$order->id.'"><strong class="text-emerson">'.$order->so_num.'</strong></a></td>';
+             $output .= '<td data-title="Customer" class="align-middle"><a class="text-emerson" href="/customers/'.$order->customer_id.'">'.$order->get_customer->name.'</a></td>';
+             $output .= '<td data-title="PO#" class="align-middle">'.$order->po_num.'</td>';
+            if (count($order->tags)) {
+              $output .= '<td data-title="Tags" class="align-middle">';
+              foreach ($order->tags as $tag) {
+                $output .= '<a href="/orders/tags/'.$tag->name.'" class="badge badge-info">'.$tag->name.'</a>&nbsp;';
+              }
+              $output .= '</td>';
+            } else {
+              $output .= '<td></td>';
+            }
+            $output .= '<td data-title="Status" class="align-middle">'.$order->get_status->name.'</td>';
+            $output .= '<td class="my-align align-middle">'.$order->notes.'</td>';
+            $output .= '<td data-title="Actions" class="align-middle"><button class="btn btn-outline-primary btn-sm editbutton center-block" value="'.$order->id.'" data-index="'.$order->id.'" data-toggle="modal" data-target="#editOrderModal'.$order->id.'"><i class="fas fa-pencil-alt"></i></button>';
+            $output .= '</td></tr>';
           }
           return Response($output);
       }
@@ -176,6 +171,11 @@ class OrderController extends Controller
 
       $order->notes = $request->notes;
       $order->received_date = $request->received_date;
+      $order->booked_date = $request->booked_date;
+
+      if ($get_state->name == 'Booked') {
+        $order->booked_date = date("m/d/Y H:i:s");
+      }
 
       $order->save();
 
