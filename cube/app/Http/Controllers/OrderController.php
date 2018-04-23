@@ -23,9 +23,10 @@ class OrderController extends Controller
 
    public function showOrders() {
       $id = \Auth::user()->id;
-      // $user = User::find($id);
+
       $get_orders = Order::latest()->get();
       $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+
       $order_states = OrderState::all();
       $tags = Tag::all();
 
@@ -39,14 +40,35 @@ class OrderController extends Controller
    public function showOrder($id) {
     $order = Order::find($id);
     $order_states = OrderState::all();
-    return view ('orders/single_order', compact('order','order_states'));
+
+    $get_tasks = Task::latest()->get();
+    $tasks = $get_tasks->where('order_id',$id)->sortBy('task_state_id');
+
+    return view ('orders/single_order', compact('order','order_states','tasks'));
   }
+
+  public function searchNumbers(Request $request) {
+      $output='';
+      $orders = Order::where('so_num','LIKE','%'.$request->search.'%')->orWhere('po_num','LIKE','%'.$request->search.'%')->get();
+
+      if($orders) {
+          foreach ($orders as $order) {
+             $output .= '<button data-index="'.$order->id.'" class="badge badge-info mb-1 orderbutton" data-toggle="button" aria-pressed="false" autocomplete="off">'.$order->so_num.' - '.$order->po_num.'</button>&nbsp;';
+          }
+      } else {
+         $output .= '&nbsp;';
+      }
+      return Response($output);
+}
+
 
   public function searchOrders(Request $request) {
       $id = \Auth::user()->id;
-      // $user = User::find($id);
+      $odor = $request->odor;
+
       $get_orders = Order::latest()->get();
-      $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+      $get_my_orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+
       $order_states = OrderState::all();
       $tags = Tag::all();
 
@@ -55,9 +77,9 @@ class OrderController extends Controller
       $tasks_states_id = $tasks_states->id;
 
       $output='';
-      $orders = Order::where('so_num','LIKE','%'.$request->search.'%')->orWhere('po_num','LIKE','%'.$request->search.'%')->get();
+      $orders = $get_my_orders->where('id',$odor)->sortBy('created_at');
 
-      if($orders) {
+      if(count($orders) > 0) {
           foreach ($orders as $order) {
              if($order->get_status->name == 'Cancelled' OR $order->get_status->name == 'Closed') {
                 $output .= '<tr class="text-secondary">';
@@ -70,7 +92,7 @@ class OrderController extends Controller
                $output .= '<td></td>';
              }
              $output .= '<td data-title="SO#" class="align-middle"><a href="/orders/'.$order->id.'"><strong class="text-emerson">'.$order->so_num.'</strong></a></td>';
-             $output .= '<td data-title="Customer" class="align-middle"><a class="text-emerson" href="/customers/'.$order->customer_id.'">'.$order->get_customer->name.'</a></td>';
+             $output .= '<td data-title="Customer" class="align-middle">'.$order->get_customer->name.'</td>';
              $output .= '<td data-title="PO#" class="align-middle">'.$order->po_num.'</td>';
             if (count($order->tags)) {
               $output .= '<td data-title="Tags" class="align-middle">';
@@ -143,7 +165,7 @@ class OrderController extends Controller
       }
       $new_order->tags()->sync($tagIds);
 
-      return redirect('/orders');
+      return redirect('/home');
    }
 
    public function editOrder(Request $request) {

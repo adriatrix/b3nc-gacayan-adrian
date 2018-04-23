@@ -21,11 +21,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/orders', 'OrderController@showOrders');
 
+Route::get('/orders/numbersearch', 'OrderController@searchOrders');
+
+Route::get('/orders/search', 'OrderController@searchNumbers');
+
 Route::post('/orders/create', 'OrderController@createOrders');
 
 Route::post('/orders/edit', 'OrderController@editOrder');
-
-Route::get('/orders/search', 'OrderController@searchOrders');
 
 Route::get('/orders/{id}', 'OrderController@showOrder');
 
@@ -48,3 +50,5 @@ Route::post('/tasks/change_status', 'TaskController@statusTask');
 Route::get('/profile', 'UserController@showProfile');
 
 Route::post('/users/edit', 'UserController@editUser');
+
+Route::get("/autocomplete",array('as'=>'autocomplete','uses'=> 'HomeController@autocomplete'));

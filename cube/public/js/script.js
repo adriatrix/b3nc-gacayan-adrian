@@ -9,7 +9,7 @@ $(function() {
             search : $value,
          },
          success: function(data) {
-            $('#orderList').html(data);
+            $('#numberList').html(data);
          }
       });
    });
@@ -30,7 +30,6 @@ $(function() {
 
    $('#customerList').on('click','button', function (){
     var $custId = $(this).data('index');
-    console.log('clicked')
     $.ajax({
        url: '/customers/ordersearch',
        type: 'GET',
@@ -39,6 +38,20 @@ $(function() {
         },
        success: function(data) {
            $('#customerOrderList').html(data);
+       }
+    });
+   });
+
+   $('#numberList').on('click','button', function (){
+    var $orderId = $(this).data('index');
+    $.ajax({
+       url: '/orders/numbersearch',
+       type: 'GET',
+       data: {
+            odor : $orderId,
+        },
+       success: function(data) {
+           $('#orderList').html(data);
        }
     });
    });

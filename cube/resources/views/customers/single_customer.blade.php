@@ -9,7 +9,7 @@
    <div class="row justify-content-center mb-5">
       <div class="col-sm-10">
          <div class="d-flex justify-content-between">
-            <a class="btn btn-secondary" href='{{url("/orders")}}'>Back</a>
+            <a class="btn btn-secondary" href='{{url("/home")}}'>Home</a>
             <button class="btn btn-dark" data-toggle="modal" data-target="#createCommentModal">Post</button>
          </div>
       </div>

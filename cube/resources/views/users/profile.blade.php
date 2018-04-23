@@ -9,14 +9,14 @@
   <div class="row justify-content-center mb-5">
     <div class="col">
       <div class="d-flex justify-content-between">
-        <a class="btn btn-secondary" href='{{url("/orders")}}'>Back</a>
+        <a class="btn btn-secondary" href='{{url("/home")}}'>Home</a>
         <button class="btn btn-dark editbutton" value="{{$user->id}}" data-index="{{$user->id}}" data-toggle="modal" data-target="#editUserModal">Edit</button>
       </div>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="col">
-      <h1 class="display-5 text-center">{{$user->nickname}} <span class="h6 align-text-middle">joined: {{$user->created_at}}</span></h1>
+      <h1 class="display-5 text-center">{{$user->nickname}} <span class="h6 align-middle ml-5">joined:<span class="badge badge-primary ml-1">{{date('F d, Y', strtotime($user->created_at))}}</span></span></h1>
       <div class="card">
         <div class="text-center card-body">
           <div class="form-group row">

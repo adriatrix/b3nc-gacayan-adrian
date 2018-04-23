@@ -10,13 +10,23 @@ Orders List
       <div class="col">
          <div class="form-row">
             <div class="col-2.5 mb-1">
-               <button class="btn btn-dark createbutton" data-toggle="modal" data-target="#createOrderModal">Create new Order</button>
+               <!-- <button class="btn btn-outline-dark createbutton" data-toggle="modal" data-target="#createOrderModal">Create Order</button> -->
+               <a class="btn btn-secondary" href='{{url("/home")}}'>Home</a>
             </div>
             <div class="col-sm-1 col-md-6 col-lg-6 mb-1">
             </div>
             <div class="col">
                <input type="text" class="form-control" id="orderSearch" name="search" placeholder="Search Orders" autocomplete="off">
             </div>
+         </div>
+      </div>
+   </div>
+   <div class="row justify-content-center">
+      <div class="col">
+         <div class="h4 border border-info p-1 rounded" id="numberList">
+            @foreach($orders as $order)
+            <button data-index="{{$order->id}}" class="badge badge-info mb-1 orderbutton" data-toggle="button" aria-pressed="false" autocomplete="off">{{$order->so_num}} - {{$order->po_num}}</button>&nbsp;
+            @endforeach
          </div>
       </div>
    </div>
@@ -35,189 +45,100 @@ Orders List
                </tr>
             </thead>
             <tbody id="orderList">
-               @foreach($orders as $order)
-               @if($order->get_status->name == 'Cancelled' OR $order->get_status->name == 'Closed')
-               <tr class="text-secondary">
-                  @else
-                  <tr>
-                     @endif
-                     @if ($order->tasks()->where('task_state_id',$tasks_states_id)->count())
-                     <td data-title="Tasks" class="align-middle">
-                        <button class="badge badge-pill badge-warning text-hand" disabled>{{$order->tasks()->where('task_state_id',$tasks_states_id)->count()}}</button>
-                     </td>
-                     @else
-                     <td></td>
-                     @endif
-                     <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-emerson">{{$order->so_num}}</strong></a></td>
-                     <td data-title="Customer" class="align-middle">{{$order->get_customer->name}}</td>
-                     <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
-                     @if (count($order->tags))
-                     <td data-title="Tags" class="align-middle">
-                        @foreach($order->tags as $tag)
-                        <a href='{{url("/orders/tags/$tag->name")}}' class="badge badge-info">{{$tag->name}}</a>
-                        @endforeach
-                     </td>
-                     @else
-                     <td></td>
-                     @endif
-                     <td data-title="Status" class="align-middle">{{$order->get_status->name}}</td>
-                     <td data-title="Notes" class="my-align align-middle">{{$order->notes}}
-                     </td>
-                  </tr>
-                  @endforeach
-               </tbody>
-            </table>
+               <tr>
+                  <td colspan="7">
+                     <p class="h4">Select an order from the list above...</p>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
 
-            @foreach($orders as $order)
-            <div class="modal fade" id="editOrderModal{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="edit Order {{$order->id}}" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h5 class="modal-title" id="editOrder{{$order->id}}">Edit SO# {{$order->so_num}}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                        </button>
-                     </div>
-                     <form action="{{url("/orders/edit")}}" method="post">
-                        {{ csrf_field() }}
-                        <div class="modal-body">
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control" value="{{$order->so_num}}" name="so_num" required>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control" value="{{$order->get_customer->name}}" name="customer" required>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control" value="{{$order->po_num}}" name="po_num" required>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Tags:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control" value="@foreach($order->tags as $tag){{$tag->name}} @endforeach" name="tags">
-                                 <small class="form-text text-muted">Separate each tags by a space.</small>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
-                              <div class="col-sm-8">
-                                 <textarea class="form-control form-control-sm my-align" rows="4" name="notes" id="note">{{$order->notes}}</textarea>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Order Status:</label>
-                              <div class="col-sm-8">
-                                 <select class="form-control" name="status" id="state_change">
-                                    @foreach($order_states as $order_state)
-                                    @if($order_state->name == $order->get_status->name)
-                                    <option value="{{$order->get_status->name}}" selected>{{$order->get_status->name}}</option>
-                                    @else
-                                    <option value="{{$order_state->name}}">{{$order_state->name}}</option>
-                                    @endif
-                                    @endforeach
-                                 </select>
-                              </div>
-                           </div>
-                           <hr>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Received Date/Time:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control form-control-sm" value="{{$order->received_date}}" name="received_date" required>
-                              </div>
-                           </div>
-                           @if ($order->booked_date)
-                             <div class="form-group row">
-                               <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Booked Date/Time:</label>
-                               <div class="col-sm-8">
-                                 <input type="text" class="form-control form-control-sm" value="{{$order->booked_date}}" name="booked_date" required>
-                               </div>
-                             </div>
-                           @endif
-                        </div>
-                        <div class="modal-footer">
-                           <input type="hidden" id="order_id" name="order_id" value="{{$order->id}}">
-                           <input class="btn btn-primary" type="submit" name="edit" value="Update">
-                        </div>
-                     </form>
+         @foreach($orders as $order)
+         <div class="modal fade" id="editOrderModal{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="edit Order {{$order->id}}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="editOrder{{$order->id}}">Edit SO# {{$order->so_num}}</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
                   </div>
+                  <form action="{{url("/orders/edit")}}" method="post">
+                     {{ csrf_field() }}
+                     <div class="modal-body">
+                        <div class="form-group row">
+                           <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
+                           <div class="col-sm-8">
+                              <input type="text" class="form-control" value="{{$order->so_num}}" name="so_num" required>
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
+                           <div class="col-sm-8">
+                              <input type="text" class="form-control" value="{{$order->get_customer->name}}" name="customer" required>
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
+                           <div class="col-sm-8">
+                              <input type="text" class="form-control" value="{{$order->po_num}}" name="po_num" required>
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Tags:</label>
+                           <div class="col-sm-8">
+                              <input type="text" class="form-control" value="@foreach($order->tags as $tag){{$tag->name}} @endforeach" name="tags">
+                              <small class="form-text text-muted">Separate each tags by a space.</small>
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
+                           <div class="col-sm-8">
+                              <textarea class="form-control form-control-sm my-align" rows="4" name="notes" id="note">{{$order->notes}}</textarea>
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Order Status:</label>
+                           <div class="col-sm-8">
+                              <select class="form-control" name="status" id="state_change">
+                                 @foreach($order_states as $order_state)
+                                 @if($order_state->name == $order->get_status->name)
+                                 <option value="{{$order->get_status->name}}" selected>{{$order->get_status->name}}</option>
+                                 @else
+                                 <option value="{{$order_state->name}}">{{$order_state->name}}</option>
+                                 @endif
+                                 @endforeach
+                              </select>
+                           </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                           <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Received Date/Time:</label>
+                           <div class="col-sm-8">
+                              <input type="text" class="form-control form-control-sm" value="{{$order->received_date}}" name="received_date" required>
+                           </div>
+                        </div>
+                        @if ($order->booked_date)
+                        <div class="form-group row">
+                           <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Booked Date/Time:</label>
+                           <div class="col-sm-8">
+                              <input type="text" class="form-control form-control-sm" value="{{$order->booked_date}}" name="booked_date" required>
+                           </div>
+                        </div>
+                        @endif
+                     </div>
+                     <div class="modal-footer">
+                        <input type="hidden" id="order_id" name="order_id" value="{{$order->id}}">
+                        <input class="btn btn-primary" type="submit" name="edit" value="Update">
+                     </div>
+                  </form>
                </div>
             </div>
-            @endforeach
-
-
-            <div class="modal fade" id="createOrderModal" tabindex="-1" role="dialog" aria-labelledby="create new Order" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h5 class="modal-title" id="createOrder">Create Order</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                        </button>
-                     </div>
-                     <form action='{{url("/orders/create")}}' method="post">
-                        {{ csrf_field() }}
-                        <div class="modal-body">
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control" value="" name="so_num" required>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control" value="" name="customer" required>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control" value="" name="po_num" required>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Tags:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control" value="" name="tags">
-                                 <small class="form-text text-muted">Separate each tags by a space.</small>
-                              </div>
-                           </div>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
-                              <div class="col-sm-8">
-                                 <textarea class="form-control form-control-sm my-align" name="notes" rows="4"></textarea>
-                              </div>
-                           </div>
-                           <input type="hidden" class="form-control" name="status" value="Received">
-                           <hr>
-                           <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Received Date/Time:</label>
-                              <div class="col-sm-8">
-                                 <input type="text" class="form-control form-control-sm" value="" name="received_date" required>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="modal-footer">
-                           <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                           <input class="btn btn-primary" type="submit" name="create" value="Create">
-                        </div>
-                     </form>
-                  </div>
-               </div>
-            </div>
-
-
-
-
          </div>
+         @endforeach
+
+
       </div>
    </div>
-   @endsection
+</div>
+@endsection

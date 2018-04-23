@@ -34,6 +34,7 @@ class HomeController extends Controller
     public function index()
     {
       $id = \Auth::user()->id;
+      $user = \Auth::user()->nickname;
 
       $get_orders = Order::latest()->get();
       $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
@@ -46,6 +47,19 @@ class HomeController extends Controller
       $get_tasks = Task::latest()->get();
       $tasks = $get_tasks->where('task_state_id',$tasks_states_id)->sortBy('due_date');
 
-      return view ('home', compact('orders','tasks_states_id','tasks'));
+      return view ('home', compact('orders','tasks_states_id','tasks','user'));
     }
+
+    public function autocomplete(Request $request)
+    {
+      $term=$request->term;
+        $data = stationary::where('item','LIKE','%'.$term.'%')
+        ->take(10)
+        ->get();
+        $result=array();
+        foreach ($data as $key => $v){
+           $result[]=['value' =>$value->item];
+        }
+        return response()->json($results);
+     }
 }

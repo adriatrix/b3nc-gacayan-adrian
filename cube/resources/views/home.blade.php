@@ -9,13 +9,10 @@ Home
   <div class="row justify-content-center">
     <div class="col">
       <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </p>
+        <h1 class="display-4">Hello, {{$user}}!</h1>
+        <p class="lead">Welcome to the Cube - this is a simple order management system (OMS) app.</p>
+        <!-- <hr class="my-4"> -->
+        <p></p>
       </div>
     </div>
   </div>
@@ -23,6 +20,10 @@ Home
     <div class="col">
       <div class="row justify-content-center">
         <div class="col-sm col-md-12 col-lg-6">
+           <div class="d-flex justify-content-between">
+             <span class="h4 highlight-red">Pending Orders</span>
+             <button class="btn btn-outline-dark createbutton mb-1" data-toggle="modal" data-target="#createOrderModal">Create Order</button>
+          </div>
           <table class="table table-hover table-sm my-table text-center table-bordered">
             <thead class="thead-dark">
               <tr>
@@ -48,7 +49,6 @@ Home
                   <td data-title="Customer" class="align-middle">{{$order->get_customer->name}}</td>
                   <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
                   <td data-title="Status" class="align-middle">{{$order->get_status->name}}</td>
-                  </td>
                 </tr>
                 @endif
                 @endforeach
@@ -56,33 +56,101 @@ Home
             </table>
           </div>
           <div class="col-sm col-md-12 col-lg-6">
+             <div class="d-flex justify-content-between">
+                <span class="h4 highlight-yellow">Pending Tasks</span>
+                <button class="btn btn-outline-dark createbutton mb-1" data-toggle="modal" data-target="#createOrderModal">Create Task</button>
+             </div>
             <table class="table table-hover table-sm my-table text-center table-bordered">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">Due</i></th>
                   <th scope="col">SO#</th>
                   <th scope="col">Task</th>
                   <th scope="col">Notes</th>
+                  <th scope="col">Due</th>
                 </tr>
               </thead>
               <tbody id="">
                 @foreach($tasks as $task)
                   <tr>
-                    <td data-title="SO#" class="align-middle">{{$task->due_date}}</td>
                     @php
                       $order_id = $task->get_order->id;
                     @endphp
                     <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order_id")}}'><strong class="text-emerson">{{$task->get_order->so_num}}</strong></a></td>
                     <td data-title="Task" class="align-middle">{{$task->description}}</td>
-                    <td data-title="Notes" class="align-middle">{{$task->notes}}</td>
-                    </td>
+                    @if ($task->notes)
+                       <td data-title="Notes" class="align-middle">{{$task->notes}}</td>
+                    @else
+                       <td data-title="Notes" class="align-middle">&nbsp;</td>
+                    @endif
+                    <td data-title="Due" class="align-middle">{{$task->due_date}}</td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
-
             </div>
           </div>
+          <!-- start of modal for creating new order -->
+          <div class="modal fade" id="createOrderModal" tabindex="-1" role="dialog" aria-labelledby="create new Order" aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                   <div class="modal-header">
+                      <h5 class="modal-title" id="createOrder">Create Order</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                      </button>
+                   </div>
+                   <form action='{{url("/orders/create")}}' method="post">
+                      {{ csrf_field() }}
+                      <div class="modal-body">
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control" value="" name="so_num" required>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control" value="" name="customer" id="newcustomer" autocomplete="off" required>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control" value="" name="po_num" required>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Tags:</label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control" value="" name="tags">
+                               <small class="form-text text-muted">Separate each tags by a space.</small>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
+                            <div class="col-sm-8">
+                               <textarea class="form-control form-control-sm my-align" name="notes" rows="4"></textarea>
+                            </div>
+                         </div>
+                         <input type="hidden" class="form-control" name="status" value="Received">
+                         <hr>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Received Date/Time:</label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control form-control-sm" value="" name="received_date" required>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="modal-footer">
+                         <input class="btn btn-primary" type="submit" name="create" value="Create">
+                      </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+          <!-- end of modal for creating new order -->
+
         </div>
       </div>
     </div>

@@ -22,8 +22,10 @@ class CustomerController extends Controller
 
    public function showCustomers() {
       $id = \Auth::user()->id;
+
       $get_orders = Order::latest()->get();
       $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+
       $order_states = OrderState::all();
       $tags = Tag::all();
 
@@ -52,7 +54,7 @@ class CustomerController extends Controller
    public function searchOrders(Request $request) {
     $id = \Auth::user()->id;
     $cust = $request->cust;
-    // $user = User::find($id);
+
     $get_orders = Order::latest()->get();
     $get_my_orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
 
@@ -79,7 +81,7 @@ class CustomerController extends Controller
              $output .= '<td></td>';
            }
            $output .= '<td data-title="SO#" class="align-middle"><a href="/orders/'.$order->id.'"><strong class="text-emerson">'.$order->so_num.'</strong></a></td>';
-           $output .= '<td data-title="Customer" class="align-middle"><a class="text-emerson" href="/customers/'.$order->customer_id.'">'.$order->get_customer->name.'</a></td>';
+           $output .= '<td data-title="Customer" class="align-middle">'.$order->get_customer->name.'</td>';
            $output .= '<td data-title="PO#" class="align-middle">'.$order->po_num.'</td>';
           if (count($order->tags)) {
             $output .= '<td data-title="Tags" class="align-middle">';

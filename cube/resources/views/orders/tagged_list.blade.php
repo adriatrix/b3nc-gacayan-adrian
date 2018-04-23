@@ -9,7 +9,7 @@ Tagged List
    <div class="row justify-content-center mb-5">
       <div class="col">
          <di<div class="d-flex justify-content-between">
-            <a class="btn btn-secondary" href='{{url("/orders")}}'>Back</a>
+            <a class="btn btn-secondary" href='{{url("/home")}}'>Home</a>
          </div>
       </div>
    </div>

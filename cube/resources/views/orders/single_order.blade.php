@@ -9,7 +9,7 @@ Order # {{$order->so_num}}
   <div class="row justify-content-center mb-5">
     <div class="col">
       <div class="d-flex justify-content-between">
-        <a class="btn btn-secondary" href='{{url("/orders")}}'>Back</a>
+        <a class="btn btn-secondary" href='{{url("/home")}}'>Home</a>
         <button class="btn btn-dark editbutton" value="{{$order->id}}" data-index="{{$order->id}}" data-toggle="modal" data-target="#editOrderModal">Edit</button>
         <!-- <a class="btn btn-secondary" href='{{   url()->previous() }}'>Edit</a> -->
       </div>
@@ -24,7 +24,7 @@ Order # {{$order->so_num}}
             <label class="col-lg-2 col-form-label">Customer:</label>
             <div class="col-lg-4">
               <div class="input-group">
-                <input type="text" class="form-control text-center text-truncate" value="{{$order->get_customer->name}}" disabled>
+                <input type="text" class="form-control my-align text-truncate" value="{{$order->get_customer->name}}" disabled>
                 <div class="input-group-append">
                   <div class="input-group-text"><a class="text-emerson" href='{{url("/customers/$order->customer_id")}}'><i class="far fa-folder-open"></i></a></div>
                 </div>
@@ -33,35 +33,35 @@ Order # {{$order->so_num}}
             </div>
             <label class="col-lg-2 col-form-label">PO no.:</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control text-center text-truncate" value="{{$order->po_num}}" disabled>
+              <input type="text" class="form-control my-align text-truncate" value="{{$order->po_num}}" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-lg-2 col-form-label">Received:</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control text-center text-truncate" value="{{$order->received_date}}" disabled>
+              <input type="text" class="form-control my-align text-truncate" value="{{$order->received_date}}" disabled>
             </div>
             @if($order->booked_date)
             <label class="col-lg-2 col-form-label">Booked:</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control text-center text-truncate" value="{{$order->po_num}}" disabled>
+              <input type="text" class="form-control my-align text-truncate" value="{{$order->po_num}}" disabled>
             </div>
             @endif
           </div>
           <div class="form-group row">
             <label class="col-lg-2 col-form-label">Created:</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control text-center text-truncate" value="{{$order->get_user->name}}" disabled>
+              <input type="text" class="form-control my-align text-truncate" value="{{$order->get_user->name}}" disabled>
             </div>
             <label class="col-lg-2 col-form-label">Status:</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control text-center text-truncate" value="{{$order->get_status->name}}" disabled>
+              <input type="text" class="form-control my-align text-truncate" value="{{$order->get_status->name}}" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-lg-2 col-form-label">Notes:</label>
             <div class="col-lg-10">
-              <textarea class="form-control text-truncate" rows="3" disabled>{{$order->notes}}</textarea>
+              <textarea class="form-control my-align text-truncate" rows="3" disabled>{{$order->notes}}</textarea>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@ Order # {{$order->so_num}}
     </div>
   </div>
   <div class="row justify-content-center mt-3">
-    <h4>Tasks List</h4>
+    <h4 class="highlight-yellow">Tasks List</h4>
   </div>
   <div class="row justify-content-center">
     <div class="col">
@@ -92,19 +92,19 @@ Order # {{$order->so_num}}
               </div>
               <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
             </div>
-          </div>
+         </div>
           <div class="card-body">
             <table class="table table-hover my-table table-striped">
               <thead>
                 <tr>
-                  <th style="width: 8%"></th>
-                  <th style="width: 26%"></th>
-                  <th style="width: 43%"></th>
-                  <th style="width: 25%"></th>
+                  <th class="border-0" style="width: 8%"></th>
+                  <th class="border-0" style="width: 26%"></th>
+                  <th class="border-0" style="width: 43%"></th>
+                  <th class="border-0" style="width: 25%"></th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($order->tasks as $task)
+                @foreach($tasks as $task)
                 @if ($task->get_status->name == 'Done')
                 <tr class="text-secondary" style="text-decoration:line-through;">
                   <td class="align-middle">
