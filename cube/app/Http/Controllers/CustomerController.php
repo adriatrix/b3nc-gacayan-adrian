@@ -21,22 +21,10 @@ class CustomerController extends Controller
    }
 
    public function showCustomers() {
-      $id = \Auth::user()->id;
-
-      $get_orders = Order::latest()->get();
-      $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
-
-      $order_states = OrderState::all();
-      $tags = Tag::all();
-
-      $get_task_states = TaskState::all();
-      $tasks_states = $get_task_states->where('name','Pending')->first();
-      $tasks_states_id = $tasks_states->id;
-
       $get_customers = Customer::latest()->get();
       $customers = $get_customers->sortBy('name');
 
-      return view ('customers/customers_list', compact('customers','orders','order_states','tags','tasks_states_id'));
+      return view ('customers/customers_list', compact('customers'));
     }
 
     public function searchCustomers(Request $request) {
@@ -56,7 +44,7 @@ class CustomerController extends Controller
     $cust = $request->cust;
 
     $get_orders = Order::latest()->get();
-    $get_my_orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+    $orders = $get_orders->where('customer_id',$cust)->sortBy('order_state_id');
 
     $order_states = OrderState::all();
     $tags = Tag::all();
@@ -66,7 +54,6 @@ class CustomerController extends Controller
     $tasks_states_id = $tasks_states->id;
 
     $output='';
-    $orders = $get_my_orders->where('customer_id',$cust)->sortBy('order_state_id');
 
     if(count($orders) > 0) {
         foreach ($orders as $order) {
@@ -86,7 +73,7 @@ class CustomerController extends Controller
           if (count($order->tags)) {
             $output .= '<td data-title="Tags" class="align-middle">';
             foreach ($order->tags as $tag) {
-              $output .= '<a href="/orders/tags/'.$tag->name.'" class="badge badge-info">'.$tag->name.'</a>&nbsp;';
+              $output .= '<a href="/orders/tags/'.$tag->name.'" class="badge badge-primary">'.$tag->name.'</a>&nbsp;';
             }
             $output .= '</td>';
           } else {

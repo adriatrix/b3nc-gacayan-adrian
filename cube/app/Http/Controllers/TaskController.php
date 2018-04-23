@@ -31,10 +31,18 @@ class TaskController extends Controller
   }
 
   public function addTask(Request $request,$id) {
-     $description = $request->description;
-     $notes = $request->notes;
-     $due_date = $request->due_date;
-     $order_id = $id;
+    $rules = array (
+      'description' => 'required|string|max:255',
+      'due_date' => 'required',
+      'notes' => 'required|string|max:255'
+    );
+    $this->validate($request,$rules);
+
+
+    $description = $request->description;
+    $notes = $request->notes;
+    $due_date = $request->due_date;
+    $order_id = $id;
 
 
      //  $task_state_id = 5;

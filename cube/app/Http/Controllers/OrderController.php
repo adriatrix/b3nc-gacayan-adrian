@@ -67,7 +67,7 @@ class OrderController extends Controller
       $odor = $request->odor;
 
       $get_orders = Order::latest()->get();
-      $get_my_orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+      $orders = $get_orders->where('id',$odor)->sortBy('created_at');
 
       $order_states = OrderState::all();
       $tags = Tag::all();
@@ -77,7 +77,6 @@ class OrderController extends Controller
       $tasks_states_id = $tasks_states->id;
 
       $output='';
-      $orders = $get_my_orders->where('id',$odor)->sortBy('created_at');
 
       if(count($orders) > 0) {
           foreach ($orders as $order) {
@@ -97,7 +96,7 @@ class OrderController extends Controller
             if (count($order->tags)) {
               $output .= '<td data-title="Tags" class="align-middle">';
               foreach ($order->tags as $tag) {
-                $output .= '<a href="/orders/tags/'.$tag->name.'" class="badge badge-info">'.$tag->name.'</a>&nbsp;';
+                $output .= '<a href="/orders/tags/'.$tag->name.'" class="badge badge-primary">'.$tag->name.'</a>&nbsp;';
               }
               $output .= '</td>';
             } else {

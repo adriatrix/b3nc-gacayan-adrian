@@ -31,7 +31,7 @@ Home
                 <th scope="col">SO#</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">PO#</th>
-                <th style="width: 12%" scope="col">Status</th>
+                <th style="width: 15%" scope="col">Status</th>
               </tr>
             </thead>
             <tbody id="">
@@ -58,7 +58,7 @@ Home
           <div class="col-sm col-md-12 col-lg-6">
              <div class="d-flex justify-content-between">
                 <span class="h4 highlight-yellow">Pending Tasks</span>
-                <button class="btn btn-outline-dark createbutton mb-1" data-toggle="modal" data-target="#createOrderModal">Create Task</button>
+                <button class="btn btn-outline-dark createbutton mb-1" data-toggle="modal" data-target="#createTaskModal">Create Task</button>
              </div>
             <table class="table table-hover table-sm my-table text-center table-bordered">
               <thead class="thead-dark">
@@ -150,6 +150,52 @@ Home
              </div>
           </div>
           <!-- end of modal for creating new order -->
+          <!-- start of modal for creating new task -->
+          <div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="create new Task" aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                   <div class="modal-header">
+                      <h5 class="modal-title" id="createTask">Create Task</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                      </button>
+                   </div>
+                   <form action='{{url("/orders/$order->id/task")}}' method="post">
+                      {{ csrf_field() }}
+                      <div class="modal-body">
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control" value="" name="so_num" required>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Task:</label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control" value="" name="description" id="newcustomer" autocomplete="off" required>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Due date:</label>
+                            <div class="col-sm-8">
+                               <input type="date" class="form-control" value="@php echo date('Y-m-d'); @endphp" name="due_date" required>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control form-control-sm" value="" name="notes" required>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="modal-footer">
+                         <input class="btn btn-primary" type="submit" name="create" value="Create">
+                      </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+          <!-- end of modal for creating new task -->
 
         </div>
       </div>

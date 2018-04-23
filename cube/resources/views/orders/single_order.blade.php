@@ -17,7 +17,7 @@ Order # {{$order->so_num}}
   </div>
   <div class="row justify-content-center">
     <div class="col">
-      <h1 class="display-5 text-center">Sales Order: {{$order->so_num}} <span class="h4 align-text-top">@foreach($order->tags as $tag)<span class="badge badge-info ml-1">{{$tag->name}}</span>@endforeach</span></h1>
+      <h1 class="display-5 text-center">Sales Order: {{$order->so_num}} <span class="h4 align-text-top">@foreach($order->tags as $tag)<span class="badge badge-primary ml-1">{{$tag->name}}</span>@endforeach</span></h1>
       <div class="card">
         <div class="text-center card-body">
           <div class="form-group row">
@@ -74,7 +74,7 @@ Order # {{$order->so_num}}
   <div class="row justify-content-center">
     <div class="col">
       <div class="card">
-        <form class="" action='{{url("/orders/$order->id/task")}}' method="post">
+        <form action='{{url("/orders/$order->id/task")}}' method="post">
           {{ csrf_field() }}
           <div class="card-header pb-0">
             <div class="form-group row">
