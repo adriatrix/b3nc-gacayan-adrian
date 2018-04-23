@@ -1,22 +1,15 @@
 @extends('layouts.app')
 
 @section('title')
-Orders List
+Tagged List
 @endsection
 
 @section('content')
 <div class="container">
    <div class="row justify-content-center mb-5">
       <div class="col">
-         <div class="form-row">
-            <div class="col-2.5 mb-1">
-               <button class="btn btn-dark createbutton" data-toggle="modal" data-target="#createOrderModal">Create new Order</button>
-            </div>
-            <div class="col-sm-1 col-md-6 col-lg-6 mb-1">
-            </div>
-            <div class="col">
-               <input type="text" class="form-control" id="orderSearch" name="search" placeholder="Search Orders" autocomplete="off">
-            </div>
+         <di<div class="d-flex justify-content-between">
+            <a class="btn btn-secondary" href='{{url("/orders")}}'>Back</a>
          </div>
       </div>
    </div>
@@ -61,7 +54,7 @@ Orders List
                      <td></td>
                      @endif
                      <td data-title="Status" class="align-middle">{{$order->get_status->name}}</td>
-                     <td data-title="Notes" class="my-align align-middle">{{$order->notes}}
+                     <td class="my-align align-middle">{{$order->notes}}
                      </td>
                   </tr>
                   @endforeach

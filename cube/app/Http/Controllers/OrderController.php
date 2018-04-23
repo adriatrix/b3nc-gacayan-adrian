@@ -14,6 +14,7 @@ use App\Task;
 use App\TaskState;
 
 
+
 class OrderController extends Controller
 {
    public function __construct() {
@@ -37,7 +38,8 @@ class OrderController extends Controller
 
    public function showOrder($id) {
     $order = Order::find($id);
-    return view ('orders/single_order', compact('order'));
+    $order_states = OrderState::all();
+    return view ('orders/single_order', compact('order','order_states'));
   }
 
   public function searchOrders(Request $request) {
@@ -63,7 +65,7 @@ class OrderController extends Controller
                 $output .= '<tr>';
              }
              if ($order->tasks()->where('task_state_id',$tasks_states_id)->count()) {
-               $output .= '<td data-title="Tasks" class="align-middle"><button class="badge badge-pill badge-warning taskbutton" disabled>'.$order->tasks()->where('task_state_id',$tasks_states_id)->count().'</button></td>';
+               $output .= '<td data-title="Tasks" class="align-middle"><button class="badge badge-pill badge-warning text-hand" disabled>'.$order->tasks()->where('task_state_id',$tasks_states_id)->count().'</button></td>';
              } else {
                $output .= '<td></td>';
              }
@@ -80,8 +82,7 @@ class OrderController extends Controller
               $output .= '<td></td>';
             }
             $output .= '<td data-title="Status" class="align-middle">'.$order->get_status->name.'</td>';
-            $output .= '<td class="my-align align-middle">'.$order->notes.'</td>';
-            $output .= '<td data-title="Actions" class="align-middle"><button class="btn btn-outline-primary btn-sm editbutton center-block" value="'.$order->id.'" data-index="'.$order->id.'" data-toggle="modal" data-target="#editOrderModal'.$order->id.'"><i class="fas fa-pencil-alt"></i></button>';
+            $output .= '<td data-title="Notes" class="my-align align-middle">'.$order->notes.'</td>';
             $output .= '</td></tr>';
           }
           return Response($output);
@@ -102,7 +103,7 @@ class OrderController extends Controller
      $tasks_states = $get_task_states->where('name','Pending')->first();
      $tasks_states_id = $tasks_states->id;
 
-     return view ('orders/orders_list', compact('orders','order_states','tags','tasks_states_id'));
+     return view ('orders/tagged_list', compact('orders','order_states','tags','tasks_states_id'));
   }
 
    public function createOrders(Request $request) {
@@ -192,6 +193,6 @@ class OrderController extends Controller
       }
       $order->tags()->sync($tagIds);
 
-      return redirect('/orders');
+      return redirect('/orders/'.$id);
    }
 }

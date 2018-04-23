@@ -20,7 +20,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Walter+Turncoat" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -62,6 +62,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href='{{url("/profile")}}'>Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -79,13 +80,18 @@
             </div>
         </nav>
 
-        <main class="py-4 my-container">
+        <main class="py-4">
             @yield('content')
         </main>
 
         <footer class="text-light my-footer py-3">
-      		<div class="text-center">
-      			<span class="align-middle">Copyright &copy; 2018 Adrian's Cube by <a class="is-white" href="https://github.com/adriatrix">Adrian Gacayan</a></span>
+      		<div class="row">
+            <div class="col-md my-footer-text-one">
+              <span>Copyright &copy; 2018 Adrian's Cube</span>
+            </div>
+            <div class="col-md my-footer-text-two">
+              <small>by</small> <a class="is-white" href="https://github.com/adriatrix">Adrian Gacayan</a></span>
+            </div>
       		</div>
         </footer>
     </div>

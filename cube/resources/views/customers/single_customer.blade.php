@@ -9,8 +9,8 @@
    <div class="row justify-content-center mb-5">
       <div class="col-sm-10">
          <div class="d-flex justify-content-between">
-            <a class="btn btn-secondary" href='{{url("/orders")}}'>Back to Orders</a>
-            <button class="btn btn-dark" data-toggle="modal" data-target="#createCommentModal">Add Comment</button>
+            <a class="btn btn-secondary" href='{{url("/orders")}}'>Back</a>
+            <button class="btn btn-dark" data-toggle="modal" data-target="#createCommentModal">Post</button>
          </div>
       </div>
    </div>
@@ -28,8 +28,8 @@
       <div class="col-sm-10">
          @foreach ($comments as $comment)
          <div class="card border-dark">
-            <div class="card-body text-dark">
-               <h5>{{$comment->comment}}</h5>
+            <div class="card-body text-dark" style="white-space: pre-wrap;">
+               <h5 class="text-center">{{$comment->comment}}</h5>
             </div>
             <div class="card-footer text-right">
                <h6 class="mt-0 mb-1 card-title"><small>contributed by:</small> <strong>{{$comment->get_user->nickname}}</strong> <small class="text-muted">({{$comment->get_user->team}})</small></h6>
@@ -56,7 +56,7 @@
             <div class="modal-body">
                <div class="form-group row">
                   <div class="col">
-                     <textarea class="form-control form-control-sm my-align" name="comment" rows="4"></textarea>
+                     <textarea class="form-control form-control-sm my-align" name="comment" rows="10"></textarea>
                   </div>
                </div>
             </div>

@@ -1,28 +1,16 @@
+html {
+  /* margin:0;
+  padding:0; */
+  min-height:100%;
+  position: relative;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  margin:0;
-  padding:0;
-  height:100%;
-}
-
-html {
-  margin:0;
-  padding:0;
-  height:100%;
-}
-
-.my-container {
-  min-height:100%;
-  position:relative;
-}
-
-.container {
-  padding:10px;
-  padding-bottom:50px;
-}
-
-.text-emerson {
-  color: #004b8d;
+  /* margin:0;
+  padding:0; */
+  margin-bottom:50px;
+  /* height:100%; */
 }
 
 .my-footer {
@@ -33,9 +21,35 @@ html {
   background-color: rgb(0, 75, 141);
 }
 
+.my-footer-text-one {
+  text-align: right;
+  padding-right: 5px;
+}
+
+.my-footer-text-two {
+  text-align: left;
+  padding-left: 0;
+}
+
+.text-emerson {
+  color: #004b8d;
+  font-family: 'Poppins', sans-serif;
+}
+
+.text-hand {
+  font-family: 'Walter Turncoat', cursive;
+  font-weight: 900;
+}
+
 input[type=date]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   display: none;
+}
+
+#customerList {
+  width: 100%;
+  height: 225px;
+  overflow: hidden;
 }
 
 
@@ -46,6 +60,11 @@ input[type=date]::-webkit-inner-spin-button {
   -webkit-box-shadow: none;
   box-shadow: none;
   border-radius: 0;
+}
+
+.table .thead-dark th {
+  background-color: #343a40;
+  border-color: #343a40;
 }
 
 .task-input:focus {
@@ -113,9 +132,13 @@ input[type=date]::-webkit-inner-spin-button {
   }
 
   tr {
-    border: 1px solid rgb(22, 21, 21);
+    border: 1px solid #343a40;
     border-top-width: 40px;
     margin-bottom: 10px;
+  }
+
+  .table-sm td {
+    padding-left: 18%
   }
 
   td {
@@ -123,7 +146,7 @@ input[type=date]::-webkit-inner-spin-button {
     border: none;
     /* border-bottom: 1px solid rgb(226, 226, 226); */
     position: relative;
-    padding-left: 50%;
+    /* padding-left: 20%; */
     white-space: normal;
     text-align: center;
   }
@@ -149,7 +172,27 @@ input[type=date]::-webkit-inner-spin-button {
   */
   td:before { content: attr(data-title); }
 
-  .my-align{
+  .my-align {
     text-align: center;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  body {
+    margin-bottom: 80px;
+  }
+
+  .my-footer {
+    height: 80px;
+  }
+
+  .my-footer-text-one {
+    text-align: center;
+    padding: 0;
+  }
+
+  .my-footer-text-two {
+    text-align: center;
+    padding: 0;
   }
 }

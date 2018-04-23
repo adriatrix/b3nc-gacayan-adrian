@@ -1,9 +1,5 @@
 $(function() {
 
-   // $('.taskbutton').click(function(){
-   //   taskId = $(this).data('index');
-   //   $('.showtask' + taskId).toggle();
-   // });
    $("#orderSearch").on('keyup', function (){
       var $value=$(this).val();
       $.ajax({
@@ -13,7 +9,6 @@ $(function() {
             search : $value,
          },
          success: function(data) {
-            console.log(data);
             $('#orderList').html(data);
          }
       });
@@ -28,10 +23,24 @@ $(function() {
               search : $value,
           },
          success: function(data) {
-            console.log(data);
              $('#customerList').html(data);
          }
       });
+   });
+
+   $('#customerList').on('click','button', function (){
+    var $custId = $(this).data('index');
+    console.log('clicked')
+    $.ajax({
+       url: '/customers/ordersearch',
+       type: 'GET',
+       data: {
+            cust : $custId,
+        },
+       success: function(data) {
+           $('#customerOrderList').html(data);
+       }
+    });
    });
 
 
