@@ -44,20 +44,20 @@ Order # {{$order->so_num}}
             @if($order->booked_date)
             <label class="col-lg-2 col-form-label">Booked:</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control my-align text-truncate" value="{{$order->po_num}}" disabled>
+              <input type="text" class="form-control my-align text-truncate" value="{{$order->booked_date}}" disabled>
             </div>
             @endif
           </div>
           <div class="form-group row">
             <label class="col-lg-2 col-form-label">Created:</label>
             <div class="col-lg-4">
-               <div class="input-group">
-                  <input type="text" class="form-control my-align text-truncate" value="{{$order->get_user->name}}" disabled>
-                  <div class="input-group-append">
-                     @php $userId = $order->get_user->id; @endphp
-                     <div class="input-group-text"><a class="text-emerson" href='{{url("/users/$userId")}}'><i class="far fa-folder-open"></i></a></div>
-                  </div>
-               </div>
+              <div class="input-group">
+                <input type="text" class="form-control my-align text-truncate" value="{{$order->get_user->name}}" disabled>
+                <div class="input-group-append">
+                  @php $userId = $order->get_user->id; @endphp
+                  <div class="input-group-text"><a class="text-emerson" href='{{url("/users/$userId")}}'><i class="far fa-folder-open"></i></a></div>
+                </div>
+              </div>
             </div>
             <label class="col-lg-2 col-form-label">Status:</label>
             <div class="col-lg-4">
@@ -80,7 +80,7 @@ Order # {{$order->so_num}}
   <div class="row justify-content-center">
     <div class="col">
       <div class="card">
-        <form action='{{url("/orders/task/$order->id")}}' method="post">
+        <form action='{{url("/orders/task/$order->id")}}' method="post" id="createTaskForm">
           {{ csrf_field() }}
           <div class="card-header pb-0">
             <div class="form-group row">
@@ -96,46 +96,92 @@ Order # {{$order->so_num}}
               <div class="col-sm-3">
                 <input type="date" class="task-input form-control text-emerson" value="@php echo date('Y-m-d'); @endphp" name="due_date" required>
               </div>
-              <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
+              <input type="submit" form="createTaskForm" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
             </div>
-         </div>
-          <div class="card-body">
-            <table class="table table-hover my-table table-striped">
-              <thead>
-                <tr>
-                  <th class="border-0" style="width: 8%"></th>
-                  <th class="border-0" style="width: 26%"></th>
-                  <th class="border-0" style="width: 43%"></th>
-                  <th class="border-0" style="width: 25%"></th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($tasks as $task)
-                @if ($task->get_status->name == 'Done')
-                <tr class="text-secondary" style="text-decoration:line-through;">
-                  <td class="align-middle">
-                    <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}" checked>
-                  </td>
-                  <td class="align-middle">{{$task->description}}</td>
-                  <td class="align-middle">{{$task->notes}}</td>
-                  <td class="align-middle">{{$task->due_date}}</td>
-                </tr>
-                @else
-                <tr>
-                  <td>
-                     <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}">
-                  </td>
-                  <td>{{$task->description}}</td>
-                  <td>{{$task->notes}}</td>
-                  <td>{{$task->due_date}}</td>
-                </tr>
-                @endif
-                @endforeach
-              </tbody>
-            </table>
           </div>
+        </form>
+        <div class="card-body">
+          <table class="table table-hover my-table table-striped">
+            <thead>
+              <tr>
+                <th class="border-0" style="width: 8%"></th>
+                <th class="border-0" style="width: 26%"></th>
+                <th class="border-0" style="width: 43%"></th>
+                <th class="border-0" style="width: 18%"></th>
+                <th class="border-0" style="width: 8%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($tasks as $task)
+              @if ($task->get_status->name == 'Done')
+              <tr class="text-secondary" style="text-decoration:line-through;">
+                <td class="align-middle">
+                  <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}" checked>
+                </td>
+                <td class="align-middle">{{$task->description}}</td>
+                <td class="align-middle">{{$task->notes}}</td>
+                <td class="align-middle">{{$task->due_date}}</td>
+                <td class="align-middle"><button type="button" class="badge badge-light text-emerson editbutton" data-index="{{$task->id}}" data-toggle="modal" data-target="#editTaskModal{{$task->id}}">edit</button></td>
+              </tr>
+              @else
+              <tr>
+                <td>
+                  <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}">
+                </td>
+                <td>{{$task->description}}</td>
+                <td>{{$task->notes}}</td>
+                <td>{{$task->due_date}}</td>
+                <td class="align-middle"><button type="button" class="badge badge-light text-emerson editbutton" data-index="{{$task->id}}" data-toggle="modal" data-target="#editTaskModal{{$task->id}}">edit</button></td>
+              </tr>
+              @endif
+              <div class="row justify-content-center">
+                <div class="col">
+                  <div class="modal fade" id="editTaskModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="edit Task" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Edit Task</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form action='{{url("/tasks/edit")}}' method="post" id="editTaskForm">
+                           {{ csrf_field() }}
+                          <div class="modal-body">
+                            <div class="form-group row">
+                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Task:</label>
+                              <div class="col-sm-8">
+                                <input type="text" class="form-control" value="{{$task->description}}" name="description" required>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
+                              <div class="col-sm-8">
+                                <input type="text" class="form-control" value="{{$task->notes}}" name="notes">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Due date:</label>
+                              <div class="col-sm-8">
+                                <input type="date" class="form-control form-control-sm" value="{{$task->due_date}}" name="due_date" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <input type="hidden" name="order_id" value="{{$order->id}}">
+                            <input class="btn btn-primary" type="submit" form="editTaskForm" value="Update">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+            </tbody>
+          </table>
         </div>
-      </form>
+      </div>
     </div>
   </div>
   <div class="row justify-content-center">
@@ -150,7 +196,7 @@ Order # {{$order->so_num}}
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="{{url("/orders/edit")}}" method="post">
+            <form action='{{url("/orders/edit")}}' method="post" id="editOrderForm">
               {{ csrf_field() }}
               <div class="modal-body">
                 <div class="form-group row">
@@ -213,7 +259,7 @@ Order # {{$order->so_num}}
               </div>
               <div class="modal-footer">
                 <input type="hidden" name="order_id" value="{{$order->id}}">
-                <input class="btn btn-primary" type="submit" name="edit" value="Update">
+                <input class="btn btn-primary" type="submit" form="editOrderForm" value="Update">
               </div>
             </form>
           </div>

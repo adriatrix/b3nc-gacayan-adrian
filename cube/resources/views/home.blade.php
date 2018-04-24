@@ -163,7 +163,7 @@ Home
                          <span aria-hidden="true">&times;</span>
                       </button>
                    </div>
-                   <form action='{{url("/orders/task")}}' method="post">
+                   <form action='{{url("/tasks/add")}}' method="post">
                       {{ csrf_field() }}
                       <div class="modal-body">
                          <div class="form-group row">

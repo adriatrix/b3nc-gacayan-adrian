@@ -85,11 +85,12 @@
             position: fixed;
             right: 0;
             top: 0;
-            width: 150px;
+            width: 100px;
             font-size: 18px;
-            padding: 10px;
+            padding: 5px;
             border: none;
-            background: #000;
+            /* background: #000; */
+            background: rgba(0, 0, 0, 0.3);
             color: #fff;
             cursor: pointer;
           }

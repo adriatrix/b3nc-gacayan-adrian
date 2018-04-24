@@ -56,7 +56,6 @@ $(function() {
     });
    });
 
-
    $("input[type='checkbox']").on('click', function (){
     var $this = $(this);
     var isChecked = $this.is(':checked');

@@ -60,11 +60,61 @@ class TaskController extends Controller
      return redirect()->back();
   }
 
+  public function addTask(Request $request) {
+    $rules = array (
+      'so_num' => 'required',
+      'description' => 'required|string|max:255',
+      'due_date' => 'required',
+      'notes' => 'required|string|max:255'
+    );
+    $this->validate($request,$rules);
+
+    $description = $request->description;
+    $notes = $request->notes;
+    $due_date = $request->due_date;
+
+    $order = Order::where('so_num',$request->so_num)->first();
+    $order_id = $order->id;
+
+
+     //  $task_state_id = 5;
+
+     $task_obj = new Task;
+     $task_obj->description = $description;
+     $task_obj->notes = $notes;
+     $task_obj->due_date = $due_date;
+     $task_obj->order_id = $order_id;
+     $task_states = TaskState::all();
+     $get_state = $task_states->where('name','Pending')->first();
+     $task_obj->task_state_id = $get_state->id;
+     $task_obj->save();
+
+     return redirect()->back();
+  }
+
    public function statusTask(Request $request) {
        $task = Task::find($request->idTask);
        $get_state = TaskState::where('name',$request->checkboxStatus)->first();
        $task->task_state_id = $get_state->id;
        $task->save();
+  }
+
+  public function editTask(Request $request) {
+
+     $description = $request->description;
+     $notes = $request->notes;
+     $due_date = $request->due_date;
+
+     $order_id = $request->order_id;
+
+      $task_obj = new Task;
+      $task_obj->description = $description;
+      $task_obj->notes = $notes;
+      $task_obj->due_date = $due_date;
+      $task_obj->order_id = $order_id;
+      $task_obj->save();
+
+      return redirect()->back();
   }
 
 }
