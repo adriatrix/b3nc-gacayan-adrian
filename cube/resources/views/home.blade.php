@@ -70,12 +70,12 @@ Home
                 </tr>
               </thead>
               <tbody id="">
-                @foreach($tasks as $task)
+                @foreach($orders as $order)
+                 @if(count($order->tasks) > 0)
+                 @foreach($order->tasks as $task)
+                  @if($task->get_status->name == 'Pending')
                   <tr>
-                    @php
-                      $order_id = $task->get_order->id;
-                    @endphp
-                    <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order_id")}}'><strong class="text-emerson">{{$task->get_order->so_num}}</strong></a></td>
+                    <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-emerson">{{$order->so_num}}</strong></a></td>
                     <td data-title="Task" class="align-middle">{{$task->description}}</td>
                     @if ($task->notes)
                        <td data-title="Notes" class="align-middle">{{$task->notes}}</td>
@@ -84,6 +84,9 @@ Home
                     @endif
                     <td data-title="Due" class="align-middle">{{$task->due_date}}</td>
                   </tr>
+                  @endif
+                  @endforeach
+                  @endif
                   @endforeach
                 </tbody>
               </table>
@@ -160,7 +163,7 @@ Home
                          <span aria-hidden="true">&times;</span>
                       </button>
                    </div>
-                   <form action='{{url("/orders/$order->id/task")}}' method="post">
+                   <form action='{{url("/orders/task")}}' method="post">
                       {{ csrf_field() }}
                       <div class="modal-body">
                          <div class="form-group row">

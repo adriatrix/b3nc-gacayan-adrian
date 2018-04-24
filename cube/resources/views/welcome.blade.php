@@ -122,6 +122,7 @@
             .my-content {
               width: 100%;
               left: 0;
+              background: rgba(0, 0, 0, 0);
             }
 
             #myBtn {

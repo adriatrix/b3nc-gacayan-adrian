@@ -51,7 +51,13 @@ Order # {{$order->so_num}}
           <div class="form-group row">
             <label class="col-lg-2 col-form-label">Created:</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control my-align text-truncate" value="{{$order->get_user->name}}" disabled>
+               <div class="input-group">
+                  <input type="text" class="form-control my-align text-truncate" value="{{$order->get_user->name}}" disabled>
+                  <div class="input-group-append">
+                     @php $userId = $order->get_user->id; @endphp
+                     <div class="input-group-text"><a class="text-emerson" href='{{url("/users/$userId")}}'><i class="far fa-folder-open"></i></a></div>
+                  </div>
+               </div>
             </div>
             <label class="col-lg-2 col-form-label">Status:</label>
             <div class="col-lg-4">
@@ -74,7 +80,7 @@ Order # {{$order->so_num}}
   <div class="row justify-content-center">
     <div class="col">
       <div class="card">
-        <form action='{{url("/orders/$order->id/task")}}' method="post">
+        <form action='{{url("/orders/task/$order->id")}}' method="post">
           {{ csrf_field() }}
           <div class="card-header pb-0">
             <div class="form-group row">
@@ -117,7 +123,7 @@ Order # {{$order->so_num}}
                 @else
                 <tr>
                   <td>
-                    <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}">
+                     <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}">
                   </td>
                   <td>{{$task->description}}</td>
                   <td>{{$task->notes}}</td>

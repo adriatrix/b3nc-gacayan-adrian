@@ -39,4 +39,10 @@ class UserController extends Controller
 
      return redirect('/profile');
   }
+
+  public function showUser($id) {
+     $user = User::where('id',$id)->first();
+
+     return view ('users/user', compact('user'));
+  }
 }

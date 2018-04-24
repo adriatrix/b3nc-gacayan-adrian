@@ -30,7 +30,7 @@ class TaskController extends Controller
      return view ('tasks/tasks_list', compact('orders','order_states','tags','tasks'));
   }
 
-  public function addTask(Request $request,$id) {
+  public function addTaskById(Request $request,$id) {
     $rules = array (
       'description' => 'required|string|max:255',
       'due_date' => 'required',

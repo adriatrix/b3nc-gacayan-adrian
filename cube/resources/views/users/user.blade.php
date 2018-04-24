@@ -10,7 +10,7 @@
     <div class="col">
       <div class="d-flex justify-content-between">
         <a class="btn btn-secondary" href='{{url("/home")}}'>Home</a>
-        <button class="btn btn-dark editbutton" value="{{$user->id}}" data-index="{{$user->id}}" data-toggle="modal" data-target="#editUserModal">Edit</button>
+        <button class="btn btn-dark postbutton" value="{{$user->id}}" data-index="{{$user->id}}" data-toggle="modal" data-target="#postMessageModal">Post</button>
       </div>
     </div>
   </div>
@@ -43,14 +43,15 @@
       </div>
     </div>
   </div>
+  <!-- modal for posting messages -->
   <div class="row justify-content-center">
     <div class="col">
-      <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="edit User {{$user->id}}"
+      <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="create Post {{$user->id}}"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="editUser">Edit User {{$user->nickname}}</h5>
+              <h5 class="modal-title" id="createPost">Post Message to {{$user->nickname}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

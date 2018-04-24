@@ -33,7 +33,8 @@ Route::get('/orders/{id}', 'OrderController@showOrder');
 
 Route::get('/orders/tags/{tag}', 'OrderController@showTaggedOrders');
 
-Route::post('/orders/{id}/task', 'TaskController@addTask');
+
+Route::post('/orders/task/{id}', 'TaskController@addTaskById');
 
 Route::get('/customers', 'CustomerController@showCustomers');
 
@@ -46,6 +47,8 @@ Route::get('/customers/{id}', 'CustomerController@showCustomer');
 Route::post('/comments/create', 'CommentController@createComment');
 
 Route::post('/tasks/change_status', 'TaskController@statusTask');
+
+Route::get('/users/{id}', 'UserController@showUser');
 
 Route::get('/profile', 'UserController@showProfile');
 
