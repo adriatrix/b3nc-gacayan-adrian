@@ -15,7 +15,7 @@
         html, body {
           color: #636b6f;
           font-family: 'Raleway', sans-serif;
-          font-weight: 100;
+          font-weight: 400;
           height: 100vh;
           margin: 0;
         }
@@ -45,13 +45,15 @@
         }
 
         .links > a {
-          color: #004b8d;
-          font-size: 16px;
+          color: #fcfcfc;
+          font-size: 14px;
           font-weight: 600;
           letter-spacing: .3rem;
           text-decoration: none;
           text-transform: uppercase;
-          border-bottom: 2px dashed #004b8d;
+          border: 1px dashed grey;
+          background: rgba(0, 75, 141, 0.5);
+          padding: 1px;
         }
 
         .m-b-md {
@@ -71,11 +73,10 @@
             text-align: center;
             position: fixed;
             bottom: 5%;
-            left: 25%;
+            left: 0;
             background: rgba(0, 0, 0, 0.5);
             color: #f1f1f1;
-            width: 50%;
-            margin: auto;
+            width: 100%;
             padding: 80px 0 80px 0;
           }
 
@@ -104,9 +105,11 @@
             html {
               background-image: url("img/graycube.jpeg");
               height: 100%;
-              background-position: center;
+              background-position: center center;
+              background-attachment: fixed;
               background-repeat: no-repeat;
               background-size: cover;
+              background-color: dimgrey;
             }
             #myVideo {
               display: none;
