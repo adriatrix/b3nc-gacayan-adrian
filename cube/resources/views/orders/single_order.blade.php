@@ -125,12 +125,12 @@ Order # {{$order->so_num}}
               </tr>
               @else
               <tr>
-                <td>
+                <td class="align-middle">
                   <input type="checkbox" class="task-input form-control-md" data-index="{{$task->id}}">
                 </td>
-                <td>{{$task->description}}</td>
-                <td>{{$task->notes}}</td>
-                <td>{{$task->due_date}}</td>
+                <td class="align-middle">{{$task->description}}</td>
+                <td class="align-middle">{{$task->notes}}</td>
+                <td class="align-middle">{{$task->due_date}}</td>
                 <td class="align-middle"><button type="button" class="badge badge-light text-emerson editbutton" data-index="{{$task->id}}" data-toggle="modal" data-target="#editTaskModal{{$task->id}}">edit</button></td>
               </tr>
               @endif
