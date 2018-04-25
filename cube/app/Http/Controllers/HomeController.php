@@ -37,7 +37,7 @@ class HomeController extends Controller
       $user = \Auth::user()->nickname;
 
       $get_orders = Order::latest()->get();
-      $orders = $get_orders->where('user_id',$id)->sortBy('order_state_id');
+      $orders = $get_orders->where('user_id',$id)->sortBy('received_date');
       $tags = Tag::all();
 
       $get_task_states = TaskState::all();

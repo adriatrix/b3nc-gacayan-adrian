@@ -134,49 +134,6 @@ Order # {{$order->so_num}}
                 <td class="align-middle"><button type="button" class="badge badge-light text-emerson editbutton" data-index="{{$task->id}}" data-toggle="modal" data-target="#editTaskModal{{$task->id}}">edit</button></td>
               </tr>
               @endif
-              <div class="row justify-content-center">
-                <div class="col">
-                  <div class="modal fade" id="editTaskModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="edit Task" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">Edit Task</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <form action='{{url("/tasks/edit")}}' method="post" id="editTaskForm">
-                           {{ csrf_field() }}
-                          <div class="modal-body">
-                            <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Task:</label>
-                              <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{$task->description}}" name="description" required>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
-                              <div class="col-sm-8">
-                                <input type="text" class="form-control" value="{{$task->notes}}" name="notes">
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Due date:</label>
-                              <div class="col-sm-8">
-                                <input type="date" class="form-control form-control-sm" value="{{$task->due_date}}" name="due_date" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <input type="hidden" name="order_id" value="{{$order->id}}">
-                            <input class="btn btn-primary" type="submit" form="editTaskForm" value="Update">
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               @endforeach
             </tbody>
           </table>
@@ -184,88 +141,161 @@ Order # {{$order->so_num}}
       </div>
     </div>
   </div>
+  @foreach($tasks as $task)
   <div class="row justify-content-center">
     <div class="col">
-      <div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="edit Order {{$order->id}}"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editOrder{{$order->id}}">Edit SO# {{$order->so_num}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form action='{{url("/orders/edit")}}' method="post" id="editOrderForm">
-              {{ csrf_field() }}
+      <form action='{{url("/tasks/edit")}}' method="post" id="editTaskForm">
+        {{ csrf_field() }}
+        <div class="modal fade" id="editTaskModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="edit Task" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-white bg-dark">
+                <h5 class="modal-title">Edit Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
               <div class="modal-body">
                 <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
+                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Task:</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" value="{{$order->so_num}}" name="so_num" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" value="{{$order->get_customer->name}}" name="customer" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" value="{{$order->po_num}}" name="po_num" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Tags:</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" value="@foreach($order->tags as $tag){{$tag->name}} @endforeach" name="tags">
-                    <small class="form-text text-muted">Separate each tags by a space.</small>
+                    <input type="text" class="form-control" value="{{$task->description}}" name="description" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
                   <div class="col-sm-8">
-                    <textarea class="form-control form-control-sm my-align" rows="4" name="notes" id="note">{{$order->notes}}</textarea>
+                    <input type="text" class="form-control" value="{{$task->notes}}" name="notes">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Order Status:</label>
+                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Due date:</label>
                   <div class="col-sm-8">
-                    <select class="form-control" name="status" id="state_change">
-                      @foreach($order_states as $order_state) @if($order_state->name == $order->get_status->name)
-                      <option value="{{$order->get_status->name}}" selected>{{$order->get_status->name}}</option>
-                      @else
-                      <option value="{{$order_state->name}}">{{$order_state->name}}</option>
-                      @endif @endforeach
-                    </select>
+                    <input type="date" class="form-control form-control-sm" value="{{$task->due_date}}" name="due_date" required>
+                    <input type="hidden" name="task_id" value="{{$task->id}}">
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Received Date/Time:</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control form-control-sm" value="{{$order->received_date}}" name="received_date" required>
-                  </div>
-                </div>
-                @if ($order->booked_date)
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Booked Date/Time:</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control form-control-sm" value="{{$order->booked_date}}" name="booked_date" required>
-                  </div>
-                </div>
-                @endif
               </div>
               <div class="modal-footer">
-                <input type="hidden" name="order_id" value="{{$order->id}}">
-                <input class="btn btn-primary" type="submit" form="editOrderForm" value="Update">
+                <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteTaskModal{{$task->id}}" type="button" form="deleteTaskForm">Delete</button>
+                <input class="btn btn-primary" type="submit" form="editTaskForm" value="Update">
               </div>
-            </form>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col">
+        <form action='{{url("/tasks/delete")}}' method="post" id="deleteTaskForm">
+          {{csrf_field()}}
+          {{method_field('delete')}}
+          <div class="modal fade" id="deleteTaskModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="delete Task" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-white bg-secondary">
+                  <h5 class="modal-title">Delete Task</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this task?</p>
+                </div>
+                <div class="modal-footer">
+                  <input type="hidden" name="task_id" value="{{$task->id}}">
+                  <input class="btn btn-success" type="submit" form="deleteTaskForm" value="Yes">
+                  <input type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" value="No">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    @endforeach
+    <div class="row justify-content-center">
+      <div class="col">
+        <div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="edit Order {{$order->id}}"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editOrder{{$order->id}}">Edit SO# {{$order->so_num}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form action='{{url("/orders/edit")}}' method="post" id="editOrderForm">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" value="{{$order->so_num}}" name="so_num" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" value="{{$order->get_customer->name}}" name="customer" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" value="{{$order->po_num}}" name="po_num" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Tags:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" value="@foreach($order->tags as $tag){{$tag->name}} @endforeach" name="tags">
+                      <small class="form-text text-muted">Separate each tags by a space.</small>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
+                    <div class="col-sm-8">
+                      <textarea class="form-control form-control-sm my-align" rows="4" name="notes" id="note">{{$order->notes}}</textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Order Status:</label>
+                    <div class="col-sm-8">
+                      <select class="form-control" name="status" id="state_change">
+                        @foreach($order_states as $order_state) @if($order_state->name == $order->get_status->name)
+                        <option value="{{$order->get_status->name}}" selected>{{$order->get_status->name}}</option>
+                        @else
+                        <option value="{{$order_state->name}}">{{$order_state->name}}</option>
+                        @endif @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Received Date/Time:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control form-control-sm" value="{{$order->received_date}}" name="received_date" required>
+                    </div>
+                  </div>
+                  @if ($order->booked_date)
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Booked Date/Time:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control form-control-sm" value="{{$order->booked_date}}" name="booked_date" required>
+                    </div>
+                  </div>
+                  @endif
+                </div>
+                <div class="modal-footer">
+                  <input type="hidden" name="order_id" value="{{$order->id}}">
+                  <input class="btn btn-primary" type="submit" form="editOrderForm" value="Update">
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-@endsection
+  @endsection

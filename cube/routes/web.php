@@ -47,6 +47,8 @@ Route::post('/comments/create', 'CommentController@createComment');
 
 Route::post('/tasks/add', 'TaskController@addTask');
 
+Route::delete('/tasks/delete', 'TaskController@deleteTask');
+
 Route::post('/tasks/edit', 'TaskController@editTask');
 
 Route::post('/tasks/change_status', 'TaskController@statusTask');

@@ -101,20 +101,25 @@ class TaskController extends Controller
 
   public function editTask(Request $request) {
 
-     $description = $request->description;
-     $notes = $request->notes;
-     $due_date = $request->due_date;
+      $description = $request->description;
+      $notes = $request->notes;
+      $due_date = $request->due_date;
+      $order_id = $request->order_id;
 
-     $order_id = $request->order_id;
-
-      $task_obj = new Task;
-      $task_obj->description = $description;
-      $task_obj->notes = $notes;
-      $task_obj->due_date = $due_date;
-      $task_obj->order_id = $order_id;
+      $task_obj = Task::find($request->task_id);
+      $task_obj->description = $request->description;
+      $task_obj->notes = $request->notes;
+      $task_obj->due_date = $request->due_date;
       $task_obj->save();
 
       return redirect()->back();
+  }
+
+  public function deleteTask(Request $request) {
+    $task = Task::find($request->task_id);
+    $task->delete();
+
+    return redirect()->back();
   }
 
 }

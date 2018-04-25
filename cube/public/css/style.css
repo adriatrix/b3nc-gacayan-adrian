@@ -5,6 +5,16 @@ html {
   position: relative;
 }
 
+.bg-cube {
+  background-image: url("img/graycube.jpeg");
+  height: 100%;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: dimgrey; */
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   /* margin:0;

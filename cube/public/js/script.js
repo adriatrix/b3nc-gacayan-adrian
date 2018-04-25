@@ -56,6 +56,21 @@ $(function() {
     });
    });
 
+     var i = 0, timeOut = 0;
+
+      $('button.taskbutton').on('mousedown touchstart', function(e) {
+        var number = $(this).parent().val();
+        console.log(number);
+        $(this).addClass('active');
+        timeOut = setInterval(function(){
+          console.log(i++);
+        }, 100);
+      }).bind('mouseup mouseleave touchend', function() {
+        $(this).removeClass('active');
+        clearInterval(timeOut);
+      });
+
+
    $("input[type='checkbox']").on('click', function (){
     var $this = $(this);
     var isChecked = $this.is(':checked');

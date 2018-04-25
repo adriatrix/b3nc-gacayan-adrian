@@ -6,7 +6,7 @@ Home
 
 @section('content')
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mb-2">
     <div class="col">
       <div class="jumbotron">
         <h1 class="display-4">Hello, {{$user}}!</h1>
@@ -29,9 +29,9 @@ Home
               <tr>
                 <th style="width: 3%" scope="col"><i class="fas fa-tasks"></i></th>
                 <th scope="col">SO#</th>
-                <th scope="col">Customer Name</th>
                 <th scope="col">PO#</th>
                 <th style="width: 15%" scope="col">Status</th>
+                <th scope="col">Passed</th>
               </tr>
             </thead>
             <tbody id="">
@@ -40,15 +40,28 @@ Home
                 <tr>
                   @if ($order->tasks()->where('task_state_id',$tasks_states_id)->count())
                   <td data-title="Tasks" class="align-middle">
-                    <button class="badge badge-pill badge-warning text-hand" disabled>{{$order->tasks()->where('task_state_id',$tasks_states_id)->count()}}</button>
+                    <button class="badge badge-pill badge-warning text-hand taskbutton">{{$order->tasks()->where('task_state_id',$tasks_states_id)->count()}}</button>
                   </td>
                   @else
                   <td></td>
                   @endif
-                  <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-emerson">{{$order->so_num}}</strong></a></td>
-                  <td data-title="Customer" class="align-middle">{{$order->get_customer->name}}</td>
+                  <td data-title="SO#" class="align-middle text-emerson font-weight-bold"><a value="{{$order->so_num}}" href='{{url("/orders/$order->id")}}'>{{$order->so_num}}</a></td>
                   <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
                   <td data-title="Status" class="align-middle">{{$order->get_status->name}}</td>
+                  @php
+                    $rdate = Carbon\Carbon::parse($order->received_date,'America/Chicago')->diffInSeconds(Carbon\Carbon::now('America/Chicago'), false);
+                    if (gmdate('z', $rdate) == 1) {
+                        $showdate = gmdate('z',$rdate).' day';
+                        $styledate = 'bg-danger text-white';
+                    } elseif (gmdate('z', $rdate) > 1) {
+                      $showdate = gmdate('z',$rdate).' days';
+                      $styledate = 'bg-danger text-white';
+                    } else {
+                      $showdate = gmdate('H:i:s',$rdate);
+                      $styledate = 'bg-success text-white';
+                    }
+                  @endphp
+                  <td data-title="Passed" class="align-middle {{$styledate}}">{{$showdate}}</td>
                 </tr>
                 @endif
                 @endforeach

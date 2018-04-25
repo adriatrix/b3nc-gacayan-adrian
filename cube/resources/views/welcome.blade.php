@@ -53,7 +53,7 @@
           text-transform: uppercase;
           border: 1px dashed grey;
           background: rgba(0, 75, 141, 0.5);
-          padding: 1px;
+          padding: 2px 5px;
         }
 
         .m-b-md {
@@ -74,7 +74,7 @@
             position: fixed;
             bottom: 5%;
             left: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0);
             color: #f1f1f1;
             width: 100%;
             padding: 80px 0 80px 0;
