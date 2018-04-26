@@ -182,6 +182,8 @@ class OrderController extends Controller
       }
       $new_order->tags()->sync($tagIds);
 
+      Session::flash('alert-success', 'Order successfully created');
+
       return redirect('/home');
    }
 
@@ -214,7 +216,7 @@ class OrderController extends Controller
       $order->booked_date = $request->booked_date;
 
       if ($get_state->name == 'Booked') {
-        $order->booked_date = date("m/d/Y H:i:s");
+        $order->booked_date = date('m/d/Y H:i:s','America/Chicago');
       }
 
       $order->save();
@@ -231,6 +233,8 @@ class OrderController extends Controller
 
       }
       $order->tags()->sync($tagIds);
+
+      Session::flash('alert-info', 'Order successfully updated');
 
       return redirect('/orders/'.$id);
    }

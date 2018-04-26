@@ -24,7 +24,33 @@ Home
             <div class="jumbotron">
                <h1 class="display-4">Dashboard</h1>
                <p class="lead">You will see your stats and reports here...</p>
-               <p></p>
+               <hr class="my-2">
+               @php
+                $totalOrders = 0;
+                $totalBadOrders = 0;
+                $totalGoodOrders = 0;
+                $diff = 0;
+               @endphp
+               @if($orders)
+                 @foreach($orders as $order)
+                 @php
+                 if($order->get_status->name != 'Cancelled') {
+                   $totalOrders++;
+                   if($order->get_status->name == 'Booked' OR $order->get_status->name == 'Acknowledged' OR $order->get_status->name == 'Closed') {
+                     $diff = Carbon\Carbon::parse($order->received_date,'America/Chicago')->diffInSeconds(Carbon\Carbon::parse($order->booked_date, 'America/Chicago'), false);
+                     if ($diff > 0) {
+                       $totalBadOrders++;
+                     } else {
+                       $totalGoodOrders++;
+                     }
+                   }
+                 }
+
+                 @endphp
+                 @endforeach
+               @endif
+               <p>You have created <span class="h4 font-weight-bold">{{$totalOrders}}</span> orders in total.</p>
+               <p>You have <span class="h4 font-weight-bold">{{$order->received_date}} to {{$order->booked_date}} with {{$diff}} {{$totalGoodOrders}}</span> good orders and <span class="h4 font-weight-bold">{{$totalGoodOrders}}</span> bad orders.</p>
             </div>
          </div>
         <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
@@ -32,8 +58,8 @@ Home
             <h1 class="display-4">Hello, {{$user}}!</h1>
             <p class="lead">Welcome to the Cube v.1.2 - a simple yet practical Order Management System (OMS) website app.</p>
             <hr class="my-2">
-            <p>Now with <strong>To-Do List</strong> feature!!</p>
-               <a class="btn btn-dark" href="#" role="button">Documenation</a>
+            <p>Now with <strong>To-Do Lists</strong><span class="align-top"><img src="/img/new.gif" height="40" width="40"></span></p>
+               <a class="btn btn-dark" href="#" role="button">Documentation</a>
                <a class="btn btn-outline-dark" href="#" role="button">Change logs</a>
           </div>
         </div>
@@ -52,6 +78,13 @@ Home
              </div>
           </div>
         </div>
+      </div>
+      <div class="flash-message py-1">
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+        @if(Session::has('alert-' . $msg))
+        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+        @endif
+        @endforeach
       </div>
     </div>
   </div>

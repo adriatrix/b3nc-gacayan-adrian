@@ -39,6 +39,8 @@ class UserController extends Controller
      $user->nickname = $request->nickname;
      $user->save();
 
+     Session::flash('alert-info', 'User successfully updated');
+
      return redirect('/profile');
   }
 

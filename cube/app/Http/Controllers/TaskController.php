@@ -57,6 +57,8 @@ class TaskController extends Controller
      $task_obj->task_state_id = $get_state->id;
      $task_obj->save();
 
+     Session::flash('alert-success', 'Task successfully created');
+
      return redirect()->back();
   }
 
@@ -89,6 +91,8 @@ class TaskController extends Controller
      $task_obj->task_state_id = $get_state->id;
      $task_obj->save();
 
+     Session::flash('alert-success', 'Task successfully created');
+
      return redirect()->back();
   }
 
@@ -112,12 +116,16 @@ class TaskController extends Controller
       $task_obj->due_date = $request->due_date;
       $task_obj->save();
 
+      Session::flash('alert-info', 'Task successfully updated');
+
       return redirect()->back();
   }
 
   public function deleteTask(Request $request) {
     $task = Task::find($request->task_id);
     $task->delete();
+
+    Session::flash('alert-warning', 'Task successfully deleted');
 
     return redirect()->back();
   }

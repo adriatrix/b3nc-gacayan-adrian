@@ -21,6 +21,8 @@ class CommentController extends Controller
       $new_comment->customer_id = $request->customer_id;
       $new_comment->save();
 
+      Session::flash('alert-success', 'Post successfully created');
+
       return redirect()->back();
    }
 }

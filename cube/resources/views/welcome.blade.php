@@ -66,7 +66,7 @@
             bottom: 0;
             min-width: 100vw;
             min-height: 100vh;
-            filter: grayscale(100%);
+            /* filter: grayscale(100%); */
             /* filter: blur(5px); */
           }
 
@@ -105,7 +105,7 @@
 
           @media only screen and (max-width: 800px) {
             html {
-              background-image: url("img/graycube.jpeg");
+              background-image: url("img/cube.jpg");
               height: 100%;
               background-position: center center;
               background-attachment: fixed;
@@ -137,8 +137,8 @@
     <body>
       <div class="video-container">
         <video autoplay muted loop id="myVideo">
-          <source src="img/slowcube.webm" type="video/webm">
-          <source src="img/slowcube.mp4" type="video/mp4">
+          <source src="img/cube.webm" type="video/webm">
+          <source src="img/cube.mp4" type="video/mp4">
         </video>
       </div>
         <div class="my-content">

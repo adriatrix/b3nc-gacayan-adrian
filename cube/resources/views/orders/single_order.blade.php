@@ -72,6 +72,13 @@ Order # {{$order->so_num}}
           </div>
         </div>
       </div>
+      <div class="flash-message py-1">
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+        @if(Session::has('alert-' . $msg))
+        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+        @endif
+        @endforeach
+      </div>
     </div>
   </div>
   <div class="row justify-content-center mt-3">

@@ -20,6 +20,8 @@ class PostController extends Controller
       $new_post->user_id = $request->user_id;
       $new_post->save();
 
+      Session::flash('alert-success', 'Post successfully created');
+
       return redirect()->back();
    }
 }
