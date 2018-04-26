@@ -50,16 +50,4 @@ class HomeController extends Controller
       return view ('home', compact('orders','tasks_states_id','tasks','user'));
     }
 
-    public function autocomplete(Request $request)
-    {
-      $term=$request->term;
-        $data = stationary::where('item','LIKE','%'.$term.'%')
-        ->take(10)
-        ->get();
-        $result=array();
-        foreach ($data as $key => $v){
-           $result[]=['value' =>$value->item];
-        }
-        return response()->json($results);
-     }
 }

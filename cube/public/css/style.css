@@ -23,6 +23,26 @@ body {
   /* height:100%; */
 }
 
+.home-social-icon {
+  color: #fff;
+  background: #1f1f1f;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration:none;
+  font-family: FontAwesome;
+  display: inline-block;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  padding-top: 8px;
+  margin: 0 6px;
+  -o-transition:all .5s;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+   -webkit-font-smoothing: antialiased;
+}
+
 .my-footer {
   position: absolute;
   bottom: 0;

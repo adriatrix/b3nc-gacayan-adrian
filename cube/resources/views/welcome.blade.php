@@ -66,7 +66,8 @@
             bottom: 0;
             min-width: 100vw;
             min-height: 100vh;
-            filter: grayscale(100%)
+            filter: grayscale(100%);
+            /* filter: blur(5px); */
           }
 
           .my-content {

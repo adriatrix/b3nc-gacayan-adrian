@@ -43,10 +43,30 @@
       </div>
     </div>
   </div>
+  <div class="row justify-content-center">
+     <p>&nbsp;</p>
+  </div>
+  <div class="row justify-content-center">
+     <div class="col">
+        @foreach ($posts as $post)
+        <div class="card border-dark">
+           <div class="card-body text-dark" style="white-space: pre-wrap;">
+              <h5 class="text-center">{{$post->post}}</h5>
+           </div>
+           <div class="card-footer text-right">
+              <h6 class="mt-0 mb-1 card-title"><small>posted by:</small> <strong>{{$post->get_poster->nickname}}</strong> <small class="text-muted">({{$post->get_poster->team}})</small></h6>
+              <p class="mt-0 mb-1"><small>{{$post->updated_at->diffForHumans()}}</small></p>
+           </div>
+        </div>
+        &nbsp;
+        @endforeach
+     </div>
+  </div>
+
   <!-- modal for posting messages -->
   <div class="row justify-content-center">
     <div class="col">
-      <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="create Post {{$user->id}}"
+      <div class="modal fade" id="postMessageModal" tabindex="-1" role="dialog" aria-labelledby="create Post {{$user->id}}"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -56,62 +76,18 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="{{url("/users/edit")}}" method="post">
+            <form action="{{url("/posts/create")}}" method="post">
               {{ csrf_field() }}
               <div class="modal-body">
-                <!-- <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Name:</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" value="{{$user->name}}" name="name" disabled>
-                  </div>
-                </div> -->
-                <!-- <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
-                  <div class="col-sm-8">
-                    <input type="email" class="form-control" value="{{$user->email}}" name="email" disabled>
-                  </div>
-                </div> -->
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Nickname:</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" value="{{$user->nickname}}" name="nickname" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Password:</label>
-                  <div class="col-sm-8">
-                    <input type="password" class="form-control" value="••••••••" name="password">
-                  </div>
-                </div>
-                <!-- <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Role:</label>
-                  <div class="col-sm-8">
-                    <select class="form-control form-control-sm my-align" name="role" disabled>
-                      <option value="Order Admin" selected></option>
-                    </select>
-                  </div>
-                </div> -->
-                <!-- <div class="form-group row">
-                  <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Team:</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" name="team" id="">
-                      @php
-                        $teams = array("name"=>"Gas Chromatograph", "name"=>"Flame and Gas", "name"=>"Instruments Domestic", "name"=>"Instruments International");
-                      @endphp
-                      @foreach($teams as $t => $team)
-                      @if($team == $user->team)
-                      <option value="{{$user->team}}" selected>{{$user->team}}</option>
-                      @else
-                      <option value="{{$team}}">{{$team}}</option>
-                      @endif
-                      @endforeach
-                    </select>
-                  </div>
-                </div> -->
+                 <div class="form-group row">
+                    <div class="col">
+                       <textarea class="form-control form-control-sm my-align" name="post" rows="10"></textarea>
+                    </div>
+                 </div>
               </div>
               <div class="modal-footer">
-                <input type="hidden" name="user_id" value="{{$user->id}}">
-                <input class="btn btn-primary" type="submit" name="edit" value="Update">
+                 <input type="hidden" name="user_id" value="{{$user->id}}">
+                 <input class="btn btn-primary" type="submit" name="create" value="Create">
               </div>
             </form>
           </div>

@@ -14,6 +14,7 @@ use App\Tag;
 use App\Task;
 use App\TaskState;
 use App\Comment;
+use App\Post;
 
 class UserController extends Controller
 {
@@ -29,7 +30,6 @@ class UserController extends Controller
   public function editUser(Request $request) {
      $rules = array (
        'nickname' => 'required',
-       'password' => 'required',
    );
      $this->validate($request,$rules);
 
@@ -38,12 +38,6 @@ class UserController extends Controller
      $user = User::find($id);
      $user->nickname = $request->nickname;
      $user->save();
-
-     if (Hash::check($request->password, $user->password)) {
-       $request->user()->fill([
-           'password' => Hash::make($request->password)
-       ])->save();
-     }
 
      return redirect('/profile');
   }
@@ -119,7 +113,9 @@ class UserController extends Controller
 
   public function showUser($id) {
      $user = User::where('id',$id)->first();
+     $get_posts = Post::all();
+     $posts = $get_posts->where('user_id',$id)->sortBy('created_at');
 
-     return view ('users/user', compact('user'));
+     return view ('users/user', compact('user','posts'));
   }
 }

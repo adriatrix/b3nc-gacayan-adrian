@@ -23,6 +23,8 @@ Route::get('/orders', 'OrderController@showOrders');
 
 Route::get('/orders/numbersearch', 'OrderController@searchOrders');
 
+Route::get('/orders/suggest', 'OrderController@suggestOrders');
+
 Route::get('/orders/search', 'OrderController@searchNumbers');
 
 Route::post('/orders/create', 'OrderController@createOrders');
@@ -39,11 +41,15 @@ Route::get('/customers', 'CustomerController@showCustomers');
 
 Route::get('/customers/ordersearch', 'CustomerController@searchOrders');
 
+Route::get('/customers/suggest', 'CustomerController@suggestCustomers');
+
 Route::get('/customers/search', 'CustomerController@searchCustomers');
 
 Route::get('/customers/{id}', 'CustomerController@showCustomer');
 
 Route::post('/comments/create', 'CommentController@createComment');
+
+Route::post('/posts/create', 'PostController@createPost');
 
 Route::post('/tasks/add', 'TaskController@addTask');
 

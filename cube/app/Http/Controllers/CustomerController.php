@@ -39,6 +39,18 @@ class CustomerController extends Controller
          }
    }
 
+    public function suggestCustomers(Request $request) {
+         $output='';
+         $customers = Customer::where('name','LIKE','%'.$request->suggest.'%')->latest()->take(3)->get();
+
+         if($customers) {
+            foreach ($customers as $customer) {
+               $output .= '<button data-index="'.$customer->name.'" class="badge badge-info customersuggestbutton font-weight-normal" data-toggle="button" aria-pressed="false" autocomplete="off">'.$customer->name.'</button>&nbsp;';
+            }
+            return Response($output);
+         }
+   }
+
    public function searchOrders(Request $request) {
     $id = \Auth::user()->id;
     $cust = $request->cust;

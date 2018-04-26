@@ -61,6 +61,24 @@ class OrderController extends Controller
       return Response($output);
 }
 
+  public function suggestOrders(Request $request) {
+      $output='';
+      $orders = Order::where('so_num','LIKE','%'.$request->suggest.'%')->latest()->take(3)->get();
+
+      if($orders) {
+          foreach ($orders as $order) {
+             if ($order->get_status->name == 'Received' OR $order->get_status->name == 'Entered' OR $order->get_status->name == 'On Hold') {
+                $output .= '<button data-index="'.$order->so_num.'" class="badge badge-info suggestorderbutton font-weight-normal" data-toggle="button" aria-pressed="false" autocomplete="off">'.$order->so_num.'</button>&nbsp;';
+             } else {
+                $output .= '&nbsp;';
+             }
+          }
+      } else {
+         $output .= '&nbsp;';
+      }
+      return Response($output);
+}
+
 
   public function searchOrders(Request $request) {
       $id = \Auth::user()->id;

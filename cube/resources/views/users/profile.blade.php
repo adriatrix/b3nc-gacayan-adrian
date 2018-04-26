@@ -76,12 +76,12 @@
                     <input type="text" class="form-control" value="{{$user->nickname}}" name="nickname" required>
                   </div>
                 </div>
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                   <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Password:</label>
                   <div class="col-sm-8">
                     <input type="password" class="form-control" value="••••••••" name="password">
                   </div>
-                </div>
+                </div> -->
                 <!-- <div class="form-group row">
                   <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Role:</label>
                   <div class="col-sm-8">

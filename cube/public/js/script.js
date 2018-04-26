@@ -28,6 +28,44 @@ $(function() {
       });
    });
 
+   $("#customerSuggest").on('keyup', function (){
+      var $value=$(this).val();
+      $.ajax({
+         url: '/customers/suggest',
+         type: 'GET',
+         data: {
+              suggest : $value,
+          },
+         success: function(data) {
+             $('#customerSuggestList').html(data);
+         }
+      });
+   });
+
+   $('#customerSuggestList').on('click','button', function (){
+      var $custName = $(this).data('index');
+      $('#customerSuggest').val($custName);
+   });
+
+   $("#soSuggest").on('keyup', function (){
+      var $value=$(this).val();
+      $.ajax({
+         url: '/orders/suggest',
+         type: 'GET',
+         data: {
+              suggest : $value,
+          },
+         success: function(data) {
+             $('#soSuggestList').html(data);
+         }
+      });
+   });
+
+   $('#soSuggestList').on('click','button', function (){
+      var $salesNum = $(this).data('index');
+      $('#soSuggest').val($salesNum);
+   });
+
    $("#userSearch").on('keyup', function (){
       var $value=$(this).val();
       $.ajax({
@@ -87,14 +125,14 @@ $(function() {
      var i = 0, timeOut = 0;
 
       $('button.taskbutton').on('mousedown touchstart', function(e) {
-        var number = $(this).parent().val();
-        console.log(number);
-        $(this).addClass('active');
+        var ayde = $(this).data('index');
+        $('td.tede'+ayde).addClass('bg-warning');
         timeOut = setInterval(function(){
           console.log(i++);
         }, 100);
       }).bind('mouseup mouseleave touchend', function() {
-        $(this).removeClass('active');
+        var ayde = $(this).data('index');
+        $('td.tede'+ayde).removeClass('bg-warning');
         clearInterval(timeOut);
       });
 

@@ -9,36 +9,47 @@ Home
   <div class="row justify-content-center mb-2">
     <div class="col">
       <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+         <li class="nav-item">
+            <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</a>
+         </li>
         <li class="nav-item">
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</a>
+          <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+         <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+            <div class="jumbotron">
+               <h1 class="display-4">Dashboard</h1>
+               <p class="lead">You will see your stats and reports here...</p>
+               <p></p>
+            </div>
+         </div>
+        <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
           <div class="jumbotron">
             <h1 class="display-4">Hello, {{$user}}!</h1>
-            <p class="lead">Welcome to the Cube - this is a simple yet practical Order Management System (OMS) app.</p>
-            <p></p>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-          <div class="jumbotron">
-            <h1 class="display-4">Dashboard</h1>
-            <p class="lead">You will see your stats and reports here...</p>
-            <p></p>
+            <p class="lead">Welcome to the Cube v.1.2 - a simple yet practical Order Management System (OMS) website app.</p>
+            <hr class="my-2">
+            <p>Now with <strong>To-Do List</strong> feature!!</p>
+               <a class="btn btn-dark" href="#" role="button">Documenation</a>
+               <a class="btn btn-outline-dark" href="#" role="button">Change logs</a>
           </div>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <div class="jumbotron">
-            <h1 class="display-4">Contact Page</h1>
-            <p class="lead">Please don't hesitate to contact me if you questions or need help in using the site.</p>
-            <p></p>
+            <h1 class="display-4">Keep in Touch</h1>
+            <p class="lead">Please don't hesitate to contact me if you have questions or just need help in using the site.</p>
+            <hr class="my-2">
+            <div class="row justify-content-center">
+               <div class="col">
+                  <a class="home-social-icon" href="https://www.linkedin.com/in/adrian-gacayan-00087514b/" title="Linkedin"><i class="fab fa-linkedin-in"></i></a>
+                  <a class="home-social-icon" href="https://plus.google.com/u/0/+AdrianGacayan" title="Google+"><i class="fab fa-google-plus-g"></i></a>
+                  <a class="home-social-icon" href="https://github.com/adriatrix" title="Github"><i class="fab fa-github-alt"></i></a>
+                  <a class="home-social-icon" href="https://codepen.io/adriatrix" title="Codepen"><i class="fab fa-codepen"></i></a>
+               </div>
+             </div>
           </div>
         </div>
       </div>
@@ -56,37 +67,42 @@ Home
             <thead class="thead-dark">
               <tr>
                 <th style="width: 3%" scope="col"><i class="fas fa-tasks"></i></th>
-                <th scope="col">SO#</th>
+                <th style="width: 15%"scope="col">SO#</th>
                 <th scope="col">PO#</th>
                 <th style="width: 15%" scope="col">Status</th>
                 <th scope="col">Elapse</th>
               </tr>
             </thead>
-            <tbody id="">
+            <tbody>
               @foreach($orders as $order)
               @if($order->get_status->name == 'Received' OR $order->get_status->name == 'Entered' OR $order->get_status->name == 'On Hold')
                 <tr>
                   @if ($order->tasks()->where('task_state_id',$tasks_states_id)->count())
                   <td data-title="Tasks" class="align-middle">
-                    <button class="badge badge-pill badge-warning text-hand taskbutton">{{$order->tasks()->where('task_state_id',$tasks_states_id)->count()}}</button>
+                    <button data-index="{{$order->id}}" class="badge badge-pill badge-warning text-hand taskbutton">{{$order->tasks()->where('task_state_id',$tasks_states_id)->count()}}</button>
                   </td>
                   @else
                   <td></td>
                   @endif
-                  <td data-title="SO#" class="align-middle text-emerson font-weight-bold"><a value="{{$order->so_num}}" href='{{url("/orders/$order->id")}}'>{{$order->so_num}}</a></td>
+                  <td data-title="SO#" class="align-middle font-weight-bold tede{{$order->id}}"><a value="{{$order->so_num}}" href='{{url("/orders/$order->id")}}' class="text-emerson">{{$order->so_num}}</a></td>
                   <td data-title="PO#" class="align-middle">{{$order->po_num}}</td>
                   <td data-title="Status" class="align-middle">{{$order->get_status->name}}</td>
                   @php
                     $rdate = Carbon\Carbon::parse($order->received_date,'America/Chicago')->diffInSeconds(Carbon\Carbon::now('America/Chicago'), false);
-                    if (gmdate('z', $rdate) == 1) {
-                        $showdate = gmdate('z',$rdate).' day';
-                        $styledate = 'bg-danger text-white';
-                    } elseif (gmdate('z', $rdate) > 1) {
-                      $showdate = gmdate('z',$rdate).' days';
-                      $styledate = 'bg-danger text-white';
+                    if ($rdate > 0) {
+                       if (gmdate('z', $rdate) == 1) {
+                          $showdate = gmdate('z',$rdate).' day';
+                          $styledate = 'bg-danger text-white';
+                       } elseif (gmdate('z', $rdate) > 1) {
+                          $showdate = gmdate('z',$rdate).' days';
+                          $styledate = 'bg-danger text-white';
+                       } else {
+                          $showdate = gmdate('H:i:s',$rdate);
+                          $styledate = 'bg-success text-white';
+                       }
                     } else {
-                      $showdate = gmdate('H:i:s',$rdate);
-                      $styledate = 'bg-success text-white';
+                       $showdate = "invalid";
+                       $styledate = 'bg-warning text-white';
                     }
                   @endphp
                   <td data-title="Elapse" class="align-middle {{$styledate}}">{{$showdate}}</td>
@@ -104,7 +120,7 @@ Home
             <table class="table table-hover table-sm my-table text-center table-bordered">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">SO#</th>
+                  <th style="width: 15%" scope="col">SO#</th>
                   <th scope="col">Task</th>
                   <th scope="col">Notes</th>
                   <th scope="col">Due</th>
@@ -116,7 +132,7 @@ Home
                  @foreach($order->tasks as $task)
                   @if($task->get_status->name == 'Pending')
                   <tr>
-                    <td data-title="SO#" class="align-middle"><a href='{{url("/orders/$order->id")}}'><strong class="text-emerson">{{$order->so_num}}</strong></a></td>
+                    <td data-title="SO#" class="align-middle tede{{$order->id}}"><a href='{{url("/orders/$order->id")}}'><strong class="text-emerson">{{$order->so_num}}</strong></a></td>
                     <td data-title="Task" class="align-middle">{{$task->description}}</td>
                     @if ($task->notes)
                        <td data-title="Notes" class="align-middle">{{$task->notes}}</td>
@@ -155,7 +171,8 @@ Home
                          <div class="form-group row">
                             <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Customer Name:</label>
                             <div class="col-sm-8">
-                               <input type="text" class="form-control" value="" name="customer" id="newcustomer" autocomplete="off" required>
+                               <input type="text" class="form-control" value="" name="customer" id="customerSuggest" autocomplete="off" required>
+                               <p id="customerSuggestList"></p>
                             </div>
                          </div>
                          <div class="form-group row">
@@ -210,25 +227,26 @@ Home
                          <div class="form-group row">
                             <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Sales Order No.:</label>
                             <div class="col-sm-8">
-                               <input type="text" class="form-control" value="" name="so_num" required>
+                               <input type="text" class="form-control" value="" name="so_num" id="soSuggest" autocomplete="off" required>
+                               <p id="soSuggestList"></p>
                             </div>
                          </div>
                          <div class="form-group row">
                             <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Task:</label>
                             <div class="col-sm-8">
-                               <input type="text" class="form-control" value="" name="description" id="newcustomer" autocomplete="off" required>
-                            </div>
-                         </div>
-                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Due date:</label>
-                            <div class="col-sm-8">
-                               <input type="date" class="form-control" value="@php echo date('Y-m-d'); @endphp" name="due_date" required>
+                               <input type="text" class="form-control" value="" name="description" autocomplete="off" required>
                             </div>
                          </div>
                          <div class="form-group row">
                             <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Notes:</label>
                             <div class="col-sm-8">
                                <input type="text" class="form-control form-control-sm" value="" name="notes" required>
+                            </div>
+                         </div>
+                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Due date:</label>
+                            <div class="col-sm-8">
+                               <input type="date" class="form-control" value="@php echo date('Y-m-d'); @endphp" name="due_date" required>
                             </div>
                          </div>
                       </div>

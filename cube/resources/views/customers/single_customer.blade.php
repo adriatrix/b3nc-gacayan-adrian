@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
    <div class="row justify-content-center mb-5">
-      <div class="col-sm-10">
+      <div class="col">
          <div class="d-flex justify-content-between">
             <a class="btn btn-secondary" href='{{url("/home")}}'>Home</a>
             <button class="btn btn-dark" data-toggle="modal" data-target="#createCommentModal">Post</button>
@@ -15,7 +15,7 @@
       </div>
    </div>
    <div class="row justify-content-center">
-      <div class="col-sm-10">
+      <div class="col">
          <div class="text-center">
            <h1 class="display-5"><span class="border-bottom">{{$customer->name}}</span></h1>
          </div>
@@ -25,7 +25,7 @@
       <p>&nbsp;</p>
    </div>
    <div class="row justify-content-center">
-      <div class="col-sm-10">
+      <div class="col">
          @foreach ($comments as $comment)
          <div class="card border-dark">
             <div class="card-body text-dark" style="white-space: pre-wrap;">

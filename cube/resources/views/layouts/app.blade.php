@@ -96,7 +96,7 @@
               <span>Copyright &copy; 2018 Adrian's Cube</span>
             </div>
             <div class="col-md my-footer-text-two">
-              <small>by</small> <a class="is-white" href="https://github.com/adriatrix">Adrian Gacayan</a></span>
+              <small>by</small> <a class="text-secondary" href="https://github.com/adriatrix">Adrian Gacayan</a></span>
             </div>
       		</div>
         </footer>
