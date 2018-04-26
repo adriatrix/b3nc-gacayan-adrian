@@ -53,10 +53,16 @@ Route::post('/tasks/edit', 'TaskController@editTask');
 
 Route::post('/tasks/change_status', 'TaskController@statusTask');
 
+Route::get('/users/ordersearch', 'UserController@searchOrders');
+
+Route::get('/users/search', 'UserController@searchUsers');
+
+Route::get('/users', 'UserController@showUsers');
+
 Route::get('/users/{id}', 'UserController@showUser');
 
-Route::get('/profile', 'UserController@showProfile');
-
 Route::post('/users/edit', 'UserController@editUser');
+
+Route::get('/profile', 'UserController@showProfile');
 
 Route::get("/autocomplete",array('as'=>'autocomplete','uses'=> 'HomeController@autocomplete'));

@@ -28,6 +28,20 @@ $(function() {
       });
    });
 
+   $("#userSearch").on('keyup', function (){
+      var $value=$(this).val();
+      $.ajax({
+         url: '/users/search',
+         type: 'GET',
+         data: {
+              search : $value,
+          },
+         success: function(data) {
+             $('#userList').html(data);
+         }
+      });
+   });
+
    $('#customerList').on('click','button', function (){
     var $custId = $(this).data('index');
     $.ajax({
@@ -38,6 +52,20 @@ $(function() {
         },
        success: function(data) {
            $('#customerOrderList').html(data);
+       }
+    });
+   });
+
+   $('#userList').on('click','button', function (){
+    var $userId = $(this).data('index');
+    $.ajax({
+       url: '/users/ordersearch',
+       type: 'GET',
+       data: {
+            user : $userId,
+        },
+       success: function(data) {
+           $('#userOrderList').html(data);
        }
     });
    });

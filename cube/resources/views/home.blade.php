@@ -8,11 +8,39 @@ Home
 <div class="container">
   <div class="row justify-content-center mb-2">
     <div class="col">
-      <div class="jumbotron">
-        <h1 class="display-4">Hello, {{$user}}!</h1>
-        <p class="lead">Welcome to the Cube - this is a simple order management system (OMS) app.</p>
-        <!-- <hr class="my-4"> -->
-        <p></p>
+      <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="jumbotron">
+            <h1 class="display-4">Hello, {{$user}}!</h1>
+            <p class="lead">Welcome to the Cube - this is a simple yet practical Order Management System (OMS) app.</p>
+            <p></p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+          <div class="jumbotron">
+            <h1 class="display-4">Dashboard</h1>
+            <p class="lead">You will see your stats and reports here...</p>
+            <p></p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+          <div class="jumbotron">
+            <h1 class="display-4">Contact Page</h1>
+            <p class="lead">Please don't hesitate to contact me if you questions or need help in using the site.</p>
+            <p></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -31,7 +59,7 @@ Home
                 <th scope="col">SO#</th>
                 <th scope="col">PO#</th>
                 <th style="width: 15%" scope="col">Status</th>
-                <th scope="col">Passed</th>
+                <th scope="col">Elapse</th>
               </tr>
             </thead>
             <tbody id="">
@@ -61,7 +89,7 @@ Home
                       $styledate = 'bg-success text-white';
                     }
                   @endphp
-                  <td data-title="Passed" class="align-middle {{$styledate}}">{{$showdate}}</td>
+                  <td data-title="Elapse" class="align-middle {{$styledate}}">{{$showdate}}</td>
                 </tr>
                 @endif
                 @endforeach

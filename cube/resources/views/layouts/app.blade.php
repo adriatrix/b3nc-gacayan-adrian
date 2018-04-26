@@ -59,6 +59,7 @@
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                  <a class="dropdown-item" href="{{url("/orders")}}">by Order No.</a>
                                  <a class="dropdown-item" href="{{url("/customers")}}">by Customer</a>
+                                 <a class="dropdown-item" href="{{url("/users")}}">by User</a>
                               </div>
                            </li>
                             <li class="nav-item dropdown">
