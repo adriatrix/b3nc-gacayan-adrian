@@ -25,32 +25,36 @@ Home
                <h1 class="display-4">Dashboard</h1>
                <p class="lead">You will see your stats and reports here...</p>
                <hr class="my-2">
-               @php
-                $totalOrders = 0;
-                $totalBadOrders = 0;
-                $totalGoodOrders = 0;
-                $diff = 0;
-               @endphp
-               @if($orders)
-                 @foreach($orders as $order)
+               @if($orders->count())
                  @php
-                 if($order->get_status->name != 'Cancelled') {
-                   $totalOrders++;
-                   if($order->get_status->name == 'Booked' OR $order->get_status->name == 'Acknowledged' OR $order->get_status->name == 'Closed') {
-                     $diff = Carbon\Carbon::parse($order->received_date,'America/Chicago')->diffInSeconds(Carbon\Carbon::parse($order->booked_date, 'America/Chicago'), false);
-                     if ($diff > 0) {
-                       $totalBadOrders++;
-                     } else {
-                       $totalGoodOrders++;
-                     }
-                   }
-                 }
-
+                  $totalOrders = 0;
+                  $totalBadOrders = 0;
+                  $totalGoodOrders = 0;
+                  $slaScore = 0;
+                  $diff = 0;
+                    foreach($orders as $order) {
+                      if($order->get_status->name != 'Cancelled') {
+                        $totalOrders++;
+                        if($order->get_status->name == 'Booked' OR $order->get_status->name == 'Acknowledged' OR $order->get_status->name == 'Closed') {
+                          $diff = Carbon\Carbon::parse($order->received_date,'America/Chicago')->diffInSeconds(Carbon\Carbon::parse($order->booked_date, 'America/Chicago'), false);
+                          if ($diff < 86400) {
+                            $totalGoodOrders++;
+                          } else {
+                            $totalBadOrders++;
+                          }
+                        }
+                      }
+                    }
+                    if (($totalBadOrders+$totalGoodOrders) == '0') {
+                      $slaScore = '0';
+                    } else {
+                      $slaScore = (($totalGoodOrders / ($totalBadOrders+$totalGoodOrders)) * 100);
+                    }
                  @endphp
-                 @endforeach
+               <p class="h3">You have a total of <span class="badge badge-secondary font-weight-bold">{{$totalOrders}}</span> order/s created - <span class="badge badge-warning font-weight-bold">{{$totalOrders-($totalBadOrders+$totalGoodOrders)}}</span> order/s still pending.</p>
+               <p class="h3">Order/s booked within 24 hours: <span class="badge badge-success font-weight-bold">{{$totalGoodOrders}}</span></p>
+               <p class="h3">Current SLA score is <span class="badge badge-primary font-weight-bold">{{$slaScore}}%</span>.</p>
                @endif
-               <p>You have created <span class="h4 font-weight-bold">{{$totalOrders}}</span> orders in total.</p>
-               <p>You have <span class="h4 font-weight-bold">{{$order->received_date}} to {{$order->booked_date}} with {{$diff}} {{$totalGoodOrders}}</span> good orders and <span class="h4 font-weight-bold">{{$totalGoodOrders}}</span> bad orders.</p>
             </div>
          </div>
         <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
@@ -66,7 +70,7 @@ Home
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <div class="jumbotron">
             <h1 class="display-4">Keep in Touch</h1>
-            <p class="lead">Please don't hesitate to contact me if you have questions or just need help in using the site.</p>
+            <p class="lead">Please don't hesitate to contact me if you have questions or feedbacks, or if you want to buy me a cup of coffee..</p>
             <hr class="my-2">
             <div class="row justify-content-center">
                <div class="col">

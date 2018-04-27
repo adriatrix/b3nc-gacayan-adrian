@@ -12,6 +12,7 @@ use App\OrderState;
 use App\Tag;
 use App\Task;
 use App\TaskState;
+use Carbon\Carbon;
 
 
 
@@ -216,7 +217,7 @@ class OrderController extends Controller
       $order->booked_date = $request->booked_date;
 
       if ($get_state->name == 'Booked') {
-        $order->booked_date = date('m/d/Y H:i:s','America/Chicago');
+        $order->booked_date = Carbon::now('America/Chicago');
       }
 
       $order->save();
