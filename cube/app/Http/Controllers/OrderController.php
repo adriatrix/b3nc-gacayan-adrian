@@ -149,7 +149,6 @@ class OrderController extends Controller
    public function createOrders(Request $request) {
       $rules = array (
         'so_num' => 'required',
-        'po_num' => 'required',
         'customer' => 'required',
         'received_date' => 'required'
     );
@@ -191,7 +190,6 @@ class OrderController extends Controller
    public function editOrder(Request $request) {
       $rules = array (
         'so_num' => 'required',
-        'po_num' => 'required',
         'customer' => 'required',
         'received_date' => 'required'
     );

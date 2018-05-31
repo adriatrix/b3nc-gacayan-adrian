@@ -5,7 +5,7 @@ Home
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
   <div class="row justify-content-center mb-2">
     <div class="col">
       <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
@@ -215,7 +215,7 @@ Home
                          <div class="form-group row">
                             <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
                             <div class="col-sm-8">
-                               <input type="text" class="form-control" value="" name="po_num" required>
+                               <input type="text" class="form-control" value="" name="po_num">
                             </div>
                          </div>
                          <div class="form-group row">
@@ -291,6 +291,75 @@ Home
                          <input class="btn btn-primary" type="submit" name="create" value="Create">
                       </div>
                    </form>
+                </div>
+             </div>
+          </div>
+          <!-- end of modal for creating new task -->
+          <!-- start of modal for showing order details -->
+          <div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="create new Task" aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Sales Order: <strong>{{$order->so_num}}</strong> <span class="h4 align-text-top">@foreach($order->tags as $tag)<span class="badge badge-primary ml-1">{{$tag->name}}</span>@endforeach</span></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="card">
+                      <div class="text-center card-body">
+                        <div class="form-group row">
+                          <label class="col-lg-2 col-form-label col-form-label-sm">Customer:</label>
+                          <div class="col-lg-4">
+                            <div class="input-group input-group-sm">
+                              <input type="text" class="form-control my-align text-truncate font-weight-bold" value="{{$order->get_customer->name}}" disabled>
+                              <div class="input-group-append">
+                                <div class="input-group-text"><a class="text-emerson" href='{{url("/customers/$order->customer_id")}}'><i class="far fa-folder-open"></i></a></div>
+                              </div>
+                            </div>
+                          </div>
+                          <label class="col-lg-2 col-form-label col-form-label-sm">PO no.:</label>
+                          <div class="col-lg-4">
+                            <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->po_num}}" disabled>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-lg-2 col-form-label col-form-label-sm">Received:</label>
+                          <div class="col-lg-4">
+                            <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->received_date}}" disabled>
+                          </div>
+                          @if($order->booked_date)
+                          <label class="col-lg-2 col-form-label col-form-label-sm">Booked:</label>
+                          <div class="col-lg-4">
+                            <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->booked_date}}" disabled>
+                          </div>
+                          @endif
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-lg-2 col-form-label col-form-label-sm">Created:</label>
+                          <div class="col-lg-4">
+                            <div class="input-group input-group-sm">
+                              <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->get_user->name}}" disabled>
+                              <div class="input-group-append">
+                                @php $userId = $order->get_user->id; @endphp
+                                <div class="input-group-text"><a class="text-emerson" href='{{url("/users/$userId")}}'><i class="far fa-folder-open"></i></a></div>
+                              </div>
+                            </div>
+                          </div>
+                          <label class="col-lg-2 col-form-label col-form-label-sm">Status:</label>
+                          <div class="col-lg-4">
+                            <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->get_status->name}}" disabled>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-lg-2 col-form-label col-form-label-sm">Notes:</label>
+                          <div class="col-lg-10">
+                            <textarea class="form-control font-control-sm my-align text-truncate" rows="3" disabled>{{$order->notes}}</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
              </div>
           </div>

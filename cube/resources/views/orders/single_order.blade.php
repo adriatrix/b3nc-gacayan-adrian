@@ -17,62 +17,75 @@ Order # {{$order->so_num}}
   </div>
   <div class="row justify-content-center">
     <div class="col">
-      <h1 class="display-5 text-center">Sales Order: {{$order->so_num}} <span class="h4 align-text-top">@foreach($order->tags as $tag)<span class="badge badge-primary ml-1">{{$tag->name}}</span>@endforeach</span></h1>
+      <h1 class="h3 text-center">Sales Order: <strong>{{$order->so_num}}</strong> <span class="h4 align-text-top">@foreach($order->tags as $tag)<span class="badge badge-primary ml-1">{{$tag->name}}</span>@endforeach</span></h1>
       <div class="card">
         <div class="text-center card-body">
-          <div class="form-group row">
-            <label class="col-lg-2 col-form-label">Customer:</label>
-            <div class="col-lg-4">
-              <div class="input-group">
-                <input type="text" class="form-control my-align text-truncate" value="{{$order->get_customer->name}}" disabled>
+          <div class="row">
+            <div class="col-lg-6 my-1">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <div class="input-group-text text-grey">Customer</div>
+                </div>
+                <input type="text" class="form-control text-truncate font-weight-bold" value="{{$order->get_customer->name}}" disabled>
                 <div class="input-group-append">
                   <div class="input-group-text"><a class="text-emerson" href='{{url("/customers/$order->customer_id")}}'><i class="far fa-folder-open"></i></a></div>
                 </div>
               </div>
-              <!-- <span class="align-middle"><a class="text-emerson" href='{{url("/customers/$order->customer_id")}}'>{{$order->get_customer->name}}</a></span> -->
             </div>
-            <label class="col-lg-2 col-form-label">PO no.:</label>
-            <div class="col-lg-4">
-              <input type="text" class="form-control my-align text-truncate" value="{{$order->po_num}}" disabled>
+            <div class="col-lg-6 my-1">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <div class="input-group-text text-grey">PO number</div>
+                </div>
+                <input type="text" class="form-control text-truncate font-weight-bold" value="{{$order->po_num}}" disabled>
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-lg-2 col-form-label">Received:</label>
-            <div class="col-lg-4">
-              <input type="text" class="form-control my-align text-truncate" value="{{$order->received_date}}" disabled>
+          <div class="row">
+            <div class="col-lg-4 my-1">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <div class="input-group-text text-grey">Received</div>
+                </div>
+                <input type="text" class="form-control form-control-sm text-truncate font-weight-bold" value="{{$order->received_date}}" disabled>
+              </div>
             </div>
             @if($order->booked_date)
-            <label class="col-lg-2 col-form-label">Booked:</label>
-            <div class="col-lg-4">
-              <input type="text" class="form-control my-align text-truncate" value="{{$order->booked_date}}" disabled>
+            <div class="col-lg-4 my-1">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <div class="input-group-text text-grey">Booked</div>
+                </div>
+              </div>
+              <input type="text" class="form-control form-control-sm text-truncate font-weight-bold" value="{{$order->booked_date}}" disabled>
             </div>
             @endif
           </div>
           <div class="form-group row">
-            <label class="col-lg-2 col-form-label">Created:</label>
+            <label class="col-lg-2 col-form-label col-form-label-sm">Created:</label>
             <div class="col-lg-4">
-              <div class="input-group">
-                <input type="text" class="form-control my-align text-truncate" value="{{$order->get_user->name}}" disabled>
+              <div class="input-group input-group-sm">
+                <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->get_user->name}}" disabled>
                 <div class="input-group-append">
                   @php $userId = $order->get_user->id; @endphp
                   <div class="input-group-text"><a class="text-emerson" href='{{url("/users/$userId")}}'><i class="far fa-folder-open"></i></a></div>
                 </div>
               </div>
             </div>
-            <label class="col-lg-2 col-form-label">Status:</label>
+            <label class="col-lg-2 col-form-label col-form-label-sm">Status:</label>
             <div class="col-lg-4">
-              <input type="text" class="form-control my-align text-truncate" value="{{$order->get_status->name}}" disabled>
+              <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->get_status->name}}" disabled>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-2 col-form-label">Notes:</label>
+            <label class="col-lg-2 col-form-label col-form-label-sm">Notes:</label>
             <div class="col-lg-10">
-              <textarea class="form-control my-align text-truncate" rows="3" disabled>{{$order->notes}}</textarea>
+              <textarea class="form-control font-control-sm my-align text-truncate" rows="3" disabled>{{$order->notes}}</textarea>
             </div>
           </div>
         </div>
       </div>
-      <div class="flash-message py-1">
+      <div class="py-1">
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
         @if(Session::has('alert-' . $msg))
         <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
@@ -184,7 +197,7 @@ Order # {{$order->so_num}}
                 </div>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteTaskModal{{$task->id}}" type="button" form="deleteTaskForm">Delete</button>
+                <!-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteTaskModal{{$task->id}}" type="button" form="deleteTaskForm">Delete</button> -->
                 <input class="btn btn-primary" type="submit" form="editTaskForm" value="Update">
               </div>
             </div>
@@ -251,7 +264,7 @@ Order # {{$order->so_num}}
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label form-control-sm font-weight-bold">Purchase Order No.:</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" value="{{$order->po_num}}" name="po_num" required>
+                      <input type="text" class="form-control" value="{{$order->po_num}}" name="po_num">
                     </div>
                   </div>
                   <div class="form-group row">

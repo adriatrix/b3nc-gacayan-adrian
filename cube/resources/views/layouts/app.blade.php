@@ -95,15 +95,20 @@
         </main>
 
         <footer class="text-light my-footer py-3">
-      		<div class="row">
-            <div class="col-md my-footer-text-one">
-              <span>Copyright &copy; 2018 Adrian's Cube</span>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col text-center">
+                        <p class="h5">&copy; 2018 <a class="text-white" target="_blank" href="https://github.com/adriatrix">Adrian</a>'s Cube X</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <small class="text-grey">made with <span style="color:red;"><i class="fas fa-heart"></i></span> and <span style="color:white;"><i class="fas fa-coffee"></i><span>.</small>
+                    </div>
+                </div>
             </div>
-            <div class="col-md my-footer-text-two">
-              <small>by</small> <a class="text-secondary" href="https://github.com/adriatrix">Adrian Gacayan</a></span>
-            </div>
-      		</div>
         </footer>
+
     </div>
     @yield('scripts')
 </body>
