@@ -24,7 +24,7 @@ Order # {{$order->so_num}}
             <div class="col-lg-6 my-1">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
-                  <div class="input-group-text text-grey">Customer</div>
+                  <div class="input-group-text text-grey" style="width:100px">Customer</div>
                 </div>
                 <input type="text" class="form-control text-truncate font-weight-bold" value="{{$order->get_customer->name}}" disabled>
                 <div class="input-group-append">
@@ -35,36 +35,38 @@ Order # {{$order->so_num}}
             <div class="col-lg-6 my-1">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
-                  <div class="input-group-text text-grey">PO number</div>
+                  <div class="input-group-text text-grey" style="width:100px">PO number</div>
                 </div>
                 <input type="text" class="form-control text-truncate font-weight-bold" value="{{$order->po_num}}" disabled>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-4 my-1">
+            <div class="col-lg-6 my-1">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
-                  <div class="input-group-text text-grey">Received</div>
+                  <div class="input-group-text text-grey" style="width:100px">Received</div>
                 </div>
                 <input type="text" class="form-control form-control-sm text-truncate font-weight-bold" value="{{$order->received_date}}" disabled>
               </div>
             </div>
             @if($order->booked_date)
-            <div class="col-lg-4 my-1">
+            <div class="col-lg-6 my-1">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
-                  <div class="input-group-text text-grey">Booked</div>
+                  <div class="input-group-text text-grey" style="width:100px">Booked</div>
                 </div>
+                <input type="text" class="form-control form-control-sm text-truncate font-weight-bold" value="{{$order->booked_date}}" disabled>
               </div>
-              <input type="text" class="form-control form-control-sm text-truncate font-weight-bold" value="{{$order->booked_date}}" disabled>
             </div>
             @endif
           </div>
-          <div class="form-group row">
-            <label class="col-lg-2 col-form-label col-form-label-sm">Created:</label>
-            <div class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-6 my-1">
               <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <div class="input-group-text text-grey" style="width:100px">Created</div>
+                </div>
                 <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->get_user->name}}" disabled>
                 <div class="input-group-append">
                   @php $userId = $order->get_user->id; @endphp
@@ -72,14 +74,17 @@ Order # {{$order->so_num}}
                 </div>
               </div>
             </div>
-            <label class="col-lg-2 col-form-label col-form-label-sm">Status:</label>
-            <div class="col-lg-4">
-              <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->get_status->name}}" disabled>
+            <div class="col-lg-6">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <div class="input-group-text text-grey" style="width:100px">Status</div>
+                </div>
+                <input type="text" class="form-control form-control-sm my-align text-truncate font-weight-bold" value="{{$order->get_status->name}}" disabled>
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-lg-2 col-form-label col-form-label-sm">Notes:</label>
-            <div class="col-lg-10">
+          <div class="row">
+            <div class="col">
               <textarea class="form-control font-control-sm my-align text-truncate" rows="3" disabled>{{$order->notes}}</textarea>
             </div>
           </div>

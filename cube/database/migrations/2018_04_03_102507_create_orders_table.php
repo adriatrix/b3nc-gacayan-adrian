@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('so_num');
             $table->string('po_num')->nullable();
-            $table->string('notes')->nullable();
+            $table->text('notes')->nullable();
             $table->string('received_date')->nullable();
             $table->string('booked_date')->nullable();
             $table->integer('user_id')->unsigned();
